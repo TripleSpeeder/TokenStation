@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
-import {
-    Card, Container, Divider, Header, Icon, Image, Input, Item, Label, List, Segment,
-    Table, Grid
-} from 'semantic-ui-react'
+import {Container, Header, Input, Item} from 'semantic-ui-react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import getWeb3 from './utils/getWeb3'
+import contract from 'truffle-contract'
+import erc20ABI from 'human-standard-token-abi'
 
 import './App.css'
 import TokenDescription from "./TokenDescription"
+import ERC20ContractListContainer from "./ERC20ContractListContainer"
 
 class App extends Component {
     constructor(props) {
@@ -15,11 +15,11 @@ class App extends Component {
 
         this.state = {
             storageValue: 0,
-            web3: null
+            web3: null,
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // Get network provider and web3 instance.
         // See utils/getWeb3 for more info.
 
@@ -28,26 +28,54 @@ class App extends Component {
                 this.setState({
                     web3: results.web3
                 })
-
-                // Instantiate contract once web3 provided.
-                this.instantiateContract()
             })
-            .catch(() => {
-                console.log('Error finding web3.')
+            .catch((e) => {
+                console.log('Error finding web3:' + e)
             })
     }
 
-    instantiateContract() {
+    async instantiateERCContracts() {
         /*
-         * SMART CONTRACT EXAMPLE
-         *
-         * Normally these functions would be called in the context of a
-         * state management library, but for convenience I've placed them here.
-         */
+            const ERC20Contract = contract({
+                abi: erc20ABI
+            })
+            ERC20Contract.setProvider(this.state.web3.currentProvider)
 
-        const contract = require('truffle-contract')
-        const simpleStorage = contract(SimpleStorageContract)
-        simpleStorage.setProvider(this.state.web3.currentProvider)
+            this.state.erc20Contracts.forEach(async (erc20Item) => {
+                console.log("Getting contract instance for " + erc20Item.name)
+                try {
+                    let erc20Instance = await ERC20Contract.at(erc20Item.contract)
+                    let name = await erc20Instance.name.call()
+                    if (name) {
+                        console.log("Got name: " + name)
+                        erc20Item.dynamicData.name = name
+                    } else {
+                        console.log("Empty name :-(")
+                    }
+                    let symbol = await erc20Instance.symbol.call()
+                    if (symbol) {
+                        console.log("Got symbol: " + symbol)
+                        erc20Item.dynamicData.symbol = symbol
+                    } else {
+                        console.log("Empty symbol :-(")
+                    }
+                    let totalSupply = await erc20Instance.totalSupply.call()
+                    if (totalSupply) {
+                        console.log("Got totalSupply: " + totalSupply)
+                        erc20Item.dynamicData.totalSupply = totalSupply
+                    } else {
+                        console.log("Empty totalSupply :-(")
+                    }
+                }
+                catch (e) {
+                    console.log("Error!")
+                    console.log(e)
+                }
+            })
+            */
+        /*
+        //const simpleStorage = contract(SimpleStorageContract)
+        //simpleStorage.setProvider(this.state.web3.currentProvider)
 
         // Declaring this for later so we can chain functions on SimpleStorage.
         var simpleStorageInstance
@@ -67,36 +95,10 @@ class App extends Component {
                 return this.setState({storageValue: result.c[0]})
             })
         })
+        */
     }
 
     render() {
-        const dummies = [
-            {
-                name: 'OmiseGo',
-                symbol: 'OMG',
-                description: 'OmiseGO (OMG) is a public Ethereum-based financial technology for use in mainstream digital wallets',
-                website: 'https://omisego.network/',
-                imageUrl: 'https://eidoo.io/wp-content/uploads/tokens/omisego.png',
-                decimals: 18,
-                supply: 25000000,
-                contract: '0xAef38fBFBF932D1AeF3B808Bc8fBd8Cd8E1f8BC5',
-            },
-            {
-                name: 'EOS',
-                symbol: 'EOS',
-                description: 'Infrastructure for Decentralized Applications',
-                website: 'https://omisego.network/',
-                imageUrl: 'https://eidoo.io/wp-content/uploads/tokens/omisego.png',
-                decimals: 18,
-                supply: 12345679,
-                contract: '0xAef38fBFBF932D1AeF3B808Bc8fBd8Cd8E1f8BC5',
-            }
-        ]
-
-        let items = []
-        dummies.forEach((token) => {
-            items.push(<TokenDescription token={token}/>)
-        })
 
         return <div className="App">
             <Container>
@@ -104,9 +106,7 @@ class App extends Component {
                     TokenStation
                 </Header>
                 <Input fluid icon='diamond' iconPosition='left' placeholder='Address or ENS name'/>
-                <Item.Group>
-                    {items}
-                </Item.Group>
+                {this.state.web3 != null ? <ERC20ContractListContainer web3={this.state.web3}/> : <div>No web3!</div>}
             </Container>
         </div>
 

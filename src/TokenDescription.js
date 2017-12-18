@@ -7,11 +7,6 @@ class TokenDescription extends Component {
     }
 
     render() {
-        //return this.renderAsHeader()
-        return this.renderAsItem()
-    }
-
-    renderAsItem() {
         const {name, symbol, description, website, imageUrl, decimals, supply, contract} = this.props.token
         return (
             <Item>
@@ -32,11 +27,11 @@ class TokenDescription extends Component {
                     <Label.Group>
                         <Label>
                             Supply:
-                            <Label.Detail>{supply}</Label.Detail>
+                            <Label.Detail>{supply.toString()}</Label.Detail>
                         </Label>
                         <Label>
                             Decimals:
-                            <Label.Detail>{decimals}</Label.Detail>
+                            <Label.Detail>{decimals.toString()}</Label.Detail>
                         </Label>
                         <Label as='a' href='https://etherscan.io/address/0x267be1c1d684f78cb4f6a176c4911b741e4ffdc0'>
                             Contract:
