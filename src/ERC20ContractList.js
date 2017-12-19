@@ -10,15 +10,19 @@ const ERC20ContractList = (props) => {
                     key={tokenContract.tokenAddress}
                     ERC20Contract={tokenContract}
                     web3={props.web3}
-                />
-            )}
+                    address={props.address}
+                    showEmpty={props.showEmpty}
+                />)
+            }
         </Item.Group>
     )
 }
 
 ERC20ContractList.propTypes = {
     //myProp: PropTypes.object.isRequired
-    web3: PropTypes.object.isRequired
+    web3: PropTypes.object.isRequired,
+    address: PropTypes.string,
+    showEmpty: PropTypes.bool.isRequired,
 }
 
 ERC20ContractList.defaultProps = {

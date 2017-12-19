@@ -39,7 +39,7 @@ class ERC20ContractListContainer extends Component {
             .then((count) => {
                 console.log("Tokencount: " + count)
                 // for testing
-                const limit=200
+                const limit=10
                 if (count > limit) count = limit
                 //
                 for (var i=0; i < count; i++) {
@@ -51,7 +51,6 @@ class ERC20ContractListContainer extends Component {
                         }
                     })
                 }
-                console.log("Done!")
             })
     }
 
@@ -68,52 +67,23 @@ class ERC20ContractListContainer extends Component {
                 ERC20TokenContracts: prevState.ERC20TokenContracts.concat([newEntry])
             };
         })
-        return
-
-/*
-        // get contract instance for token
-        console.log("Getting contract instance for " + tokenName)
-        let erc20Instance
-        this.ERC20Contract.at(tokenAddress)
-            .then((instance) => {
-                erc20Instance = instance
-                return erc20Instance.totalSupply()
-            })
-            .then((supply) => {
-                if (supply) {
-                    console.log("Got supply: " + supply)
-                } else {
-                    console.log("Empty supply :-(")
-                }
-                this.setState((prevState, props) => {
-                    console.log(prevState)
-                    let newEntry = {
-                        contract: tokenAddress,
-                        symbol: tokenSymbol,
-                        decimals: tokenDecimals,
-                        name: tokenName,
-                        totalSupply: supply
-                    }
-                    return { ...prevState,
-                        tokenCount: prevState.tokenCount + 1,
-                        ERC20TokenContracts: prevState.ERC20TokenContracts.concat([newEntry])
-                    };
-                })
-            })
-*/
     }
 
     render() {
         return <ERC20ContractList
             web3={this.props.web3}
             ERC20TokenContracts={this.state.ERC20TokenContracts}
+            // address='0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0'    // kraken4
+            address={this.props.address}
+            showEmpty={this.props.showEmpty}
         />
     }
 }
 
 ERC20ContractListContainer.propTypes = {
     //myProp: PropTypes.object.isRequired
-    web3: PropTypes.object.isRequired
+    web3: PropTypes.object.isRequired,
+    address: PropTypes.string
 }
 
 ERC20ContractListContainer.defaultProps = {
