@@ -1,26 +1,44 @@
 import React, {Component, PropTypes} from 'react'
-import {Header, Icon, Image, Label, Item, Segment} from "semantic-ui-react"
+import {Header, Icon, Image, Label, Item, Segment, Dimmer, Loader, Statistic, Button, Divider} from "semantic-ui-react"
 
 class TokenDescription extends Component {
     constructor(props, context) {
         super(props, context)
+        this.rendercount = 0;
     }
 
     render() {
-        const {name, symbol, description, website, imageUrl, decimals, supply, contract, balance} = this.props.token
+        const {name, symbol, description, website, decimals, supply, contract, balance, loading} = this.props.token
+        let imageUrl = this.props.token.imageUrl
+        if (imageUrl === 'none') {
+            imageUrl = "Silvercoin.png"
+        }
+
+        // TESTING
+        this.rendercount+=1
+        console.log("Rendering " + name + ", Rendercount: " + this.rendercount)
+
         return (
             <Item>
                 <Item.Image size='tiny' src={imageUrl}></Item.Image>
-                <Item.Content verticalAlign='top'>
+                <Item.Content>
                     <Item.Header>{name} ({symbol})</Item.Header>
-                    <Segment basic floated='right'>
-                        <Label size='big' color='teal'>
-                            {balance ? balance.toFixed(4):''}
-                        </Label>
-                    </Segment>
+                    <Statistic floated='right'>
+                        <Statistic.Value>
+                            {balance.toFixed(4)}
+                        </Statistic.Value>
+                    </Statistic>
                     <Item.Meta>
                         <a href={website} target='_blank'>{website}</a>
                     </Item.Meta>
+                    <Divider/>
+                    <Button floated='right'
+                            size='small'
+                            circular
+                            icon='refresh'
+                            loading={loading}
+                            onClick={this.props.handleRefresh}
+                    />
                     <Item.Description>
                         {description}
                     </Item.Description>
@@ -45,11 +63,14 @@ class TokenDescription extends Component {
 }
 
 TokenDescription.propTypes = {
-    token: PropTypes.object.isRequired
+    token: PropTypes.object.isRequired,
+    loadingBalance: PropTypes.bool,
+    handleRefresh: PropTypes.func.isRequired,
 }
 
 TokenDescription.defaultProps = {
     //myProp: <defaultValue>
+    loadingBalance: false
 }
 
 export default TokenDescription

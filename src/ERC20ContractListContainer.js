@@ -39,7 +39,7 @@ class ERC20ContractListContainer extends Component {
             .then((count) => {
                 console.log("Tokencount: " + count)
                 // for testing
-                const limit=10
+                const limit=6
                 if (count > limit) count = limit
                 //
                 for (var i=0; i < count; i++) {

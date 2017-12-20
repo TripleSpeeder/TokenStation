@@ -8,7 +8,7 @@ class ERC20ContractContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            loading: true,
+            loading: false,
             name: this.props.ERC20Contract.tokenName,
             symbol: this.props.ERC20Contract.tokenSymbol,
             description: 'none',
@@ -23,46 +23,61 @@ class ERC20ContractContainer extends Component {
         this.ERC20Contract = contract({abi: erc20ABI})
         this.ERC20Contract.setProvider(this.props.web3.currentProvider)
         this.ERC20ContractInstance = null
+
+        this.refresh = this.refresh.bind(this)
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         // get contract instance for token
         console.log("Getting contract instance for " + this.state.name)
+        this.setState({loading: true})
+        this.ERC20ContractInstance = await this.ERC20Contract.at(this.state.contract)
+        this.refresh()
+        /*
         this.ERC20Contract.at(this.state.contract)
             .then((instance) => {
                 this.ERC20ContractInstance = instance
                 return this.ERC20ContractInstance.totalSupply()
             })
-            .then((supply) => {
-                if (supply) {
-                    console.log("Got supply: " + supply)
-                } else {
-                    console.log("Empty supply :-(")
-                }
-                this.setState({ supply: supply })
-            })
             .then(this.getBalance(this.props.address))
+            */
     }
 
-    getBalance(address) {
+    async refresh() {
+        this.setState({ loading: true })
+        let supply = await this.ERC20ContractInstance.totalSupply()
+        this.setState({ supply: supply })
+        if (this.props.address) {
+            let balance = await this.ERC20ContractInstance.balanceOf(this.props.address)
+            this.setState({balance: balance})
+        }
+        this.setState({ loading: false})
+    }
+
+    async getBalance(address) {
         if (address) {
-            this.ERC20ContractInstance.balanceOf(address).then(balance => {
-                this.setState({balance: balance})
-            })
+            this.setState({ loading: true })
+            let balance = await this.ERC20ContractInstance.balanceOf(address)
+            this.setState({balance: balance})
+            this.setState({ loading: false })
         }
     }
 
     componentWillReceiveProps (nextProps) {
-        if (nextProps.address != this.props.address)
+        if (nextProps.address != this.props.address){
             this.getBalance(nextProps.address)
+        }
     }
 
     render() {
         if (this.props.showEmpty) {
-            return <TokenDescription token={this.state}/>
+            return <TokenDescription token={this.state}
+                                     handleRefresh={this.refresh}/>
         } else {
             if (!this.state.balance.isZero()){
-                return <TokenDescription token={this.state}/>
+                return <TokenDescription token={this.state}
+                                         handleRefresh={this.refresh}
+                />
             }
             else
                 return null

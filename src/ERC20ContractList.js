@@ -5,7 +5,7 @@ import ERC20ContractContainer from "./ERC20ContractContainer"
 
 const ERC20ContractList = (props) => {
     return (
-        <Item.Group>
+        <Item.Group divided>
             {props.ERC20TokenContracts.map((tokenContract) => <ERC20ContractContainer
                     key={tokenContract.tokenAddress}
                     ERC20Contract={tokenContract}
