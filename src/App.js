@@ -1,37 +1,33 @@
 import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
 import {Checkbox, Container, Header, Input, Item} from 'semantic-ui-react'
-import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
-import getWeb3 from './utils/getWeb3'
-import contract from 'truffle-contract'
-import erc20ABI from 'human-standard-token-abi'
 
-import './App.css'
+import getWeb3 from './utils/getWeb3'
+
 import ERC20ContractListContainer from "./ERC20ContractListContainer"
 import QueryAddressFormContainer from "./QueryAddressForm"
+
+import './App.css'
+import {connect} from "react-redux"
+import {setWeb3Instance} from "./actions"
 
 class App extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            storageValue: 0,
-            web3: null,
             showEmpty: true,
-            address: '',
         }
-
-        // this.onCheckboxChange = this.onCheckboxChange.bind(this)
     }
 
     componentDidMount() {
         // Get network provider and web3 instance.
         // See utils/getWeb3 for more info.
 
+        // Todo: Make getWeb3 a proper redux component
         getWeb3
             .then(results => {
-                this.setState({
-                    web3: results.web3
-                })
+                this.props.web3Initialized(results.web3)
             })
             .catch((e) => {
                 console.log('Error finding web3:' + e)
@@ -42,10 +38,6 @@ class App extends Component {
         this.setState({showEmpty: data.checked})
     }
 
-    onAddressSelected = (address) => {
-        this.setState({address: address})
-    }
-
     render() {
 
         return <div className="App">
@@ -53,13 +45,13 @@ class App extends Component {
                 <Header as='h1' block>
                     TokenStation
                 </Header>
-                <QueryAddressFormContainer onAddressSelected={this.onAddressSelected}/>
+                <QueryAddressFormContainer/>
                 <Checkbox label='show tokens with 0 balance'
                           onChange={this.onCheckboxChange}
                 />
                 {
-                    this.state.web3 != null ?
-                        <ERC20ContractListContainer web3={this.state.web3}
+                    this.props.web3 != null ?
+                        <ERC20ContractListContainer web3={this.props.web3}
                                                     showEmpty={this.state.showEmpty}
                                                     address={this.state.address}
                         /> :
@@ -71,4 +63,14 @@ class App extends Component {
     }
 }
 
-export default App
+const mapStateToProps = state => ({
+    web3: state.web3Instance.web3
+})
+
+const mapDispatchToProps = dispatch => ({
+    web3Initialized: (web3) => {
+        dispatch(setWeb3Instance(web3))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

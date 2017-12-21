@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react'
+import {connect} from 'react-redux'
+import {setQueryAddress} from "./actions"
 import {Form} from 'semantic-ui-react'
 
 
@@ -45,11 +47,20 @@ class QueryAddressForm extends Component {
 
 QueryAddressForm.propTypes = {
     //myProp: PropTypes.object.isRequired
-    onAddressSelected: PropTypes.func.isRequired
 }
 
 QueryAddressForm.defaultProps = {
     //myProp: <defaultValue>
 }
 
-export default QueryAddressForm
+let mapStateToProps = state => ({
+	//address: state.address
+})
+
+let mapDispatchToProps = dispatch => ({
+    onAddressSelected: (address) => {
+        dispatch(setQueryAddress(address))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(QueryAddressForm)
