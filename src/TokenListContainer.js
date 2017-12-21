@@ -1,17 +1,14 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
-import ERC20ContractList from "./ERC20ContractList"
 
-class ERC20ContractListContainer extends Component {
+import {connect} from "react-redux"
+import {addToken} from "./actions"
+import TokenList from "./TokenList"
+
+class TokenListContainer extends Component {
     constructor(props, context) {
         super(props, context)
-
-        this.state = {
-            ERC20TokenContracts: [],
-        }
-
-        this.addToken = this.addToken.bind(this)
     }
 
     componentDidMount() {
@@ -42,52 +39,51 @@ class ERC20ContractListContainer extends Component {
                 const limit=6
                 if (count > limit) count = limit
                 //
-                for (var i=0; i < count; i++) {
-                    theTokenRegistry.token(i).then((token)=>{
-                        const address = token[0]
+                for (let id=0; id < count; id++) {
+                    theTokenRegistry.token(id).then((parityToken)=>{
+                        const address = parityToken[0]
                         if (address!=='0x0000000000000000000000000000000000000000') {
-                            console.log("Got token: " + token[3] + " at " + token[0])
-                            this.addToken(token)
+                            console.log("Got token " + id + ": " + parityToken[3] + " at " + parityToken[0])
+                            this.props.addToken(id, this.mapParityToken(id, parityToken))
                         }
                     })
                 }
             })
     }
 
-    addToken(token) {
-        const newEntry = {
-            tokenAddress: token[0],
-            tokenSymbol: token[1],
-            tokenDecimals: token[2],
-            tokenName: token[3],
+    mapParityToken(id, parityToken) {
+        return {
+            id: id,
+            address: parityToken[0],
+            symbol: parityToken[1],
+            decimals: parityToken[2],
+            name: parityToken[3],
+            description: 'none',
+            website: 'none',
+            imageUrl: 'none',
+            supply: this.props.web3.toBigNumber(0),
         }
-
-        this.setState((prevState, props) => {
-            return { ...prevState,
-                ERC20TokenContracts: prevState.ERC20TokenContracts.concat([newEntry])
-            };
-        })
     }
 
     render() {
-        return <ERC20ContractList
-            web3={this.props.web3}
-            ERC20TokenContracts={this.state.ERC20TokenContracts}
-            // address='0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0'    // kraken4
-            address={this.props.address}
+        return <TokenList
+            tokenIds={this.props.tokenIds}
             showEmpty={this.props.showEmpty}
         />
     }
 }
 
-ERC20ContractListContainer.propTypes = {
-    //myProp: PropTypes.object.isRequired
-    web3: PropTypes.object.isRequired,
-    address: PropTypes.string
-}
+const mapStateToProps = state => ({
+    web3: state.web3Instance.web3,
+    address: state.queryAddress.address,
+    tokenIds: state.tokens.allIds
+})
 
-ERC20ContractListContainer.defaultProps = {
-    //myProp: <defaultValue>
-}
+const mapDispatchToProps = dispatch => ({
+    addToken: (tokenId, token) => {
+        dispatch(addToken(tokenId, token))
+    }
+})
 
-export default ERC20ContractListContainer
+
+export default connect(mapStateToProps, mapDispatchToProps)(TokenListContainer)

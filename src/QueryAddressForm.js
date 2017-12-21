@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setQueryAddress} from "./actions"
 import {Form} from 'semantic-ui-react'
@@ -7,6 +7,8 @@ import {Form} from 'semantic-ui-react'
 class QueryAddressForm extends Component {
     constructor(props, context) {
         super(props, context)
+
+        // kraken4='0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0'
         this.state = {
             address: '',
             addressValid: false,
@@ -43,14 +45,6 @@ class QueryAddressForm extends Component {
             </Form>
         )
     }
-}
-
-QueryAddressForm.propTypes = {
-    //myProp: PropTypes.object.isRequired
-}
-
-QueryAddressForm.defaultProps = {
-    //myProp: <defaultValue>
 }
 
 let mapStateToProps = state => ({

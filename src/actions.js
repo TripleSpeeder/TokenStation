@@ -1,8 +1,20 @@
-
-export function addERC20ContractResult(erc20contract) {
+export function addToken(tokenId, token) {
     return {
-        type: "ADD_ERC20ContractResult",
-        erc20Contract: erc20contract
+        type: "ADD_TOKEN",
+        payload: {
+            tokenId: tokenId,
+            token: token
+        }
+    }
+}
+
+export function setTokenSupply(tokenID, supply) {
+    return {
+        type: "SET_TOKEN_SUPPLY",
+        payload: {
+            tokenId: tokenID,
+            supply: supply,
+        }
     }
 }
 

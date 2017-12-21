@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-import {bindActionCreators} from 'redux'
-import {Checkbox, Container, Header, Input, Item} from 'semantic-ui-react'
+import {Checkbox, Container, Header} from 'semantic-ui-react'
 
 import getWeb3 from './utils/getWeb3'
 
-import ERC20ContractListContainer from "./ERC20ContractListContainer"
+import TokenListContainer from "./TokenListContainer"
 import QueryAddressFormContainer from "./QueryAddressForm"
 
 import './App.css'
@@ -28,10 +27,10 @@ class App extends Component {
         getWeb3
             .then(results => {
                 this.props.web3Initialized(results.web3)
-            })
+            })/*
             .catch((e) => {
                 console.log('Error finding web3:' + e)
-            })
+            })*/
     }
 
     onCheckboxChange = (event, data) => {
@@ -51,7 +50,7 @@ class App extends Component {
                 />
                 {
                     this.props.web3 != null ?
-                        <ERC20ContractListContainer web3={this.props.web3}
+                        <TokenListContainer
                                                     showEmpty={this.state.showEmpty}
                                                     address={this.state.address}
                         /> :

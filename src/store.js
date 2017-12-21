@@ -1,11 +1,11 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
-import {ERC20Contracts, queryAddress, web3Instance} from './reducers'
+import {queryAddress, web3Instance, tokensReducer} from './reducers'
 
 const reducer = combineReducers(
     Object.assign({},
         {
-            ERC20Contracts,  // ES6 shorthand for {'ERC20Contracts': ERC20Contracts}
-            queryAddress,
+            tokens: tokensReducer,
+            queryAddress,   // ES6 shorthand for "queryAddress: queryAddress"
             web3Instance,
         }
     )
