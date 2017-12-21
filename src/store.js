@@ -1,12 +1,15 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
-import {queryAddress, web3Instance, tokensReducer} from './reducers'
+import {tokens} from "./reducers/tokenReducer"
+import {queryAddress} from "./reducers/queryAddressReducer"
+import {web3Instance} from "./reducers/web3Reducer"
+
 
 const reducer = combineReducers(
     Object.assign({},
         {
-            tokens: tokensReducer,
             queryAddress,   // ES6 shorthand for "queryAddress: queryAddress"
             web3Instance,
+            tokens,
         }
     )
 )

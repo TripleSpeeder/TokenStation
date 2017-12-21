@@ -1,25 +1,5 @@
 import {combineReducers} from "redux"
 
-function updateObject(oldObject, newValues) {
-    // Encapsulate the idea of passing a new object as the first parameter
-    // to Object.assign to ensure we correctly copy data instead of mutating
-    return Object.assign({}, oldObject, newValues);
-}
-
-function updateItemInArray(array, itemId, updateItemCallback) {
-    const updatedItems = array.map(item => {
-        if(item.id !== itemId) {
-            // Since we only want to update one item, preserve all others as they are now
-            return item;
-        }
-
-        // Use the provided callback to create an updated item
-        return updateItemCallback(item);
-    });
-    return updatedItems;
-}
-
-
 function addTokenEntry(state, action) {
     const {payload} = action
     const {tokenId, token} = payload
@@ -84,31 +64,7 @@ const allTokens = (state=[], action) => {
     }
 }
 
-export const tokensReducer = combineReducers({
+export const tokens = combineReducers({
     byId : tokensById,
     allIds : allTokens
 });
-
-const QUERYADDRESS_INITIAL = {
-    address: ''
-}
-export const queryAddress = (state=QUERYADDRESS_INITIAL, action) => {
-    switch (action.type) {
-        case 'SET_QUERYADDRESS':
-            return updateObject(state, {address: action.address})
-        default:
-    }
-    return state;
-}
-
-const WEB3_INITIAL = {
-    web3: null
-}
-export const web3Instance = (state=WEB3_INITIAL, action) => {
-    switch (action.type) {
-        case 'SET_WEB3INSTANCE':
-            return updateObject(state, {web3: action.web3})
-        default:
-    }
-    return state;
-}
