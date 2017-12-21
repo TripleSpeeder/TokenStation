@@ -1,6 +1,6 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
-import {tokens} from "./reducers/tokenReducer"
-import {queryAddress} from "./reducers/queryAddressReducer"
+import {tokens} from "./modules/token/tokenReducer"
+import {queryAddress} from "./modules/queryAddress/queryAddressReducer"
 import {web3Instance} from "./reducers/web3Reducer"
 
 

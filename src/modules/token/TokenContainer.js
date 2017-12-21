@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import TokenDescription from "./TokenDescription"
+import Token from "./Token"
 import erc20ABI from "human-standard-token-abi"
 import contract from "truffle-contract"
 import {connect} from "react-redux"
-import {setTokenSupply} from "./actions"
+import {setTokenSupply} from "./tokenActions"
 
 
 class TokenContainer extends Component {
@@ -61,12 +61,12 @@ class TokenContainer extends Component {
 
     render() {
         if (this.props.showEmpty) {
-            return <TokenDescription token={this.props.token}
-                                     handleRefresh={this.getTokenSupply}/>
+            return <Token token={this.props.token}
+                          handleRefresh={this.getTokenSupply}/>
         } else {
             if (!this.state.balance.isZero()){
-                return <TokenDescription token={this.props.token}
-                                         handleRefresh={this.getTokenSupply}
+                return <Token token={this.props.token}
+                              handleRefresh={this.getTokenSupply}
                 />
             }
             else

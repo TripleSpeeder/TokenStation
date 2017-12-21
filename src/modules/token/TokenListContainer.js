@@ -3,7 +3,7 @@ import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
 
 import {connect} from "react-redux"
-import {addToken} from "./actions"
+import {addToken} from './tokenActions'
 import TokenList from "./TokenList"
 
 class TokenListContainer extends Component {

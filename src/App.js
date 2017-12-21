@@ -3,8 +3,8 @@ import {Checkbox, Container, Header} from 'semantic-ui-react'
 
 import getWeb3 from './utils/getWeb3'
 
-import TokenListContainer from "./TokenListContainer"
-import QueryAddressFormContainer from "./QueryAddressForm"
+import TokenListContainer from "./modules/token/TokenListContainer"
+import QueryAddressFormContainer from "./modules/queryAddress/QueryAddressForm"
 
 import './App.css'
 import {connect} from "react-redux"

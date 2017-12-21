@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {setQueryAddress} from "./actions"
+
 import {Form} from 'semantic-ui-react'
+import {setQueryAddress} from "./queryAddressActions"
 
 
 class QueryAddressForm extends Component {

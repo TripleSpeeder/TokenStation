@@ -1,4 +1,4 @@
-import {updateObject} from "./utils"
+import {updateObject} from "../../reducers/utils"
 
 const QUERYADDRESS_INITIAL = {
     address: ''

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {Label, Item, Statistic, Button, Divider} from "semantic-ui-react"
 
-class TokenDescription extends Component {
+class Token extends Component {
     constructor(props, context) {
         super(props, context)
         this.rendercount = 0;
@@ -63,15 +63,15 @@ class TokenDescription extends Component {
     }
 }
 
-TokenDescription.propTypes = {
+Token.propTypes = {
     token: PropTypes.object.isRequired,
     loadingBalance: PropTypes.bool,
     handleRefresh: PropTypes.func.isRequired,
 }
 
-TokenDescription.defaultProps = {
+Token.defaultProps = {
     //myProp: <defaultValue>
     loadingBalance: false
 }
 
-export default TokenDescription
+export default Token
