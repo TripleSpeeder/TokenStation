@@ -1,4 +1,5 @@
 import {combineReducers} from "redux"
+import {ADD_TOKEN, SET_TOKEN_SUPPLY} from "./tokenActions"
 
 function addTokenEntry(state, action) {
     const {payload} = action
@@ -29,10 +30,10 @@ function setTokenSupply(state, action) {
 
 const tokensById = (state={}, action) => {
     switch (action.type) {
-        case 'ADD_TOKEN': {
+        case ADD_TOKEN: {
             return addTokenEntry(state, action)
         }
-        case 'SET_TOKEN_SUPPLY': {
+        case SET_TOKEN_SUPPLY: {
             return setTokenSupply(state, action)
             /*
             // first create a new tokens array, including the changed one

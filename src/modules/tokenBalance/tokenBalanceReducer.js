@@ -1,4 +1,5 @@
 import {combineReducers} from "redux"
+import {SET_TOKEN_BALANCE} from "./tokenBalanceActions"
 
 /*
 State tree:
@@ -30,7 +31,7 @@ function setTokenBalance(state, action) {
 
 const balanceByToken = (state={}, action) => {
     switch (action.type) {
-        case 'SET_TOKEN_BALANCE': {
+        case SET_TOKEN_BALANCE: {
             return setTokenBalance(state, action)
         }
         default:
@@ -50,7 +51,7 @@ function addTokenId(state, action) {
 
 const allBalances = (state=[], action) => {
     switch (action.type) {
-        case 'SET_TOKEN_BALANCE': {
+        case SET_TOKEN_BALANCE: {
             return addTokenId(state, action)
         }
         default:
