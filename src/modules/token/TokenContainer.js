@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import Token from "./Token"
 import erc20ABI from "human-standard-token-abi"
@@ -7,7 +7,7 @@ import {connect} from "react-redux"
 import {setTokenSupply} from "./tokenActions"
 
 
-class TokenContainer extends Component {
+class TokenContainer extends PureComponent {
     constructor(props, context) {
         super(props, context)
         this.state = {
