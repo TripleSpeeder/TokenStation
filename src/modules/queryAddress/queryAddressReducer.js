@@ -1,7 +1,7 @@
-import {updateObject} from "../../reducers/utils"
+import {updateObject} from "../../utils/reducerUtils"
 
 const QUERYADDRESS_INITIAL = {
-    address: ''
+    address: null
 }
 export const queryAddress = (state=QUERYADDRESS_INITIAL, action) => {
     switch (action.type) {

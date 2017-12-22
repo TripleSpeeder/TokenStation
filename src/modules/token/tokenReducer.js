@@ -27,7 +27,7 @@ function setTokenSupply(state, action) {
     };
 }
 
-export const tokensById = (state={}, action) => {
+const tokensById = (state={}, action) => {
     switch (action.type) {
         case 'ADD_TOKEN': {
             return addTokenEntry(state, action)

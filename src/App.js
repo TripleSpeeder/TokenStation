@@ -8,7 +8,7 @@ import QueryAddressFormContainer from "./modules/queryAddress/QueryAddressForm"
 
 import './App.css'
 import {connect} from "react-redux"
-import {setWeb3Instance} from "./actions"
+import {setWeb3Instance} from "./modules/web3/web3Actions"
 
 class App extends Component {
     constructor(props) {

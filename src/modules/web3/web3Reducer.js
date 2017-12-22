@@ -1,4 +1,4 @@
-import {updateObject} from "./utils"
+import {updateObject} from "../../utils/reducerUtils"
 
 const WEB3_INITIAL = {
     web3: null

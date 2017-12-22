@@ -1,7 +1,8 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {tokens} from "./modules/token/tokenReducer"
 import {queryAddress} from "./modules/queryAddress/queryAddressReducer"
-import {web3Instance} from "./reducers/web3Reducer"
+import {web3Instance} from "./modules/web3/web3Reducer"
+import {balances} from "./modules/tokenBalance/tokenBalanceReducer"
 
 
 const reducer = combineReducers(
@@ -10,6 +11,7 @@ const reducer = combineReducers(
             queryAddress,   // ES6 shorthand for "queryAddress: queryAddress"
             web3Instance,
             tokens,
+            balances,
         }
     )
 )

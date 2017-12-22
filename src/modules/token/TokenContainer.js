@@ -23,7 +23,6 @@ class TokenContainer extends Component {
 
     async componentDidMount() {
         // get contract instance for token
-        console.log("Getting contract instance for " + this.props.token.name)
         this.setState({loading: true})
         this.ERC20ContractInstance = await this.ERC20Contract.at(this.props.token.address)
         this.getTokenSupply()

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {Label, Item, Statistic, Button, Divider} from "semantic-ui-react"
+import TokenBalanceContainer from "../tokenBalance/TokenBalanceContainer"
 
 class Token extends Component {
     constructor(props, context) {
@@ -26,7 +27,7 @@ class Token extends Component {
                     <Item.Header>{name} ({symbol})</Item.Header>
                     <Statistic floated='right'>
                         <Statistic.Value>
-                            {0 /*balance.toFixed(4)*/}
+                            <TokenBalanceContainer tokenId={this.props.token.id}/>
                         </Statistic.Value>
                     </Statistic>
                     <Item.Meta>
