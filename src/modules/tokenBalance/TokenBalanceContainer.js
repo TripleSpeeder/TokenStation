@@ -17,9 +17,8 @@ class TokenBalanceContainer extends Component {
 
     async componentDidMount() {
         // get contract instance for token
-        this.ERC20ContractInstance = await this.ERC20Contract.at(this.props.token.address)
+        this.ERC20ContractInstance = await this.ERC20Contract.at(this.props.tokenAddress)
         this.getTokenBalance(this.props.queryAddress)
-
     }
 
     componentWillReceiveProps (nextProps) {
@@ -36,9 +35,8 @@ class TokenBalanceContainer extends Component {
     }
 
     render() {
-         /*balance.toFixed(4)*/
         return (
-            <span>{this.props.tokenBalance ? this.props.tokenBalance.balance.toFixed(4) : 'loading...'}</span>
+            <span>{this.props.tokenBalance ? this.props.tokenBalance.toFixed(4) : 'loading...'}</span>
         )
     }
 }
@@ -52,12 +50,16 @@ TokenBalanceContainer.defaultProps = {
     //myProp: <defaultValue>
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    web3: state.web3Instance.web3,
-    queryAddress: state.queryAddress.address,
-    token: state.tokens.byId[ownProps.tokenId],
-    tokenBalance: state.balances.byToken[ownProps.tokenId],
-})
+const mapStateToProps = (state, ownProps) => {
+    let tokenBalances = state.balances.byToken[ownProps.tokenId]
+    let tokenBalance = tokenBalances ? tokenBalances.balance : null
+    return {
+        web3: state.web3Instance.web3,
+        queryAddress: state.queryAddress.address,
+        tokenAddress: state.tokens.byId[ownProps.tokenId].address,
+        tokenBalance: tokenBalance,
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
     setTokenBalance: (tokenId, balance) => {

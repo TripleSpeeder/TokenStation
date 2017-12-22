@@ -32,31 +32,7 @@ class TokenContainer extends Component {
         this.setState({ loading: true })
         let supply = await this.ERC20ContractInstance.totalSupply()
         this.props.setTokenSupply(this.props.token.id, supply)
-
-        /*
-        this.setState({ supply: supply })
-        if (this.props.address) {
-            let balance = await this.ERC20ContractInstance.balanceOf(this.props.token.address)
-            this.setState({balance: balance})
-        }
-        this.setState({ loading: false})*/
     }
-    /*
-    async getBalance(address) {
-        if (address) {
-            this.setState({ loading: true })
-            let balance = await this.ERC20ContractInstance.balanceOf(address)
-            this.setState({balance: balance})
-            this.setState({ loading: false })
-        }
-    }
-
-    componentWillReceiveProps (nextProps) {
-        if (nextProps.address !== this.props.address){
-            this.getBalance(nextProps.address)
-        }
-    }
-    */
 
     render() {
         if (this.props.showEmpty) {
@@ -71,14 +47,6 @@ class TokenContainer extends Component {
             else
                 return null
         }
-        /*
-        const {name} = this.props.token
-        return (
-            <div>
-                Token: {name}
-            </div>
-        )
-         */
     }
 }
 
