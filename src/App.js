@@ -1,14 +1,11 @@
 import React, {Component} from 'react'
 import {Checkbox, Container, Header} from 'semantic-ui-react'
 
-import getWeb3 from './utils/getWeb3'
-
 import TokenListContainer from "./modules/token/TokenListContainer"
 import QueryAddressFormContainer from "./modules/queryAddress/QueryAddressForm"
+import Web3Container from "./modules/web3/web3Container"
 
 import './App.css'
-import {connect} from "react-redux"
-import {setWeb3Instance} from "./modules/web3/web3Actions"
 
 class App extends Component {
     constructor(props) {
@@ -17,20 +14,6 @@ class App extends Component {
         this.state = {
             showEmpty: true,
         }
-    }
-
-    componentDidMount() {
-        // Get network provider and web3 instance.
-        // See utils/getWeb3 for more info.
-
-        // Todo: Make getWeb3 a proper redux component
-        getWeb3
-            .then(results => {
-                this.props.web3Initialized(results.web3)
-            })/*
-            .catch((e) => {
-                console.log('Error finding web3:' + e)
-            })*/
     }
 
     onCheckboxChange = (event, data) => {
@@ -48,28 +31,15 @@ class App extends Component {
                 <Checkbox label='show tokens with 0 balance'
                           onChange={this.onCheckboxChange}
                 />
-                {
-                    this.props.web3 != null ?
-                        <TokenListContainer
-                                                    showEmpty={this.state.showEmpty}
-                                                    address={this.state.address}
-                        /> :
-                        <div>No web3!</div>
-                }
+                <TokenListContainer
+                                            showEmpty={this.state.showEmpty}
+                                            address={this.state.address}
+                /> :
+                <Web3Container />
             </Container>
         </div>
 
     }
 }
 
-const mapStateToProps = state => ({
-    web3: state.web3Instance.web3
-})
-
-const mapDispatchToProps = dispatch => ({
-    web3Initialized: (web3) => {
-        dispatch(setWeb3Instance(web3))
-    }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App
