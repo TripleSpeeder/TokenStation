@@ -1,10 +1,15 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+
 import {Form} from 'semantic-ui-react'
+import {setQueryAddress} from "./queryAddressActions"
 
 
 class QueryAddressForm extends Component {
     constructor(props, context) {
         super(props, context)
+
+        // kraken4='0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0'
         this.state = {
             address: '',
             addressValid: false,
@@ -43,13 +48,14 @@ class QueryAddressForm extends Component {
     }
 }
 
-QueryAddressForm.propTypes = {
-    //myProp: PropTypes.object.isRequired
-    onAddressSelected: PropTypes.func.isRequired
-}
+let mapStateToProps = state => ({
+	//address: state.address
+})
 
-QueryAddressForm.defaultProps = {
-    //myProp: <defaultValue>
-}
+let mapDispatchToProps = dispatch => ({
+    onAddressSelected: (address) => {
+        dispatch(setQueryAddress(address))
+    }
+})
 
-export default QueryAddressForm
+export default connect(mapStateToProps, mapDispatchToProps)(QueryAddressForm)

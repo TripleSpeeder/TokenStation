@@ -56,7 +56,7 @@ function setupCompiler(host, port, protocol) {
 
   // "invalid" event fires when you have changed a file, and Webpack is
   // recompiling a bundle. WebpackDevServer takes care to pause serving the
-  // bundle, so if you refresh, it'll wait instead of serving the old one.
+  // bundle, so if you getTokenSupply, it'll wait instead of serving the old one.
   // "invalid" is short for "bundle invalidated", it doesn't imply any errors.
   compiler.plugin('invalid', function() {
     if (isInteractive) {
@@ -242,7 +242,7 @@ function runDevServer(host, port, protocol) {
     // for the WebpackDevServer client so it can learn when the files were
     // updated. The WebpackDevServer client is included as an entry point
     // in the Webpack development configuration. Note that only changes
-    // to CSS are currently hot reloaded. JS changes will refresh the browser.
+    // to CSS are currently hot reloaded. JS changes will getTokenSupply the browser.
     hot: true,
     // It is important to tell WebpackDevServer to use the same "root" path
     // as we specified in the config. In development, we always serve from /.

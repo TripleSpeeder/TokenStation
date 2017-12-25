@@ -33,7 +33,7 @@ module.exports = {
     // Include an alternative client for WebpackDevServer. A client's job is to
     // connect to WebpackDevServer by a socket and get notified about changes.
     // When you save a file, the client will either apply hot updates (in case
-    // of CSS changes), or refresh the page (in case of JS changes). When you
+    // of CSS changes), or getTokenSupply the page (in case of JS changes). When you
     // make a syntax error, this client will display a syntax error overlay.
     // Note: instead of the default WebpackDevServer client, we use a custom one
     // to bring better experience for Create React App users. You can replace
@@ -47,7 +47,7 @@ module.exports = {
     paths.appIndexJs
     // We include the app code last so that if there is a runtime error during
     // initialization, it doesn't blow up the WebpackDevServer client, and
-    // changing JS code would still trigger a refresh.
+    // changing JS code would still trigger a getTokenSupply.
   ],
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:

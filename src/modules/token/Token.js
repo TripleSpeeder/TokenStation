@@ -1,14 +1,16 @@
-import React, {Component, PropTypes} from 'react'
-import {Header, Icon, Image, Label, Item, Segment, Dimmer, Loader, Statistic, Button, Divider} from "semantic-ui-react"
+import React, {Component} from 'react'
+import PropTypes from 'prop-types';
+import {Label, Item, Statistic, Button, Divider} from "semantic-ui-react"
+import TokenBalanceContainer from "../tokenBalance/TokenBalanceContainer"
 
-class TokenDescription extends Component {
+class Token extends Component {
     constructor(props, context) {
         super(props, context)
         this.rendercount = 0;
     }
 
     render() {
-        const {name, symbol, description, website, decimals, supply, contract, balance, loading} = this.props.token
+        const {address, name, symbol, description, website, decimals, supply, loading} = this.props.token
         let imageUrl = this.props.token.imageUrl
         if (imageUrl === 'none') {
             imageUrl = "Silvercoin.png"
@@ -25,7 +27,7 @@ class TokenDescription extends Component {
                     <Item.Header>{name} ({symbol})</Item.Header>
                     <Statistic floated='right'>
                         <Statistic.Value>
-                            {balance.toFixed(4)}
+                            <TokenBalanceContainer tokenId={this.props.token.id}/>
                         </Statistic.Value>
                     </Statistic>
                     <Item.Meta>
@@ -53,7 +55,7 @@ class TokenDescription extends Component {
                         </Label>
                         <Label as='a' href='https://etherscan.io/address/0x267be1c1d684f78cb4f6a176c4911b741e4ffdc0'>
                             Contract:
-                            <Label.Detail>{contract}</Label.Detail>
+                            <Label.Detail>{address}</Label.Detail>
                         </Label>
                     </Label.Group>
                 </Item.Content>
@@ -62,15 +64,15 @@ class TokenDescription extends Component {
     }
 }
 
-TokenDescription.propTypes = {
+Token.propTypes = {
     token: PropTypes.object.isRequired,
     loadingBalance: PropTypes.bool,
     handleRefresh: PropTypes.func.isRequired,
 }
 
-TokenDescription.defaultProps = {
+Token.defaultProps = {
     //myProp: <defaultValue>
     loadingBalance: false
 }
 
-export default TokenDescription
+export default Token
