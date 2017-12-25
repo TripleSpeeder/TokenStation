@@ -9,7 +9,10 @@ import {
 
 const WEB3_INITIAL = {
     web3: null,
-    block: 0,
+    block: {
+        number: 0,
+        timestamp: 0
+    },
     id: -1,
     name: 'unknown'
 }

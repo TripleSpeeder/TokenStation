@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from "react-redux"
 import {setAPIVersion, setCurrentBlock, setNetwork, setNodeVersion, setWeb3Instance} from "./web3Actions"
 import getWeb3 from "../../utils/getWeb3"
+import Web3Info from "./web3Info"
 
 class Web3Container extends Component {
     constructor(props, context) {
@@ -117,12 +118,12 @@ class Web3Container extends Component {
     }
 
     render() {
-        return (
-            <div>
-                Network: {this.props.name} ({this.props.id}) | Block: {this.props.block.number} ({this.props.block.timestamp})
-                | Web3 API version: {this.props.apiVersion} | Node version: {this.props.nodeVersion}
-            </div>
-        )
+        return <Web3Info apiVersion={this.props.apiVersion}
+                         name={this.props.name}
+                         block={this.props.block}
+                         id={this.props.id}
+                         nodeVersion={this.props.nodeVersion}
+        />
     }
 }
 

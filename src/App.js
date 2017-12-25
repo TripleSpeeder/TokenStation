@@ -32,9 +32,9 @@ class App extends Component {
                           onChange={this.onCheckboxChange}
                 />
                 <TokenListContainer
-                                            showEmpty={this.state.showEmpty}
-                                            address={this.state.address}
-                /> :
+                    showEmpty={this.state.showEmpty}
+                    address={this.state.address}
+                />
                 <Web3Container />
             </Container>
         </div>
