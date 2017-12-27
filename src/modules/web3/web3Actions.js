@@ -1,8 +1,11 @@
+import getWeb3 from '../../utils/getWeb3'
+const PromisifyWeb3 = require("../../utils/promisifyWeb3.js")
+
 export const SET_WEB3INSTANCE = 'SET_WEB3INSTANCE'
 export function setWeb3Instance(web3) {
     return {
         type: SET_WEB3INSTANCE,
-        web3: web3
+        web3
     }
 }
 
@@ -10,7 +13,7 @@ export const SET_CURRENT_BLOCK = 'SET_CURRENT_BLOCK'
 export function setCurrentBlock(block) {
     return {
         type: SET_CURRENT_BLOCK,
-        block: block
+        block
     }
 }
 
@@ -18,16 +21,8 @@ export const SET_NETWORK = 'SET_NETWORK'
 export function setNetwork(id, name) {
     return {
         type: SET_NETWORK,
-        id: id,
-        name: name
-    }
-}
-
-export const SET_API_VERSION = 'SET_API_VERSION'
-export function setAPIVersion(apiVersion) {
-    return {
-        type: SET_API_VERSION,
-        apiVersion: apiVersion
+        id,
+        name
     }
 }
 
@@ -35,6 +30,110 @@ export const SET_NODE_VERSION = 'SET_NODE_VERSION'
 export function setNodeVersion(nodeVersion) {
     return {
         type: SET_NODE_VERSION,
-        nodeVersion: nodeVersion
+        nodeVersion
+    }
+}
+
+export const IS_LOADING = 'IS_LOADING'
+export function loadingChanged(isLoading) {
+    return {
+        type: IS_LOADING,
+        isLoading
+    }
+}
+
+export const SET_BLOCK_FILTER = 'SET_BLOCK_FILTER'
+export function setBlockFilter(blockFilter) {
+    return {
+        type: SET_BLOCK_FILTER,
+        blockFilter
+    }
+}
+
+export function stopBlockFilter() {
+    return (dispatch, getState) => {
+        // Clean up any blockfilter that might be active
+        const {blockFilter} = getState().web3Instance
+        if (blockFilter) {
+            blockFilter.stopWatching((error, result) => {
+                if (error) {
+                    console.log("Error stopping blockfilter: " + error)
+                }
+            })
+            dispatch(setBlockFilter(null))
+        }
+    }
+}
+
+export function initialize() {
+    return async (dispatch, getState) => {
+        // stop any running block filter, just in case...
+        dispatch(stopBlockFilter())
+
+        // signal that web3 is being initialized
+        dispatch(loadingChanged(true))
+
+        // set web3 instance
+        const {web3} = await getWeb3
+        // FIXME - Promisify can be removed once web3.js 1.0 is released
+        PromisifyWeb3.promisify(web3)
+        dispatch(setWeb3Instance(web3))
+
+        // set node info
+        const nodeVersion = await web3.version.getNodePromise()
+        dispatch(setNodeVersion(nodeVersion))
+
+        // set network info
+        const networkIdString = await web3.version.getNetworkPromise()
+        let network = 'unknown'
+        let networkID = parseInt(networkIdString, 10)
+        switch (networkID) {
+            case 4447:
+                network = 'truffle test'
+                break
+            case 1:
+                network = 'mainnet'
+                break
+            case 2:
+                network = 'Morden (deprecated!)'
+                break
+            case 3:
+                network = 'Ropsten'
+                break
+            case 4:
+                network = 'Rinkeby'
+                break
+            case 42:
+                network = 'Kovan'
+                break
+            case 61:
+                network = 'ETC'
+                break
+            case 62:
+                network = 'ETC Testnet'
+                break
+            default:
+                network = 'Unknown'
+        }
+        dispatch(setNetwork(networkID, network))
+
+        // set current block
+        const block = await web3.eth.getBlockPromise('latest')
+        dispatch(setCurrentBlock(block))
+
+        // start listening for new block events
+        const filter = web3.eth.filter('latest')
+        filter.watch(async (error, blockHash) => {
+            if (error) {
+                console.log("Error watching for block events: " + error)
+            } else {
+                const block = await web3.eth.getBlockPromise(blockHash)
+                dispatch(setCurrentBlock(block))
+            }
+        })
+        dispatch(setBlockFilter(filter))
+
+        // stop loading
+        dispatch(loadingChanged(false))
     }
 }

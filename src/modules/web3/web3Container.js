@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
-import {setAPIVersion, setCurrentBlock, setNetwork, setNodeVersion, setWeb3Instance} from "./web3Actions"
+import {
+    initialize, setAPIVersion, setCurrentBlock, setNetwork, setNodeVersion, setWeb3Instance,
+    stopBlockFilter
+} from './web3Actions'
 import getWeb3 from "../../utils/getWeb3"
 import Web3Info from "./web3Info"
 
@@ -12,6 +15,8 @@ class Web3Container extends Component {
     }
 
     componentDidMount() {
+        this.props.initialize()
+        /*
         getWeb3
             .then(results => {
                 this.props.setWeb3Instance(results.web3)
@@ -25,6 +30,7 @@ class Web3Container extends Component {
                 this.setCurrentBlockInfo(web3)
                 this.startListenForBlocks(web3)
             })
+        */
     }
 
     componentWillUnmount() {
@@ -63,67 +69,18 @@ class Web3Container extends Component {
 
     }
 
-    setNodeInfo(web3) {
-        web3.version.getNode((error, result) => {
-            this.props.setNodeVersion(result)
-        })
-    }
-
-    setAPIVersion(web3) {
-        this.props.setAPIVersion(web3.version.api)
-    }
-
-    setNetworkInfo(web3) {
-        web3.version.getNetwork((error, netId) => {
-            let network = 'unknown'
-            let networkID = 0
-            switch (netId) {
-                case "4447":
-                    network = 'truffle test'
-                    networkID = 4447
-                    break
-                case "1":
-                    network = 'mainnet'
-                    networkID = 1
-                    break
-                case "2":
-                    network = 'Morden (deprecated!)'
-                    networkID = 2
-                    break
-                case "3":
-                    network = 'Ropsten'
-                    networkID = 3
-                    break
-                case "4":
-                    network = 'Rinkeby'
-                    networkID = 4
-                    break
-                case "42":
-                    network = 'Kovan'
-                    networkID = 42
-                    break
-                case "61":
-                    network = 'ETC'
-                    networkID = 61
-                    break
-                case "62":
-                    networkID = 62
-                    network = 'ETC Testnet'
-                    break
-                default:
-                    network = 'Unknown'
-            }
-            this.props.setNetwork(networkID, network)
-        })
-    }
-
     render() {
-        return <Web3Info apiVersion={this.props.apiVersion}
-                         name={this.props.name}
-                         block={this.props.block}
-                         id={this.props.id}
-                         nodeVersion={this.props.nodeVersion}
-        />
+        const apiVersion = this.props.web3 ? this.props.web3.version.api : ''
+        if (this.props.isLoading) {
+            return <div>Web3 initializing...</div>
+        } else {
+            return <Web3Info apiVersion={apiVersion}
+                             name={this.props.name}
+                             block={this.props.block}
+                             id={this.props.id}
+                             nodeVersion={this.props.nodeVersion}
+            />
+        }
     }
 }
 
@@ -136,29 +93,23 @@ Web3Container.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+    isLoading: state.web3Instance.isLoading,
     web3: state.web3Instance.web3,
     name: state.web3Instance.name,
     id: state.web3Instance.id,
     block: state.web3Instance.block,
-    apiVersion: state.web3Instance.apiVersion,
     nodeVersion: state.web3Instance.nodeVersion
 })
 
 const mapDispatchToProps = dispatch => ({
-    setWeb3Instance: (web3) => {
-        dispatch(setWeb3Instance(web3))
+    initialize: () => {
+        dispatch(initialize())
     },
     setCurrentBlock: (block) => {
         dispatch(setCurrentBlock(block))
     },
-    setNetwork: (id, name) => {
-        dispatch(setNetwork(id, name))
-    },
-    setNodeVersion: (nodeVersion) => {
-        dispatch(setNodeVersion(nodeVersion))
-    },
-    setAPIVersion: (apiVersion) => {
-        dispatch(setAPIVersion(apiVersion))
+    stopBlockFilter: () => {
+        dispatch(stopBlockFilter())
     }
 })
 

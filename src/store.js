@@ -2,8 +2,8 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {tokens} from "./modules/token/tokenReducer"
 import {queryAddress} from "./modules/queryAddress/queryAddressReducer"
 import {web3Instance} from "./modules/web3/web3Reducer"
-import {balances} from "./modules/tokenBalance/tokenBalanceReducer"
-
+import createHistory from 'history/createBrowserHistory'
+import thunk from 'redux-thunk'
 
 const reducer = combineReducers(
     Object.assign({},
@@ -11,7 +11,6 @@ const reducer = combineReducers(
             queryAddress,   // ES6 shorthand for "queryAddress: queryAddress"
             web3Instance,
             tokens,
-            balances,
         }
     )
 )
@@ -21,8 +20,13 @@ const logStateMiddleware = ({dispatch, getState}) => next => action => {
     next(action)
 }
 
-const store = createStore(reducer, applyMiddleware(
-    logStateMiddleware
-));
+const store = createStore(
+    reducer,
+    applyMiddleware(
+        thunk,
+        logStateMiddleware,
+    )
+);
 
 export default store
+export const history = createHistory()
