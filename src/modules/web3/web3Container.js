@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
-import {
-    initialize, setAPIVersion, setCurrentBlock, setNetwork, setNodeVersion, setWeb3Instance,
-    stopBlockFilter
-} from './web3Actions'
-import getWeb3 from "../../utils/getWeb3"
+import {initialize, setCurrentBlock, stopBlockFilter} from './web3Actions'
 import Web3Info from "./web3Info"
 
 class Web3Container extends Component {
@@ -16,57 +12,11 @@ class Web3Container extends Component {
 
     componentDidMount() {
         this.props.initialize()
-        /*
-        getWeb3
-            .then(results => {
-                this.props.setWeb3Instance(results.web3)
-                return results.web3
-            })
-            .then((web3) => {
-                // get version and network info
-                this.setNetworkInfo(web3)
-                this.setNodeInfo(web3)
-                this.setAPIVersion(web3)
-                this.setCurrentBlockInfo(web3)
-                this.startListenForBlocks(web3)
-            })
-        */
     }
 
     componentWillUnmount() {
         // Stop listening to new block events
-        if (this.filter) {
-            this.filter.stopWatching(function (error, result) {
-                if (error) {
-                    console.log("Error while stopWatching: " + error)
-                }
-            })
-        }
-    }
-
-    startListenForBlocks(web3) {
-        this.filter = web3.eth.filter('latest')
-        this.filter.watch((error, blockHash) => {
-            if (error) {
-                console.log("*** web3Container error: " + error)
-            } else {
-                web3.eth.getBlock(blockHash, (error, block) => {
-                    if (error) {
-                        console.log("*** web3Container error: " + error)
-                    } else {
-                        this.props.setCurrentBlock(block)
-                    }
-                })
-            }
-        })
-
-    }
-
-    setCurrentBlockInfo(web3) {
-        web3.eth.getBlock('latest', (error, block) => {
-            this.props.setCurrentBlock(block)
-        })
-
+        this.props.stopBlockFilter()
     }
 
     render() {
@@ -85,11 +35,12 @@ class Web3Container extends Component {
 }
 
 Web3Container.propTypes = {
-    //myProp: PropTypes.object.isRequired
-}
-
-Web3Container.defaultProps = {
-    //myProp: <defaultValue>
+    isLoading: PropTypes.bool.isRequired,
+    web3: PropTypes.object,
+    name: PropTypes.string,
+    id: PropTypes.number,
+    block: PropTypes.object,
+    nodeVersion: PropTypes.string,
 }
 
 const mapStateToProps = (state, ownProps) => ({
