@@ -10,11 +10,13 @@ class Token extends Component {
     }
 
     render() {
-        const {address, name, symbol, description, website, decimals, supply, loading} = this.props.token
+        const {address, name, symbol, description, website, decimals, loading} = this.props.token
         let imageUrl = this.props.token.imageUrl
         if (imageUrl === 'none') {
             imageUrl = "Silvercoin.png"
         }
+        const {supply, loading: loadingSupply} = this.props.token.supply
+        let supplyValue = loadingSupply ? 'loading...' : supply.toFixed(0)
 
         // TESTING
         this.rendercount+=1
@@ -27,7 +29,7 @@ class Token extends Component {
                     <Item.Header>{name} ({symbol})</Item.Header>
                     <Statistic floated='right'>
                         <Statistic.Value>
-                            <TokenBalanceContainer tokenId={this.props.token.id}/>
+                            0
                         </Statistic.Value>
                     </Statistic>
                     <Item.Meta>
@@ -47,7 +49,7 @@ class Token extends Component {
                     <Label.Group>
                         <Label>
                             Supply:
-                            <Label.Detail>{supply.toFixed(0)}</Label.Detail>
+                            <Label.Detail>{supplyValue}</Label.Detail>
                         </Label>
                         <Label>
                             Decimals:

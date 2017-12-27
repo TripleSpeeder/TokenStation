@@ -3,7 +3,6 @@ import {
     SET_CURRENT_BLOCK,
     SET_WEB3INSTANCE,
     SET_NETWORK,
-    SET_API_VERSION,
     SET_NODE_VERSION, IS_LOADING, SET_BLOCK_FILTER,
 } from './web3Actions'
 
@@ -26,8 +25,6 @@ export const web3Instance = (state=WEB3_INITIAL, action) => {
             return updateObject(state, {block: action.block})
         case SET_NETWORK:
             return updateObject(state, {id: action.id, name: action.name})
-        case SET_API_VERSION:
-            return updateObject(state, {apiVersion: action.apiVersion})
         case SET_NODE_VERSION:
             return updateObject(state, {nodeVersion: action.nodeVersion})
         case IS_LOADING:

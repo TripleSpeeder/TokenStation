@@ -18,6 +18,7 @@ State tree:
 }
 */
 
+/*
 function setTokenBalance(state, action) {
     const {payload} = action
     const {tokenId} = payload
@@ -28,7 +29,9 @@ function setTokenBalance(state, action) {
         [tokenId] : payload
     };
 }
+*/
 
+/*
 const balanceByToken = (state={}, action) => {
     switch (action.type) {
         case SET_TOKEN_BALANCE: {
@@ -63,3 +66,4 @@ export const balances = combineReducers({
     byToken : balanceByToken,
     allBalances : allBalances
 });
+*/

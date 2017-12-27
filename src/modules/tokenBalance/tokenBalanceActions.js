@@ -1,3 +1,4 @@
+/*
 export const SET_TOKEN_BALANCE = 'SET_TOKEN_BALANCE'
 export function setTokenBalance(tokenID, balance) {
     return {
@@ -8,4 +9,4 @@ export function setTokenBalance(tokenID, balance) {
         }
     }
 }
-
+*/

@@ -36,7 +36,7 @@ class TokenBalanceContainer extends Component {
 
     render() {
         return (
-            <span>{this.props.tokenBalance ? this.props.tokenBalance.toFixed(4) : 'loading...'}</span>
+            <span>{this.props.tokenBalance ? this.props.tokenBalance.toFixed(4) : ''}</span>
         )
     }
 }
