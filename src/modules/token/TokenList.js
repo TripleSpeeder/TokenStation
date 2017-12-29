@@ -9,18 +9,20 @@ const TokenList = (props) => {
     let progressBar = null
     if(props.listState === TOKEN_LIST_STATES.LOADING ) {
         const tokenName = props.currentlyLoadingToken ? props.currentlyLoadingToken.name : ''
-        progressBar = <Progress value={props.tokenIds.length}
+        progressBar = <Progress value={props.allTokenIds.length}
                                 total={props.progressTotal}
                                 color='green'
                                 label={'Loading ' + tokenName}
                                 size='small'/>
     }
 
+    const tokenIds = props.filterIsActive ? props.matchedTokenIds : props.allTokenIds
+
     return (
         <div>
         {progressBar ? progressBar : null}
         <Item.Group divided>
-            {props.tokenIds.map((tokenId) => <TokenContainer
+            {tokenIds.map((tokenId) => <TokenContainer
                     key={tokenId}
                     tokenId={tokenId}
                     showEmpty={props.showEmpty}

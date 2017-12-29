@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux"
-import {addToken, initialize, setFilterString, TOKEN_LIST_STATES} from './tokenActions'
+import {addToken, initialize, changeFilterProps, TOKEN_LIST_STATES, setFilterString} from './tokenActions'
 import TokenList from "./TokenList"
 import {Divider} from 'semantic-ui-react'
 import TokenListFilterContainer from './TokenListFilterContainer'
@@ -39,7 +39,9 @@ class TokenListContainer extends Component {
                 <TokenListFilterContainer onFilterChange={this.props.setFilterString}/>
                 <Divider/>
                 <TokenList
-                    tokenIds={this.props.tokenIds}
+                    filterIsActive={this.props.filterIsActive}
+                    allTokenIds={this.props.allTokenIds}
+                    matchedTokenIds={this.props.matchedTokenIds}
                     showEmpty={this.props.showEmpty}
                     progressTotal={this.props.progressTotal}
                     listState={this.props.listState}
@@ -61,26 +63,14 @@ const mapStateToProps = state => {
     const lastTokenId = (lastTokenIdIndex >= 0) ? state.tokens.allIds[lastTokenIdIndex] : null
     const lastToken = lastTokenId ? state.tokens.byId[lastTokenId] : null
 
-    // Filter token list based on filterstring
-    const searchString = state.tokens.listState.filter.toLowerCase()
-    let tokenIds = state.tokens.allIds
-    if (searchString) {
-        const filteredTokens = Object.values(state.tokens.byId).filter(o => {
-            // get all tokens that have a matching name, symbol or address
-            return (
-                o.name.toLowerCase().includes(searchString) ||
-                o.symbol.toLowerCase().includes(searchString) ||
-                o.address.toLowerCase().includes(searchString)
-            )
-        })
-        // map tokens back to their tokenIDs
-        tokenIds = filteredTokens.map(token => (token.id))
-    }
+    const filterIsActive = (state.tokens.listState.filter.length > 0)
 
     return {
         web3: state.web3Instance.web3,
         queryAddress: state.queryAddress.address,
-        tokenIds: tokenIds,
+        allTokenIds: state.tokens.allIds,
+        filterIsActive: filterIsActive,
+        matchedTokenIds: state.tokens.listState.matchedTokenIds,
         listState: state.tokens.listState.listState,
         progressTotal: state.tokens.listState.total,
         currentlyLoadingToken: lastToken

@@ -106,13 +106,35 @@ export function changeValidTokenCount(count) {
     }
 }
 
-export const SET_FILTER_STRING = 'SET_FILTER_STRING'
-export function setFilterString(filter) {
+export const CHANGE_FILTER_PROPS = 'CHANGE_FILTER_PROPS'
+export function changeFilterProps(filter, matchedTokenIds) {
     return {
-        type: SET_FILTER_STRING,
+        type: CHANGE_FILTER_PROPS,
         payload: {
-            filter
+            filter,
+            matchedTokenIds
         }
+    }
+}
+
+export function setFilterString(filterString) {
+    return (dispatch, getState) => {
+        // Filter token list based on filterstring
+        const searchString = filterString.toLowerCase()
+        let tokenIds = getState().tokens.allIds
+        if (searchString.length) {
+            const filteredTokens = Object.values(getState().tokens.byId).filter(o => {
+                // get all tokens that have a matching name, symbol or address
+                return (
+                    o.name.toLowerCase().includes(searchString) ||
+                    o.symbol.toLowerCase().includes(searchString) ||
+                    o.address.toLowerCase().includes(searchString)
+                )
+            })
+            // map tokens back to their tokenIDs
+            tokenIds = filteredTokens.map(token => (token.id))
+        }
+        dispatch(changeFilterProps(searchString, tokenIds))
     }
 }
 

@@ -17,7 +17,6 @@ class TokenListFilterContainer extends Component {
             <Input label='Filter'
                    name='filter'
                    icon='search'
-                   iconPosition='right'
                    placeholder='Enter name, symbol or contract address'
                    fluid
                    onChange={this.handleChange}
