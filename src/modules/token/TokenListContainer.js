@@ -36,7 +36,7 @@ class TokenListContainer extends Component {
     render() {
         return (
             <div>
-                <TokenListFilterContainer onFilterChange={this.props.setFilterString}/>
+                <TokenListFilterContainer/>
                 <Divider/>
                 <TokenList
                     filterIsActive={this.props.filterIsActive}
@@ -84,9 +84,6 @@ const mapDispatchToProps = dispatch => ({
     initialize: (web3, registryABI, registryAddress) =>
     {
         dispatch(initialize(web3, registryABI, registryAddress))
-    },
-    setFilterString: (filter) => {
-        dispatch(setFilterString(filter))
     }
 })
 
