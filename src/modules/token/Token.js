@@ -52,7 +52,7 @@ class Token extends Component {
                             Decimals:
                             <Label.Detail>{decimals.toFixed(0)}</Label.Detail>
                         </Label>
-                        <Label as='a' href='https://etherscan.io/address/0x267be1c1d684f78cb4f6a176c4911b741e4ffdc0'>
+                        <Label as='a' href={this.props.etherscanUrl} target='_blank'>
                             Contract:
                             <Label.Detail>{address}</Label.Detail>
                         </Label>
@@ -67,6 +67,7 @@ Token.propTypes = {
     token: PropTypes.object.isRequired,
     loadingBalance: PropTypes.bool,
     handleRefresh: PropTypes.func.isRequired,
+    etherscanUrl: PropTypes.string.isRequired,
 }
 
 Token.defaultProps = {

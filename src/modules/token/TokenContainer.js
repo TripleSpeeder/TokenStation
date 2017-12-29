@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Token from "./Token"
 import {connect} from "react-redux"
 import {loadTokenSupply} from './tokenActions'
+import {buildEtherscanLink} from '../../utils/etherscanUtils'
 
 
 class TokenContainer extends PureComponent {
@@ -19,23 +20,30 @@ class TokenContainer extends PureComponent {
 
     render() {
             return <Token token={this.props.token}
-                          handleRefresh={this.handleRefresh}/>
+                          etherscanUrl={this.props.etherscanUrl}
+                          handleRefresh={this.handleRefresh}
+            />
     }
 }
 
 TokenContainer.propTypes = {
     tokenId: PropTypes.number.isRequired,
+    etherscanUrl: PropTypes.string.isRequired,
 }
 
 TokenContainer.defaultProps = {
     //myProp: <defaultValue>
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    web3: state.web3Instance.web3,
-    address: state.queryAddress.address,
-    token: state.tokens.byId[ownProps.tokenId]
-})
+const mapStateToProps = (state, ownProps) => {
+    const token = state.tokens.byId[ownProps.tokenId]
+    const etherscanUrl = buildEtherscanLink(token.address)
+    return {
+        address: state.queryAddress.address,
+        token: token,
+        etherscanUrl: etherscanUrl
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
     loadTokenSupply: (tokenID) => {
