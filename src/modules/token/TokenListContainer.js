@@ -53,8 +53,9 @@ TokenListContainer.defaultProps = {
 
 const mapStateToProps = state => {
     // obtain last loaded token for progress display
-    const lastTokenIndex = state.tokens.allIds.length-1
-    const lastToken = (lastTokenIndex >= 0) ? state.tokens.byId[lastTokenIndex] : null
+    const lastTokenIdIndex = state.tokens.allIds.length-1
+    const lastTokenId = (lastTokenIdIndex >= 0) ? state.tokens.allIds[lastTokenIdIndex] : null
+    const lastToken = lastTokenId ? state.tokens.byId[lastTokenId] : null
     return {
         web3: state.web3Instance.web3,
         queryAddress: state.queryAddress.address,
