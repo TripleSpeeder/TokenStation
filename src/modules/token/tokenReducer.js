@@ -2,7 +2,7 @@ import {combineReducers} from "redux"
 import {
     ADD_TOKEN, CHANGE_TOKEN_LIST_STATE, CHANGE_VALID_TOKEN_COUNT, CLEAR_TOKEN_LIST,
     IS_LOADING_SUPPLY,
-    IS_LOADING_TOKEN,
+    IS_LOADING_TOKEN, SET_FILTER_STRING,
     SET_TOKEN_BALANCE,
     SET_TOKEN_CONTRACT_INSTANCE,
     SET_TOKEN_SUPPLY, TOKEN_LIST_STATES
@@ -234,10 +234,20 @@ function changeValidTokenCount(state, action){
     }
 }
 
+function setFilterString(state, action){
+    const {payload} = action
+    const {filter} = payload
+    return {
+        ...state,
+        filter
+    }
+}
+
 const LISTSTATE_INITIAL = {
     listState: TOKEN_LIST_STATES.VIRGIN,
     total: 0,
     value: 0,
+    filter: '',
 }
 
 const listState = (state=LISTSTATE_INITIAL, action) => {
@@ -246,6 +256,8 @@ const listState = (state=LISTSTATE_INITIAL, action) => {
             return tokenListStateChanged(state, action)
         case CHANGE_VALID_TOKEN_COUNT:
             return changeValidTokenCount(state, action)
+        case SET_FILTER_STRING:
+            return setFilterString(state, action)
         default:
             return state
     }

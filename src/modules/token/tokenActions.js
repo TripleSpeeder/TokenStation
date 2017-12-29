@@ -106,6 +106,16 @@ export function changeValidTokenCount(count) {
     }
 }
 
+export const SET_FILTER_STRING = 'SET_FILTER_STRING'
+export function setFilterString(filter) {
+    return {
+        type: SET_FILTER_STRING,
+        payload: {
+            filter
+        }
+    }
+}
+
 export function initialize(web3, registryABI, registryAddress) {
     return async (dispatch, getState) => {
         // check if existing data needs to be cleared

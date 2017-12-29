@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux"
-import {addToken, initialize, TOKEN_LIST_STATES} from './tokenActions'
+import {addToken, initialize, setFilterString, TOKEN_LIST_STATES} from './tokenActions'
 import TokenList from "./TokenList"
+import {Divider} from 'semantic-ui-react'
+import TokenListFilterContainer from './TokenListFilterContainer'
 
 class TokenListContainer extends Component {
     constructor(props, context) {
@@ -34,6 +36,8 @@ class TokenListContainer extends Component {
     render() {
         return (
             <div>
+                <TokenListFilterContainer onFilterChange={this.props.setFilterString}/>
+                <Divider/>
                 <TokenList
                     tokenIds={this.props.tokenIds}
                     showEmpty={this.props.showEmpty}
@@ -56,10 +60,27 @@ const mapStateToProps = state => {
     const lastTokenIdIndex = state.tokens.allIds.length-1
     const lastTokenId = (lastTokenIdIndex >= 0) ? state.tokens.allIds[lastTokenIdIndex] : null
     const lastToken = lastTokenId ? state.tokens.byId[lastTokenId] : null
+
+    // Filter token list based on filterstring
+    const searchString = state.tokens.listState.filter.toLowerCase()
+    let tokenIds = state.tokens.allIds
+    if (searchString) {
+        const filteredTokens = Object.values(state.tokens.byId).filter(o => {
+            // get all tokens that have a matching name, symbol or address
+            return (
+                o.name.toLowerCase().includes(searchString) ||
+                o.symbol.toLowerCase().includes(searchString) ||
+                o.address.toLowerCase().includes(searchString)
+            )
+        })
+        // map tokens back to their tokenIDs
+        tokenIds = filteredTokens.map(token => (token.id))
+    }
+
     return {
         web3: state.web3Instance.web3,
         queryAddress: state.queryAddress.address,
-        tokenIds: state.tokens.allIds,
+        tokenIds: tokenIds,
         listState: state.tokens.listState.listState,
         progressTotal: state.tokens.listState.total,
         currentlyLoadingToken: lastToken
@@ -73,6 +94,9 @@ const mapDispatchToProps = dispatch => ({
     initialize: (web3, registryABI, registryAddress) =>
     {
         dispatch(initialize(web3, registryABI, registryAddress))
+    },
+    setFilterString: (filter) => {
+        dispatch(setFilterString(filter))
     }
 })
 
