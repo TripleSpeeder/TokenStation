@@ -1,10 +1,8 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import Token from "./Token"
-import erc20ABI from "human-standard-token-abi"
-import contract from "truffle-contract"
 import {connect} from "react-redux"
-import {loadTokenSupply, setTokenSupply} from './tokenActions'
+import {loadTokenSupply} from './tokenActions'
 
 
 class TokenContainer extends PureComponent {

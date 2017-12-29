@@ -73,7 +73,6 @@ Token.propTypes = {
 }
 
 Token.defaultProps = {
-    //myProp: <defaultValue>
     loadingBalance: false
 }
 

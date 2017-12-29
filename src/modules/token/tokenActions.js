@@ -16,8 +16,6 @@ export function tokenListStateChanged(tokenListState) {
     }
 }
 
-
-
 export const ADD_TOKEN = 'ADD_TOKEN'
 export function addToken(tokenID, token) {
     return {

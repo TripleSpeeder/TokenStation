@@ -133,7 +133,7 @@ function loadingSupplyChanged(state, action) {
 
 function setTokenBalance(state, action){
     const {payload} = action
-    const {tokenID: tokenID, balance} = payload
+    const {tokenID, balance} = payload
     // Look up the correct token, to simplify the rest of the code
     const token = state[tokenID];
 
@@ -155,11 +155,11 @@ function clearTokenBalances(state, action){
     })
 }
 
+const TOKENS_BY_ID_INITIAL = {}
+
 function clearTokensById(state, action) {
     return TOKENS_BY_ID_INITIAL
 }
-
-const TOKENS_BY_ID_INITIAL = {}
 
 const tokensById = (state=TOKENS_BY_ID_INITIAL, action) => {
     switch (action.type) {
@@ -196,11 +196,11 @@ function addTokenId(state, action) {
     return state.concat(tokenID);
 }
 
+const ALL_TOKENS_INITIAL = []
+
 function clearAllTokens(state, action) {
     return ALL_TOKENS_INITIAL
 }
-
-const ALL_TOKENS_INITIAL = []
 
 const allTokens = (state=ALL_TOKENS_INITIAL, action) => {
     switch (action.type) {
