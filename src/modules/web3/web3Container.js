@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from "react-redux"
 import {initialize, setCurrentBlock, stopBlockFilter} from './web3Actions'
 import Web3Info from "./web3Info"
+import {Segment} from 'semantic-ui-react'
 
 class Web3Container extends Component {
     constructor(props, context) {
@@ -22,14 +23,16 @@ class Web3Container extends Component {
     render() {
         const apiVersion = this.props.web3 ? this.props.web3.version.api : ''
         if (this.props.isLoading) {
-            return <div>Web3 initializing...</div>
+            return <Segment>Web3 initializing...</Segment>
         } else {
-            return <Web3Info apiVersion={apiVersion}
+            return <Segment>
+                <Web3Info apiVersion={apiVersion}
                              name={this.props.name}
                              block={this.props.block}
                              id={this.props.id}
                              nodeVersion={this.props.nodeVersion}
-            />
+                />
+            </Segment>
         }
     }
 }
