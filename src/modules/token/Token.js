@@ -12,11 +12,16 @@ class Token extends Component {
     render() {
         const {address, name, symbol, description, website, decimals, loading} = this.props.token
         let imageUrl = this.props.token.imageUrl
-        if (imageUrl === 'none') {
+        if (!imageUrl) {
             imageUrl = "Silvercoin.png"
         }
         const {supply, loading: loadingSupply} = this.props.token.supply
         let supplyValue = loadingSupply ? <Icon loading name='spinner'/> : supply.toFixed(0)
+
+        let meta = null
+        if (website) {
+            meta = <Item.Meta><a href={website} target='_blank'>{website}</a></Item.Meta>
+        }
 
         // TESTING
         this.rendercount+=1
@@ -27,15 +32,7 @@ class Token extends Component {
                 <Item.Image size='tiny' src={imageUrl}></Item.Image>
                 <Item.Content>
                     <Item.Header>{name} ({symbol})</Item.Header>
-                    <Statistic floated='right'>
-                        <Statistic.Value>
-                            0
-                        </Statistic.Value>
-                    </Statistic>
-                    <Item.Meta>
-                        <a href={website} target='_blank'>{website}</a>
-                    </Item.Meta>
-                    <Divider/>
+                    {meta}
                     <Button floated='right'
                             size='small'
                             circular

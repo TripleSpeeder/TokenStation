@@ -163,9 +163,9 @@ function mapParityToken(id, parityToken) {
         symbol: parityToken[1],
         decimals: parityToken[2],
         name: parityToken[3],
-        description: 'none',
-        website: 'none',
-        imageUrl: 'none',
+        description: null,
+        website: null,
+        imageUrl: null,
         supply: {
             loading: true,
             supply: 0
