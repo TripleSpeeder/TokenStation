@@ -141,7 +141,7 @@ export function setFilterString(filterString) {
 export function initialize(web3, registryABI, registryAddress) {
     return async (dispatch, getState) => {
         // check if existing data needs to be cleared
-        const {state: tokenListState} = getState().tokens.listState
+        const {state: tokenListState, filter} = getState().tokens.listState
         if (tokenListState !== TOKEN_LIST_STATES.VIRGIN) {
             console.log("Clearing token list!")
             dispatch(clearTokenList())
@@ -159,7 +159,7 @@ export function initialize(web3, registryABI, registryAddress) {
         console.log("Tokencount: " + tokenCount)
 
         /* Limit number of tokens for debugging only */
-        const limit=6
+        const limit=36
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -181,6 +181,12 @@ export function initialize(web3, registryABI, registryAddress) {
             const token = mapParityToken(id, parityToken)
             dispatch(addToken(id, token))
             dispatch(loadTokenDetails(id))
+
+            // if there is already a filter set, re-evaluate the filter results
+            const {filter} = getState().tokens.listState
+            if (filter.length) {
+                dispatch(setFilterString(filter))
+            }
         }
         // individual entries are still loading, but from List Module perspective I'm done
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.INITIALIZED))
