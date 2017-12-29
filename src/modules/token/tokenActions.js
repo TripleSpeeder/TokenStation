@@ -96,6 +96,16 @@ export function clearTokenList() {
     }
 }
 
+export const CHANGE_VALID_TOKEN_COUNT = 'CHANGE_VALID_TOKEN_COUNT'
+export function changeValidTokenCount(count) {
+    return {
+        type: CHANGE_VALID_TOKEN_COUNT,
+        payload: {
+            count
+        }
+    }
+}
+
 export function initialize(web3, registryABI, registryAddress) {
     return async (dispatch, getState) => {
         // check if existing data needs to be cleared
@@ -117,17 +127,27 @@ export function initialize(web3, registryABI, registryAddress) {
         console.log("Tokencount: " + tokenCount)
 
         /* Limit number of tokens for debugging only */
-        const limit=6
+        const limit=60
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
+
+        // Some tokens are invalid (address is 0x0), so they will screw up
+        // the progress calculation. Track the number of valid tokens separately, so
+        // the progress can reach 100% eventually
+        let validTokenCount = tokenCount
+        dispatch(changeValidTokenCount(validTokenCount))
 
         for (let id=0; id < tokenCount ; id++) {
             let parityToken = await registry.token(id)
             const address = parityToken[0]
-            if (address ==='0x0000000000000000000000000000000000000000')
+            if (address ==='0x0000000000000000000000000000000000000000') {
+                validTokenCount -= 1
+                dispatch(changeValidTokenCount(validTokenCount))
                 continue
+            }
             console.log("Got token " + id + ": " + parityToken[3] + " at " + address)
-            dispatch(addToken(id, mapParityToken(id, parityToken)))
+            const token = mapParityToken(id, parityToken)
+            dispatch(addToken(id, token))
             dispatch(loadTokenDetails(id))
         }
         // individual entries are still loading, but from List Module perspective I'm done

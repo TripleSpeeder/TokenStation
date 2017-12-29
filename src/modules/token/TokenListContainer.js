@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
-import contract from 'truffle-contract'
-import erc20ABI from 'human-standard-token-abi'
-
 import {connect} from "react-redux"
-import {addToken, clearTokenBalances, initialize, TOKEN_LIST_STATES} from './tokenActions'
+import {addToken, initialize, TOKEN_LIST_STATES} from './tokenActions'
 import TokenList from "./TokenList"
 
 class TokenListContainer extends Component {
@@ -35,10 +32,17 @@ class TokenListContainer extends Component {
     }
 
     render() {
-        return <TokenList
-            tokenIds={this.props.tokenIds}
-            showEmpty={this.props.showEmpty}
-        />
+        return (
+            <div>
+                <TokenList
+                    tokenIds={this.props.tokenIds}
+                    showEmpty={this.props.showEmpty}
+                    progressTotal={this.props.progressTotal}
+                    listState={this.props.listState}
+                    currentlyLoadingToken={this.props.currentlyLoadingToken}
+                />
+            </div>
+            )
     }
 }
 
@@ -47,12 +51,19 @@ TokenListContainer.defaultProps = {
     showEmpty: true
 };
 
-const mapStateToProps = state => ({
-    web3: state.web3Instance.web3,
-    queryAddress: state.queryAddress.address,
-    tokenIds: state.tokens.allIds,
-    listState: state.tokens.listState.listState,
-})
+const mapStateToProps = state => {
+    // obtain last loaded token for progress display
+    const lastTokenIndex = state.tokens.allIds.length-1
+    const lastToken = (lastTokenIndex >= 0) ? state.tokens.byId[lastTokenIndex] : null
+    return {
+        web3: state.web3Instance.web3,
+        queryAddress: state.queryAddress.address,
+        tokenIds: state.tokens.allIds,
+        listState: state.tokens.listState.listState,
+        progressTotal: state.tokens.listState.total,
+        currentlyLoadingToken: lastToken
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
     addToken: (tokenId, token) => {

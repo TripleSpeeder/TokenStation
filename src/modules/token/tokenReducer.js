@@ -1,6 +1,6 @@
 import {combineReducers} from "redux"
 import {
-    ADD_TOKEN, CHANGE_TOKEN_LIST_STATE, CLEAR_TOKEN_LIST,
+    ADD_TOKEN, CHANGE_TOKEN_LIST_STATE, CHANGE_VALID_TOKEN_COUNT, CLEAR_TOKEN_LIST,
     IS_LOADING_SUPPLY,
     IS_LOADING_TOKEN,
     SET_TOKEN_BALANCE,
@@ -225,14 +225,27 @@ function tokenListStateChanged(state, action) {
     }
 }
 
+function changeValidTokenCount(state, action){
+    const {payload} = action
+    const {count} = payload
+    return {
+        ...state,
+        total: count
+    }
+}
+
 const LISTSTATE_INITIAL = {
-    listState: TOKEN_LIST_STATES.VIRGIN
+    listState: TOKEN_LIST_STATES.VIRGIN,
+    total: 0,
+    value: 0,
 }
 
 const listState = (state=LISTSTATE_INITIAL, action) => {
     switch (action.type) {
         case CHANGE_TOKEN_LIST_STATE:
             return tokenListStateChanged(state, action)
+        case CHANGE_VALID_TOKEN_COUNT:
+            return changeValidTokenCount(state, action)
         default:
             return state
     }
