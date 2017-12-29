@@ -13,6 +13,9 @@ State tree:
 {
     listState: {
         listState: 'loading'
+        filter: 'Dumb'
+        matchedTokenIds: [6]
+        total: 2
     }
     byId: {
         [1]: {
@@ -247,7 +250,6 @@ function changeFilterProps(state, action){
 const LISTSTATE_INITIAL = {
     listState: TOKEN_LIST_STATES.VIRGIN,
     total: 0,
-    value: 0,
     filter: '',
     matchedTokenIds: []
 }
