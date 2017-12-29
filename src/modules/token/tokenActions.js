@@ -127,7 +127,7 @@ export function initialize(web3, registryABI, registryAddress) {
         console.log("Tokencount: " + tokenCount)
 
         /* Limit number of tokens for debugging only */
-        const limit=60
+        const limit=6
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 

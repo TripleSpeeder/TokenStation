@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {Label, Item, Statistic, Button, Divider} from "semantic-ui-react"
+import {Label, Item, Statistic, Button, Divider, Icon} from 'semantic-ui-react'
 import TokenBalanceContainer from "../tokenBalance/TokenBalanceContainer"
 
 class Token extends Component {
@@ -16,7 +16,7 @@ class Token extends Component {
             imageUrl = "Silvercoin.png"
         }
         const {supply, loading: loadingSupply} = this.props.token.supply
-        let supplyValue = loadingSupply ? 'loading...' : supply.toFixed(0)
+        let supplyValue = loadingSupply ? <Icon loading name='spinner'/> : supply.toFixed(0)
 
         // TESTING
         this.rendercount+=1
