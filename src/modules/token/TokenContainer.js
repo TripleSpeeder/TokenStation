@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Token from "./Token"
 import {connect} from "react-redux"
@@ -6,7 +6,7 @@ import {loadTokenSupply} from './tokenActions'
 import {buildEtherscanLink} from '../../utils/etherscanUtils'
 
 
-class TokenContainer extends PureComponent {
+class TokenContainer extends Component {
     constructor(props, context) {
         super(props, context)
 
@@ -16,6 +16,14 @@ class TokenContainer extends PureComponent {
     handleRefresh() {
         // currently only token supply is a value that might change frequently
         this.props.loadTokenSupply(this.props.tokenId)
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.token.supply.supply !== this.props.token.supply.supply)
+            return true
+        if (nextProps.token.supply.loading!== this.props.token.supply.loading)
+            return true
+        return false
     }
 
     render() {
