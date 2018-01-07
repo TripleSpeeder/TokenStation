@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, {Component, PureComponent} from 'react'
 import {connect} from "react-redux"
-import {addToken, initialize, changeFilterProps, TOKEN_LIST_STATES, setFilterString} from './tokenActions'
+import {addToken, initialize, TOKEN_LIST_STATES} from './tokenActions'
 import TokenList from "./TokenList"
 import {Divider} from 'semantic-ui-react'
 import TokenListFilterContainer from './TokenListFilterContainer'
