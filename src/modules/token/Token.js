@@ -1,13 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {Label, Item, Statistic, Button, Divider, Icon} from 'semantic-ui-react'
-import TokenBalanceContainer from "../tokenBalance/TokenBalanceContainer"
+import {Label, Item, Button, Icon} from 'semantic-ui-react'
+// import TokenBalanceContainer from "../tokenBalance/TokenBalanceContainer"
 
 class Token extends Component {
-    constructor(props, context) {
-        super(props, context)
-        this.rendercount = 0;
-    }
 
     render() {
         const {address, name, symbol, description, website, decimals, loading} = this.props.token
@@ -22,10 +18,6 @@ class Token extends Component {
         if (website) {
             meta = <Item.Meta><a href={website} target='_blank'>{website}</a></Item.Meta>
         }
-
-        // TESTING
-        this.rendercount+=1
-        console.log("Rendering " + name + ", Rendercount: " + this.rendercount)
 
         return (
             <Item>

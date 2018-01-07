@@ -4,11 +4,11 @@ import { Provider } from 'react-redux'
 import {Route, Router, Switch} from 'react-router'
 import store from './store'
 import { history } from './store'
-import {Container, Header, Menu} from 'semantic-ui-react'
+import {Container, Menu} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import TokenListContainer from './modules/token/TokenListContainer'
 import Web3Container from "./modules/web3/web3Container"
-import BalancesContainer from './modules/balances/BalancesContainer'
+// import BalancesContainer from './modules/balances/BalancesContainer'
 import TokenLoader from './modules/token/TokenLoaderContainer'
 
 
@@ -16,10 +16,6 @@ const NoMatch = ({ location }) => (
     <div>
         <h3>No match for <code>{location.pathname}</code></h3>
     </div>
-)
-
-const AllTokens= () => (
-    <div>List all tokens here...</div>
 )
 
 const Balance = ( {match} ) => (
