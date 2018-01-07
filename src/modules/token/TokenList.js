@@ -1,45 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Divider, Item, Progress, Visibility} from 'semantic-ui-react'
-import TokenContainer from "./TokenContainer"
-import {TOKEN_LIST_STATES} from './tokenActions'
+import {Item, Visibility} from 'semantic-ui-react'
+import TokenContainer from './TokenContainer'
 
 const TokenList = (props) => {
-
-    let progressBar = null
-    if(props.listState === TOKEN_LIST_STATES.LOADING ) {
-        const tokenName = props.currentlyLoadingToken ? props.currentlyLoadingToken.name : ''
-        progressBar = <div>
-            <Progress value={props.allTokenIds.length}
-                                total={props.progressTotal}
-                                color='green'
-                                label={'Loading ' + tokenName}
-                                size='small'/>
-            <Divider/>
-        </div>
-    }
 
     const visibleTokenIds = props.filterIsActive ? props.visibleMatchedTokenIds : props.visibleTokenIds
 
     return (
-        <div>
-        {progressBar ? progressBar : null}
-        <Item.Group divided>
-            <Visibility onUpdate={props.visibilityUpdate}>
+        <Visibility onUpdate={props.visibilityUpdate}>
+            <Item.Group divided>
                 {visibleTokenIds.map((tokenId) => <TokenContainer
-                        key={tokenId}
-                        tokenId={tokenId}
-                        showEmpty={props.showEmpty}
-                    />)}
-            </Visibility>
-        </Item.Group>
-        </div>
+                    key={tokenId}
+                    tokenId={tokenId}
+                />)}
+            </Item.Group>
+        </Visibility>
     )
 }
 
 TokenList.propTypes = {
-    showEmpty: PropTypes.bool.isRequired,
-    progressTotal: PropTypes.number.isRequired,
+    filterIsActive: PropTypes.bool.isRequired,
+    visibleTokenIds: PropTypes.array.isRequired,
+    visibleMatchedTokenIds: PropTypes.array.isRequired,
+    visibilityUpdate: PropTypes.func.isRequired,
 }
 
 export default TokenList

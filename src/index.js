@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom'
 import TokenListContainer from './modules/token/TokenListContainer'
 import Web3Container from "./modules/web3/web3Container"
 import BalancesContainer from './modules/balances/BalancesContainer'
+import TokenLoader from './modules/token/TokenLoaderContainer'
 
 
 const NoMatch = ({ location }) => (
@@ -45,7 +46,7 @@ ReactDOM.render(
                 </Menu>
 
                 <Container style={{ marginTop: '7em' }}>
-
+                    <TokenLoader/>
                     <Switch>
                         <Route exact path='/' component={Balance}/>
                         <Route path='/alltokens/' component={TokenListContainer}/>
