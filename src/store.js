@@ -1,5 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
-import {tokens} from "./modules/token/tokenReducer"
+import {tokens} from "./modules/token/reducers/tokenReducer"
 import {queryAddress} from "./modules/queryAddress/queryAddressReducer"
 import {web3Instance} from "./modules/web3/web3Reducer"
 import createHistory from 'history/createBrowserHistory'
