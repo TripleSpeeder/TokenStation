@@ -35,6 +35,7 @@ const TokenList = (props) => {
 
 TokenList.propTypes = {
     showEmpty: PropTypes.bool.isRequired,
+    progressTotal: PropTypes.number.isRequired,
 }
 
 export default TokenList
