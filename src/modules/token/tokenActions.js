@@ -141,7 +141,7 @@ export function setFilterString(filterString) {
 export function initialize(web3, registryABI, registryAddress) {
     return async (dispatch, getState) => {
         // check if existing data needs to be cleared
-        const {state: tokenListState, filter} = getState().tokens.listState
+        const {state: tokenListState} = getState().tokens.listState
         if (tokenListState !== TOKEN_LIST_STATES.VIRGIN) {
             console.log("Clearing token list!")
             dispatch(clearTokenList())
