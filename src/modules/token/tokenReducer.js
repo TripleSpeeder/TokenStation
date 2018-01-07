@@ -5,7 +5,7 @@ import {
     IS_LOADING_TOKEN, CHANGE_FILTER_PROPS,
     SET_TOKEN_BALANCE,
     SET_TOKEN_CONTRACT_INSTANCE,
-    SET_TOKEN_SUPPLY, TOKEN_LIST_STATES
+    SET_TOKEN_SUPPLY, TOKEN_LIST_STATES, SHOW_MORE_ITEMS, RESET_DISPLAY_COUNT
 } from './tokenActions'
 
 /*
@@ -246,11 +246,49 @@ function changeFilterProps(state, action){
     }
 }
 
+function showMoreItems(state) {
+    const stepSize = 2
+    const filterIsActive = (state.filter.length > 0)
+    if (filterIsActive)
+    {
+        // check filtered numbers
+        if (state.displayCount >= state.matchedTokenIds.length) {
+            // already displaying all tokens.
+            return state
+        }
+    } else {
+        // check total numbers
+        if (state.displayCount >= state.total) {
+            // already displaying all tokens.
+            return state
+        }
+    }
+    let requestedCount = state.displayCount+=stepSize
+
+    // don't try to display more tokens than available
+    if (requestedCount > state.total) {
+        requestedCount = state.total
+    }
+
+    return {
+        ...state,
+        displayCount: requestedCount
+    }
+}
+
+function resetDisplayCount(state) {
+    return {
+        ...state,
+        displayCount: 5
+    }
+}
+
 const LISTSTATE_INITIAL = {
     listState: TOKEN_LIST_STATES.VIRGIN,
     total: 0,
     filter: '',
-    matchedTokenIds: []
+    matchedTokenIds: [],
+    displayCount: 5,
 }
 
 const listState = (state=LISTSTATE_INITIAL, action) => {
@@ -261,6 +299,10 @@ const listState = (state=LISTSTATE_INITIAL, action) => {
             return changeValidTokenCount(state, action)
         case CHANGE_FILTER_PROPS:
             return changeFilterProps(state, action)
+        case SHOW_MORE_ITEMS:
+            return showMoreItems(state)
+        case RESET_DISPLAY_COUNT:
+            return resetDisplayCount()
         default:
             return state
     }

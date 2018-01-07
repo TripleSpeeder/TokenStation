@@ -16,6 +16,13 @@ export function tokenListStateChanged(tokenListState) {
     }
 }
 
+export const SHOW_MORE_ITEMS = 'SHOW_MORE_ITEMS'
+export function showMoreItems() {
+    return {
+        type: SHOW_MORE_ITEMS
+    }
+}
+
 export const ADD_TOKEN = 'ADD_TOKEN'
 export function addToken(tokenID, token) {
     return {
@@ -117,10 +124,24 @@ export function changeFilterProps(filter, matchedTokenIds) {
     }
 }
 
+export const RESET_DISPLAY_COUNT = 'RESET_DISPLAY_COUNT'
+export function resetDisplayCount() {
+    return {
+        type: RESET_DISPLAY_COUNT,
+    }
+}
+
 export function setFilterString(filterString) {
     return (dispatch, getState) => {
         // Filter token list based on filterstring
         const searchString = filterString.toLowerCase()
+
+        // in case filterstring changed, reset the number of displayed tokens to it's default value
+        const oldFilterString = getState().tokens.listState.filter
+        if (oldFilterString !== searchString){
+            dispatch(resetDisplayCount())
+        }
+
         let tokenIds = getState().tokens.allIds
         if (searchString.length) {
             const filteredTokens = Object.values(getState().tokens.byId).filter(o => {
@@ -157,10 +178,9 @@ export function initialize(web3, registryABI, registryAddress) {
         // get number of tokens in registry
         let tokenCount = await registry.tokenCount()
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
-        console.log("Tokencount: " + tokenCount)
 
         /* Limit number of tokens for debugging only */
-        const limit=10
+        const limit=5000
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -178,7 +198,7 @@ export function initialize(web3, registryABI, registryAddress) {
                 dispatch(changeValidTokenCount(validTokenCount))
                 continue
             }
-            console.log("Got token " + id + ": " + parityToken[3] + " at " + address)
+            // console.log("Got token " + id + ": " + parityToken[3] + " at " + address)
             const token = mapParityToken(id, parityToken)
             dispatch(addToken(id, token))
 

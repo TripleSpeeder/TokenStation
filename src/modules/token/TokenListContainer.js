@@ -1,6 +1,6 @@
 import React, {Component, PureComponent} from 'react'
 import {connect} from "react-redux"
-import {addToken, initialize, TOKEN_LIST_STATES} from './tokenActions'
+import {addToken, initialize, showMoreItems, TOKEN_LIST_STATES} from './tokenActions'
 import TokenList from "./TokenList"
 import {Divider} from 'semantic-ui-react'
 import TokenListFilterContainer from './TokenListFilterContainer'
@@ -10,6 +10,7 @@ class TokenListContainer extends Component {
         super(props, context)
         this.registryAddress = '0x5F0281910Af44bFb5fC7e86A404d0304B0e042F1'
         this.registryABI =  [{"constant":true,"inputs":[{"name":"_id","type":"uint256"}],"name":"token","outputs":[{"name":"addr","type":"address"},{"name":"tla","type":"string"},{"name":"base","type":"uint256"},{"name":"name","type":"string"},{"name":"owner","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"address"}],"name":"setOwner","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_addr","type":"address"},{"name":"_tla","type":"string"},{"name":"_base","type":"uint256"},{"name":"_name","type":"string"}],"name":"register","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"_fee","type":"uint256"}],"name":"setFee","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_id","type":"uint256"},{"name":"_key","type":"bytes32"}],"name":"meta","outputs":[{"name":"","type":"bytes32"}],"type":"function"},{"constant":false,"inputs":[{"name":"_addr","type":"address"},{"name":"_tla","type":"string"},{"name":"_base","type":"uint256"},{"name":"_name","type":"string"},{"name":"_owner","type":"address"}],"name":"registerAs","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":true,"inputs":[{"name":"_tla","type":"string"}],"name":"fromTLA","outputs":[{"name":"id","type":"uint256"},{"name":"addr","type":"address"},{"name":"base","type":"uint256"},{"name":"name","type":"string"},{"name":"owner","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"drain","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"tokenCount","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"uint256"}],"name":"unregister","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_addr","type":"address"}],"name":"fromAddress","outputs":[{"name":"id","type":"uint256"},{"name":"tla","type":"string"},{"name":"base","type":"uint256"},{"name":"name","type":"string"},{"name":"owner","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"uint256"},{"name":"_key","type":"bytes32"},{"name":"_value","type":"bytes32"}],"name":"setMeta","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"fee","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"tla","type":"string"},{"indexed":true,"name":"id","type":"uint256"},{"indexed":false,"name":"addr","type":"address"},{"indexed":false,"name":"name","type":"string"}],"name":"Registered","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"tla","type":"string"},{"indexed":true,"name":"id","type":"uint256"}],"name":"Unregistered","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"id","type":"uint256"},{"indexed":true,"name":"key","type":"bytes32"},{"indexed":false,"name":"value","type":"bytes32"}],"name":"MetaChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"old","type":"address"},{"indexed":true,"name":"current","type":"address"}],"name":"NewOwner","type":"event"}]
+        this.visibilityUpdate = this.visibilityUpdate.bind(this)
     }
 
     componentDidMount() {
@@ -33,6 +34,19 @@ class TokenListContainer extends Component {
         }*/
     }
 
+    visibilityUpdate(e, {calculations}) {
+        if (calculations.bottomVisible) {
+            // bottom of list is visible. Try loading more items.
+            if (this.props.filterIsActive) {
+                if (this.props.matchedTokenIds.length > this.props.visibleMatchedTokenIds.length)
+                    this.props.showMoreItems();
+            } else {
+                if (this.props.allTokenIds.length > this.props.visibleTokenIds.length)
+                    this.props.showMoreItems();
+            }
+        }
+    }
+
     render() {
         return (
             <div>
@@ -41,11 +55,14 @@ class TokenListContainer extends Component {
                 <TokenList
                     filterIsActive={this.props.filterIsActive}
                     allTokenIds={this.props.allTokenIds}
+                    visibleTokenIds={this.props.visibleTokenIds}
                     matchedTokenIds={this.props.matchedTokenIds}
+                    visibleMatchedTokenIds={this.props.visibleMatchedTokenIds}
                     showEmpty={this.props.showEmpty}
                     progressTotal={this.props.progressTotal}
                     listState={this.props.listState}
                     currentlyLoadingToken={this.props.currentlyLoadingToken}
+                    visibilityUpdate={this.visibilityUpdate}
                 />
             </div>
             )
@@ -62,16 +79,17 @@ const mapStateToProps = state => {
     const lastTokenIdIndex = state.tokens.allIds.length-1
     const lastTokenId = (lastTokenIdIndex >= 0) ? state.tokens.allIds[lastTokenIdIndex] : null
     const lastToken = lastTokenId ? state.tokens.byId[lastTokenId] : null
-
+    const displayCount = state.tokens.listState.displayCount
     const filterIsActive = (state.tokens.listState.filter.length > 0)
 
     return {
         web3: state.web3Instance.web3,
         queryAddress: state.queryAddress.address,
-        // allTokenIds: state.tokens.allIds.slice(0,10),
+        visibleTokenIds: state.tokens.allIds.slice(0, displayCount),
         allTokenIds: state.tokens.allIds,
         filterIsActive: filterIsActive,
         matchedTokenIds: state.tokens.listState.matchedTokenIds,
+        visibleMatchedTokenIds: state.tokens.listState.matchedTokenIds.slice(0, displayCount),
         listState: state.tokens.listState.listState,
         progressTotal: state.tokens.listState.total,
         currentlyLoadingToken: lastToken
@@ -85,6 +103,9 @@ const mapDispatchToProps = dispatch => ({
     initialize: (web3, registryABI, registryAddress) =>
     {
         dispatch(initialize(web3, registryABI, registryAddress))
+    },
+    showMoreItems: () => {
+        dispatch(showMoreItems())
     }
 })
 
