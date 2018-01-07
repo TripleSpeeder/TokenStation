@@ -247,7 +247,7 @@ function changeFilterProps(state, action){
 }
 
 function showMoreItems(state) {
-    const stepSize = 2
+    const stepSize = 3
     const filterIsActive = (state.filter.length > 0)
     if (filterIsActive)
     {
@@ -276,19 +276,19 @@ function showMoreItems(state) {
     }
 }
 
-function resetDisplayCount(state) {
-    return {
-        ...state,
-        displayCount: 5
-    }
-}
-
 const LISTSTATE_INITIAL = {
     listState: TOKEN_LIST_STATES.VIRGIN,
     total: 0,
     filter: '',
     matchedTokenIds: [],
-    displayCount: 5,
+    displayCount: 10,
+}
+
+function resetDisplayCount(state) {
+    return {
+        ...state,
+        displayCount: LISTSTATE_INITIAL.displayCount
+    }
 }
 
 const listState = (state=LISTSTATE_INITIAL, action) => {
