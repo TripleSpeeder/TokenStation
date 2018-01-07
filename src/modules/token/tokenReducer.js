@@ -133,7 +133,6 @@ function loadingSupplyChanged(state, action) {
     };
 }
 
-
 function setTokenBalance(state, action){
     const {payload} = action
     const {tokenID, balance} = payload

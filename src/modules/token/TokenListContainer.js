@@ -68,6 +68,7 @@ const mapStateToProps = state => {
     return {
         web3: state.web3Instance.web3,
         queryAddress: state.queryAddress.address,
+        // allTokenIds: state.tokens.allIds.slice(0,10),
         allTokenIds: state.tokens.allIds,
         filterIsActive: filterIsActive,
         matchedTokenIds: state.tokens.listState.matchedTokenIds,

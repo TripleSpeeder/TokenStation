@@ -181,7 +181,6 @@ export function initialize(web3, registryABI, registryAddress) {
             console.log("Got token " + id + ": " + parityToken[3] + " at " + address)
             const token = mapParityToken(id, parityToken)
             dispatch(addToken(id, token))
-            dispatch(loadTokenDetails(id))
 
             // if there is already a filter set, re-evaluate the filter results
             const {filter} = getState().tokens.listState
@@ -205,6 +204,7 @@ function mapParityToken(id, parityToken) {
         description: null,
         website: null,
         imageUrl: null,
+        contractInstance: null,
         supply: {
             loading: true,
             supply: 0
