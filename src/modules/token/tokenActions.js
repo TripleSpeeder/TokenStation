@@ -156,6 +156,7 @@ export function initialize(web3, registryABI, registryAddress) {
 
         // get number of tokens in registry
         let tokenCount = await registry.tokenCount()
+        tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
         console.log("Tokencount: " + tokenCount)
 
         /* Limit number of tokens for debugging only */
