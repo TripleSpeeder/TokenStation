@@ -137,7 +137,7 @@ export function setFilterString(filterString) {
         const searchString = filterString.toLowerCase()
 
         // in case filterstring changed, reset the number of displayed tokens to it's default value
-        const oldFilterString = getState().tokens.listState.filter
+        const oldFilterString = getState().tokens.listState.filter.toLowerCase()
         if (oldFilterString !== searchString){
             dispatch(resetDisplayCount())
         }
@@ -159,6 +159,23 @@ export function setFilterString(filterString) {
     }
 }
 
+/* check if a new token matches current filter */
+export function filterNewToken(tokenId) {
+    return (dispatch, getState) => {
+        const token = getState().tokens.byId[tokenId]
+        const searchString = getState().tokens.listState.filter.toLowerCase()
+        const match = (
+            token.name.toLowerCase().includes(searchString) ||
+            token.symbol.toLowerCase().includes(searchString) ||
+            token.address.toLowerCase().includes(searchString)
+        )
+        if (match) {
+            const newMatchedIds = getState().tokens.listState.matchedTokenIds.concat(tokenId)
+            dispatch(changeFilterProps(searchString, newMatchedIds))
+        }
+    }
+}
+
 export function initialize(web3, registryABI, registryAddress) {
     return async (dispatch, getState) => {
         // check if existing data needs to be cleared
@@ -170,6 +187,7 @@ export function initialize(web3, registryABI, registryAddress) {
         }
 
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.LOADING))
+
         // prepare access to Parity's token registry
         const registryContract = contract({abi: registryABI})
         registryContract.setProvider(web3.currentProvider)
@@ -180,7 +198,7 @@ export function initialize(web3, registryABI, registryAddress) {
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=5000
+        const limit=2500
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -205,7 +223,12 @@ export function initialize(web3, registryABI, registryAddress) {
             // if there is already a filter set, re-evaluate the filter results
             const {filter} = getState().tokens.listState
             if (filter.length) {
-                dispatch(setFilterString(filter))
+                dispatch(filterNewToken(id))
+            }
+            // if there is already a queryAddress set, immediately check the balance
+            const {valid, address: queryAddress} = getState().queryAddress
+            if (valid) {
+                dispatch(loadTokenBalance(id, queryAddress))
             }
         }
         // individual entries are still loading, but from List Module perspective I'm done
@@ -227,12 +250,13 @@ function mapParityToken(id, parityToken) {
         contractInstance: null,
         supply: {
             loading: true,
-            supply: 0
-        }
+            supply: undefined
+        },
+        balance: undefined
     }
 }
 
-export function loadTokenDetails(tokenID) {
+export function instantiateTokenContract(tokenID) {
     return async (dispatch, getState) => {
         // indicate we are loading the token
         dispatch(loadingTokenChanged(tokenID, true))
@@ -242,23 +266,43 @@ export function loadTokenDetails(tokenID) {
         const {web3} = getState().web3Instance
         const ERC20Contract = contract({abi: erc20ABI})
         ERC20Contract.setProvider(web3.currentProvider)
+        var t0 = performance.now();
         const contractInstance = await ERC20Contract.at(token.address)
+        var t1 = performance.now();
+        console.log("Instantiating contract took " + (t1 - t0) + " milliseconds for " + token.name)
         dispatch(setTokenContractInstance(tokenID, contractInstance))
         dispatch(loadingTokenChanged(tokenID, false))
-
-        // get supply
-        dispatch(loadTokenSupply(tokenID))
     }
 }
 
 export function loadTokenSupply(tokenID) {
     return async (dispatch, getState) => {
         dispatch(loadingSupplyChanged(tokenID, true))
+        await verifyContractInstance(tokenID, dispatch, getState)
         const token = getState().tokens.byId[tokenID]
         // obtain token contract instance from state
         const contractInstance = token.contractInstance
         const supply = await contractInstance.totalSupply()
         dispatch(setTokenSupply(tokenID, supply))
         dispatch(loadingSupplyChanged(tokenID, false))
+    }
+}
+
+export function loadTokenBalance(tokenID, address) {
+    return async (dispatch, getState) => {
+        await verifyContractInstance(tokenID, dispatch, getState)
+        const token = getState().tokens.byId[tokenID]
+        const balance = await token.contractInstance.balanceOf(address)
+        console.log("Balance: " + balance.toString())
+        dispatch(setTokenBalance(tokenID, balance))
+    }
+}
+
+async function verifyContractInstance(tokenId, dispatch, getState) {
+    const token = getState().tokens.byId[tokenId]
+    if (token.contractInstance == null /* && (!token.loading)*/) {
+        console.log("Start lazyloading contract instance for " + token.id + " (" + token.name +")")
+        await dispatch(instantiateTokenContract(token.id))
+        console.log("Done  lazyloading contract instance for " + token.id + " (" + token.name +")")
     }
 }

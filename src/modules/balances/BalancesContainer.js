@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import QueryAddressFormContainer from "../../modules/queryAddress/QueryAddressForm"
+import QueryAddressForm from "../../modules/queryAddress/QueryAddressForm"
 import TokenListContainer from "../../modules/token/TokenListContainer"
+import {Segment} from 'semantic-ui-react'
+import BalancesListContainer from './BalancesListContainer'
 
 
 class BalancesContainer extends Component {
@@ -12,8 +14,10 @@ class BalancesContainer extends Component {
     render() {
         return (
             <div>
-                <QueryAddressFormContainer/>
-                <TokenListContainer showEmpty={false}/>
+                <Segment>
+                    <QueryAddressForm/>
+                </Segment>
+                <BalancesListContainer></BalancesListContainer>
             </div>
         )
     }

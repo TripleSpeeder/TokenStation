@@ -8,7 +8,7 @@ import {Container, Menu} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import TokenListContainer from './modules/token/TokenListContainer'
 import Web3Container from "./modules/web3/web3Container"
-// import BalancesContainer from './modules/balances/BalancesContainer'
+import BalancesContainer from './modules/balances/BalancesContainer'
 import TokenLoader from './modules/token/TokenLoaderContainer'
 
 
@@ -16,10 +16,6 @@ const NoMatch = ({ location }) => (
     <div>
         <h3>No match for <code>{location.pathname}</code></h3>
     </div>
-)
-
-const Balance = ( {match} ) => (
-    <div>Balance for {match.params.address}</div>
 )
 
 ReactDOM.render(
@@ -44,9 +40,9 @@ ReactDOM.render(
                 <Container style={{ marginTop: '7em' }}>
                     <TokenLoader/>
                     <Switch>
-                        <Route exact path='/' component={Balance}/>
+                        <Route exact path='/' component={BalancesContainer}/>
                         <Route path='/alltokens/' component={TokenListContainer}/>
-                        <Route path='/:address/' component={Balance}/>
+                        <Route path='/:address/' component={BalancesContainer}/>
                         <Route component={NoMatch} />
                     </Switch>
 

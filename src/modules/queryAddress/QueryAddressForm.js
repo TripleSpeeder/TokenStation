@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import {Form} from 'semantic-ui-react'
-import {setQueryAddress} from "./queryAddressActions"
+import {queryAddressChange} from './queryAddressActions'
 
 
 class QueryAddressForm extends Component {
@@ -10,22 +10,13 @@ class QueryAddressForm extends Component {
         super(props, context)
 
         // kraken4='0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0'
-        this.state = {
-            address: '',
-            addressValid: false,
-        }
         this.handleChange = this.handleChange.bind(this)
     }
 
     handleChange(e, {name, value}) {
-        this.setState({[name]: value})
         // check for valid address
-        this.setState({addressValid: (/^(0x)?[0-9a-f]{40}$/i.test(value))})
-    }
-
-    handleSubmit = () => {
-        const { address } = this.state
-        this.props.onAddressSelected(address)
+        const valid = (/^(0x)?[0-9a-f]{40}$/i.test(value))
+        this.props.onQueryAddressChange(value, valid)
     }
 
     render() {
@@ -38,10 +29,10 @@ class QueryAddressForm extends Component {
                                 iconPosition='left'
                                 label='Enter Address'
                                 placeholder='Address or ENS name'
-                                error={!this.state.addressValid}
+                                error={!this.props.valid}
                                 onChange={this.handleChange}
+                                value={this.props.address}
                     />
-                    <Form.Button content='submit' disabled={!this.state.addressValid}/>
                 </Form.Group>
             </Form>
         )
@@ -49,12 +40,13 @@ class QueryAddressForm extends Component {
 }
 
 let mapStateToProps = state => ({
-	//address: state.address
+	address: state.queryAddress.address,
+    valid: state.queryAddress.valid
 })
 
 let mapDispatchToProps = dispatch => ({
-    onAddressSelected: (address) => {
-        dispatch(setQueryAddress(address))
+    onQueryAddressChange: (address, valid) => {
+        dispatch(queryAddressChange(address, valid))
     }
 })
 

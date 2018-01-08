@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Token from "./Token"
 import {connect} from "react-redux"
-import {loadTokenDetails, loadTokenSupply} from './tokenActions'
+import {loadTokenSupply} from './tokenActions'
 import {buildEtherscanLink} from '../../utils/etherscanUtils'
 
 
@@ -28,10 +28,9 @@ class TokenContainer extends Component {
 
     componentDidMount() {
         // Check if the token details are already loaded
-        if (this.props.token.contractInstance === null)
+        if (this.props.token.supply.supply === undefined)
         {
-            console.log("TokenContainer: Displaying " + this.props.token.name + " for the first time. Triggering loadTokenDetails.")
-            this.props.loadTokenDetails(this.props.tokenId)
+            this.props.loadTokenSupply(this.props.tokenId)
         }
     }
 
@@ -65,9 +64,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
     loadTokenSupply: (tokenID) => {
         dispatch(loadTokenSupply(tokenID))
-    },
-    loadTokenDetails: (tokenID) => {
-        dispatch(loadTokenDetails(tokenID))
     }
 })
 
