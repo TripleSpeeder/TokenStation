@@ -14,7 +14,7 @@ class TokenListContainer extends Component {
     componentWillReceiveProps(newProps) {
         /*
         if (newProps.address && (newProps.address !== this.props.address)) {
-            // got a new query address. Clear all existing balances and start updating them.
+            // got a new query address. Clear all existing balance and start updating them.
             this.props.clearBalances()
             this.obtainBalances(newProps.address)
         }*/

@@ -1,10 +1,10 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {tokens} from "./modules/token/reducers/tokenReducer"
-import {queryAddress} from "./modules/address/reducers/addressByIdReducer"
 import {web3Instance} from "./modules/web3/web3Reducer"
 import createHistory from 'history/createBrowserHistory'
 import thunk from 'redux-thunk'
 import {addresses} from './modules/address/reducers/addressReducer'
+import {balance} from './modules/balance/reducer/balanceReducer'
 
 const reducer = combineReducers(
     Object.assign({},
@@ -12,6 +12,7 @@ const reducer = combineReducers(
             web3Instance,
             tokens,
             addresses,
+            balance,
         }
     )
 )

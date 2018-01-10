@@ -32,7 +32,7 @@ export function queryAddressChange(address, valid) {
         dispatch(clearTokenBalances())
         dispatch(setQueryAddress(address, valid))
         if (valid) {
-            // now query all known tokens for balances of given address
+            // now query all known tokens for balance of given address
             Object.entries(getState().tokens.byId).forEach(
                 async ([tokenId, token]) => {
                     console.log("Getting balance for " + token.name)

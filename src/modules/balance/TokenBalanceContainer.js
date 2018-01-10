@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
-import {setTokenBalance} from "./tokenBalanceActions"
+import {setTokenBalance} from "./balanceActions"
 import erc20ABI from "human-standard-token-abi"
 import contract from "truffle-contract"
 

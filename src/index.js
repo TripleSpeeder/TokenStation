@@ -8,7 +8,7 @@ import {Container, Menu} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import TokenListContainer from './modules/token/TokenListContainer'
 import Web3Container from "./modules/web3/web3Container"
-import BalancesContainer from './modules/balances/BalancesContainer'
+import BalancesContainer from './modules/balance/BalancesContainer'
 import TokenLoader from './modules/token/TokenLoaderContainer'
 
 

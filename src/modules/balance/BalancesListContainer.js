@@ -11,7 +11,7 @@ class BalancesListContainer extends Component {
     render() {
         return (
             <list>
-                {this.props.tokenIdsWithBalance.map((tokenId) => <li key={tokenId}>{tokenId}</li>)}
+                {this.props.balanceIds.map((balanceId) => <li key={balanceId}>{balanceId}</li>)}
             </list>
         )
     }
@@ -25,7 +25,12 @@ BalancesListContainer.defaultProps = {
     //myProp: <defaultValue>
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state => (
+    {
+        balanceIds: state.balance.allBalances
+    }
+)
+    /*
     // create array of tokens that have a balance > 0 for current queryaddress
     const filteredTokens = Object.values(state.tokens.byId).filter(token => {
         // get all tokens that have a valid balance
@@ -37,7 +42,8 @@ const mapStateToProps = state => {
     return {
         tokenIdsWithBalance
     }
-}
+    */
+
 
 const mapDispatchToProps = dispatch => ({
 })
