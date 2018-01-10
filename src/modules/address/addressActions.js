@@ -1,13 +1,11 @@
 import {clearTokenBalances, loadTokenBalance} from '../token/tokenActions'
 
-let nextAddressID=0
-
 export const ADD_ADDRESS = 'ADD_ADDRESS'
 export function addAddress(address) {
     return {
         type: ADD_ADDRESS,
         payload: {
-            addressId: nextAddressID++,
+            addressId: address,
             address
         }
     }

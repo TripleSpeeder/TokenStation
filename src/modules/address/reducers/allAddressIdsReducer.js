@@ -5,6 +5,12 @@ const ALL_ADDRESSES_INITIAL = []
 function addAddressId(state, action) {
     const {payload} = action
     const {addressId} = payload
+    // prevent duplicate entries
+    const existingIndex = state.indexOf(addressId)
+    if (existingIndex > -1) {
+        console.warn("Ignoring duplicate address " + addressId)
+        return state
+    }
     return state.concat(addressId)
 }
 
