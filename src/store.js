@@ -1,16 +1,17 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {tokens} from "./modules/token/reducers/tokenReducer"
-import {queryAddress} from "./modules/queryAddress/queryAddressReducer"
+import {queryAddress} from "./modules/address/reducers/addressByIdReducer"
 import {web3Instance} from "./modules/web3/web3Reducer"
 import createHistory from 'history/createBrowserHistory'
 import thunk from 'redux-thunk'
+import {addresses} from './modules/address/reducers/addressReducer'
 
 const reducer = combineReducers(
     Object.assign({},
         {
-            queryAddress,   // ES6 shorthand for "queryAddress: queryAddress"
             web3Instance,
             tokens,
+            addresses,
         }
     )
 )

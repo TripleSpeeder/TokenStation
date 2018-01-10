@@ -13,10 +13,10 @@ class TokenListContainer extends Component {
 
     componentWillReceiveProps(newProps) {
         /*
-        if (newProps.queryAddress && (newProps.queryAddress !== this.props.queryAddress)) {
+        if (newProps.address && (newProps.address !== this.props.address)) {
             // got a new query address. Clear all existing balances and start updating them.
             this.props.clearBalances()
-            this.obtainBalances(newProps.queryAddress)
+            this.obtainBalances(newProps.address)
         }*/
     }
 
@@ -64,7 +64,6 @@ const mapStateToProps = state => {
 
     return {
         web3: state.web3Instance.web3,
-        queryAddress: state.queryAddress.address,
         visibleTokenIds: state.tokens.allIds.slice(0, displayCount),
         allTokenIds: state.tokens.allIds,
         filterIsActive: filterIsActive,

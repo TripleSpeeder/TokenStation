@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Checkbox, Container, Header} from 'semantic-ui-react'
 
 import TokenListContainer from "./modules/token/TokenListContainer"
-import QueryAddressFormContainer from "./modules/queryAddress/QueryAddressForm"
+import QueryAddressFormContainer from "./modules/address/QueryAddressForm"
 import Web3Container from "./modules/web3/web3Container"
 
 import './App.css'

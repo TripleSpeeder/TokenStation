@@ -1,19 +1,32 @@
 import {clearTokenBalances, loadTokenBalance} from '../token/tokenActions'
 
-export const SET_QUERYADDRESS = 'SET_QUERYADDRESS'
-export function setQueryAddress(address, valid) {
+let nextAddressID=0
+
+export const ADD_ADDRESS = 'ADD_ADDRESS'
+export function addAddress(address) {
     return {
-        type: SET_QUERYADDRESS,
+        type: ADD_ADDRESS,
         payload: {
-            address: address,
-            valid: valid
+            addressId: nextAddressID++,
+            address
         }
     }
 }
 
+export const REMOVE_ADDRESS='REMOVE_ADDRESS'
+export function removeAddress(addressId) {
+    return {
+        type: REMOVE_ADDRESS,
+        payload: {
+            addressId
+        }
+    }
+}
+
+/*
 export function queryAddressChange(address, valid) {
     return (dispatch, getState) => {
-        const {oldValid, oldAddress} = getState().queryAddress.valid
+        const {oldValid, oldAddress} = getState().address.valid
         if ((oldValid === valid) && (oldAddress === address)) {
             // no need to update anything
             return
@@ -31,3 +44,4 @@ export function queryAddressChange(address, valid) {
         }
     }
 }
+*/

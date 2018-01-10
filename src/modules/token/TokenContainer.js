@@ -55,7 +55,6 @@ const mapStateToProps = (state, ownProps) => {
     const token = state.tokens.byId[ownProps.tokenId]
     const etherscanUrl = buildEtherscanLink(token.address)
     return {
-        address: state.queryAddress.address,
         token: token,
         etherscanUrl: etherscanUrl
     }

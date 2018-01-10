@@ -2,21 +2,36 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import {Form} from 'semantic-ui-react'
-import {queryAddressChange} from './queryAddressActions'
+import {addAddress, queryAddressChange} from './addressActions'
 
 
 class QueryAddressForm extends Component {
     constructor(props, context) {
         super(props, context)
 
+        this.state = {
+            valid: false,
+            address: ''
+        }
         // kraken4='0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0'
         this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange(e, {name, value}) {
+    handleChange(e) {
+        const address=e.target.value
         // check for valid address
-        const valid = (/^(0x)?[0-9a-f]{40}$/i.test(value))
-        this.props.onQueryAddressChange(value, valid)
+        const valid = (/^(0x)?[0-9a-f]{40}$/i.test(address))
+        this.setState(
+            {
+                valid: valid,
+                address: address,
+            }
+        )
+    }
+
+    handleSubmit = () => {
+        const { address } = this.state
+        this.props.addAddress(address)
     }
 
     render() {
@@ -29,25 +44,20 @@ class QueryAddressForm extends Component {
                                 iconPosition='left'
                                 label='Enter Address'
                                 placeholder='Address or ENS name'
-                                error={!this.props.valid}
+                                error={!this.state.valid}
                                 onChange={this.handleChange}
-                                value={this.props.address}
                     />
+                    <Form.Button content='add' disabled={!this.state.valid}/>
                 </Form.Group>
             </Form>
         )
     }
 }
 
-let mapStateToProps = state => ({
-	address: state.queryAddress.address,
-    valid: state.queryAddress.valid
-})
-
 let mapDispatchToProps = dispatch => ({
-    onQueryAddressChange: (address, valid) => {
-        dispatch(queryAddressChange(address, valid))
+    addAddress: (address) => {
+        dispatch(addAddress(address))
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(QueryAddressForm)
+export default connect(null, mapDispatchToProps)(QueryAddressForm)

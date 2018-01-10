@@ -198,7 +198,7 @@ export function initialize(web3, registryABI, registryAddress) {
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=2500
+        const limit=3
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -225,11 +225,12 @@ export function initialize(web3, registryABI, registryAddress) {
             if (filter.length) {
                 dispatch(filterNewToken(id))
             }
-            // if there is already a queryAddress set, immediately check the balance
+            /*
+            // if there is already a address set, immediately check the balance
             const {valid, address: queryAddress} = getState().queryAddress
             if (valid) {
                 dispatch(loadTokenBalance(id, queryAddress))
-            }
+            }*/
         }
         // individual entries are still loading, but from List Module perspective I'm done
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.INITIALIZED))
