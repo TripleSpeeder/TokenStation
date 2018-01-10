@@ -32,6 +32,10 @@ class QueryAddressForm extends Component {
     handleSubmit = () => {
         const { address } = this.state
         this.props.addAddress(address)
+        this.setState({
+            valid: false,
+            address: ''
+        })
     }
 
     render() {
@@ -46,6 +50,7 @@ class QueryAddressForm extends Component {
                                 placeholder='Address or ENS name'
                                 error={!this.state.valid}
                                 onChange={this.handleChange}
+                                value={this.state.address}
                     />
                     <Form.Button
                         content='add address'
