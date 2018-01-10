@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {showMoreItems} from '../token/tokenActions'
 import {removeAddress} from './addressActions'
 import {Button} from 'semantic-ui-react'
+import Address from './Address'
+import AddressList from './reducers/AddressList'
 
 class AddressListContainer extends Component {
     constructor(props, context) {
@@ -17,13 +19,7 @@ class AddressListContainer extends Component {
     }
 
     render() {
-        return (
-            <list>
-                {this.props.addressIds.map((addressId) =>
-                    <li key={addressId}>{addressId} <Button data-addressId={addressId} onClick={this.handleRemove}>X</Button> </li>
-                )}
-            </list>
-        )
+        return <AddressList addressIds={this.props.addressIds}/>
     }
 }
 
@@ -42,9 +38,6 @@ const mapStateToProps = state => (
 )
 
 const mapDispatchToProps = dispatch => ({
-    removeAddress: (addressId) => {
-        dispatch(removeAddress(addressId))
-    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddressListContainer)

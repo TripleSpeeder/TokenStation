@@ -39,15 +39,19 @@ class QueryAddressForm extends Component {
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Input inline
+                                width={11}
                                 name='address'
                                 icon='diamond'
                                 iconPosition='left'
-                                label='Enter Address'
                                 placeholder='Address or ENS name'
                                 error={!this.state.valid}
                                 onChange={this.handleChange}
                     />
-                    <Form.Button content='add' disabled={!this.state.valid}/>
+                    <Form.Button
+                        content='add address'
+                        disabled={!this.state.valid}
+                        width={6}
+                    />
                 </Form.Group>
             </Form>
         )
