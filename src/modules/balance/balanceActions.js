@@ -1,3 +1,4 @@
+import {loadTokenBalance} from '../token/tokenActions'
 
 let nextBalanceId = 0
 
@@ -35,6 +36,13 @@ export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
         }
         // set balance
         dispatch(setBalance(balanceId, balance))
+    }
+}
+
+export function reloadBalance(balanceId) {
+    return (dispatch, getState) => {
+        const balance = getState().balance.byId[balanceId]
+        dispatch(loadTokenBalance(balance.tokenId, balance.addressId))
     }
 }
 

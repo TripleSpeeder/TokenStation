@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {setBalanceByAddressAndToken} from './balanceActions'
 import {Button} from 'semantic-ui-react'
+import BalancesList from './BalancesList'
 
 class BalancesListContainer extends Component {
     constructor(props, context) {
@@ -11,11 +12,7 @@ class BalancesListContainer extends Component {
 
     render() {
         return (
-            <list>
-                {this.props.balanceIds.map((balanceId) => <li
-                    key={balanceId}>{balanceId}
-                    </li>)}
-            </list>
+            <BalancesList balanceIds={this.props.balanceIds}/>
         )
     }
 }
