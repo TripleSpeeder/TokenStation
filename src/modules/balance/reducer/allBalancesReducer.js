@@ -1,8 +1,8 @@
-import {SET_TOKEN_BALANCE} from '../balanceActions'
+import {CREATE_BALANCE_ENTRY} from '../balanceActions'
 
 const ALL_BALANCES_INITIAL = []
 
-function setBalance(state, action) {
+function createBalanceEntry(state, action) {
     const {payload} = action
     const {balanceId} = payload
     // prevent duplicate entries
@@ -16,8 +16,8 @@ function setBalance(state, action) {
 
 export const allBalances = (state=[], action) => {
     switch (action.type) {
-        case SET_TOKEN_BALANCE: {
-            return setBalance(state, action)
+        case CREATE_BALANCE_ENTRY: {
+            return createBalanceEntry(state, action)
         }
         default:
             return state

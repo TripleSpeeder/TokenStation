@@ -18,7 +18,6 @@ class BalancesContainer extends Component {
                 <Segment>
                     <AddressListContainer/>
                     <QueryAddressForm/>
-                    <BalancesListContainer/>
                 </Segment>
                 <BalancesListContainer/>
             </div>

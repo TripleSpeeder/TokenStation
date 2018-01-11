@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
-import {setTokenBalance} from "./balanceActions"
+import {setBalance} from "./balanceActions"
 import erc20ABI from "human-standard-token-abi"
 import contract from "truffle-contract"
 
@@ -62,8 +62,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    setTokenBalance: (tokenId, balance) => {
-        dispatch(setTokenBalance(tokenId, balance))
+    setTokenBalance: (addressId, tokenId, balance) => {
+        dispatch(setBalance(addressId, tokenId, balance))
     }
 })
 

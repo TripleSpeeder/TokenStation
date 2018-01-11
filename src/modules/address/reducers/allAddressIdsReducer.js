@@ -1,6 +1,11 @@
 import {ADD_ADDRESS, REMOVE_ADDRESS} from '../addressActions'
 
-const ALL_ADDRESSES_INITIAL = []
+//const ALL_ADDRESSES_INITIAL = []
+const ALL_ADDRESSES_INITIAL = [
+    '0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0',
+    '0xa38da4974b594204b73581ac5fbc1ebee54ca4e0',
+    '0xc44e4c49ffa5db98ca52770dff3e371ecb01f2d9',
+]
 
 function addAddressId(state, action) {
     const {payload} = action

@@ -1,5 +1,6 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
+import {setBalance} from '../balance/balanceActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -63,17 +64,6 @@ export function loadingSupplyChanged(tokenID, isLoading) {
         payload: {
             tokenID,
             isLoading
-        }
-    }
-}
-
-export const SET_TOKEN_BALANCE = 'SET_TOKEN_BALANCE'
-export function setTokenBalance(tokenID, balance) {
-    return {
-        type: SET_TOKEN_BALANCE,
-        payload: {
-            tokenID,
-            balance,
         }
     }
 }
@@ -289,13 +279,16 @@ export function loadTokenSupply(tokenID) {
     }
 }
 
-export function loadTokenBalance(tokenID, address) {
+export function loadTokenBalance(tokenID, addressId) {
     return async (dispatch, getState) => {
         await verifyContractInstance(tokenID, dispatch, getState)
         const token = getState().tokens.byId[tokenID]
+        const address = getState().addresses.byId[addressId]
         const balance = await token.contractInstance.balanceOf(address)
         console.log("Balance: " + balance.toString())
-        dispatch(setTokenBalance(tokenID, balance))
+        if (balance.greaterThan(0)) {
+            dispatch(setBalance(addressId, tokenID, balance))
+        }
     }
 }
 

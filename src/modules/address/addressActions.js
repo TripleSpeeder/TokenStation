@@ -21,6 +21,28 @@ export function removeAddress(addressId) {
     }
 }
 
+export function addNewAddress(address) {
+    return (dispatch, getState) => {
+        // a new address is added.
+        dispatch(addAddress(address))
+        // get ID of new address
+        const addressId = findAddressId(address)
+        // Dispatch actions to obtain balance for all known tokens
+        Object.entries(getState().tokens.byId).forEach(
+            async ([tokenId, token]) => {
+                console.log("Getting balance for " + token.name)
+                dispatch(loadTokenBalance(tokenId, addressId))
+            }
+        )
+    }
+}
+
+export function findAddressId(address) {
+    // Quick implementation as I know that the ID is the same as the actual address...
+    // TODO: Real implementation: Search through addresses and return ID of found address entry
+    return address
+}
+
 /*
 export function queryAddressChange(address, valid) {
     return (dispatch, getState) => {
