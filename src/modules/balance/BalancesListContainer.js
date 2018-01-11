@@ -29,30 +29,20 @@ BalancesListContainer.defaultProps = {
 }
 
 const mapStateToProps = state => {
-
-    let addressId=0
-    let tokenId=0
-    let testBalanceId=0
+    // create array of balanceIds that have a balance > 0
+    const addressIds = Object.keys(state.addresses.byId)
+    const balances = Object.values(state.balance.byId).filter(balanceEntry => {
+        return (
+            (addressIds.indexOf(balanceEntry.addressId) > -1) &&
+            (balanceEntry.balance.greaterThan(0))
+        )
+    })
 
     return {
-        balanceIds: state.balance.allBalances,
-        testBalanceId
+        // map balances back to their Ids
+        balanceIds: balances.map(balance => (balance.balanceId))
     }
 }
-    /*
-    // create array of tokens that have a balance > 0 for current queryaddress
-    const filteredTokens = Object.values(state.tokens.byId).filter(token => {
-        // get all tokens that have a valid balance
-        return (token.balance && (!token.balance.isZero() ))
-    })
-    // map tokens back to their tokenIDs
-    const tokenIdsWithBalance = filteredTokens.map(token => (token.id))
-
-    return {
-        tokenIdsWithBalance
-    }
-    */
-
 
 const mapDispatchToProps = dispatch => ({
     setBalanceByAddressAndToken: (addressId, tokenId, balance) => {
