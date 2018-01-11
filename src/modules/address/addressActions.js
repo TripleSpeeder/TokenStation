@@ -1,4 +1,5 @@
 import {clearTokenBalances, loadTokenBalance} from '../token/tokenActions'
+import {findBalanceId} from '../balance/balanceActions'
 
 export const ADD_ADDRESS = 'ADD_ADDRESS'
 export function addAddress(address) {
@@ -29,9 +30,11 @@ export function addNewAddress(address) {
         const addressId = findAddressId(address)
         // Dispatch actions to obtain balance for all known tokens
         getState().tokens.allIds.forEach(tokenId => {
+            const balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
+            if (balanceId === -1) {
                 dispatch(loadTokenBalance(tokenId, addressId))
             }
-        )
+        })
     }
 }
 

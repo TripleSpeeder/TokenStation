@@ -284,10 +284,7 @@ export function loadTokenBalance(tokenID, addressId) {
         const token = getState().tokens.byId[tokenID]
         const address = getState().addresses.byId[addressId]
         const balance = await token.contractInstance.balanceOf(address)
-        console.log("Balance: " + balance.toString())
-        if (balance.greaterThan(0)) {
-            dispatch(setBalanceByAddressAndToken(addressId, tokenID, balance))
-        }
+        dispatch(setBalanceByAddressAndToken(addressId, tokenID, balance))
     }
 }
 

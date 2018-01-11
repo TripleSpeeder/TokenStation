@@ -27,9 +27,10 @@ export function createBalanceEntry(balanceId, addressId, tokenId) {
 export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
     return(dispatch, getState) => {
         // obtain balanceID
-        const [balanceId, newEntry] = determineBalanceId(getState().balance.byId, addressId, tokenId)
-        if (newEntry) {
-            // first create a new balance entry
+        let balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
+        if (balanceId === -1) {
+            // create a new balance entry before setting balance
+            balanceId = nextBalanceId++
             dispatch(createBalanceEntry(balanceId, addressId, tokenId))
         }
         // set balance
@@ -37,22 +38,20 @@ export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
     }
 }
 
-function determineBalanceId(balancesById, addressId, tokenId) {
+export function findBalanceId(balancesById, addressId, tokenId) {
     let candidates = Object.values(balancesById).filter(entry => (
         entry.addressId===addressId
         && entry.tokenId===tokenId)
     )
-    let newEntry = false
     if (candidates.length === 0) {
-        // combination not yet existing. Create new ID
-        newEntry = true
-        return [nextBalanceId++, newEntry]
+        // combination not yet existing. Need to Create new ID
+        return -1
     } else if (candidates.length ===1) {
         // found existing entry
-        return [candidates[0], newEntry]
+        return candidates[0]
     } else {
         // more than one entry! Impossible :-(
         console.error("Found " + candidates.length + " matching balanceIds.")
-        return null
+        return -1
     }
 }
