@@ -28,9 +28,7 @@ export function addNewAddress(address) {
         // get ID of new address
         const addressId = findAddressId(address)
         // Dispatch actions to obtain balance for all known tokens
-        Object.entries(getState().tokens.byId).forEach(
-            async ([tokenId, token]) => {
-                console.log("Getting balance for " + token.name)
+        getState().tokens.allIds.forEach(tokenId => {
                 dispatch(loadTokenBalance(tokenId, addressId))
             }
         )

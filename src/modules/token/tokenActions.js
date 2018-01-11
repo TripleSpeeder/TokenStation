@@ -1,6 +1,6 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
-import {setBalance} from '../balance/balanceActions'
+import {setBalance, setBalanceByAddressAndToken} from '../balance/balanceActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -188,7 +188,7 @@ export function initialize(web3, registryABI, registryAddress) {
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=3
+        const limit=3000
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -215,12 +215,11 @@ export function initialize(web3, registryABI, registryAddress) {
             if (filter.length) {
                 dispatch(filterNewToken(id))
             }
-            /*
-            // if there is already a address set, immediately check the balance
-            const {valid, address: queryAddress} = getState().queryAddress
-            if (valid) {
-                dispatch(loadTokenBalance(id, queryAddress))
-            }*/
+            // if there is already an address set, immediately check the balance
+            getState().addresses.allIds.forEach(addressId => {
+                    dispatch(loadTokenBalance(id, addressId))
+                }
+            )
         }
         // individual entries are still loading, but from List Module perspective I'm done
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.INITIALIZED))
@@ -287,7 +286,7 @@ export function loadTokenBalance(tokenID, addressId) {
         const balance = await token.contractInstance.balanceOf(address)
         console.log("Balance: " + balance.toString())
         if (balance.greaterThan(0)) {
-            dispatch(setBalance(addressId, tokenID, balance))
+            dispatch(setBalanceByAddressAndToken(addressId, tokenID, balance))
         }
     }
 }

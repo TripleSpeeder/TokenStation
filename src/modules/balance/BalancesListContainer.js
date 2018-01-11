@@ -9,17 +9,9 @@ class BalancesListContainer extends Component {
         super(props, context)
     }
 
-    handleClick = () => {
-        let addressId=2
-        let tokenId=0
-        let balance=window.web3.toBigNumber(340)
-        this.props.setBalanceByAddressAndToken(addressId, tokenId, balance)
-    }
-
     render() {
         return (
             <list>
-                <Button onClick={this.handleClick} label='test'/>
                 {this.props.balanceIds.map((balanceId) => <li
                     key={balanceId}>{balanceId}
                     </li>)}
