@@ -1,6 +1,6 @@
 import {
     ADD_TOKEN, CLEAR_TOKEN_BALANCES, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN, SET_TOKEN_BALANCE,
-    SET_TOKEN_CONTRACT_INSTANCE,
+    SET_TOKEN_CONTRACT_INSTANCE, SET_TOKEN_LOADING_PROMISE,
     SET_TOKEN_SUPPLY
 } from '../tokenActions'
 
@@ -46,6 +46,21 @@ function setTokenContractInstance(state, action) {
         [tokenID]: {
             ...token,
             contractInstance: contractInstance
+        }
+    }
+}
+
+function setTokenLoadingPromise(state, action) {
+    const {payload} = action
+    const {tokenID, loadingPromise} = payload
+    // Look up the correct token, to simplify the rest of the code
+    const token = state[tokenID]
+    return {
+        ...state,
+        // Update our Token object with a new supply value
+        [tokenID]: {
+            ...token,
+            loadingPromise
         }
     }
 }
@@ -119,6 +134,9 @@ export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
         }
         case IS_LOADING_TOKEN: {
             return loadingTokenChanged(state, action)
+        }
+        case SET_TOKEN_LOADING_PROMISE: {
+            return setTokenLoadingPromise(state, action)
         }
         case SET_TOKEN_CONTRACT_INSTANCE: {
             return setTokenContractInstance(state, action)

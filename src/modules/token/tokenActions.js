@@ -79,6 +79,17 @@ export function setTokenContractInstance(tokenID, contractInstance) {
     }
 }
 
+export const SET_TOKEN_LOADING_PROMISE = 'SET_TOKEN_LOADING_PROMISE'
+export function setTokenLoadingPromise(tokenID, loadingPromise) {
+    return {
+        type: SET_TOKEN_LOADING_PROMISE,
+        payload: {
+            tokenID,
+            loadingPromise
+        }
+    }
+}
+
 export const CLEAR_TOKEN_BALANCES = 'CLEAR_TOKEN_BALANCES'
 export function clearTokenBalances() {
     return {
@@ -228,7 +239,8 @@ export function initialize(web3, registryABI, registryAddress) {
 
 function mapParityToken(id, parityToken) {
     return {
-        loading: true,
+        loading: false,
+        loadingPromise: null,
         id: id,
         address: parityToken[0],
         symbol: parityToken[1],
@@ -247,17 +259,29 @@ function mapParityToken(id, parityToken) {
 }
 
 export function instantiateTokenContract(tokenID) {
-    return async (dispatch, getState) => {
-        // create token contract instance and store it for later use in state
-        const token = getState().tokens.byId[tokenID]
-        const {web3} = getState().web3Instance
-        const ERC20Contract = contract({abi: erc20ABI})
-        ERC20Contract.setProvider(web3.currentProvider)
-        var t0 = performance.now();
-        const contractInstance = await ERC20Contract.at(token.address)
-        var t1 = performance.now();
-        console.log("Instantiating contract took " + (t1 - t0) + " milliseconds for " + token.name)
-        dispatch(setTokenContractInstance(tokenID, contractInstance))
+    return (dispatch, getState) => {
+        // create promise that resolves as soon as the contract is instantiated.
+        const loadingPromise = new Promise(
+            async function(resolve, reject) {
+                // indicate we are loading the token
+                dispatch(loadingTokenChanged(tokenID, true))
+                // create token contract instance and store it for later use in state
+                const token = getState().tokens.byId[tokenID]
+                const {web3} = getState().web3Instance
+                const ERC20Contract = contract({abi: erc20ABI})
+                ERC20Contract.setProvider(web3.currentProvider)
+                var t0 = performance.now();
+                const contractInstance = await ERC20Contract.at(token.address)
+                var t1 = performance.now();
+                console.log("Instantiating contract took " + (t1 - t0) + " milliseconds for " + token.name)
+                dispatch(setTokenContractInstance(tokenID, contractInstance))
+                // indicate we finished loading the token
+                dispatch(loadingTokenChanged(tokenID, false))
+                // finally resolve loading promise
+                resolve()
+            }
+        )
+        dispatch(setTokenLoadingPromise(tokenID, loadingPromise))
     }
 }
 
@@ -285,14 +309,16 @@ export function loadTokenBalance(tokenID, addressId) {
 }
 
 async function verifyContractInstance(tokenId, dispatch, getState) {
-    const token = getState().tokens.byId[tokenId]
-    if (token.contractInstance == null /*&& (!token.loading)*/) {
-        // indicate we are loading the token
-        dispatch(loadingTokenChanged(tokenId, true))
+    let token = getState().tokens.byId[tokenId]
+    if (token.loadingPromise) {
+        // token is already loading. Just return the promise.
+        return token.loadingPromise
+    }
+    else {
         console.log("Start lazyloading contract instance for " + token.id + " (" + token.name +")")
-        await dispatch(instantiateTokenContract(token.id))
-        console.log("Done  lazyloading contract instance for " + token.id + " (" + token.name +")")
-        // indicate we finished loading the token
-        dispatch(loadingTokenChanged(tokenId, false))
+        dispatch(instantiateTokenContract(token.id))
+        // refresh token, as the loadingPromise has just been added to state
+        token = getState().tokens.byId[tokenId]
+        return token.loadingPromise
     }
 }
