@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {buildEtherscanLink} from '../../utils/etherscanUtils'
@@ -8,12 +8,14 @@ import BalanceItem from './BalanceItem'
 import _ from 'lodash'
 
 
-class BalanceItemContainer extends Component {
+class BalanceItemContainer extends PureComponent {
     constructor(props, context) {
         super(props, context)
+        // this.renderCount = 0
     }
 
     render() {
+        // console.log("Rendercount " + this.props.token.symbol + ": " + this.renderCount++)
         return (
             <BalanceItem tokenName={this.props.token.name}
                          tokenSymbol={this.props.token.symbol}
@@ -21,6 +23,14 @@ class BalanceItemContainer extends Component {
                          total={this.props.total}
             />
         )
+    }
+
+    shouldComponentUpdate(nextProps) {
+        // Render() should only ever be necessary when the token itself or
+        // it's total balance changes, i.e. an address was added/removed to
+        // the watch list or the balance of an address changed.
+        return ((!nextProps.total.equals(this.props.total)) ||
+            (nextProps.tokenId !== this.props.tokenId))
     }
 }
 
