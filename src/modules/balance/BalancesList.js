@@ -1,19 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BalanceItemContainer from './BalanceItemContainer'
+import {Grid, Header, Icon, Statistic, Segment, Table} from 'semantic-ui-react'
 
 const BalancesList = (props) => {
     return (
-        <list>
-            {props.balanceIds.map((balanceId) =>
-                <BalanceItemContainer key={balanceId} balanceId={balanceId}/>
+        <div>
+            {Object.entries(props.balancesByToken).map(entry =>
+                <BalanceItemContainer key={entry[0]} tokenId={entry[0]} tokenBalances={entry[1]}/>
             )}
-        </list>
+        </div>
     )
 }
 
 BalancesList.propTypes = {
-    balanceIds: PropTypes.array.isRequired
+    balancesByToken: PropTypes.object.isRequired
 }
 
 BalancesList.defaultProps = {

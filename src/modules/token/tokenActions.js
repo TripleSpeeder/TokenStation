@@ -248,9 +248,6 @@ function mapParityToken(id, parityToken) {
 
 export function instantiateTokenContract(tokenID) {
     return async (dispatch, getState) => {
-        // indicate we are loading the token
-        dispatch(loadingTokenChanged(tokenID, true))
-
         // create token contract instance and store it for later use in state
         const token = getState().tokens.byId[tokenID]
         const {web3} = getState().web3Instance
@@ -261,7 +258,6 @@ export function instantiateTokenContract(tokenID) {
         var t1 = performance.now();
         console.log("Instantiating contract took " + (t1 - t0) + " milliseconds for " + token.name)
         dispatch(setTokenContractInstance(tokenID, contractInstance))
-        dispatch(loadingTokenChanged(tokenID, false))
     }
 }
 
@@ -290,9 +286,13 @@ export function loadTokenBalance(tokenID, addressId) {
 
 async function verifyContractInstance(tokenId, dispatch, getState) {
     const token = getState().tokens.byId[tokenId]
-    if (token.contractInstance == null /* && (!token.loading)*/) {
+    if (token.contractInstance == null /*&& (!token.loading)*/) {
+        // indicate we are loading the token
+        dispatch(loadingTokenChanged(tokenId, true))
         console.log("Start lazyloading contract instance for " + token.id + " (" + token.name +")")
         await dispatch(instantiateTokenContract(token.id))
         console.log("Done  lazyloading contract instance for " + token.id + " (" + token.name +")")
+        // indicate we finished loading the token
+        dispatch(loadingTokenChanged(tokenId, false))
     }
 }

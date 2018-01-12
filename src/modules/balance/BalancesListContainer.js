@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {setBalanceByAddressAndToken} from './balanceActions'
-import {Button} from 'semantic-ui-react'
 import BalancesList from './BalancesList'
+import groupBy from 'lodash/groupBy';
 
 class BalancesListContainer extends Component {
     constructor(props, context) {
@@ -12,7 +12,7 @@ class BalancesListContainer extends Component {
 
     render() {
         return (
-            <BalancesList balanceIds={this.props.balanceIds}/>
+            <BalancesList balancesByToken={this.props.balancesByToken}/>
         )
     }
 }
@@ -26,7 +26,7 @@ BalancesListContainer.defaultProps = {
 }
 
 const mapStateToProps = state => {
-    // create array of balanceIds that have a balance > 0
+    // create array of balanceIds that have a balance > 0 for any of the watched addresses
     const addressIds = Object.keys(state.addresses.byId)
     const balances = Object.values(state.balance.byId).filter(balanceEntry => {
         return (
@@ -35,9 +35,11 @@ const mapStateToProps = state => {
         )
     })
 
+    // now group the balances by token
+    const balancesByToken = groupBy(balances, 'tokenId')
+
     return {
-        // map balances back to their Ids
-        balanceIds: balances.map(balance => (balance.balanceId))
+        balancesByToken
     }
 }
 

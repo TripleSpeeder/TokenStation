@@ -5,6 +5,8 @@ import {buildEtherscanLink} from '../../utils/etherscanUtils'
 import {addToken} from '../token/tokenActions'
 import {reloadBalance} from './balanceActions'
 import BalanceItem from './BalanceItem'
+import _ from 'lodash'
+
 
 class BalanceItemContainer extends Component {
     constructor(props, context) {
@@ -13,10 +15,11 @@ class BalanceItemContainer extends Component {
 
     render() {
         return (
-            <BalanceItem address={this.props.address}
-                         reloadBalance={this.props.reloadBalance}
-                         token={this.props.token.name}
-                         balance={this.props.balanceEntry.balance}/>
+            <BalanceItem tokenName={this.props.token.name}
+                         tokenSymbol={this.props.token.symbol}
+                         tokenBalances={this.props.tokenBalances}
+                         total={this.props.total}
+            />
         )
     }
 }
@@ -30,11 +33,14 @@ BalanceItemContainer.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const balanceEntry = state.balance.byId[ownProps.balanceId]
+    // calculate total balance of all addresses
+    const total = _.reduce(ownProps.tokenBalances, (sum, tokenBalance) => {
+        return sum.plus(tokenBalance.balance)
+    }, window.web3.toBigNumber(0) )
+
     return {
-        balanceEntry,
-        address: state.addresses.byId[balanceEntry.addressId],
-        token: state.tokens.byId[balanceEntry.tokenId],
+        token: state.tokens.byId[ownProps.tokenId],
+        total
     }
 }
 

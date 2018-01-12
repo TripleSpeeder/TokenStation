@@ -53,6 +53,7 @@
     "dotenv": "^2.0.0",
     "history": "^4.7.2",
     "human-standard-token-abi": "^1.0.2",
+    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
