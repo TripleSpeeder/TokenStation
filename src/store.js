@@ -5,6 +5,8 @@ import createHistory from 'history/createBrowserHistory'
 import thunk from 'redux-thunk'
 import {addresses} from './modules/address/reducers/addressReducer'
 import {balance} from './modules/balance/reducer/balanceReducer'
+// Logger with default options
+import logger from 'redux-logger'
 
 const reducer = combineReducers(
     Object.assign({},
@@ -17,16 +19,11 @@ const reducer = combineReducers(
     )
 )
 
-const logStateMiddleware = ({dispatch, getState}) => next => action => {
-    console.log(action.type, getState())
-    next(action)
-}
-
 const store = createStore(
     reducer,
     applyMiddleware(
         thunk,
-        logStateMiddleware,
+        logger,
     )
 );
 
