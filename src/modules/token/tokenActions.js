@@ -199,7 +199,7 @@ export function initialize(web3, registryABI, registryAddress) {
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=3000
+        const limit=10
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -302,7 +302,7 @@ export function loadTokenBalance(tokenID, addressId) {
     return async (dispatch, getState) => {
         await verifyContractInstance(tokenID, dispatch, getState)
         const token = getState().tokens.byId[tokenID]
-        const address = getState().addresses.byId[addressId]
+        const address = getState().addresses.byId[addressId].address
         const balance = await token.contractInstance.balanceOf(address)
         dispatch(setBalanceByAddressAndToken(addressId, tokenID, balance))
     }

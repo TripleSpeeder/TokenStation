@@ -38,7 +38,7 @@ Address.defaultProps = {
 
 const mapStateToProps = (state, ownProps) => (
     {
-        address: state.addresses.byId[ownProps.addressId]
+        address: state.addresses.byId[ownProps.addressId].address
     }
 )
 

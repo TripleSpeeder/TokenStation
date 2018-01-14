@@ -9,7 +9,7 @@ const ADDRESS_BY_ID_INITIAL = {}
 
 function addAddressEntry(state, action) {
     const {payload} = action
-    const {addressId, address} = payload
+    const {addressId, address, type} = payload
     if (Object.keys(state).indexOf(addressId) > -1)
     {
         console.warn("Ignoring duplicate address " + addressId)
@@ -17,7 +17,10 @@ function addAddressEntry(state, action) {
     }
     return {
         ...state,
-        [addressId]: address,
+        [addressId]: {
+            address,
+            type
+        },
     }
 }
 

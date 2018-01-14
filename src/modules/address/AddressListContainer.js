@@ -12,12 +12,6 @@ class AddressListContainer extends Component {
         super(props, context)
     }
 
-    handleRemove = (event, data) => {
-        const addressId = data['data-addressId']
-        console.log("Clicked: " + addressId)
-        this.props.removeAddress(addressId)
-    }
-
     render() {
         return <AddressList addressIds={this.props.addressIds}/>
     }

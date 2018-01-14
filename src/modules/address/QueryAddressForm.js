@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import {Form} from 'semantic-ui-react'
-import {addNewAddress} from './addressActions'
+import {addNewAddress, ADDRESS_TYPE_EXTERNAL} from './addressActions'
 
 
 class QueryAddressForm extends Component {
@@ -31,7 +31,7 @@ class QueryAddressForm extends Component {
 
     handleSubmit = () => {
         const { address } = this.state
-        this.props.addNewAddress(address)
+        this.props.addNewAddress(address, ADDRESS_TYPE_EXTERNAL)
         this.setState({
             valid: false,
             address: ''
@@ -64,8 +64,8 @@ class QueryAddressForm extends Component {
 }
 
 let mapDispatchToProps = dispatch => ({
-    addNewAddress: (address) => {
-        dispatch(addNewAddress(address))
+    addNewAddress: (address, type) => {
+        dispatch(addNewAddress(address, type))
     }
 })
 
