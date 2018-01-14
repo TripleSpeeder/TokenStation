@@ -5,7 +5,7 @@ import {showMoreItems} from '../token/tokenActions'
 import {removeAddress} from './addressActions'
 import {Button} from 'semantic-ui-react'
 import Address from './Address'
-import AddressList from './reducers/AddressList'
+import AddressList from './AddressList'
 
 class AddressListContainer extends Component {
     constructor(props, context) {

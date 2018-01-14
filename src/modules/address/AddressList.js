@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {List} from 'semantic-ui-react'
-import Address from '../Address'
+import Address from './Address'
 
 const AddressList = (props) => {
     return (
