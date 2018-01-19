@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux"
-import {addToken, initialize, showMoreItems} from './tokenActions'
+import {addToken, showMoreItems} from './tokenActions'
 import TokenList from "./TokenList"
 import {Divider} from 'semantic-ui-react'
 import TokenListFilterContainer from './TokenListFilterContainer'
@@ -78,10 +78,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     addToken: (tokenId, token) => {
         dispatch(addToken(tokenId, token))
-    },
-    initialize: (web3, registryABI, registryAddress) =>
-    {
-        dispatch(initialize(web3, registryABI, registryAddress))
     },
     showMoreItems: () => {
         dispatch(showMoreItems())

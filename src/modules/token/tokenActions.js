@@ -179,6 +179,7 @@ export function filterNewToken(tokenId) {
 
 export function initialize(web3, registryABI, registryAddress) {
     return async (dispatch, getState) => {
+
         // check if existing data needs to be cleared
         const {state: tokenListState} = getState().tokens.listState
         if (tokenListState !== TOKEN_LIST_STATES.VIRGIN) {
@@ -199,7 +200,7 @@ export function initialize(web3, registryABI, registryAddress) {
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=1000
+        const limit=10
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 

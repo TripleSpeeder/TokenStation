@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import {Route, Router, Switch} from 'react-router'
-import store from './store'
+import configureStore from './store'
+let {store, persistor} = configureStore()
 import { history } from './store'
 import {Container, Menu} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
@@ -10,6 +11,7 @@ import TokenListContainer from './modules/token/TokenListContainer'
 import Web3Container from "./modules/web3/web3Container"
 import BalancesContainer from './modules/balance/BalancesContainer'
 import TokenLoader from './modules/token/TokenLoaderContainer'
+import { PersistGate } from 'redux-persist/lib/integration/react'
 
 
 const NoMatch = ({ location }) => (
@@ -20,6 +22,7 @@ const NoMatch = ({ location }) => (
 
 ReactDOM.render(
     <Provider store={store}>
+        <PersistGate persistor={persistor}>
         <Router history={history}>
             <div>
 
@@ -51,6 +54,7 @@ ReactDOM.render(
 
             </div>
         </Router>
+        </PersistGate>
     </Provider>,
   document.getElementById('root')
 )

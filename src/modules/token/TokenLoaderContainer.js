@@ -19,8 +19,8 @@ class TokenLoaderContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.web3 && (newProps.web3 !== this.props.web3)) {
-            this.props.initialize(newProps.web3, this.registryABI, this.registryAddress)
+        if ((this.props.listState === TOKEN_LIST_STATES.VIRGIN) && (this.props.web3)) {
+            this.props.initialize(this.props.web3, this.registryABI, this.registryAddress)
         }
     }
 
