@@ -29,7 +29,7 @@ function createBalanceEntry(state, action) {
     }
 }
 
-export const balanceById = (state=BALANCE_BY_ID_INITIAL, action) => {
+export const byId = (state=BALANCE_BY_ID_INITIAL, action) => {
     switch (action.type) {
         case CREATE_BALANCE_ENTRY: {
             return createBalanceEntry(state, action)

@@ -1,6 +1,6 @@
 import {combineReducers} from "redux"
-import {balanceById} from './balanceByIdReducer'
-import {allBalances} from './allBalancesReducer'
+import {byId} from './balanceByIdReducer'
+import {allIds} from './allBalancesReducer'
 
 /*
 State tree:
@@ -14,12 +14,14 @@ State tree:
                 balance: 22.45
             },
         }
-        allIds: [1]
+        allIds: [1],
+        positiveIds: [1]    // all balances that have an actual balance > 0
     }
 }
 */
 
 export const balance = combineReducers({
-    byId : balanceById,
-    allBalances : allBalances
+    byId : byId,
+    allIds : allIds
+
 })
