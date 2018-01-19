@@ -1,6 +1,5 @@
-import {clearTokenBalances, loadTokenBalance} from '../token/tokenActions'
+import {loadTokenBalance} from '../token/tokenActions'
 import {findBalanceId} from '../balance/balanceActions'
-import {addressByIdReducer} from './reducers/addressByIdReducer'
 
 export const ADDRESS_TYPE_EXTERNAL='ADDRESS_TYPE_EXTERNAL'
 export const ADDRESS_TYPE_OWNED='ADDRESS_TYPE_OWNED'
@@ -77,7 +76,7 @@ export function changeOwnAddresses(accounts) {
 
         // now check if there is any address currently marked as owned that is no more in accounts
         const makeExternal = Object.values(addressesById).filter(entry => {
-            if (entry.type == ADDRESS_TYPE_OWNED) {
+            if (entry.type === ADDRESS_TYPE_OWNED) {
                 // if this OWNED address is not in accounts array it needs to change to EXTERNAL!
                 const idx = accounts.indexOf(entry.address)
                 return (idx === -1)

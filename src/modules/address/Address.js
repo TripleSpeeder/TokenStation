@@ -6,9 +6,6 @@ import {Button, List, Icon} from 'semantic-ui-react'
 
 
 class Address extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
 
     handleRemove = () => {
         this.props.removeAddress(this.props.addressId)

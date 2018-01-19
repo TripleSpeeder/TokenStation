@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {showMoreItems} from '../token/tokenActions'
-import {addNewAddress, ADDRESS_TYPE_OWNED, changeOwnAddresses, removeAddress} from './addressActions'
-import {Button} from 'semantic-ui-react'
-import Address from './Address'
+import {changeOwnAddresses} from './addressActions'
 import AddressList from './AddressList'
 
 class AddressListContainer extends Component {

@@ -1,5 +1,4 @@
 import {CREATE_BALANCE_ENTRY, SET_BALANCE} from '../balanceActions'
-import {ADD_ADDRESS} from '../../address/addressActions'
 
 const BALANCE_BY_ID_INITIAL = {}
 

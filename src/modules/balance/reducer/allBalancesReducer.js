@@ -14,7 +14,7 @@ function createBalanceEntry(state, action) {
     return state.concat(balanceId)
 }
 
-export const allBalances = (state=[], action) => {
+export const allBalances = (state=ALL_BALANCES_INITIAL, action) => {
     switch (action.type) {
         case CREATE_BALANCE_ENTRY: {
             return createBalanceEntry(state, action)

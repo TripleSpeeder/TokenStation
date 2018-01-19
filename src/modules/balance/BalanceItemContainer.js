@@ -1,21 +1,13 @@
 import React, {PureComponent} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {buildEtherscanLink} from '../../utils/etherscanUtils'
-import {addToken} from '../token/tokenActions'
 import {reloadBalance} from './balanceActions'
 import BalanceItem from './BalanceItem'
 import _ from 'lodash'
 
 
 class BalanceItemContainer extends PureComponent {
-    constructor(props, context) {
-        super(props, context)
-        // this.renderCount = 0
-    }
 
     render() {
-        // console.log("Rendercount " + this.props.token.symbol + ": " + this.renderCount++)
         return (
             <BalanceItem tokenName={this.props.token.name}
                          tokenSymbol={this.props.token.symbol}
@@ -35,11 +27,10 @@ class BalanceItemContainer extends PureComponent {
 }
 
 BalanceItemContainer.propTypes = {
-
 }
 
 BalanceItemContainer.defaultProps = {
-    //myProp: <defaultValue>
+   //myProp: <defaultValue>
 }
 
 const mapStateToProps = (state, ownProps) => {

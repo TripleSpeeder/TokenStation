@@ -4,10 +4,6 @@ import BalanceItemDetail from './BalanceItemDetail'
 import {connect} from 'react-redux'
 
 class BalanceItemDetailContainer extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     render() {
         return (
             <BalanceItemDetail address={this.props.address} balance={this.props.balance}/>
@@ -26,15 +22,12 @@ BalanceItemDetailContainer.defaultProps = {
 
 const mapStateToProps = (state, ownProps) => {
     const balance = state.balance.byId[ownProps.tokenBalanceId]
-    const address = state.addresses.byId[balance.addressId]
+    const address = state.addresses.byId[balance.addressId].address
     return {
         balance: balance.balance,
         address
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(BalanceItemDetailContainer)
+export default connect(mapStateToProps)(BalanceItemDetailContainer)
 

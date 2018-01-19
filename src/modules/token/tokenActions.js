@@ -1,6 +1,6 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
-import {setBalance, setBalanceByAddressAndToken} from '../balance/balanceActions'
+import {setBalanceByAddressAndToken} from '../balance/balanceActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -199,7 +199,7 @@ export function initialize(web3, registryABI, registryAddress) {
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=10
+        const limit=1000
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 

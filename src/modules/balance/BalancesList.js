@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BalanceItemContainer from './BalanceItemContainer'
-import {Grid, Header, Icon, Statistic, Segment, Table} from 'semantic-ui-react'
 
 const BalancesList = (props) => {
     return (

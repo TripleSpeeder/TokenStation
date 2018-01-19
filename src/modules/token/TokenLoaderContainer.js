@@ -14,14 +14,12 @@ class TokenLoaderContainer extends Component {
 
     componentDidMount() {
         if ((this.props.listState === TOKEN_LIST_STATES.VIRGIN) && (this.props.web3)) {
-            console.log("Initializing tokens from componentDidMount")
             this.props.initialize(this.props.web3, this.registryABI, this.registryAddress)
         }
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.web3 && (newProps.web3 !== this.props.web3)) {
-            console.log("Initializing tokens from componentWillReceiveProps")
             this.props.initialize(newProps.web3, this.registryABI, this.registryAddress)
         }
     }

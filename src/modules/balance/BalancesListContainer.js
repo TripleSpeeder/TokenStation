@@ -1,15 +1,10 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {setBalanceByAddressAndToken} from './balanceActions'
 import BalancesList from './BalancesList'
 import groupBy from 'lodash/groupBy';
 
 class BalancesListContainer extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     render() {
         return (
             <BalancesList balancesByToken={this.props.balancesByToken}/>
