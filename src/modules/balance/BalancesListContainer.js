@@ -24,13 +24,24 @@ const mapStateToProps = state => {
 
     // all currently watched addressIds
     const addressIds = Object.keys(state.addresses.byId)
+    // all positive balance IDs
+    const positiveBalanceIds = state.balance.positiveIds
+    // all tokenIds
+    let tokenIds = state.tokens.allIds
+
+    const filterIsActive = (state.tokens.listState.filter.length > 0)
+    if (filterIsActive)
+        tokenIds = state.tokens.listState.matchedTokenIds
 
     // all BalanceEntries with positive balance
-    const positiveBalances = state.balance.positiveIds.map(id => state.balance.byId[id])
+    const positiveBalances = positiveBalanceIds.map(id => state.balance.byId[id])
 
-    // now search positiveBalances that match the watched addresses
+    // now search positiveBalances that match the watched addresses and the token filter
     const matchedBalances = Object.values(positiveBalances).filter(balanceEntry => {
-        return (addressIds.indexOf(balanceEntry.addressId) > -1)
+        return (
+            (addressIds.indexOf(balanceEntry.addressId) > -1) &&
+            (tokenIds.indexOf(balanceEntry.tokenId) > -1)
+        )
     })
 
     // now group the balances by token
