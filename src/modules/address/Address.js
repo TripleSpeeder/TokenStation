@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {removeAddress} from './addressActions'
-import {Button, List} from 'semantic-ui-react'
+import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED, removeAddress} from './addressActions'
+import {Button, List, Icon} from 'semantic-ui-react'
+
 
 class Address extends Component {
     constructor(props, context) {
@@ -14,13 +15,17 @@ class Address extends Component {
     }
 
     render() {
+        let removeButton = null
+        if (this.props.canRemove) {
+            removeButton = <List.Content verticalAlign='middle' floated='right'>
+                <Button size='tiny' onClick={this.handleRemove} icon='delete'/>
+            </List.Content>
+        }
         return (
             <List.Item>
-                <List.Content verticalAlign='middle' floated='right'>
-                    <Button size='mini' onClick={this.handleRemove} icon='delete'/>
-                </List.Content>
+                {removeButton}
                 <List.Content verticalAlign='middle'>
-                    {this.props.address}
+                    <Icon name={this.props.iconName}/> {this.props.address}
                 </List.Content>
             </List.Item>
         )
@@ -31,16 +36,20 @@ Address.propTypes = {
     addressId: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     removeAddress: PropTypes.func.isRequired,
+    iconName: PropTypes.string.isRequired,
+    canRemove: PropTypes.bool.isRequired,
 }
 
-Address.defaultProps = {
-}
+Address.defaultProps = {}
 
-const mapStateToProps = (state, ownProps) => (
-    {
-        address: state.addresses.byId[ownProps.addressId].address
+const mapStateToProps = (state, ownProps) => {
+    const addressEntry = state.addresses.byId[ownProps.addressId]
+    return {
+        address: addressEntry.address,
+        iconName: addressEntry.type === ADDRESS_TYPE_OWNED ? 'unlock' : 'lock',
+        canRemove: addressEntry.type === ADDRESS_TYPE_EXTERNAL,
     }
-)
+}
 
 const mapDispatchToProps = dispatch => ({
     removeAddress: (addressId) => {
