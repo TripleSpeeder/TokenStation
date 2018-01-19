@@ -21,17 +21,20 @@ BalancesListContainer.defaultProps = {
 }
 
 const mapStateToProps = state => {
-    // create array of balanceIds that have a balance > 0 for any of the watched addresses
+
+    // all currently watched addressIds
     const addressIds = Object.keys(state.addresses.byId)
-    const balances = Object.values(state.balance.byId).filter(balanceEntry => {
-        return (
-            (addressIds.indexOf(balanceEntry.addressId) > -1) &&
-            (balanceEntry.balance.greaterThan(0))
-        )
+
+    // all BalanceEntries with positive balance
+    const positiveBalances = state.balance.positiveIds.map(id => state.balance.byId[id])
+
+    // now search positiveBalances that match the watched addresses
+    const matchedBalances = Object.values(positiveBalances).filter(balanceEntry => {
+        return (addressIds.indexOf(balanceEntry.addressId) > -1)
     })
 
     // now group the balances by token
-    const balancesByToken = groupBy(balances, 'tokenId')
+    const balancesByToken = groupBy(matchedBalances, 'tokenId')
 
     return {
         balancesByToken
