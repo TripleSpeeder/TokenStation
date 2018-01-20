@@ -188,7 +188,7 @@ export function filterNewToken(tokenId) {
     }
 }
 
-export function initialize(web3, registryABI, registryAddress, lastId=0) {
+export function initialize(web3, registryABI, registryAddress, lastId=0, total=0) {
     return async (dispatch, getState) => {
 
         // check if existing data needs to be cleared
@@ -211,15 +211,19 @@ export function initialize(web3, registryABI, registryAddress, lastId=0) {
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=1000
+        const limit=100
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
         // Some tokens are invalid (address is 0x0), so they will screw up
         // the progress calculation. Track the number of valid tokens separately, so
         // the progress can reach 100% eventually
-        let validTokenCount = tokenCount
-        dispatch(changeValidTokenCount(validTokenCount))
+        let validTokenCount = total
+        if (validTokenCount === 0) {
+            // I'm starting from scratch...
+            validTokenCount = tokenCount
+            dispatch(changeValidTokenCount(validTokenCount))
+        }
 
         for (let id=lastId; id < tokenCount ; id++) {
             let parityToken = await registry.token(id)

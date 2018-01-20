@@ -34,7 +34,12 @@ class TokenLoaderContainer extends Component {
             (newProps.web3) &&
             (!this.continueLoadingAfterRehydrate)) {
             this.continueLoadingAfterRehydrate = true
-            newProps.initialize(newProps.web3, this.registryABI, this.registryAddress, newProps.lastTokenId)
+            newProps.initialize(
+                newProps.web3,
+                this.registryABI,
+                this.registryAddress,
+                newProps.lastTokenId,
+                newProps.progressTotal)
         }
     }
 
@@ -83,9 +88,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    initialize: (web3, registryABI, registryAddress, lastTokenId) =>
+    initialize: (web3, registryABI, registryAddress, lastTokenId, total) =>
     {
-        dispatch(initialize(web3, registryABI, registryAddress, lastTokenId))
+        dispatch(initialize(web3, registryABI, registryAddress, lastTokenId, total))
     }
 })
 
