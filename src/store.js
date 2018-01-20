@@ -10,82 +10,82 @@ import logger from 'redux-logger'
 import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-const reducer = combineReducers(
-    Object.assign({},
-        {
-            web3Instance,
-            tokens,
-            addresses,
-            balance,
-        }
-    )
-)
-
-const myTransform = createTransform(
+const tokensByIdTransform = createTransform(
     // transform state on its way to being serialized and persisted.
     (inboundState, key) => {
-        // for each entry in token.byIds, nullify contractInstance and loadingPromise
-        const newState = {...inboundState}
-        Object.keys(newState.byId).forEach(tokenId => {
-            const tokenEntry = newState.byId[tokenId]
-            newState.byId[tokenEntry.id] = {
-                ...tokenEntry,
-                loadingPromise: null,
-                contractInstance: null,
-            }
-        })
-
-        return newState;
+        return inboundState
     },
     // transform state being rehydrated
     (outboundState, key) => {
         // for each entry in token.byIds, restore BigNumbers
-        // convert mySet back to a Set.
         const newState = {...outboundState}
-        Object.keys(newState.byId).forEach(tokenId => {
-            const tokenEntry = newState.byId[tokenId]
-            newState.byId[tokenId] = {
+        Object.keys(newState).forEach(tokenId => {
+            const tokenEntry = newState[tokenId]
+            newState[tokenId] = {
                 ...tokenEntry,
                 decimals: window.web3.toBigNumber(tokenEntry.decimals),
-                loadingPromise: null,
-                contractInstance: null,
                 supply: {
                     ...tokenEntry.supply,
-                    supply: window.web3.toBigNumber(tokenEntry.supply.supply)
+                    supply: tokenEntry.supply.supply ? window.web3.toBigNumber(tokenEntry.supply.supply) : undefined
                 }
             }
         })
 
         return newState;
-        // return { ...outboundState, mySet: new Set(outboundState.mySet) };
     },
     // define which reducers this transform gets called for.
-    { whitelist: ['tokens'] }
+    { whitelist: ['byId'] }
 );
 
-const persistConfig = {
+const balanceTransform = createTransform(
+    // transform state on its way to being serialized and persisted.
+    (inboundState, key) => {
+        return inboundState
+    },
+    // transform state being rehydrated
+    (outboundState, key) => {
+        // for each entry in balance.byId, restore BigNumbers
+        const newState = {...outboundState}
+        Object.keys(newState.byId).forEach(balanceId => {
+            const balanceEntry = newState.byId[balanceId]
+            newState.byId[balanceId] = {
+                ...balanceEntry,
+                balance: window.web3.toBigNumber(balanceEntry.balance),
+            }
+        })
+
+        return newState;
+    },
+    // define which reducers this transform gets called for.
+    { whitelist: ['balance'] }
+);
+
+
+const tokensConfig = {
+    key: 'tokens',
+    storage: storage,
+    transforms: [
+        tokensByIdTransform
+    ],
+    blacklist: ['volatileById']
+}
+
+const reducer = combineReducers({
+    web3Instance,
+    tokens: persistReducer(tokensConfig, tokens),
+    addresses,
+    balance,
+})
+
+const rootConfig = {
     key: 'root',
     storage: storage,
-    blacklist: ['web3Instance'],
     transforms: [
-        myTransform
-    ]
+        balanceTransform
+    ],
+    blacklist: ['web3Instance', 'tokens'],
 }
-const persistedReducer = persistReducer(persistConfig, reducer)
-/*
-const store = createStore(
-    persistedReducer,
-    applyMiddleware(
-        thunk,
-        logger,
-    )
-);
-*/
-
-
-
-
-export const history = createHistory()
+const persistedReducer = persistReducer(rootConfig, reducer)
 
 export default () => {
     let store = createStore(
@@ -98,3 +98,6 @@ export default () => {
     let persistor = persistStore(store )
     return {store, persistor}
 }
+
+export const history = createHistory()
+

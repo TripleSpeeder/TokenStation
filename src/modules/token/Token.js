@@ -11,8 +11,8 @@ class Token extends Component {
         if (!imageUrl) {
             imageUrl = "Silvercoin.png"
         }
-        const {supply, loading: loadingSupply} = this.props.token.supply
-        let supplyValue = loadingSupply ? <Icon loading name='spinner'/> : supply.toFixed(0)
+        const {supply} = this.props.token.supply
+        let supplyValue = supply ? supply.toFixed(0) : <Icon loading name='spinner'/>
 
         let meta = null
         if (website) {

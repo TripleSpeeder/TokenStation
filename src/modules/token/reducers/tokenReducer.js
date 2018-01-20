@@ -2,6 +2,7 @@ import {combineReducers} from "redux"
 import {listStateReducer} from './ListStateReducer'
 import {tokensByIdReducer} from './TokensByIdReducer'
 import {allTokensReducer} from './AllIdsReducer'
+import {volatileTokensByIdReducer} from './volatileTokensByIdReducer'
 
 /*
 State tree:
@@ -50,9 +51,9 @@ State tree:
 }
 */
 
-
 export const tokens = combineReducers({
     listState: listStateReducer,
     byId : tokensByIdReducer,
-    allIds : allTokensReducer
+    allIds : allTokensReducer,
+    volatileById: volatileTokensByIdReducer,
 });

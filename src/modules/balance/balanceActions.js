@@ -1,7 +1,5 @@
 import {loadTokenBalance} from '../token/tokenActions'
 
-let nextBalanceId = 0
-
 export const SET_BALANCE = 'SET_BALANCE'
 export function setBalance(balanceId, balance) {
     return {
@@ -31,7 +29,7 @@ export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
         let balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
         if (balanceId === -1) {
             // create a new balance entry before setting balance
-            balanceId = nextBalanceId++
+            balanceId = getState().balance.allIds.length
             dispatch(createBalanceEntry(balanceId, addressId, tokenId))
         }
         // set balance

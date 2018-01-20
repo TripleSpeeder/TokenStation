@@ -35,6 +35,17 @@ export function addToken(tokenID, token) {
     }
 }
 
+export const ADD_VOLATILE_TOKEN = 'ADD_VOLATILE_TOKEN'
+export function addVolatileToken(tokenID) {
+    return {
+        type: ADD_VOLATILE_TOKEN,
+        payload: {
+            tokenID,
+        }
+    }
+}
+
+
 export const IS_LOADING_TOKEN = 'IS_LOADING_TOKEN'
 export function loadingTokenChanged(tokenID, isLoading) {
     return {
@@ -177,12 +188,12 @@ export function filterNewToken(tokenId) {
     }
 }
 
-export function initialize(web3, registryABI, registryAddress) {
+export function initialize(web3, registryABI, registryAddress, lastId=0) {
     return async (dispatch, getState) => {
 
         // check if existing data needs to be cleared
-        const {state: tokenListState} = getState().tokens.listState
-        if (tokenListState !== TOKEN_LIST_STATES.VIRGIN) {
+        const {listState} = getState().tokens.listState
+        if ((listState !== TOKEN_LIST_STATES.VIRGIN) && (lastId===0)) {
             console.log("Clearing token list!")
             dispatch(clearTokenList())
             dispatch(tokenListStateChanged(TOKEN_LIST_STATES.VIRGIN))
@@ -200,7 +211,7 @@ export function initialize(web3, registryABI, registryAddress) {
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=10
+        const limit=1000
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -210,7 +221,7 @@ export function initialize(web3, registryABI, registryAddress) {
         let validTokenCount = tokenCount
         dispatch(changeValidTokenCount(validTokenCount))
 
-        for (let id=0; id < tokenCount ; id++) {
+        for (let id=lastId; id < tokenCount ; id++) {
             let parityToken = await registry.token(id)
             const address = parityToken[0]
             if (address ==='0x0000000000000000000000000000000000000000') {
@@ -241,7 +252,6 @@ export function initialize(web3, registryABI, registryAddress) {
 function mapParityToken(id, parityToken) {
     return {
         loading: false,
-        loadingPromise: null,
         id: id,
         address: parityToken[0],
         symbol: parityToken[1],
@@ -250,9 +260,8 @@ function mapParityToken(id, parityToken) {
         description: null,
         website: null,
         imageUrl: null,
-        contractInstance: null,
         supply: {
-            loading: true,
+            loading: false,
             supply: undefined
         },
         balance: undefined
@@ -290,9 +299,9 @@ export function loadTokenSupply(tokenID) {
     return async (dispatch, getState) => {
         dispatch(loadingSupplyChanged(tokenID, true))
         await verifyContractInstance(tokenID, dispatch, getState)
-        const token = getState().tokens.byId[tokenID]
+        const volatileToken = getState().tokens.volatileById[tokenID]
         // obtain token contract instance from state
-        const contractInstance = token.contractInstance
+        const contractInstance = volatileToken.contractInstance
         const supply = await contractInstance.totalSupply()
         dispatch(setTokenSupply(tokenID, supply))
         dispatch(loadingSupplyChanged(tokenID, false))
@@ -302,24 +311,31 @@ export function loadTokenSupply(tokenID) {
 export function loadTokenBalance(tokenID, addressId) {
     return async (dispatch, getState) => {
         await verifyContractInstance(tokenID, dispatch, getState)
-        const token = getState().tokens.byId[tokenID]
+        const volatileToken = getState().tokens.volatileById[tokenID]
         const address = getState().addresses.byId[addressId].address
-        const balance = await token.contractInstance.balanceOf(address)
+        const balance = await volatileToken.contractInstance.balanceOf(address)
         dispatch(setBalanceByAddressAndToken(addressId, tokenID, balance))
     }
 }
 
 async function verifyContractInstance(tokenId, dispatch, getState) {
-    let token = getState().tokens.byId[tokenId]
-    if (token.loadingPromise) {
+    let volatileToken = getState().tokens.volatileById[tokenId]
+    if (volatileToken === undefined) {
+        // volatileToken is undefined if we rehydrated state from localstorage.
+        // Create an entry to continue
+        dispatch(addVolatileToken(tokenId))
+        volatileToken = getState().tokens.volatileById[tokenId]
+    }
+    if (volatileToken.loadingPromise) {
         // token is already loading. Just return the promise.
-        return token.loadingPromise
+        return volatileToken.loadingPromise
     }
     else {
+        const token = getState().tokens.byId[tokenId]
         console.log("Start lazyloading contract instance for " + token.id + " (" + token.name +")")
         dispatch(instantiateTokenContract(token.id))
         // refresh token, as the loadingPromise has just been added to state
-        token = getState().tokens.byId[tokenId]
-        return token.loadingPromise
+        volatileToken = getState().tokens.volatileById[tokenId]
+        return volatileToken.loadingPromise
     }
 }
