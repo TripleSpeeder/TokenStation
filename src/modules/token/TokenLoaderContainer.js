@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {initialize, TOKEN_LIST_STATES} from './tokenActions'
+import {clearTokenList, initializeTokenList, TOKEN_LIST_STATES} from './tokenActions'
 import {connect} from 'react-redux'
-import {Segment} from 'semantic-ui-react'
+import {Button, Icon, Label, Segment} from 'semantic-ui-react'
 import TokenLoader from './TokenLoader'
 
 class TokenLoaderContainer extends Component {
@@ -10,25 +10,18 @@ class TokenLoaderContainer extends Component {
         super(props, context)
         this.registryAddress = '0x5F0281910Af44bFb5fC7e86A404d0304B0e042F1'
         this.registryABI =  [{"constant":true,"inputs":[{"name":"_id","type":"uint256"}],"name":"token","outputs":[{"name":"addr","type":"address"},{"name":"tla","type":"string"},{"name":"base","type":"uint256"},{"name":"name","type":"string"},{"name":"owner","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"address"}],"name":"setOwner","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_addr","type":"address"},{"name":"_tla","type":"string"},{"name":"_base","type":"uint256"},{"name":"_name","type":"string"}],"name":"register","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"_fee","type":"uint256"}],"name":"setFee","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_id","type":"uint256"},{"name":"_key","type":"bytes32"}],"name":"meta","outputs":[{"name":"","type":"bytes32"}],"type":"function"},{"constant":false,"inputs":[{"name":"_addr","type":"address"},{"name":"_tla","type":"string"},{"name":"_base","type":"uint256"},{"name":"_name","type":"string"},{"name":"_owner","type":"address"}],"name":"registerAs","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":true,"inputs":[{"name":"_tla","type":"string"}],"name":"fromTLA","outputs":[{"name":"id","type":"uint256"},{"name":"addr","type":"address"},{"name":"base","type":"uint256"},{"name":"name","type":"string"},{"name":"owner","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"drain","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"tokenCount","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"uint256"}],"name":"unregister","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_addr","type":"address"}],"name":"fromAddress","outputs":[{"name":"id","type":"uint256"},{"name":"tla","type":"string"},{"name":"base","type":"uint256"},{"name":"name","type":"string"},{"name":"owner","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"uint256"},{"name":"_key","type":"bytes32"},{"name":"_value","type":"bytes32"}],"name":"setMeta","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"fee","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"tla","type":"string"},{"indexed":true,"name":"id","type":"uint256"},{"indexed":false,"name":"addr","type":"address"},{"indexed":false,"name":"name","type":"string"}],"name":"Registered","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"tla","type":"string"},{"indexed":true,"name":"id","type":"uint256"}],"name":"Unregistered","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"id","type":"uint256"},{"indexed":true,"name":"key","type":"bytes32"},{"indexed":false,"name":"value","type":"bytes32"}],"name":"MetaChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"old","type":"address"},{"indexed":true,"name":"current","type":"address"}],"name":"NewOwner","type":"event"}]
-        this.continueLoadingAfterRehydrate = false
+        this.state = {
+            loadingStarted: false
+        }
+        this.reloadTokens = this.reloadTokens.bind(this)
     }
 
     componentDidMount() {
-        /*
-        if ((this.props.listState === TOKEN_LIST_STATES.VIRGIN) && (this.props.web3)) {
-            this.props.initialize(this.props.web3, this.registryABI, this.registryAddress)
-        }
-
-        // in case the list was in loading state while hydrating
-        if ((this.props.listState === TOKEN_LIST_STATES.LOADING) && (this.props.web3)) {
-            this.props.initialize(this.props.web3, this.registryABI, this.registryAddress, this.props.lastTokenId)
-        }
-        */
     }
 
     componentWillReceiveProps(newProps) {
         if ((newProps.listState === TOKEN_LIST_STATES.VIRGIN) && (newProps.web3)) {
-            newProps.initialize(newProps.web3, this.registryABI, this.registryAddress)
+            newProps.initializeTokenList(newProps.web3, this.registryABI, this.registryAddress)
         }
 
         // in case the list was in loading state while hydrating, continue initialisation
@@ -38,7 +31,7 @@ class TokenLoaderContainer extends Component {
             this.setState({
                 loadingStarted: true
             })
-            newProps.initialize(
+            newProps.initializeTokenList(
                 newProps.web3,
                 this.registryABI,
                 this.registryAddress,
@@ -66,8 +59,23 @@ class TokenLoaderContainer extends Component {
                 </Segment>
             )
         } else {
-            return null
+            return (
+                <Segment>
+                    <Button size='mini' as='div' labelPosition='left' onClick={this.reloadTokens}>
+                        <Label as='a' basic pointing='right'>Loaded {this.props.progressTotal} tokens.
+                        </Label>
+                        <Button size='mini' icon>
+                            <Icon name='refresh' />
+                            Reload
+                        </Button>
+                    </Button>
+                </Segment>
+            )
         }
+    }
+
+    reloadTokens(event, data) {
+        this.props.initializeTokenList(this.props.web3, this.registryABI, this.registryAddress)
     }
 }
 
@@ -100,8 +108,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    initialize: (web3, registryABI, registryAddress, lastTokenId, total) => {
-        dispatch(initialize(web3, registryABI, registryAddress, lastTokenId, total))
+    initializeTokenList: (web3, registryABI, registryAddress, lastTokenId, total) => {
+        dispatch(initializeTokenList(web3, registryABI, registryAddress, lastTokenId, total))
     }
 })
 

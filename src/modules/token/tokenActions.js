@@ -188,7 +188,7 @@ export function filterNewToken(tokenId) {
     }
 }
 
-export function initialize(web3, registryABI, registryAddress, lastId=0, total=0) {
+export function initializeTokenList(web3, registryABI, registryAddress, lastId=0, total=0) {
     return async (dispatch, getState) => {
 
         // check if existing data needs to be cleared
