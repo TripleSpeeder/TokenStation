@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import BalanceItemDetail from './BalanceItemDetail'
 import {connect} from 'react-redux'
-import {reloadBalance} from './balanceActions'
+import {BALANCE_STATES, reloadBalance} from './balanceActions'
 
 class BalanceItemDetailContainer extends Component {
     constructor(props, context) {
@@ -44,7 +44,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         balance: balance.balance,
         address,
-        loading: balance.isLoading,
+        loading: balance.balanceState===BALANCE_STATES.LOADING,
     }
 }
 

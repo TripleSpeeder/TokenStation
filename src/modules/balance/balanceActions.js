@@ -1,5 +1,11 @@
 import {loadTokenBalance} from '../token/tokenActions'
 
+export const BALANCE_STATES = {
+    VIRGIN: 'virgin',
+    LOADING: 'loading',
+    INITIALIZED: 'initialized'
+}
+
 export const SET_BALANCE = 'SET_BALANCE'
 export function setBalance(balanceId, balance) {
     return {
@@ -11,13 +17,13 @@ export function setBalance(balanceId, balance) {
     }
 }
 
-export const SET_BALANCE_LOADING = 'SET_BALANCE_LOADING'
-export function setBalanceLoading(balanceId, isLoading) {
+export const SET_BALANCE_STATE = 'SET_BALANCE_STATE'
+export function setBalanceState(balanceId, balanceState) {
     return {
-        type: SET_BALANCE_LOADING,
+        type: SET_BALANCE_STATE,
         payload: {
             balanceId,
-            isLoading,
+            balanceState,
         }
     }
 }
@@ -48,7 +54,7 @@ export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
     }
 }
 
-export function loadingBalanceChanged(tokenId, addressId, isLoading) {
+export function balanceStateChanged(tokenId, addressId, balanceState) {
     return(dispatch, getState) => {
         // obtain balanceID
         let balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
@@ -58,7 +64,7 @@ export function loadingBalanceChanged(tokenId, addressId, isLoading) {
             dispatch(createBalanceEntry(balanceId, addressId, tokenId))
         }
         // set loading state
-        dispatch(setBalanceLoading(balanceId, isLoading))
+        dispatch(setBalanceState(balanceId, balanceState))
     }
 }
 

@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import {reloadBalance} from './balanceActions'
+import {BALANCE_STATES, reloadBalance} from './balanceActions'
 import BalanceItem from './BalanceItem'
 import _ from 'lodash'
 
@@ -57,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
     // if any of the tokenBalances is loading, the whole container is loading
     let loading = false
     ownProps.tokenBalances.forEach(tokenBalance => {
-        if (tokenBalance.isLoading)
+        if (tokenBalance.balanceState === BALANCE_STATES.LOADING)
             loading = true
     })
 
