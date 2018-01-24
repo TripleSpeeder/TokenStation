@@ -6,6 +6,16 @@ import _ from 'lodash'
 
 
 class BalanceItemContainer extends PureComponent {
+    constructor(props, context) {
+        super(props, context)
+        this.reloadBalance = this.reloadBalance.bind(this)
+    }
+
+    reloadBalance() {
+        this.props.tokenBalances.forEach(tokenBalance => {
+            this.props.reloadBalance(tokenBalance.balanceId)
+        })
+    }
 
     render() {
         return (
@@ -13,6 +23,7 @@ class BalanceItemContainer extends PureComponent {
                          tokenSymbol={this.props.token.symbol}
                          tokenBalances={this.props.tokenBalances}
                          total={this.props.total}
+                         reloadBalance={this.reloadBalance}
             />
         )
     }

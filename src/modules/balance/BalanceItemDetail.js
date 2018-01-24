@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Table, Icon} from 'semantic-ui-react'
+import {Table, Icon, Button} from 'semantic-ui-react'
 
 const BalanceItemDetail = (props) => {
     return (
@@ -9,6 +9,10 @@ const BalanceItemDetail = (props) => {
                 <Icon name='angle right' /> {props.address}
             </Table.Cell>
             <Table.Cell>{props.balance.toFixed()}</Table.Cell>
+            <Table.Cell>
+                <Button size='mini' circular icon='refresh' onClick={props.reloadBalance} />
+            </Table.Cell>
+
         </Table.Row>
     )
 }

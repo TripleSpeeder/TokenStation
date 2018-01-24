@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {Label, Item, Button, Icon} from 'semantic-ui-react'
-// import TokenBalanceContainer from "../tokenBalance/TokenBalanceContainer"
 
 class Token extends Component {
 
