@@ -88,7 +88,7 @@ export const listStateReducer = (state=LISTSTATE_INITIAL, action) => {
         case SHOW_MORE_ITEMS:
             return showMoreItems(state)
         case RESET_DISPLAY_COUNT:
-            return resetDisplayCount()
+            return resetDisplayCount(state)
         default:
             return state
     }
