@@ -211,7 +211,7 @@ export function initialize(web3, registryABI, registryAddress, lastId=0, total=0
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=100
+        const limit=1000
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 

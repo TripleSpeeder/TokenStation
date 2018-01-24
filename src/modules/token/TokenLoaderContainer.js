@@ -14,6 +14,7 @@ class TokenLoaderContainer extends Component {
     }
 
     componentDidMount() {
+        /*
         if ((this.props.listState === TOKEN_LIST_STATES.VIRGIN) && (this.props.web3)) {
             this.props.initialize(this.props.web3, this.registryABI, this.registryAddress)
         }
@@ -22,6 +23,7 @@ class TokenLoaderContainer extends Component {
         if ((this.props.listState === TOKEN_LIST_STATES.LOADING) && (this.props.web3)) {
             this.props.initialize(this.props.web3, this.registryABI, this.registryAddress, this.props.lastTokenId)
         }
+        */
     }
 
     componentWillReceiveProps(newProps) {
@@ -32,14 +34,24 @@ class TokenLoaderContainer extends Component {
         // in case the list was in loading state while hydrating, continue initialisation
         if ((newProps.listState === TOKEN_LIST_STATES.LOADING) &&
             (newProps.web3) &&
-            (!this.continueLoadingAfterRehydrate)) {
-            this.continueLoadingAfterRehydrate = true
+            (!this.state.loadingStarted)) {
+            this.setState({
+                loadingStarted: true
+            })
             newProps.initialize(
                 newProps.web3,
                 this.registryABI,
                 this.registryAddress,
                 newProps.lastTokenId,
                 newProps.progressTotal)
+        }
+
+        // update local state if loading has finished
+        if ((this.props.listState === TOKEN_LIST_STATES.LOADING) &&
+            (newProps.listState === TOKEN_LIST_STATES.INITIALIZED)) {
+            this.setState({
+                loadingStarted: false
+            })
         }
     }
 
@@ -69,7 +81,7 @@ TokenLoaderContainer.propTypes = {
 
 const mapStateToProps = state => {
     // obtain last loaded token for progress display
-    const lastTokenIdIndex = state.tokens.allIds.length-1
+    const lastTokenIdIndex = state.tokens.allIds.length - 1
     const lastTokenId = (lastTokenIdIndex >= 0) ? state.tokens.allIds[lastTokenIdIndex] : null
     const lastToken = lastTokenId ? state.tokens.byId[lastTokenId].name : ''
     const progressTotal = state.tokens.listState.total
@@ -88,8 +100,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    initialize: (web3, registryABI, registryAddress, lastTokenId, total) =>
-    {
+    initialize: (web3, registryABI, registryAddress, lastTokenId, total) => {
         dispatch(initialize(web3, registryABI, registryAddress, lastTokenId, total))
     }
 })
