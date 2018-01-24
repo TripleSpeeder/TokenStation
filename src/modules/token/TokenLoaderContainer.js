@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {clearTokenList, initializeTokenList, TOKEN_LIST_STATES} from './tokenActions'
+import {initializeTokenList, TOKEN_LIST_STATES} from './tokenActions'
 import {connect} from 'react-redux'
 import {Button, Icon, Label, Segment} from 'semantic-ui-react'
 import TokenLoader from './TokenLoader'
