@@ -15,6 +15,7 @@ class BalanceItemDetailContainer extends Component {
             <BalanceItemDetail address={this.props.address}
                                balance={this.props.balance}
                                reloadBalance={this.reloadBalance}
+                               loading={this.props.loading}
             />
         )
     }
@@ -29,6 +30,8 @@ BalanceItemDetailContainer.propTypes = {
     address: PropTypes.string.isRequired,
     balance: PropTypes.object.isRequired,
     tokenBalanceId: PropTypes.number.isRequired,
+    loading: PropTypes.bool.isRequired,
+    reloadBalance: PropTypes.func.isRequired,
 }
 
 BalanceItemDetailContainer.defaultProps = {
@@ -40,7 +43,8 @@ const mapStateToProps = (state, ownProps) => {
     const address = state.addresses.byId[balance.addressId].address
     return {
         balance: balance.balance,
-        address
+        address,
+        loading: balance.isLoading,
     }
 }
 

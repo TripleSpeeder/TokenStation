@@ -11,6 +11,17 @@ export function setBalance(balanceId, balance) {
     }
 }
 
+export const SET_BALANCE_LOADING = 'SET_BALANCE_LOADING'
+export function setBalanceLoading(balanceId, isLoading) {
+    return {
+        type: SET_BALANCE_LOADING,
+        payload: {
+            balanceId,
+            isLoading,
+        }
+    }
+}
+
 export const CREATE_BALANCE_ENTRY = 'CREATE_BALANCE_ENTRY'
 export function createBalanceEntry(balanceId, addressId, tokenId) {
     return {
@@ -37,6 +48,21 @@ export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
     }
 }
 
+export function loadingBalanceChanged(tokenId, addressId, isLoading) {
+    return(dispatch, getState) => {
+        // obtain balanceID
+        let balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
+        if (balanceId === -1) {
+            // create a new balance entry
+            balanceId = getState().balance.allIds.length
+            dispatch(createBalanceEntry(balanceId, addressId, tokenId))
+        }
+        // set loading state
+        dispatch(setBalanceLoading(balanceId, isLoading))
+    }
+}
+
+
 export function reloadBalance(balanceId) {
     return (dispatch, getState) => {
         const balance = getState().balance.byId[balanceId]
@@ -54,7 +80,7 @@ export function findBalanceId(balancesById, addressId, tokenId) {
         return -1
     } else if (candidates.length ===1) {
         // found existing entry
-        return candidates[0]
+        return candidates[0].balanceId
     } else {
         // more than one entry! Impossible :-(
         console.error("Found " + candidates.length + " matching balanceIds.")

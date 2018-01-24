@@ -1,4 +1,4 @@
-import {CREATE_BALANCE_ENTRY, SET_BALANCE} from '../balanceActions'
+import {CREATE_BALANCE_ENTRY, SET_BALANCE, SET_BALANCE_LOADING} from '../balanceActions'
 
 const BALANCE_BY_ID_INITIAL = {}
 
@@ -24,9 +24,24 @@ function createBalanceEntry(state, action) {
             balanceId,
             addressId,
             tokenId,
-            balance: window.web3.toBigNumber(0)
+            balance: window.web3.toBigNumber(0),
+            isLoading: false,
         }
     }
+}
+
+function loadingBalanceChanged(state, action){
+    const {payload} = action
+    const {balanceId, isLoading} = payload
+    const balanceEntry = state[balanceId]
+    return {
+        ...state,
+        [balanceId] : {
+            ...balanceEntry,
+            isLoading,
+        }
+    }
+
 }
 
 export const byId = (state=BALANCE_BY_ID_INITIAL, action) => {
@@ -37,6 +52,8 @@ export const byId = (state=BALANCE_BY_ID_INITIAL, action) => {
         case SET_BALANCE: {
             return setBalance(state, action)
         }
+        case SET_BALANCE_LOADING:
+            return loadingBalanceChanged(state, action)
         default:
             return state;
     }

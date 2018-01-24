@@ -24,16 +24,20 @@ class BalanceItemContainer extends PureComponent {
                          tokenBalances={this.props.tokenBalances}
                          total={this.props.total}
                          reloadBalance={this.reloadBalance}
+                         loading={this.props.loading}
             />
         )
     }
 
     shouldComponentUpdate(nextProps) {
-        // Render() should only ever be necessary when the token itself or
+        // Render() should only ever be necessary when loading state, token itself or
         // it's total balance changes, i.e. an address was added/removed to
         // the watch list or the balance of an address changed.
-        return ((!nextProps.total.equals(this.props.total)) ||
-            (nextProps.tokenId !== this.props.tokenId))
+        return (
+            (!nextProps.total.equals(this.props.total)) ||
+            (nextProps.tokenId !== this.props.tokenId) ||
+            (nextProps.loading !== this.props.loading)
+        )
     }
 }
 
@@ -50,9 +54,17 @@ const mapStateToProps = (state, ownProps) => {
         return sum.plus(tokenBalance.balance)
     }, window.web3.toBigNumber(0) )
 
+    // if any of the tokenBalances is loading, the whole container is loading
+    let loading = false
+    ownProps.tokenBalances.forEach(tokenBalance => {
+        if (tokenBalance.isLoading)
+            loading = true
+    })
+
     return {
         token: state.tokens.byId[ownProps.tokenId],
-        total
+        total,
+        loading
     }
 }
 

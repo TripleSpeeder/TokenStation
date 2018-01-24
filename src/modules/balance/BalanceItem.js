@@ -4,7 +4,7 @@ import {Button, Statistic, Table} from 'semantic-ui-react'
 import BalanceItemDetailContainer from './BalanceItemDetailContainer'
 
 const BalanceItem = (props) => {
-    const {tokenName, tokenSymbol, tokenBalances, total, reloadBalance} = props
+    const {tokenName, tokenSymbol, tokenBalances, total, reloadBalance, loading} = props
 
     const tableHeader = (
         <Table.Header>
@@ -16,7 +16,10 @@ const BalanceItem = (props) => {
                     </Statistic>
                 </Table.HeaderCell>
                 <Table.HeaderCell width={1}>
-                    <Button circular icon='refresh' onClick={reloadBalance} />
+                    <Button circular
+                            icon='refresh'
+                            onClick={reloadBalance}
+                            loading={loading}/>
                 </Table.HeaderCell>
             </Table.Row>
         </Table.Header>
@@ -46,6 +49,7 @@ BalanceItem.propTypes = {
     tokenBalances: PropTypes.array.isRequired,
     total: PropTypes.object.isRequired,
     reloadBalance: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
 }
 
 BalanceItem.defaultProps = {
