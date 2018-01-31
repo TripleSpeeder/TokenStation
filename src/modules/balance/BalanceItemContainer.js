@@ -1,11 +1,11 @@
-import React, {PureComponent} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {reloadBalance} from './balanceActions'
 import BalanceItem from './BalanceItem'
 import _ from 'lodash'
 
 
-class BalanceItemContainer extends PureComponent {
+class BalanceItemContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.reloadBalance = this.reloadBalance.bind(this)
