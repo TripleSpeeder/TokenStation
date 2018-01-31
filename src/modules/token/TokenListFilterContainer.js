@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Form, Icon, Input, Message} from 'semantic-ui-react'
+import {Button, Form, Icon, Input, Message} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {setFilterString} from './tokenActions'
 
@@ -28,7 +28,7 @@ class TokenListFilterContainer extends Component {
                 <Message info icon size='small' hidden={!this.props.filterIsActive}>
                     <Icon size='small' name='info'/>
                     <Message.Content>
-                        Showing {this.props.displayed} of {this.props.total} tokens. <a href='#' onClick={this.props.clearFilter}>Clear filter</a>
+                        Showing {this.props.displayed} of {this.props.total} tokens. <Button compact onClick={this.props.clearFilter}>Clear filter</Button>
                     </Message.Content>
                 </Message>
             </Form>
