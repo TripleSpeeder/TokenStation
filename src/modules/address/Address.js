@@ -1,11 +1,12 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED, removeAddress} from './addressActions'
-import {Button, List, Icon} from 'semantic-ui-react'
+import {Button, List, Icon, Progress} from 'semantic-ui-react'
+import {BALANCE_STATES} from '../balance/balanceActions'
 
 
-class Address extends Component {
+class Address extends PureComponent {
 
     handleRemove = () => {
         this.props.removeAddress(this.props.addressId)
@@ -14,15 +15,29 @@ class Address extends Component {
     render() {
         let removeButton = null
         if (this.props.canRemove) {
-            removeButton = <List.Content verticalAlign='middle' floated='right'>
+            removeButton = <List.Content floated='right'>
                 <Button size='tiny' onClick={this.handleRemove} icon='delete'/>
             </List.Content>
+        }
+        let listProgress = null
+        if (this.props.progressCurrent < this.props.progressTotal) {
+            listProgress = <List.Description>
+                <Progress size='small'
+                          value={this.props.progressCurrent}
+                          total={this.props.progressTotal}
+                          progress='percent'
+                          precision={1}
+                />
+            </List.Description>
         }
         return (
             <List.Item>
                 {removeButton}
-                <List.Content verticalAlign='middle'>
-                    <Icon name={this.props.iconName}/> {this.props.address}
+                <List.Content>
+                    <List.Header>
+                        <Icon name={this.props.iconName}/> {this.props.address}
+                    </List.Header>
+                    {listProgress}
                 </List.Content>
             </List.Item>
         )
@@ -35,16 +50,29 @@ Address.propTypes = {
     removeAddress: PropTypes.func.isRequired,
     iconName: PropTypes.string.isRequired,
     canRemove: PropTypes.bool.isRequired,
+    progressTotal: PropTypes.number.isRequired,
+    progressCurrent: PropTypes.number.isRequired
 }
 
 Address.defaultProps = {}
 
 const mapStateToProps = (state, ownProps) => {
     const addressEntry = state.addresses.byId[ownProps.addressId]
+    const progressTotal = state.tokens.listState.total
+    // count all balance entries that include addressId
+    // const progressCurrent = 740
+    const matchedBalanceEntries = Object.values(state.balance.byId).filter(entry => {
+        return ((entry.addressId === ownProps.addressId) &&
+            (entry.balanceState === BALANCE_STATES.INITIALIZED))
+    })
+    const progressCurrent = matchedBalanceEntries.length
+
     return {
         address: addressEntry.address,
         iconName: addressEntry.type === ADDRESS_TYPE_OWNED ? 'unlock' : 'lock',
         canRemove: addressEntry.type === ADDRESS_TYPE_EXTERNAL,
+        progressTotal,
+        progressCurrent
     }
 }
 
