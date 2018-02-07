@@ -12,7 +12,7 @@ const BalanceItem = (props) => {
                 <Table.HeaderCell width={9}>{tokenName} ({tokenSymbol})</Table.HeaderCell>
                 <Table.HeaderCell width={6}>
                     <Statistic size='mini'>
-                        <Statistic.Value>{total.toFixed(0)}</Statistic.Value>
+                        <Statistic.Value>{total.toFixed(3)}</Statistic.Value>
                     </Statistic>
                 </Table.HeaderCell>
                 <Table.HeaderCell width={1}>

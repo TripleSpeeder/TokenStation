@@ -9,7 +9,7 @@ const BalanceItemDetail = (props) => {
             <Table.Cell>
                 <Icon name='angle right' /> {address}
             </Table.Cell>
-            <Table.Cell>{balance.toFixed()}</Table.Cell>
+            <Table.Cell>{balance.toFixed(3)}</Table.Cell>
             <Table.Cell>
                 <Button size='mini'
                         circular

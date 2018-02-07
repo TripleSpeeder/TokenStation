@@ -39,10 +39,12 @@ BalanceItemDetailContainer.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const balance = state.balance.byId[ownProps.tokenBalanceId]
-    const address = state.addresses.byId[balance.addressId].address
+    const balanceEntry = state.balance.byId[ownProps.tokenBalanceId]
+    const token = state.tokens.byId[balanceEntry.tokenId]
+    const address = state.addresses.byId[balanceEntry.addressId].address
+    const balance = balanceEntry.balance.dividedBy(token.decimals)
     return {
-        balance: balance.balance,
+        balance,
         address,
         loading: balance.isLoading,
     }

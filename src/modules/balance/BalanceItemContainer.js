@@ -49,10 +49,12 @@ BalanceItemContainer.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    const token = state.tokens.byId[ownProps.tokenId]
+
     // calculate total balance of all addresses
     const total = _.reduce(ownProps.tokenBalances, (sum, tokenBalance) => {
         return sum.plus(tokenBalance.balance)
-    }, window.web3.toBigNumber(0) )
+    }, window.web3.toBigNumber(0) ).dividedBy(token.decimals)
 
     // if any of the tokenBalances is loading, the whole container is loading
     let loading = false
@@ -62,7 +64,7 @@ const mapStateToProps = (state, ownProps) => {
     })
 
     return {
-        token: state.tokens.byId[ownProps.tokenId],
+        token,
         total,
         loading
     }
