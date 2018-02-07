@@ -36,9 +36,8 @@ export function changeAddressType(addressId, newType) {
     }
 }
 
-function batchGetBalances(startIndex, addressId, dispatch, getState) {
+function batchGetBalances(timestamp, startIndex, addressId, dispatch, getState) {
     const allIds = getState().tokens.allIds
-    let t0 = performance.now()
     let diff = 0
     let index = startIndex
     while ((diff < 10) && (index < allIds.length)) {
@@ -48,13 +47,13 @@ function batchGetBalances(startIndex, addressId, dispatch, getState) {
             dispatch(loadTokenBalance(tokenId, addressId))
         }
         index++
-        diff = performance.now()-t0
+        diff = performance.now()-timestamp
     }
     // 10 ms have passed
     if (index < allIds.length) {
         console.log("Batch update with index " + index)
         requestAnimationFrame((timestamp) => {
-            batchGetBalances(index, addressId, dispatch, getState)
+            batchGetBalances(timestamp, index, addressId, dispatch, getState)
         })
     }
 }
@@ -65,7 +64,7 @@ export function addNewAddress(address, type) {
         dispatch(addAddress(address, type))
         // get ID of new address
         const addressId = findAddressId(address)
-        batchGetBalances(0, addressId, dispatch, getState)
+        batchGetBalances(performance.now(), 0, addressId, dispatch, getState)
         /*
         // Dispatch actions to obtain balance for all known tokens
         getState().tokens.allIds.forEach(tokenId => {
