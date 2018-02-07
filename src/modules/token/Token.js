@@ -41,7 +41,7 @@ class Token extends Component {
                         </Label>
                         <Label>
                             Decimals:
-                            <Label.Detail>{decimals.toFixed(0)}</Label.Detail>
+                            <Label.Detail>{decimals.e}</Label.Detail>
                         </Label>
                         <Label as='a' href={this.props.etherscanUrl} target='_blank'>
                             Contract:

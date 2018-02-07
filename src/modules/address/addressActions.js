@@ -1,5 +1,5 @@
 import {loadTokenBalance} from '../token/tokenActions'
-import {findBalanceId} from '../balance/balanceActions'
+import {buildBalanceId} from '../balance/balanceActions'
 
 export const ADDRESS_TYPE_EXTERNAL='ADDRESS_TYPE_EXTERNAL'
 export const ADDRESS_TYPE_OWNED='ADDRESS_TYPE_OWNED'
@@ -36,19 +36,44 @@ export function changeAddressType(addressId, newType) {
     }
 }
 
+function batchGetBalances(timestamp, startIndex, addressId, dispatch, getState) {
+    const allIds = getState().tokens.allIds
+    let diff = 0
+    let index = startIndex
+    while ((diff < 10) && (index < allIds.length)) {
+        const tokenId = allIds[index]
+        const balanceId = buildBalanceId(addressId, tokenId)
+        if (getState().balance.byId[balanceId] === undefined) {
+            dispatch(loadTokenBalance(tokenId, addressId))
+        }
+        index++
+        diff = performance.now()-timestamp
+    }
+    // 10 ms have passed
+    if (index < allIds.length) {
+        console.log("Batch update with index " + index)
+        requestAnimationFrame((timestamp) => {
+            batchGetBalances(timestamp, index, addressId, dispatch, getState)
+        })
+    }
+}
+
 export function addNewAddress(address, type) {
     return (dispatch, getState) => {
         // a new address is added.
         dispatch(addAddress(address, type))
         // get ID of new address
         const addressId = findAddressId(address)
+        batchGetBalances(performance.now(), 0, addressId, dispatch, getState)
+        /*
         // Dispatch actions to obtain balance for all known tokens
         getState().tokens.allIds.forEach(tokenId => {
-            const balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
-            if (balanceId === -1) {
+            const balanceId = buildBalanceId(addressId, tokenId)
+            if (getState().balance.byId[balanceId] === undefined) {
                 dispatch(loadTokenBalance(tokenId, addressId))
             }
         })
+        */
     }
 }
 

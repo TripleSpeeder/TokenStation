@@ -1,44 +1,61 @@
 import React, {Component} from 'react'
-import {Checkbox, Container, Header} from 'semantic-ui-react'
+import {Provider} from 'react-redux'
+import {Route, Router, Switch} from 'react-router'
+import configureStore from './store'
+import { history } from './store'
+import Web3Container from './modules/web3/web3Container'
+import {Container, Menu} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+import TokenLoaderContainer from './modules/token/TokenLoaderContainer'
+import BalancesContainer from './modules/balance/BalancesContainer'
+import TokenListContainer from './modules/token/TokenListContainer'
+import { PersistGate } from 'redux-persist/lib/integration/react'
 
-import TokenListContainer from "./modules/token/TokenListContainer"
-import QueryAddressFormContainer from "./modules/address/QueryAddressForm"
-import Web3Container from "./modules/web3/web3Container"
+let {store, persistor} = configureStore()
 
-import './App.css'
+const NoMatch = ({ location }) => (
+    <div>
+        <h3>No match for <code>{location.pathname}</code></h3>
+    </div>
+)
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            showEmpty: true,
-        }
-    }
-
-    onCheckboxChange = (event, data) => {
-        this.setState({showEmpty: data.checked})
-    }
-
     render() {
+        return (
+            <Provider store={store}>
+                <PersistGate persistor={persistor}>
+                    <Router history={history}>
+                        <div>
 
-        return <div className="App">
-            <Container>
-                <Header as='h1' block>
-                    TokenStation
-                </Header>
-                <QueryAddressFormContainer/>
-                <Checkbox label='show tokens with 0 balance'
-                          onChange={this.onCheckboxChange}
-                />
-                <TokenListContainer
-                    showEmpty={this.state.showEmpty}
-                    address={this.state.address}
-                />
-                <Web3Container />
-            </Container>
-        </div>
+                            <Menu fixed='top' inverted>
+                                <Container>
+                                    <Menu.Item header>
+                                        <Link to='/'>Tokenstation</Link>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <Link to='/'>Home</Link>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <Link to='/alltokens'>Full token list</Link>
+                                    </Menu.Item>
+                                </Container>
+                            </Menu>
 
+                            <Container style={{ marginTop: '7em' }}>
+                                <TokenLoaderContainer/>
+                                <Switch>
+                                    <Route exact path='/' component={BalancesContainer}/>
+                                    <Route path='/alltokens/' component={TokenListContainer}/>
+                                    <Route path='/:address/' component={BalancesContainer}/>
+                                    <Route component={NoMatch} />
+                                </Switch>
+                                <Web3Container />
+                            </Container>
+                        </div>
+                    </Router>
+                </PersistGate>
+            </Provider>
+        )
     }
 }
 

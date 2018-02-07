@@ -1,5 +1,5 @@
 import {
-    ADD_TOKEN, CLEAR_TOKEN_BALANCES, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN, SET_TOKEN_BALANCE,
+    ADD_TOKEN, CLEAR_TOKEN_BALANCES, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN,
     SET_TOKEN_SUPPLY
 } from '../tokenActions'
 
@@ -71,22 +71,6 @@ function loadingSupplyChanged(state, action) {
     }
 }
 
-function setTokenBalance(state, action) {
-    const {payload} = action
-    const {tokenID, balance} = payload
-    // Look up the correct token, to simplify the rest of the code
-    const token = state[tokenID]
-
-    return {
-        ...state,
-        // Update our Token object with a new balance value
-        [tokenID]: {
-            ...token,
-            balance: balance
-        }
-    }
-}
-
 function clearTokenBalances(state, action) {
     // walk through all tokens and set their balance to null
     let newState = {...state}
@@ -112,9 +96,6 @@ export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
         }
         case CLEAR_TOKEN_BALANCES: {
             return clearTokenBalances(state, action)
-        }
-        case SET_TOKEN_BALANCE: {
-            return setTokenBalance(state, action)
         }
         case CLEAR_TOKEN_LIST: {
             return clearTokensById(state, action)

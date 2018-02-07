@@ -42,7 +42,14 @@ export function createBalanceEntry(balanceId, addressId, tokenId) {
 
 export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
     return(dispatch, getState) => {
-        // obtain balanceID
+        let balanceId = buildBalanceId(addressId, tokenId)
+        if (getState().balance.byId[balanceId] === undefined) {
+            // create a new balance entry before setting balance
+            dispatch(createBalanceEntry(balanceId, addressId, tokenId))
+        }
+        // set balance
+        dispatch(setBalance(balanceId, balance))
+        /*
         let balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
         if (balanceId === -1) {
             // create a new balance entry before setting balance
@@ -51,11 +58,21 @@ export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
         }
         // set balance
         dispatch(setBalance(balanceId, balance))
+        */
     }
 }
 
 export function balanceStateChanged(tokenId, addressId, balanceState) {
     return(dispatch, getState) => {
+        // obtain balanceID
+        let balanceId = buildBalanceId(addressId, tokenId)
+        if (getState().balance.byId[balanceId] === undefined) {
+            // create a new balance entry before setting balance
+            dispatch(createBalanceEntry(balanceId, addressId, tokenId))
+        }
+        // set loading state
+        dispatch(setBalanceState(balanceId, balanceState))
+        /*
         // obtain balanceID
         let balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
         if (balanceId === -1) {
@@ -65,6 +82,7 @@ export function balanceStateChanged(tokenId, addressId, balanceState) {
         }
         // set loading state
         dispatch(setBalanceState(balanceId, balanceState))
+        */
     }
 }
 
@@ -76,20 +94,6 @@ export function reloadBalance(balanceId) {
     }
 }
 
-export function findBalanceId(balancesById, addressId, tokenId) {
-    let candidates = Object.values(balancesById).filter(entry => (
-        entry.addressId===addressId
-        && entry.tokenId===tokenId)
-    )
-    if (candidates.length === 0) {
-        // combination not yet existing. Need to Create new ID
-        return -1
-    } else if (candidates.length ===1) {
-        // found existing entry
-        return candidates[0].balanceId
-    } else {
-        // more than one entry! Impossible :-(
-        console.error("Found " + candidates.length + " matching balanceIds.")
-        return -1
-    }
+export function buildBalanceId(addressId, tokenId) {
+    return (addressId + '-' + tokenId)
 }
