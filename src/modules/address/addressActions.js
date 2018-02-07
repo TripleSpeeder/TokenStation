@@ -65,15 +65,6 @@ export function addNewAddress(address, type) {
         // get ID of new address
         const addressId = findAddressId(address)
         batchGetBalances(performance.now(), 0, addressId, dispatch, getState)
-        /*
-        // Dispatch actions to obtain balance for all known tokens
-        getState().tokens.allIds.forEach(tokenId => {
-            const balanceId = buildBalanceId(addressId, tokenId)
-            if (getState().balance.byId[balanceId] === undefined) {
-                dispatch(loadTokenBalance(tokenId, addressId))
-            }
-        })
-        */
     }
 }
 

@@ -49,16 +49,6 @@ export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
         }
         // set balance
         dispatch(setBalance(balanceId, balance))
-        /*
-        let balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
-        if (balanceId === -1) {
-            // create a new balance entry before setting balance
-            balanceId = getState().balance.allIds.length
-            dispatch(createBalanceEntry(balanceId, addressId, tokenId))
-        }
-        // set balance
-        dispatch(setBalance(balanceId, balance))
-        */
     }
 }
 
@@ -72,20 +62,8 @@ export function balanceStateChanged(tokenId, addressId, balanceState) {
         }
         // set loading state
         dispatch(setBalanceState(balanceId, balanceState))
-        /*
-        // obtain balanceID
-        let balanceId = findBalanceId(getState().balance.byId, addressId, tokenId)
-        if (balanceId === -1) {
-            // create a new balance entry
-            balanceId = getState().balance.allIds.length
-            dispatch(createBalanceEntry(balanceId, addressId, tokenId))
-        }
-        // set loading state
-        dispatch(setBalanceState(balanceId, balanceState))
-        */
     }
 }
-
 
 export function reloadBalance(balanceId) {
     return (dispatch, getState) => {

@@ -23,7 +23,6 @@ class BalanceItemDetailContainer extends Component {
     reloadBalance() {
         this.props.reloadBalance(this.props.tokenBalanceId)
     }
-
 }
 
 BalanceItemDetailContainer.propTypes = {
