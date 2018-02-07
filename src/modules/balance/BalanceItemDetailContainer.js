@@ -29,7 +29,7 @@ class BalanceItemDetailContainer extends Component {
 BalanceItemDetailContainer.propTypes = {
     address: PropTypes.string.isRequired,
     balance: PropTypes.object.isRequired,
-    tokenBalanceId: PropTypes.number.isRequired,
+    tokenBalanceId: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
     reloadBalance: PropTypes.func.isRequired,
 }
