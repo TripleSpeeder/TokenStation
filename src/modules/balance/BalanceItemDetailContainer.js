@@ -46,7 +46,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         balance,
         address,
-        loading: balance.balanceState===BALANCE_STATES.LOADING,
+        loading: balanceEntry.balanceState===BALANCE_STATES.LOADING,
     }
 }
 
