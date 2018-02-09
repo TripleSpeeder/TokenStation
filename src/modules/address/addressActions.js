@@ -3,6 +3,23 @@ import {buildBalanceId} from '../balance/balanceActions'
 
 export const ADDRESS_TYPE_EXTERNAL='ADDRESS_TYPE_EXTERNAL'
 export const ADDRESS_TYPE_OWNED='ADDRESS_TYPE_OWNED'
+export const ADDRESS_BALANCES_STATES = {
+    VIRGIN: 'virgin',
+    LOADING: 'loading',
+    INITIALIZED: 'initialized'
+}
+
+export const CHANGE_ADDRESS_BALANCES_STATE = 'CHANGE_ADDRESS_BALANCES_STATE'
+export function addressBalancesStateChanged(addressId, addressBalancesState) {
+    return {
+        type: CHANGE_ADDRESS_BALANCES_STATE,
+        payload: {
+            addressId,
+            addressBalancesState
+        }
+    }
+}
+
 export const ADD_ADDRESS = 'ADD_ADDRESS'
 export function addAddress(address, type) {
     return {
@@ -36,7 +53,7 @@ export function changeAddressType(addressId, newType) {
     }
 }
 
-function batchGetBalances(timestamp, startIndex, addressId, dispatch, getState) {
+function batchGetBalances(timestamp, startIndex, addressId, dispatch, getState, recursionCount) {
     const allIds = getState().tokens.allIds
     let diff = 0
     let index = startIndex
@@ -53,8 +70,11 @@ function batchGetBalances(timestamp, startIndex, addressId, dispatch, getState) 
     if (index < allIds.length) {
         console.log("Batch update with index " + index)
         requestAnimationFrame((timestamp) => {
-            batchGetBalances(timestamp, index, addressId, dispatch, getState)
+            batchGetBalances(timestamp, index, addressId, dispatch, getState, recursionCount+1)
         })
+    } else {
+        // indicate loading finished when last balance loading request was dispatched
+        dispatch(addressBalancesStateChanged(addressId, ADDRESS_BALANCES_STATES.INITIALIZED))
     }
 }
 
@@ -64,7 +84,17 @@ export function addNewAddress(address, type) {
         dispatch(addAddress(address, type))
         // get ID of new address
         const addressId = findAddressId(address)
-        batchGetBalances(performance.now(), 0, addressId, dispatch, getState)
+        // indicate balance loading state
+        dispatch(addressBalancesStateChanged(addressId, ADDRESS_BALANCES_STATES.LOADING))
+        // start getting balances
+        batchGetBalances(performance.now(), 0, addressId, dispatch, getState, 0)
+    }
+}
+
+export function resumeGetBalances(addressId, startIndex) {
+    return (dispatch, getState) => {
+        // start getting balances
+        batchGetBalances(performance.now(), startIndex, addressId, dispatch, getState, 0)
     }
 }
 

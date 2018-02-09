@@ -1,7 +1,10 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED, removeAddress} from './addressActions'
+import {
+    ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED, removeAddress,
+    resumeGetBalances
+} from './addressActions'
 import {Button, List, Icon, Progress} from 'semantic-ui-react'
 import {BALANCE_STATES} from '../balance/balanceActions'
 
@@ -25,7 +28,7 @@ class Address extends PureComponent {
                 <Progress size='small'
                           value={this.props.progressCurrent}
                           total={this.props.progressTotal}
-                          progress='percent'
+                          progress='ratio'
                           precision={1}
                 />
             </List.Description>
@@ -60,7 +63,6 @@ const mapStateToProps = (state, ownProps) => {
     const addressEntry = state.addresses.byId[ownProps.addressId]
     const progressTotal = state.tokens.listState.total
     // count all balance entries that include addressId
-    // const progressCurrent = 740
     const matchedBalanceEntries = Object.values(state.balance.byId).filter(entry => {
         return ((entry.addressId === ownProps.addressId) &&
             (entry.balanceState === BALANCE_STATES.INITIALIZED))
@@ -68,7 +70,9 @@ const mapStateToProps = (state, ownProps) => {
     const progressCurrent = matchedBalanceEntries.length
 
     return {
+        web3: state.web3Instance.web3,
         address: addressEntry.address,
+        balancesState: addressEntry.balancesState,
         iconName: addressEntry.type === ADDRESS_TYPE_OWNED ? 'unlock' : 'lock',
         canRemove: addressEntry.type === ADDRESS_TYPE_EXTERNAL,
         progressTotal,
@@ -79,6 +83,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
     removeAddress: (addressId) => {
         dispatch(removeAddress(addressId))
+    },
+    resumeGetBalances: (addressId, startIndex) => {
+        dispatch(resumeGetBalances(addressId, startIndex))
     }
 })
 

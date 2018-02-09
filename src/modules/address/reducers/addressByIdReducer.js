@@ -1,4 +1,7 @@
-import {ADD_ADDRESS, CHANGE_ADDRESS_TYPE, REMOVE_ADDRESS} from '../addressActions'
+import {
+    ADD_ADDRESS, ADDRESS_BALANCES_STATES, CHANGE_ADDRESS_BALANCES_STATE, CHANGE_ADDRESS_TYPE,
+    REMOVE_ADDRESS
+} from '../addressActions'
 
 const ADDRESS_BY_ID_INITIAL = {}
 /*
@@ -30,7 +33,8 @@ function addAddressEntry(state, action) {
         ...state,
         [addressId]: {
             address,
-            type
+            type,
+            balancesState: ADDRESS_BALANCES_STATES.VIRGIN
         },
     }
 }
@@ -53,8 +57,20 @@ function changeAddressType(state, action) {
             ...addressEntry,
             type: newType
         }
-    };
+    }
+}
 
+function changeAddressBalancesState(state, action) {
+    const {payload} = action
+    const {addressBalancesState, addressId} = payload
+    const addressEntry = state[addressId]
+    return {
+        ...state,
+        [addressId] : {
+            ...addressEntry,
+            balancesState: addressBalancesState
+        }
+    }
 }
 
 export const addressByIdReducer = (state=ADDRESS_BY_ID_INITIAL, action) => {
@@ -65,6 +81,8 @@ export const addressByIdReducer = (state=ADDRESS_BY_ID_INITIAL, action) => {
             return removeAddressEntry(state, action)
         case CHANGE_ADDRESS_TYPE:
             return changeAddressType(state, action)
+        case CHANGE_ADDRESS_BALANCES_STATE:
+            return changeAddressBalancesState(state, action)
         default:
     }
     return state;
