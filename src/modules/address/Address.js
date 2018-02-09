@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {
+    ADDRESS_BALANCES_STATES,
     ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED, removeAddress,
     resumeGetBalances
 } from './addressActions'
@@ -10,6 +11,42 @@ import {BALANCE_STATES} from '../balance/balanceActions'
 
 
 class Address extends PureComponent {
+
+    constructor(props, context) {
+        super(props, context)
+        this.state = {
+            loadingStarted: false
+        }
+    }
+
+    componentDidMount() {
+        this.checkResumeLoading(this.props)
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.checkResumeLoading(newProps)
+        // update local state if loading has finished
+        if ((this.props.balancesState === ADDRESS_BALANCES_STATES.LOADING) &&
+            (newProps.balancesState === ADDRESS_BALANCES_STATES.INITIALIZED)) {
+            this.setState({
+                loadingStarted: false
+            })
+            console.log("Finished loading address balance for " + this.props.address)
+        }
+    }
+
+    checkResumeLoading(props) {
+        // in case address balance was in loading state while hydrating, continue loading
+        if ((props.web3) &&
+            (props.balancesState === ADDRESS_BALANCES_STATES.LOADING) &&
+            (!this.state.loadingStarted)) {
+            this.setState({
+                loadingStarted: true
+            })
+            console.log("Continue loading address balance for " + props.address)
+            props.resumeGetBalances(props.addressId, props.progressCurrent)
+        }
+    }
 
     handleRemove = () => {
         this.props.removeAddress(this.props.addressId)
