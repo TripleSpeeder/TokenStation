@@ -9,6 +9,7 @@ import {balance} from './modules/balance/reducer/balanceReducer'
 import logger from 'redux-logger'
 import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import {BALANCE_STATES} from './modules/balance/balanceActions'
 
 const tokensByIdTransform = createTransform(
     // transform state on its way to being serialized and persisted.
@@ -48,9 +49,11 @@ const balanceTransform = createTransform(
         const newState = {...outboundState}
         Object.keys(newState.byId).forEach(balanceId => {
             const balanceEntry = newState.byId[balanceId]
+            const newBalanceState = balanceEntry.balanceState === BALANCE_STATES.LOADING ? BALANCE_STATES.HYDRATED_WHILE_LOADING : balanceEntry.balanceState
             newState.byId[balanceId] = {
                 ...balanceEntry,
                 balance: window.web3.toBigNumber(balanceEntry.balance),
+                balanceState: newBalanceState
             }
         })
 

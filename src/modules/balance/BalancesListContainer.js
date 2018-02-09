@@ -10,7 +10,7 @@ class BalancesListContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            loadingStarted: false
+            resumedAfterRehydrate: false
         }
     }
 
@@ -24,11 +24,11 @@ class BalancesListContainer extends Component {
 
     checkResumeLoading(props) {
         // in case address balance was in loading state while hydrating, continue loading
-        if (!this.state.loadingStarted && props.web3) {
+        if (!this.state.resumedAfterRehydrate && props.web3) {
             this.setState({
-                loadingStarted: true
+                resumedAfterRehydrate: true
             })
-            props.loadingBalances.forEach(balanceEntry => {
+            props.hydratedWhileLoadingBalances.forEach(balanceEntry => {
                 console.log("Continue loading balance for " + balanceEntry.balanceId)
                 props.loadTokenBalance(balanceEntry.tokenId, balanceEntry.addressId)
             })
@@ -56,9 +56,9 @@ const mapStateToProps = state => {
     const addressIds = Object.keys(state.addresses.byId)
     // all positive balance IDs
     const positiveBalanceIds = state.balance.positiveIds
-    // all balances that are in state "loading"
-    const loadingBalances = Object.values(state.balance.byId).filter(balanceEntry => {
-        return balanceEntry.balanceState === BALANCE_STATES.LOADING
+    // all balances that were loading while being hydrated
+    const hydratedWhileLoadingBalances = Object.values(state.balance.byId).filter(balanceEntry => {
+        return balanceEntry.balanceState === BALANCE_STATES.HYDRATED_WHILE_LOADING
     })
     // all tokenIds
     let tokenIds = state.tokens.allIds
@@ -84,7 +84,7 @@ const mapStateToProps = state => {
     return {
         web3: state.web3Instance.web3,
         balancesByToken,
-        loadingBalances
+        hydratedWhileLoadingBalances,
     }
 }
 

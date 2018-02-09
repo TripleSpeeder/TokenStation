@@ -43,7 +43,7 @@ class Address extends PureComponent {
             this.setState({
                 loadingStarted: true
             })
-            console.log("Continue loading address balance for " + props.address)
+            console.log("Continue loading balances for " + props.address)
             props.resumeGetBalances(props.addressId, props.progressCurrent)
         }
     }

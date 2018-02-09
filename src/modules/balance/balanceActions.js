@@ -3,7 +3,8 @@ import {loadTokenBalance} from '../token/tokenActions'
 export const BALANCE_STATES = {
     VIRGIN: 'virgin',
     LOADING: 'loading',
-    INITIALIZED: 'initialized'
+    INITIALIZED: 'initialized',
+    HYDRATED_WHILE_LOADING: 'hydrated_while_loading'
 }
 
 export const SET_BALANCE = 'SET_BALANCE'
