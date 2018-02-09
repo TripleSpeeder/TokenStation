@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {BALANCE_STATES, setBalanceByAddressAndToken} from './balanceActions'
 import BalancesList from './BalancesList'
 import groupBy from 'lodash/groupBy';
-import {ADDRESS_BALANCES_STATES} from '../address/addressActions'
 import {loadTokenBalance} from '../token/tokenActions'
 
 class BalancesListContainer extends Component {
