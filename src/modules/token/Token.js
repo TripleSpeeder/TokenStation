@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {Label, Item, Button, Icon} from 'semantic-ui-react'
+import Blockies from 'react-blockies'
 
 class Token extends Component {
 
@@ -20,7 +21,12 @@ class Token extends Component {
 
         return (
             <Item>
-                <Item.Image size='tiny' src={imageUrl}></Item.Image>
+                <Item.Image size='tiny'>
+                    <Blockies seed={address.toLowerCase()}
+                              size={8}
+                              scale={8}
+                    />
+                </Item.Image>
                 <Item.Content>
                     <Item.Header>{name} ({symbol})</Item.Header>
                     {meta}
