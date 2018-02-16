@@ -88,6 +88,13 @@ function addTransferEvent(state, action) {
 
     // Look up the correct token, to simplify the rest of the code
     const token = state[tokenId]
+
+    if (token.eventIds.includes(eventId))
+    {
+        console.warn("Ignoring duplicate event " + eventId)
+        return state
+    }
+
     let newEvents = token.eventIds.concat(event)
     return {
         ...state,

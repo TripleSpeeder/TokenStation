@@ -5,7 +5,7 @@ const EVENT_BY_ID_INITIAL = {}
 function addEventEntry(state, action) {
     const {payload} = action
     const {eventId, event} = payload
-    if (Object.keys(state).indexOf(eventId) > -1)
+    if (Object.keys(state).includes(eventId))
     {
         console.warn("Ignoring duplicate event " + eventId)
         return state
