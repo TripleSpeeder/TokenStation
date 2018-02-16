@@ -3,30 +3,40 @@ import PropTypes from 'prop-types'
 import {buildEtherscanLink} from '../../utils/etherscanUtils'
 import {connect} from 'react-redux'
 import {loadTokenTransferEvents} from '../token/tokenActions'
+import {Segment} from 'semantic-ui-react'
 
 class TokenEventsContainer extends Component {
     constructor(props, context) {
         super(props, context)
-        this.state = {
-            eventsLoaded: false
-        }
+        this.eventsLoaded = false
     }
 
     componentDidMount() {
-        // Check if the token details are already loaded
-        if (!this.state.eventsLoaded)
-        {
-            this.props.loadTokenTransferEvents(this.props.token.id)
-            this.setState({eventsLoaded: true})
+        this.checkEventsLoaded(this.props)
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.checkEventsLoaded(newProps)
+    }
+
+    checkEventsLoaded(props) {
+        if (props.web3 && !this.eventsLoaded) {
+            props.loadTokenTransferEvents(props.token.id)
+            this.eventsLoaded = true
         }
     }
 
     render() {
-        return (
-            <div>
-                <h4>Showing {this.props.token.eventIds.length} events of ERC20 token contract {this.props.token.name}</h4>
-            </div>
-        )
+        if (this.props.isLoading) {
+            return <Segment>Web3 initializing...</Segment>
+        } else {
+            return (
+                <Segment>
+                    <h4>Showing {this.props.token.eventIds.length} events of ERC20 token
+                        contract {this.props.token.name}</h4>
+                </Segment>
+            )
+        }
     }
 }
 
@@ -43,6 +53,7 @@ const mapStateToProps = (state, ownProps) => {
     const token = state.tokens.byId[tokenId]
     const etherscanUrl = buildEtherscanLink(token.address)
     return {
+        web3: state.web3Instance.web3,
         token: token,
         etherscanUrl: etherscanUrl
     }
