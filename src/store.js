@@ -9,6 +9,7 @@ import logger from 'redux-logger'
 import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import {BALANCE_STATES} from './modules/balance/balanceActions'
+import {events} from './modules/event/reducers/eventReducer'
 
 /*
 - Restore all BigNumber instances that have been converted to string while being hydrated
@@ -108,6 +109,7 @@ const reducer = combineReducers({
     tokens: persistReducer(tokensConfig, tokens),
     addresses,
     balance,
+    events,
 })
 
 const rootConfig = {
