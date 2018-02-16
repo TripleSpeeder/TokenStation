@@ -6,7 +6,8 @@ export const ADDRESS_TYPE_OWNED='ADDRESS_TYPE_OWNED'
 export const ADDRESS_BALANCES_STATES = {
     VIRGIN: 'virgin',
     LOADING: 'loading',
-    INITIALIZED: 'initialized'
+    INITIALIZED: 'initialized',
+    HYDRATED_WHILE_LOADING: 'hydrated_while_loading'
 }
 
 export const CHANGE_ADDRESS_BALANCES_STATE = 'CHANGE_ADDRESS_BALANCES_STATE'

@@ -15,7 +15,7 @@ class Address extends PureComponent {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            loadingStarted: false
+            resumedAfterRehydrate: false
         }
     }
 
@@ -25,23 +25,15 @@ class Address extends PureComponent {
 
     componentWillReceiveProps(newProps) {
         this.checkResumeLoading(newProps)
-        // update local state if loading has finished
-        if ((this.props.balancesState === ADDRESS_BALANCES_STATES.LOADING) &&
-            (newProps.balancesState === ADDRESS_BALANCES_STATES.INITIALIZED)) {
-            this.setState({
-                loadingStarted: false
-            })
-            console.log("Finished loading address balance for " + this.props.address)
-        }
     }
 
     checkResumeLoading(props) {
         // in case address balance was in loading state while hydrating, continue loading
         if ((props.web3) &&
-            (props.balancesState === ADDRESS_BALANCES_STATES.LOADING) &&
-            (!this.state.loadingStarted)) {
+            (props.balancesState === ADDRESS_BALANCES_STATES.HYDRATED_WHILE_LOADING) &&
+            (!this.state.resumedAfterRehydrate)) {
             this.setState({
-                loadingStarted: true
+                resumedAfterRehydrate: true
             })
             console.log("Continue loading balances for " + props.address)
             props.resumeGetBalances(props.addressId, props.progressCurrent)

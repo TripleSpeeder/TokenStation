@@ -5,12 +5,14 @@ import createHistory from 'history/createBrowserHistory'
 import thunk from 'redux-thunk'
 import {addresses} from './modules/address/reducers/addressReducer'
 import {balance} from './modules/balance/reducer/balanceReducer'
-// Logger with default options
 import logger from 'redux-logger'
 import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import {BALANCE_STATES} from './modules/balance/balanceActions'
 
+/*
+- Restore all BigNumber instances that have been converted to string while being hydrated
+ */
 const tokensByIdTransform = createTransform(
     // transform state on its way to being serialized and persisted.
     (inboundState, key) => {
@@ -38,6 +40,10 @@ const tokensByIdTransform = createTransform(
     { whitelist: ['byId'] }
 );
 
+/*
+- Mark all balances that have been hydrated while being in state "loading" as "hydrated_while_loading", so i can restart loading them.
+- Restore all BigNumber instances that have been converted to string while being hydrated
+ */
 const balanceTransform = createTransform(
     // transform state on its way to being serialized and persisted.
     (inboundState, key) => {
@@ -56,11 +62,35 @@ const balanceTransform = createTransform(
                 balanceState: newBalanceState
             }
         })
-
         return newState;
     },
     // define which reducers this transform gets called for.
     { whitelist: ['balance'] }
+);
+
+/*
+Mark all address entries that have been hydrated while being in state "loading" as "hydrated_while_loading", so i can restart loading them.
+ */
+const addressesTransform = createTransform(
+    // transform state on its way to being serialized and persisted.
+    (inboundState, key) => {
+        return inboundState
+    },
+    // transform state being rehydrated
+    (outboundState, key) => {
+        const newState = {...outboundState}
+        Object.keys(newState.byId).forEach(addressId => {
+            const addressEntry = newState.byId[addressId]
+            const newAddressState = addressEntry.balancesState === BALANCE_STATES.LOADING ? BALANCE_STATES.HYDRATED_WHILE_LOADING : addressEntry.balancesState
+            newState.byId[addressId] = {
+                ...addressEntry,
+                balancesState: newAddressState
+            }
+        })
+        return newState;
+    },
+    // define which reducers this transform gets called for.
+    { whitelist: ['addresses'] }
 );
 
 
@@ -84,7 +114,8 @@ const rootConfig = {
     key: 'root',
     storage: storage,
     transforms: [
-        balanceTransform
+        balanceTransform,
+        addressesTransform
     ],
     blacklist: ['web3Instance', 'tokens'],
 }
