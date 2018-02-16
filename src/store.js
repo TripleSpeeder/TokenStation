@@ -17,7 +17,15 @@ import {events} from './modules/event/reducers/eventReducer'
 const tokensByIdTransform = createTransform(
     // transform state on its way to being serialized and persisted.
     (inboundState, key) => {
-        return inboundState
+        const newState = {...inboundState}
+        Object.keys(newState).forEach(tokenId => {
+            const tokenEntry = newState[tokenId]
+            newState[tokenId] = {
+                ...tokenEntry,
+                eventIds: []    // Clear eventIds, as events are not persisted
+            }
+        })
+        return newState
     },
     // transform state being rehydrated
     (outboundState, key) => {
