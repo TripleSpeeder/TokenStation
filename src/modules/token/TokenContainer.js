@@ -38,6 +38,7 @@ class TokenContainer extends Component {
             return <Token token={this.props.token}
                           etherscanUrl={this.props.etherscanUrl}
                           handleRefresh={this.handleRefresh}
+                          tokenEventsLinkOptions={this.props.tokenEventsLinkOptions}
             />
     }
 }
@@ -54,8 +55,12 @@ TokenContainer.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
     const token = state.tokens.byId[ownProps.tokenId]
     const etherscanUrl = buildEtherscanLink(token.address)
+    const tokenEventsLinkOptions = {
+        pathname: '/token/' + ownProps.tokenId,
+    }
     return {
         token: token,
+        tokenEventsLinkOptions,
         etherscanUrl: etherscanUrl
     }
 }

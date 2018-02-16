@@ -2,11 +2,13 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {Label, Item, Button, Icon} from 'semantic-ui-react'
 import Blockies from 'react-blockies'
+import {Link} from 'react-router-dom'
 
 class Token extends Component {
 
     render() {
         const {address, name, symbol, description, website, decimals, loading} = this.props.token
+        const {tokenEventsLinkOptions} = this.props
         let imageUrl = this.props.token.imageUrl
         if (!imageUrl) {
             imageUrl = "Silvercoin.png"
@@ -19,6 +21,8 @@ class Token extends Component {
             meta = <Item.Meta><a href={website} target='_blank'>{website}</a></Item.Meta>
         }
 
+        let eventLink = <Link to={tokenEventsLinkOptions}>{name}</Link>
+
         return (
             <Item>
                 <Item.Image size='tiny'>
@@ -28,7 +32,7 @@ class Token extends Component {
                     />
                 </Item.Image>
                 <Item.Content>
-                    <Item.Header>{name} ({symbol})</Item.Header>
+                    <Item.Header>{eventLink} ({symbol})</Item.Header>
                     {meta}
                     <Button floated='right'
                             size='small'

@@ -10,6 +10,7 @@ import TokenLoaderContainer from './modules/token/TokenLoaderContainer'
 import BalancesContainer from './modules/balance/BalancesContainer'
 import TokenListContainer from './modules/token/TokenListContainer'
 import { PersistGate } from 'redux-persist/lib/integration/react'
+import TokenEventsContainer from './modules/event/TokenEventsContainer'
 
 let {store, persistor} = configureStore()
 
@@ -46,6 +47,7 @@ class App extends Component {
                                 <Switch>
                                     <Route exact path='/' component={BalancesContainer}/>
                                     <Route path='/alltokens/' component={TokenListContainer}/>
+                                    <Route path='/token/:tokenId/' component={TokenEventsContainer}/>
                                     <Route path='/:address/' component={BalancesContainer}/>
                                     <Route component={NoMatch} />
                                 </Switch>
