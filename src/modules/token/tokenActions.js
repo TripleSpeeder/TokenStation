@@ -1,6 +1,7 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
 import {BALANCE_STATES, balanceStateChanged, setBalanceByAddressAndToken} from '../balance/balanceActions'
+import {addEvent, addEventWrapper} from '../event/eventActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -211,7 +212,7 @@ export function initializeTokenList(web3, registryABI, registryAddress, lastId=0
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=1000
+        const limit=50
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -268,7 +269,8 @@ function mapParityToken(id, parityToken) {
             loading: false,
             supply: undefined
         },
-        balance: undefined
+        balance: undefined,
+        eventIds: [],
     }
 }
 
@@ -321,6 +323,35 @@ export function loadTokenBalance(tokenID, addressId) {
         const balance = await volatileToken.contractInstance.balanceOf(address)
         dispatch(setBalanceByAddressAndToken(addressId, tokenID, balance))
         dispatch(balanceStateChanged(tokenID, addressId, BALANCE_STATES.INITIALIZED))
+    }
+}
+
+export function loadTokenTransferEvents(tokenID, fromBlock, toBlock) {
+    return async (dispatch, getState) => {
+        await verifyContractInstance(tokenID, dispatch, getState)
+        const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
+        // for debugging just get the last 10000 blocks
+        const fromBlock = getState().web3Instance.block.number - 10000
+        const transferEvents = contractInstance.Transfer(
+            {
+                _from: null,
+                _to: null,
+            },
+            {
+                // TODO - Use provided parameters
+                fromBlock,
+                toBlock: 'latest'
+            }
+        )
+        transferEvents.get(function(error, events) {
+            if (error) {
+                console.error("Error getting events for token " + tokenID + ": " + error)
+            } else {
+                console.log("Got " + events.length + " events.")
+                // TODO: Add events in one batch instead of this gazillion dispatch calls!
+                events.forEach(event => dispatch(addEventWrapper(event)))
+            }
+        })
     }
 }
 

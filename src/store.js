@@ -101,6 +101,7 @@ const tokensConfig = {
     transforms: [
         tokensByIdTransform
     ],
+    // Don't persist these subtrees:
     blacklist: ['volatileById']
 }
 
@@ -119,7 +120,8 @@ const rootConfig = {
         balanceTransform,
         addressesTransform
     ],
-    blacklist: ['web3Instance', 'tokens'],
+    // Don't persist these subtrees:
+    blacklist: ['web3Instance', 'tokens', 'events'],
 }
 const persistedReducer = persistReducer(rootConfig, reducer)
 

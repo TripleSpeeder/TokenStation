@@ -2,6 +2,7 @@ import {
     ADD_TOKEN, CLEAR_TOKEN_BALANCES, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN,
     SET_TOKEN_SUPPLY
 } from '../tokenActions'
+import {ADD_EVENT} from '../../event/eventActions'
 
 const TOKENS_BY_ID_INITIAL = {}
 
@@ -80,6 +81,24 @@ function clearTokenBalances(state, action) {
     return newState
 }
 
+function addTransferEvent(state, action) {
+    // Attach the new event to the according token contract
+    const {payload} = action
+    const {eventId, tokenId, event} = payload
+
+    // Look up the correct token, to simplify the rest of the code
+    const token = state[tokenId]
+    let newEvents = token.eventIds.concat(event)
+    return {
+        ...state,
+        // Update our Token object with a new supply value
+        [tokenId]: {
+            ...token,
+            eventIds: newEvents
+        }
+    }
+}
+
 export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
     switch (action.type) {
         case ADD_TOKEN: {
@@ -99,6 +118,9 @@ export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
         }
         case CLEAR_TOKEN_LIST: {
             return clearTokensById(state, action)
+        }
+        case ADD_EVENT: {
+            return addTransferEvent(state, action)
         }
         default:
             return state
