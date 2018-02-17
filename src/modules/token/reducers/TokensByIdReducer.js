@@ -95,13 +95,13 @@ function addTransferEvent(state, action) {
         return state
     }
 
-    let newEvents = token.eventIds.concat(event)
+    let newEventIds = token.eventIds.concat(eventId)
     return {
         ...state,
         // Update our Token object with a new supply value
         [tokenId]: {
             ...token,
-            eventIds: newEvents
+            eventIds: newEventIds
         }
     }
 }
