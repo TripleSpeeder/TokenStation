@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {loadTokenTransferEvents} from '../token/tokenActions'
 import {connect} from 'react-redux'
 import {List} from 'semantic-ui-react'
+import {buildAdressContractEventId} from '../event/reducers/addressContractEventsByIdReducer'
 
 class AddressEventsContainer extends Component {
     constructor(props, context) {
@@ -20,7 +21,7 @@ class AddressEventsContainer extends Component {
 
     checkEventsLoaded(props) {
         if (props.web3 && !this.eventsLoaded) {
-            props.loadTokenTransferEvents(props.tokenId)
+            props.loadTokenTransferEvents(props.tokenId, props.address)
             this.eventsLoaded = true
         }
     }
@@ -28,9 +29,9 @@ class AddressEventsContainer extends Component {
     render() {
         return (
             <div>
-                List {this.props.matchedEvents.length} transfer events for {this.props.address} for token {this.props.tokenId}
+                List {this.props.events.length} transfer events for {this.props.address} for token {this.props.tokenId}
                 <List>
-                    {this.props.matchedEvents.map(event =>
+                    {this.props.events.map(event =>
                         <li key={event.transferEventId}>{event.transferEvent.args._from} -> {event.transferEvent.args._to}: {event.transferEvent.args._value.toString()}</li>
                     )}
                 </List>
@@ -49,22 +50,24 @@ AddressEventsContainer.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const address = ownProps.match.params.address
+    const address = ownProps.match.params.address.toLowerCase()
     const tokenId = parseInt(ownProps.match.params.tokenId, 10)
-    const eventIds = state.addresses.byId[address].eventIds     // all eventIDs attached to address
-    const events = eventIds.map(id => (state.events.byId[id]))  // get events from eventIds
-    // I'm only interested in events matching current token (from url)
-    const matchedEvents = events.filter(event => (event.tokenId === tokenId))
+    // get all eventIds for address-tokenId combination
+    const aceId = buildAdressContractEventId(address, tokenId)
+    const aceEntry = state.events.aceById[aceId]
+    const eventIds = aceEntry ? aceEntry.eventIds : undefined
+    // get events from eventIds
+    const events = eventIds ? eventIds.map(id => (state.events.byId[id])) : []
     return {
         web3: state.web3Instance.web3,
         tokenId,
         address,
-        matchedEvents,
+        events,
     }
 }
 const mapDispatchToProps = dispatch => ({
-    loadTokenTransferEvents: (tokenId) => {
-        dispatch(loadTokenTransferEvents(tokenId, 0, 'latest'))
+    loadTokenTransferEvents: (tokenId, address) => {
+        dispatch(loadTokenTransferEvents(tokenId, 0, 'latest', address))
     }
 })
 

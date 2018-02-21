@@ -115,8 +115,8 @@ export const addressByIdReducer = (state=ADDRESS_BY_ID_INITIAL, action) => {
             return changeAddressType(state, action)
         case CHANGE_ADDRESS_BALANCES_STATE:
             return changeAddressBalancesState(state, action)
-        case ADD_EVENTS:
-            return addTransferEvents(state, action)
+        //case ADD_EVENTS:
+        //    return addTransferEvents(state, action)
         default:
     }
     return state;

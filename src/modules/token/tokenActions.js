@@ -1,7 +1,7 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
 import {BALANCE_STATES, balanceStateChanged, setBalanceByAddressAndToken} from '../balance/balanceActions'
-import {addEvents} from '../event/eventActions'
+import {addEvents, addEventsThunk} from '../event/eventActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -326,28 +326,52 @@ export function loadTokenBalance(tokenID, addressId) {
     }
 }
 
-export function loadTokenTransferEvents(tokenID, fromBlock, toBlock) {
+export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
     return async (dispatch, getState) => {
         await verifyContractInstance(tokenID, dispatch, getState)
         const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
-        const transferEvents = contractInstance.Transfer(
+
+        // TODO - Use provided parameters. For now just take the last 1000 blocks.
+        const fromBlock = getState().web3Instance.block.number - 10000
+        const toBlock = getState().web3Instance.block.number
+
+        const transferEventsFrom = contractInstance.Transfer(
             {
                 // These are the standard ERC20 Transfer event fields
-                _from: null,    // address sending token
+                _from: address,    // address sending token
                 _to: null,      // address receiving token
             },
             {
-                // TODO - Use provided parameters
-                fromBlock: getState().web3Instance.block.number - 10000,
-                toBlock: 'latest'
+                fromBlock,
+                toBlock
             }
         )
-        transferEvents.get(function(error, events) {
+        transferEventsFrom.get(function(error, events) {
             if (error) {
                 console.error("Error getting events for token " + tokenID + ": " + error)
             } else {
                 console.log("Got " + events.length + " events.")
-                dispatch(addEvents(events, tokenID))
+                dispatch(addEventsThunk(events, tokenID, fromBlock, toBlock))
+            }
+        })
+
+        const transferEventsTo = contractInstance.Transfer(
+            {
+                // These are the standard ERC20 Transfer event fields
+                _from: null,    // address sending token
+                _to: address,      // address receiving token
+            },
+            {
+                fromBlock,
+                toBlock
+            }
+        )
+        transferEventsTo.get(function(error, events) {
+            if (error) {
+                console.error("Error getting events for token " + tokenID + ": " + error)
+            } else {
+                console.log("Got " + events.length + " events.")
+                dispatch(addEventsThunk(events, tokenID, fromBlock, toBlock))
             }
         })
     }
