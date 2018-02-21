@@ -1,7 +1,7 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
 import {BALANCE_STATES, balanceStateChanged, setBalanceByAddressAndToken} from '../balance/balanceActions'
-import {addEvent, addEventWrapper} from '../event/eventActions'
+import {addEvents} from '../event/eventActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -347,8 +347,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock) {
                 console.error("Error getting events for token " + tokenID + ": " + error)
             } else {
                 console.log("Got " + events.length + " events.")
-                // TODO: Add events in one batch instead of this gazillion dispatch calls!
-                events.forEach(event => dispatch(addEventWrapper(event)))
+                dispatch(addEvents(events, tokenID))
             }
         })
     }

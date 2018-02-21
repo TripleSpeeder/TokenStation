@@ -2,7 +2,7 @@ import {
     ADD_TOKEN, CLEAR_TOKEN_BALANCES, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN,
     SET_TOKEN_SUPPLY
 } from '../tokenActions'
-import {ADD_EVENT} from '../../event/eventActions'
+import {ADD_EVENTS, buildEventId} from '../../event/eventActions'
 
 const TOKENS_BY_ID_INITIAL = {}
 
@@ -81,24 +81,28 @@ function clearTokenBalances(state, action) {
     return newState
 }
 
-function addTransferEvent(state, action) {
+function addTransferEvents(state, action) {
     // Attach the new event to the according token contract
     const {payload} = action
-    const {eventId, tokenId, event} = payload
+    const {events, tokenId} = payload
 
     // Look up the correct token, to simplify the rest of the code
     const token = state[tokenId]
 
-    if (token.eventIds.includes(eventId))
-    {
-        console.warn("Ignoring duplicate event " + eventId)
-        return state
-    }
+    let newEventIds = token.eventIds
 
-    let newEventIds = token.eventIds.concat(eventId)
+    events.forEach(transferEvent => {
+        const transferEventId = buildEventId(transferEvent)
+
+        if (newEventIds.includes(transferEventId)) {
+            console.warn("Ignoring duplicate event " + transferEventId)
+            return
+        }
+        newEventIds = newEventIds.concat(transferEventId)
+    })
+
     return {
         ...state,
-        // Update our Token object with a new supply value
         [tokenId]: {
             ...token,
             eventIds: newEventIds
@@ -126,8 +130,8 @@ export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
         case CLEAR_TOKEN_LIST: {
             return clearTokensById(state, action)
         }
-        case ADD_EVENT: {
-            return addTransferEvent(state, action)
+        case ADD_EVENTS: {
+            return addTransferEvents(state, action)
         }
         default:
             return state

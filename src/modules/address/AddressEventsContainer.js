@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {loadTokenTransferEvents} from '../token/tokenActions'
-import {buildEtherscanLink} from '../../utils/etherscanUtils'
 import {connect} from 'react-redux'
+import {List} from 'semantic-ui-react'
 
 class AddressEventsContainer extends Component {
     constructor(props, context) {
@@ -24,15 +24,16 @@ class AddressEventsContainer extends Component {
             this.eventsLoaded = true
         }
     }
+
     render() {
         return (
             <div>
                 List {this.props.matchedEvents.length} transfer events for {this.props.address} for token {this.props.tokenId}
-                <list>
+                <List>
                     {this.props.matchedEvents.map(event =>
-                        <li key={event.eventId}>{event.event.args._from} -> {event.event.args._to}: {event.event.args._value.toString()}</li>
+                        <li key={event.transferEventId}>{event.transferEvent.args._from} -> {event.transferEvent.args._to}: {event.transferEvent.args._value.toString()}</li>
                     )}
-                </list>
+                </List>
             </div>
         )
     }

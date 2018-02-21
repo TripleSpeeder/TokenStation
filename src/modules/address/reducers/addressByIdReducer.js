@@ -2,7 +2,7 @@ import {
     ADD_ADDRESS, ADDRESS_BALANCES_STATES, CHANGE_ADDRESS_BALANCES_STATE, CHANGE_ADDRESS_TYPE,
     REMOVE_ADDRESS
 } from '../addressActions'
-import {ADD_EVENT} from '../../event/eventActions'
+import {ADD_EVENTS, buildEventId} from '../../event/eventActions'
 
 const ADDRESS_BY_ID_INITIAL = {}
 /*
@@ -75,42 +75,33 @@ function changeAddressBalancesState(state, action) {
     }
 }
 
-function addTransferEvent(state, action) {
-    // Attach the new event to the address, if it is "to" or "from"
+function addTransferEvents(state, action) {
+    // Attach the new events to the address, if it is "to" or "from"
     const {payload} = action
-    const {eventId, tokenId, event} = payload
-    const {_from, _to} = event.args
+    const {events} = payload
 
-    // Find addresses matching _from or _to
-    const matchedAddresses = Object.values(state).filter(addressEntry => {
-        return ((addressEntry.address.toLowerCase() === _to) || (addressEntry.address.toLowerCase() === _from))
+    const newState = state
+
+    events.forEach(transferEvent => {
+        const transferEventId = buildEventId(transferEvent)
+        const {_from, _to} = transferEvent.args
+
+        // Find addresses matching _from or _to
+        const matchedAddresses = Object.values(newState).filter(addressEntry => {
+            return ((addressEntry.address.toLowerCase() === _to) || (addressEntry.address.toLowerCase() === _from))
+        })
+
+        // store eventIDs in all matching addresses
+        matchedAddresses.forEach(matchedAddressEntry => {
+            if (newState[matchedAddressEntry.address].eventIds.includes(transferEventId))
+            {
+                console.warn("Ignoring duplicate event " + transferEventId )
+                return
+            }
+            newState[matchedAddressEntry.address].eventIds = newState[matchedAddressEntry.address].eventIds.concat(transferEventId)
+        })
     })
-
-    matchedAddresses.forEach(matchedAddressEntry => {
-        state[matchedAddressEntry.address].eventIds = state[matchedAddressEntry.address].eventIds.concat(eventId)
-    })
-
-    // TODO
-    return state
-
-    // Look up the correct token, to simplify the rest of the code
-    const token = state[tokenId]
-
-    if (token.eventIds.includes(eventId))
-    {
-        console.warn("Ignoring duplicate event " + eventId)
-        return state
-    }
-
-    let newEventIds = token.eventIds.concat(eventId)
-    return {
-        ...state,
-        // Update our Token object with a new supply value
-        [tokenId]: {
-            ...token,
-            eventIds: newEventIds
-        }
-    }
+    return newState
 }
 
 
@@ -124,8 +115,8 @@ export const addressByIdReducer = (state=ADDRESS_BY_ID_INITIAL, action) => {
             return changeAddressType(state, action)
         case CHANGE_ADDRESS_BALANCES_STATE:
             return changeAddressBalancesState(state, action)
-        case ADD_EVENT:
-            return addTransferEvent(state, action)
+        case ADD_EVENTS:
+            return addTransferEvents(state, action)
         default:
     }
     return state;
