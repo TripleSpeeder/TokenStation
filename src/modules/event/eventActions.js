@@ -22,14 +22,5 @@ export function addEventWrapper(event) {
 }
 
 export function buildEventId(event) {
-    // TODO - Use event.logIndex instead of event.transactionIndex
-    return '' + event.transactionHash + '-' + event.transactionIndex
+    return '' + event.transactionHash + '-' + event.logIndex
 }
-
-
-/*
-
-var fil = prochain.Transfer({_to: '0x9041fe5b3fdea0f5e4afdc17e75180738d877a01'}, {fromBlock: 4101630, toBlock: 'latest'})
-fil.get(function(error, response) {if (error) {console.log("Error: " + error)} else {console.log("success: " + response); results = response}})
-
- */
