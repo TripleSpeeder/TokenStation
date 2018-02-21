@@ -35,6 +35,7 @@ class AddressEventsContainer extends Component {
                         <li key={event.transferEventId}>{event.transferEvent.args._from} -> {event.transferEvent.args._to}: {event.transferEvent.args._value.toString()}</li>
                     )}
                 </List>
+                {this.props.isLoading ? <div>Loading!!!</div> : <div>not loading...</div>}
             </div>
         )
     }
@@ -55,6 +56,7 @@ const mapStateToProps = (state, ownProps) => {
     // get all eventIds for address-tokenId combination
     const aceId = buildAdressContractEventId(address, tokenId)
     const aceEntry = state.events.aceById[aceId]
+    const isLoading = aceEntry ? aceEntry.isLoading : true
     const eventIds = aceEntry ? aceEntry.eventIds : undefined
     // get events from eventIds
     const events = eventIds ? eventIds.map(id => (state.events.byId[id])) : []
@@ -63,6 +65,7 @@ const mapStateToProps = (state, ownProps) => {
         tokenId,
         address,
         events,
+        isLoading,
     }
 }
 const mapDispatchToProps = dispatch => ({

@@ -1,7 +1,7 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
 import {BALANCE_STATES, balanceStateChanged, setBalanceByAddressAndToken} from '../balance/balanceActions'
-import {addEventsThunk} from '../event/eventActions'
+import {aceEntryLoadingChange, addEventsThunk} from '../event/eventActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -328,6 +328,7 @@ export function loadTokenBalance(tokenID, addressId) {
 
 export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
     return async (dispatch, getState) => {
+        dispatch(aceEntryLoadingChange(address, tokenID, true))
         await verifyContractInstance(tokenID, dispatch, getState)
         const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
 
@@ -374,6 +375,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
                 dispatch(addEventsThunk(events, tokenID, fromBlock, toBlock))
             }
         })
+        dispatch(aceEntryLoadingChange(address, tokenID, false))
     }
 }
 

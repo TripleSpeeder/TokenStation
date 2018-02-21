@@ -25,6 +25,18 @@ export function createAceEntry(addressId, tokenId) {
     }
 }
 
+export const ACE_ENTRY_LOADING_CHANGE = 'ACE_ENTRY_LOADING_CHANGE'
+export function aceEntryLoadingChange(addressId, tokenId, isLoading) {
+    const aceId = buildAdressContractEventId(addressId, tokenId)
+    return {
+        type: ACE_ENTRY_LOADING_CHANGE,
+        payload: {
+            aceId,
+            isLoading,
+        }
+    }
+}
+
 export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
     return async (dispatch, getState) => {
         // Make sure that there are AddressContractEvent entries

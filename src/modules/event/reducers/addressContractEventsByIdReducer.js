@@ -1,4 +1,4 @@
-import {ADD_EVENTS, buildEventId, CREATE_ACE_ENTRY} from '../eventActions'
+import {ACE_ENTRY_LOADING_CHANGE, ADD_EVENTS, buildEventId, CREATE_ACE_ENTRY} from '../eventActions'
 
 /*
 Purpose: Store list of transfer events involving certain address
@@ -31,7 +31,7 @@ function createAceEntry(state, action) {
             acesId,
             addressId,
             tokenId,
-            loading: false,
+            isLoading: false,
             firstBlock: 0,
             lastBlock: 0,
             eventIds: [],
@@ -78,6 +78,23 @@ function addTransferEvents(state, action) {
     return newState
 }
 
+function aceEntryLoadingChange(state, action) {
+    const {payload} = action
+    const {aceId, isLoading} = payload
+    const aceEntry = state[aceId]
+    if (aceEntry) {
+        return {
+            ...state,
+            [aceId] : {
+                ...aceEntry,
+                isLoading,
+            }
+        }
+    } else {
+        // entry not found, ignore...
+        return state
+    }
+}
 
 export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL, action) => {
     switch (action.type) {
@@ -85,6 +102,8 @@ export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_B
             return createAceEntry(state, action)
         case ADD_EVENTS:
             return addTransferEvents(state, action)
+        case ACE_ENTRY_LOADING_CHANGE:
+            return aceEntryLoadingChange(state, action)
         default:
     }
     return state;
