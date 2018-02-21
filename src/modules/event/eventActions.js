@@ -8,8 +8,6 @@ export function addEvents(events, tokenId, fromBlock, toBlock) {
         payload: {
             events,
             tokenId,
-            fromBlock,
-            toBlock
         }
     }
 }
@@ -33,6 +31,19 @@ export function aceEntryLoadingChange(addressId, tokenId, isLoading) {
         payload: {
             aceId,
             isLoading,
+        }
+    }
+}
+
+export const ACE_ENTRY_BLOCK_RANGE_CHANGE = 'ACE_ENTRY_BLOCK_RANGE_CHANGE'
+export function aceEntryBlockRangeChange(addressId, tokenId, fromBlock, toBlock) {
+    const aceId = buildAdressContractEventId(addressId, tokenId)
+    return {
+        type: ACE_ENTRY_BLOCK_RANGE_CHANGE,
+        payload: {
+            aceId,
+            fromBlock,
+            toBlock,
         }
     }
 }

@@ -1,7 +1,10 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
 import {BALANCE_STATES, balanceStateChanged, setBalanceByAddressAndToken} from '../balance/balanceActions'
-import {aceEntryLoadingChange, aceEntryLoadingChangeWrapper, addEventsThunk} from '../event/eventActions'
+import {
+    aceEntryBlockRangeChange, aceEntryLoadingChange, aceEntryLoadingChangeWrapper,
+    addEventsThunk
+} from '../event/eventActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -355,7 +358,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
                 console.error("Error getting events for token " + tokenID + ": " + error)
             } else {
                 console.log("Got " + events.length + " events.")
-                dispatch(addEventsThunk(events, tokenID, fromBlock, toBlock))
+                dispatch(addEventsThunk(events, tokenID))
             }
         })
 
@@ -375,10 +378,11 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
                 console.error("Error getting events for token " + tokenID + ": " + error)
             } else {
                 console.log("Got " + events.length + " events.")
-                dispatch(addEventsThunk(events, tokenID, fromBlock, toBlock))
+                dispatch(addEventsThunk(events, tokenID))
             }
         })
         dispatch(aceEntryLoadingChange(address, tokenID, false))
+        dispatch(aceEntryBlockRangeChange(address, tokenID, fromBlock, toBlock))
     }
 }
 

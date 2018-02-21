@@ -77,7 +77,7 @@ const mapStateToProps = (state, ownProps) => {
     // get events from eventIds
     const events = eventIds ? eventIds.map(id => (state.events.byId[id])) : []
     return {
-        web3: state.web3Instance.web3,
+        web3: state.web3Instance.isLoading ? null : state.web3Instance.web3,
         tokenId,
         address,
         events,

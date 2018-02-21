@@ -1,4 +1,7 @@
-import {ACE_ENTRY_LOADING_CHANGE, ADD_EVENTS, buildEventId, CREATE_ACE_ENTRY} from '../eventActions'
+import {
+    ACE_ENTRY_BLOCK_RANGE_CHANGE, ACE_ENTRY_LOADING_CHANGE, ADD_EVENTS, buildEventId,
+    CREATE_ACE_ENTRY
+} from '../eventActions'
 
 /*
 Purpose: Store list of transfer events involving certain address
@@ -42,7 +45,7 @@ function createAceEntry(state, action) {
 function addTransferEvents(state, action) {
     // Attach the new events to the address, if it is "to" or "from"
     const {payload} = action
-    const {events, tokenId, fromBlock, toBlock} = payload
+    const {events, tokenId} = payload
 
     const newState = state
 
@@ -53,19 +56,6 @@ function addTransferEvents(state, action) {
         const aceToId = buildAdressContractEventId(_to, tokenId)
         const aceIds = [aceToId, aceFromId]
         aceIds.forEach(aceId => {
-            // update checked block range
-            if (newState[aceId].firstBlock === 0) {
-                newState[aceId].firstBlock = fromBlock
-            } else {
-                newState[aceId].firstBlock = Math.min(fromBlock, newState[aceId].firstBlock)
-            }
-            if (newState[aceId].lastBlock === 0) {
-                newState[aceId].lastBlock = toBlock
-            } else {
-                newState[aceId].lastBlock = Math.max(toBlock, newState[aceId].lastBlock)
-            }
-
-            // add eventIds
             // prevent duplicate eventID entries
             if (newState[aceId].eventIds.includes(transferEventId ))
             {
@@ -96,6 +86,33 @@ function aceEntryLoadingChange(state, action) {
     }
 }
 
+function aceEntryBlockRangeChange(state, action) {
+    const {payload} = action
+    const {aceId, fromBlock, toBlock} = payload
+    const aceEntry = state[aceId]
+    if (aceEntry) {
+        // update checked block range
+        if (aceEntry.firstBlock === 0) {
+            aceEntry.firstBlock = fromBlock
+        } else {
+            aceEntry.firstBlock = Math.min(fromBlock, aceEntry.firstBlock)
+        }
+        if (aceEntry.lastBlock === 0) {
+            aceEntry.lastBlock = toBlock
+        } else {
+            aceEntry.lastBlock = Math.max(toBlock, aceEntry.lastBlock)
+        }
+
+        return {
+            ...state,
+            [aceId] : aceEntry
+        }
+    } else {
+        // entry not found, ignore...
+        return state
+    }
+}
+
 export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL, action) => {
     switch (action.type) {
         case CREATE_ACE_ENTRY:
@@ -104,6 +121,8 @@ export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_B
             return addTransferEvents(state, action)
         case ACE_ENTRY_LOADING_CHANGE:
             return aceEntryLoadingChange(state, action)
+        case ACE_ENTRY_BLOCK_RANGE_CHANGE:
+            return aceEntryBlockRangeChange(state, action)
         default:
     }
     return state;
