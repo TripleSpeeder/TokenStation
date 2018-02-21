@@ -1,7 +1,7 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
 import {BALANCE_STATES, balanceStateChanged, setBalanceByAddressAndToken} from '../balance/balanceActions'
-import {aceEntryLoadingChange, addEventsThunk} from '../event/eventActions'
+import {aceEntryLoadingChange, aceEntryLoadingChangeWrapper, addEventsThunk} from '../event/eventActions'
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -328,13 +328,15 @@ export function loadTokenBalance(tokenID, addressId) {
 
 export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
     return async (dispatch, getState) => {
-        dispatch(aceEntryLoadingChange(address, tokenID, true))
+        dispatch(aceEntryLoadingChangeWrapper(address, tokenID, true))
         await verifyContractInstance(tokenID, dispatch, getState)
         const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
 
-        // TODO - Use provided parameters. For now just take the last 1000 blocks.
-        const fromBlock = getState().web3Instance.block.number - 10000
-        const toBlock = getState().web3Instance.block.number
+        // if no from/toblock are provided, use default values
+        if (fromBlock === 0)
+            fromBlock = getState().web3Instance.block.number - 10000
+        if (toBlock === 0)
+            toBlock = getState().web3Instance.block.number
 
         const transferEventsFrom = contractInstance.Transfer(
             {
@@ -347,6 +349,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
                 toBlock
             }
         )
+        // TODO: Wrap this into promise and await it, otherwise loading:false action will be dispatched too early!
         transferEventsFrom.get(function(error, events) {
             if (error) {
                 console.error("Error getting events for token " + tokenID + ": " + error)

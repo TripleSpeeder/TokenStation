@@ -37,6 +37,17 @@ export function aceEntryLoadingChange(addressId, tokenId, isLoading) {
     }
 }
 
+export function aceEntryLoadingChangeWrapper(addressId, tokenId, isLoading) {
+    return async (dispatch, getState) => {
+        const aceId = buildAdressContractEventId(addressId, tokenId)
+        if (getState().events.aceById[aceId] === undefined) {
+            // create a new entry for this token and address
+            dispatch(createAceEntry(addressId, tokenId))
+        }
+        dispatch(aceEntryLoadingChange(addressId, tokenId, isLoading))
+    }
+}
+
 export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
     return async (dispatch, getState) => {
         // Make sure that there are AddressContractEvent entries
