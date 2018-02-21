@@ -22,6 +22,7 @@ export function addEventWrapper(event) {
 }
 
 export function buildEventId(event) {
+    // TODO - Use event.logIndex instead of event.transactionIndex
     return '' + event.transactionHash + '-' + event.transactionIndex
 }
 

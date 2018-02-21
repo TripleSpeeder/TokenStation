@@ -212,7 +212,7 @@ export function initializeTokenList(web3, registryABI, registryAddress, lastId=0
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=50
+        const limit=150
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -330,16 +330,15 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock) {
     return async (dispatch, getState) => {
         await verifyContractInstance(tokenID, dispatch, getState)
         const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
-        // for debugging just get the last 10000 blocks
-        const fromBlock = getState().web3Instance.block.number - 10000
         const transferEvents = contractInstance.Transfer(
             {
-                _from: null,
-                _to: null,
+                // These are the standard ERC20 Transfer event fields
+                _from: null,    // address sending token
+                _to: null,      // address receiving token
             },
             {
                 // TODO - Use provided parameters
-                fromBlock,
+                fromBlock: getState().web3Instance.block.number - 10000,
                 toBlock: 'latest'
             }
         )

@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Table, Icon, Button} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 const BalanceItemDetail = (props) => {
-    const {address, balance, loading, reloadBalance} = props
+    const {address, balance, loading, reloadBalance, url} = props
     return (
         <Table.Row>
             <Table.Cell>
-                <Icon name='angle right' /> {address}
+                <Icon name='angle right' /> <Link to={url}>{address}</Link>
             </Table.Cell>
             <Table.Cell>{balance.toFixed(3)}</Table.Cell>
             <Table.Cell>
@@ -26,6 +27,7 @@ BalanceItemDetail.propTypes = {
     address: PropTypes.string.isRequired,
     balance: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
+    url: PropTypes.string.isRequired,
 }
 
 BalanceItemDetail.defaultProps = {

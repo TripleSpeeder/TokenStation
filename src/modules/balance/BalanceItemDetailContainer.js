@@ -16,6 +16,7 @@ class BalanceItemDetailContainer extends Component {
                                balance={this.props.balance}
                                reloadBalance={this.reloadBalance}
                                loading={this.props.loading}
+                               url={this.props.url}
             />
         )
     }
@@ -46,6 +47,7 @@ const mapStateToProps = (state, ownProps) => {
         balance,
         address,
         loading: balanceEntry.balanceState===BALANCE_STATES.LOADING,
+        url: "/"+address+"/transfers/"+token.id
     }
 }
 
