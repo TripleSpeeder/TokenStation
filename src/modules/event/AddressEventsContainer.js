@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {loadTokenTransferEvents} from '../token/tokenActions'
 import {connect} from 'react-redux'
 import {List} from 'semantic-ui-react'
-import {buildAdressContractEventId} from '../event/reducers/addressContractEventsByIdReducer'
+import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
 
 class AddressEventsContainer extends Component {
     constructor(props, context) {

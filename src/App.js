@@ -11,7 +11,7 @@ import BalancesContainer from './modules/balance/BalancesContainer'
 import TokenListContainer from './modules/token/TokenListContainer'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import TokenEventsContainer from './modules/event/TokenEventsContainer'
-import AddressEventsContainer from './modules/address/AddressEventsContainer'
+import AddressEventsContainer from './modules/event/AddressEventsContainer'
 
 let {store, persistor} = configureStore()
 
