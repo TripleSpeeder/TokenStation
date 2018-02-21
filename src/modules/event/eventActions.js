@@ -30,7 +30,6 @@ export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
         // Make sure that there are AddressContractEvent entries
         // for all events and to/from addresses
         events.forEach(transferEvent => {
-            const transferEventId = buildEventId(transferEvent)
             const {_from, _to} = transferEvent.args
             const aceFromId = buildAdressContractEventId(_from, tokenId)
             const aceToId = buildAdressContractEventId(_to, tokenId)

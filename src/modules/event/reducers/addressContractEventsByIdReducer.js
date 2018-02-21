@@ -1,7 +1,3 @@
-import {
-    ADD_ADDRESS, ADDRESS_BALANCES_STATES, CHANGE_ADDRESS_BALANCES_STATE, CHANGE_ADDRESS_TYPE,
-    REMOVE_ADDRESS
-} from '../../address/addressActions'
 import {ADD_EVENTS, buildEventId, CREATE_ACE_ENTRY} from '../eventActions'
 
 /*
