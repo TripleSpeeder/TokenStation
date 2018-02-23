@@ -352,16 +352,6 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
                 toBlock
             }
         )
-        // TODO: Wrap this into promise and await it, otherwise loading:false action will be dispatched too early!
-        transferEventsFrom.get(function(error, events) {
-            if (error) {
-                console.error("Error getting events for token " + tokenID + ": " + error)
-            } else {
-                console.log("Got " + events.length + " events.")
-                dispatch(addEventsThunk(events, tokenID))
-            }
-        })
-
         const transferEventsTo = contractInstance.Transfer(
             {
                 // These are the standard ERC20 Transfer event fields
@@ -373,14 +363,35 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
                 toBlock
             }
         )
-        transferEventsTo.get(function(error, events) {
-            if (error) {
-                console.error("Error getting events for token " + tokenID + ": " + error)
-            } else {
-                console.log("Got " + events.length + " events.")
-                dispatch(addEventsThunk(events, tokenID))
-            }
-        })
+
+        // Wrap this into promise and await it, otherwise loading:false action will be dispatched too early!
+        let eventPromises = []
+        eventPromises.push(new Promise((resolve, reject) => {
+            transferEventsFrom.get(function(error, events) {
+                if (error) {
+                    console.error("Error getting events for token " + tokenID + ": " + error)
+                    reject("Error getting events for token " + tokenID + ": " + error)
+                } else {
+                    console.log("Got " + events.length + " events.")
+                    dispatch(addEventsThunk(events, tokenID))
+                    resolve()
+                }
+            })
+        }))
+        eventPromises.push(new Promise((resolve, reject) => {
+            transferEventsTo.get(function(error, events) {
+                if (error) {
+                    console.error("Error getting events for token " + tokenID + ": " + error)
+                    reject("Error getting events for token " + tokenID + ": " + error)
+                } else {
+                    console.log("Got " + events.length + " events.")
+                    dispatch(addEventsThunk(events, tokenID))
+                    resolve()
+                }
+            })
+        }))
+        await Promise.all(eventPromises)
+
         dispatch(aceEntryLoadingChange(address, tokenID, false))
         dispatch(aceEntryBlockRangeChange(address, tokenID, fromBlock, toBlock))
     }
