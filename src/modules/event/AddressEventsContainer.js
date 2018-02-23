@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {loadTokenTransferEvents} from '../token/tokenActions'
 import {connect} from 'react-redux'
-import {Button, List} from 'semantic-ui-react'
+import {Button, Header, List} from 'semantic-ui-react'
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
 import AddressEventsList from './AddressEventsList'
 
@@ -38,17 +38,15 @@ class AddressEventsContainer extends Component {
     render() {
         return (
             <div>
-                <div>
-                    Transfer events for {this.props.address} for token {this.props.tokenId}.
-                </div>
-                <div>
-                    Queried block {this.props.firstBlock} to {this.props.lastBlock}.
-                    <Button onClick={this.loadMoreEvents}>Load more!</Button>
-                </div>
+                <Header block as='h2'>
+                    Transfer history of {this.props.token.name} tokens for {this.props.address}
+                </Header>
+                <Header as='h3'>
+                    Queried block {this.props.firstBlock} to {this.props.lastBlock}. <Button loading={this.props.isLoading} disabled={this.props.isLoading} onClick={this.loadMoreEvents}>Load more!</Button>
+                </Header>
                 <AddressEventsList transferEventIds={this.props.transferEventIds}
                                    address={this.props.address}
                 />
-                {this.props.isLoading ? <div>Loading!!!</div> : <div>not loading...</div>}
             </div>
         )
     }
@@ -66,6 +64,7 @@ AddressEventsContainer.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
     const address = ownProps.match.params.address.toLowerCase()
     const tokenId = parseInt(ownProps.match.params.tokenId, 10)
+    const token = state.tokens.byId[tokenId]
     // get all eventIds for address-tokenId combination
     const aceId = buildAdressContractEventId(address, tokenId)
     const aceEntry = state.events.aceById[aceId]
@@ -81,7 +80,8 @@ const mapStateToProps = (state, ownProps) => {
         isLoading,
         firstBlock,
         lastBlock,
-        aceEntry
+        aceEntry,
+        token
     }
 }
 const mapDispatchToProps = (dispatch) => ({
