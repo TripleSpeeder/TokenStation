@@ -4,6 +4,7 @@ import {loadTokenTransferEvents} from '../token/tokenActions'
 import {connect} from 'react-redux'
 import {Button, List} from 'semantic-ui-react'
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
+import AddressEventsList from './AddressEventsList'
 
 class AddressEventsContainer extends Component {
     constructor(props, context) {
@@ -38,17 +39,15 @@ class AddressEventsContainer extends Component {
         return (
             <div>
                 <div>
-                    List {this.props.events.length} transfer events for {this.props.address} for token {this.props.tokenId}.
+                    Transfer events for {this.props.address} for token {this.props.tokenId}.
                 </div>
                 <div>
                     Queried block {this.props.firstBlock} to {this.props.lastBlock}.
                     <Button onClick={this.loadMoreEvents}>Load more!</Button>
                 </div>
-                <List>
-                    {this.props.events.map(event =>
-                        <li key={event.transferEventId}>{event.transferEvent.args._from} -> {event.transferEvent.args._to}: {event.transferEvent.args._value.toString()}</li>
-                    )}
-                </List>
+                <AddressEventsList transferEventIds={this.props.transferEventIds}
+                                   address={this.props.address}
+                />
                 {this.props.isLoading ? <div>Loading!!!</div> : <div>not loading...</div>}
             </div>
         )
@@ -71,16 +70,14 @@ const mapStateToProps = (state, ownProps) => {
     const aceId = buildAdressContractEventId(address, tokenId)
     const aceEntry = state.events.aceById[aceId]
     const isLoading = aceEntry ? aceEntry.isLoading : false
-    const eventIds = aceEntry ? aceEntry.eventIds : undefined
+    const eventIds = aceEntry ? aceEntry.eventIds : []
     const firstBlock = aceEntry ? aceEntry.firstBlock : 0
     const lastBlock = aceEntry ? aceEntry.lastBlock : 0
-    // get events from eventIds
-    const events = eventIds ? eventIds.map(id => (state.events.byId[id])) : []
     return {
         web3: state.web3Instance.isLoading ? null : state.web3Instance.web3,
         tokenId,
         address,
-        events,
+        transferEventIds: eventIds,
         isLoading,
         firstBlock,
         lastBlock,
