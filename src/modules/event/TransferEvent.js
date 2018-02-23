@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Table} from 'semantic-ui-react'
+import {Icon, Table} from 'semantic-ui-react'
 import TxHashDisplay from '../common/TxHashDisplay'
 
 const TransferEvent = (props) => {
     const {txHash, blockNumber, from, to, type, quantity, positive, negative} = props
-    const iconClass = positive ? 'icon green plus circle' : 'icon red minus circle'
+    const icon = positive ? <Icon name='plus' color='green' circular/> : <Icon name='minus' color='red' circular/>
     return (
         <Table.Row>
             <Table.Cell>
@@ -14,7 +14,7 @@ const TransferEvent = (props) => {
             <Table.Cell>{blockNumber}</Table.Cell>
             <Table.Cell><TxHashDisplay txHash={from}/></Table.Cell>
             <Table.Cell><TxHashDisplay txHash={to}/></Table.Cell>
-            <Table.Cell><i class={iconClass}></i></Table.Cell>
+            <Table.Cell>{icon}</Table.Cell>
             <Table.Cell positive={positive} negative={negative} textAlign={'right'}>{quantity.toFixed(6)}</Table.Cell>
         </Table.Row>
     )
