@@ -54,7 +54,8 @@ class AddressEventsContainer extends Component {
 
 AddressEventsContainer.propTypes = {
     //myProp: PropTypes.object.isRequired
-    address: PropTypes.string.isRequired
+    address: PropTypes.string.isRequired,
+    tokenId: PropTypes.number.isRequired,
 }
 
 AddressEventsContainer.defaultProps = {
@@ -86,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     loadTokenTransferEvents: (firstBlock, lastBlock, tokenId, address) => {
-        dispatch(loadTokenTransferEvents(tokenId, firstBlock, lastBlock, address))
+        dispatch(loadTokenTransferEvents(tokenId, firstBlock, lastBlock, [address]))
     }
 })
 

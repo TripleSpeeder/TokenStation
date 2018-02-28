@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import {buildEtherscanLink} from '../../utils/etherscanUtils'
 import {connect} from 'react-redux'
 import {loadTokenTransferEvents} from '../token/tokenActions'
-import {Header, Segment} from 'semantic-ui-react'
+import {Header} from 'semantic-ui-react'
+import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
+import AddressEventsList from './AddressEventsList'
 
 class TokenEventsContainer extends Component {
     constructor(props, context) {
@@ -18,15 +20,42 @@ class TokenEventsContainer extends Component {
         this.checkEventsLoaded(newProps)
     }
 
+    loadMoreEvents = () => {
+        // query the next 10000 blocks for token transfers to/from my address
+        this.props.loadTokenTransferEvents(
+            this.props.firstBlock - 10000,
+            this.props.firstBlock,
+            this.props.tokenId,
+            this.props.address
+        )
+    }
+
+
     checkEventsLoaded(props) {
-        return true
+        /*
+        For each address check if ace-entry is existing, Collect all missing addresses.
+        then trigger loadTokenTransferEvents, providing missing addresses.
+
+        Bonus points for also checking the already queried block ranges of all ace entries and
+        fetch missing blockranges if necessary, so in the end all watched addresses have
+        have the same blockrange checked.
+        */
+        if (props.web3 && props.missingAceEntryAddresses.length) {
+            props.loadTokenTransferEvents(0, 0, props.token.id, props.missingAceEntryAddresses)
+        }
+
     }
 
     render() {
         return (
-            <Header block as='h2'>
-                TODO: Show all transfer events of {this.props.token.name} involving currently watched addresses.
-            </Header>
+            <div>
+                <Header block as='h2'>
+                    TODO: Show all transfer events of {this.props.token.name} involving currently watched addresses.
+                </Header>
+                <AddressEventsList transferEventIds={this.props.transferEventIds}
+                    address={'TODO'}
+                />
+            </div>
         )
     }
 }
@@ -43,14 +72,23 @@ const mapStateToProps = (state, ownProps) => {
     const tokenId = parseInt(ownProps.match.params.tokenId, 10)
     const token = state.tokens.byId[tokenId]
     const etherscanUrl = buildEtherscanLink(token.address)
+    // check if any addressContractEvents are not yet loaded
+    const missingAceEntryAddresses = state.addresses.allIds.filter(entry => {
+        const aceId = buildAdressContractEventId(entry, tokenId)
+        return (state.events.aceById[aceId] === undefined)
+    })
+    const transferEventIds = token.eventIds
     return {
+        web3: state.web3Instance.isLoading ? null : state.web3Instance.web3,
         token: token,
-        etherscanUrl: etherscanUrl
+        etherscanUrl: etherscanUrl,
+        missingAceEntryAddresses,
+        transferEventIds
     }
 }
 const mapDispatchToProps = dispatch => ({
-    loadTokenTransferEvents: (tokenId) => {
-        dispatch(loadTokenTransferEvents(tokenId, 0, 'latest'))
+    loadTokenTransferEvents: (firstBlock, lastBlock, tokenId, addressIds) => {
+        dispatch(loadTokenTransferEvents(tokenId, firstBlock, lastBlock, addressIds))
     }
 })
 

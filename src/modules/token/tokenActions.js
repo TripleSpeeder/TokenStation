@@ -2,7 +2,7 @@ import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
 import {BALANCE_STATES, balanceStateChanged, setBalanceByAddressAndToken} from '../balance/balanceActions'
 import {
-    aceEntryBlockRangeChange, aceEntryLoadingChange, aceEntryLoadingChangeWrapper,
+    aceEntriesBlockRangeChange, aceEntriesLoadingChange, aceEntriesLoadingChangeWrapper,
     addEventsThunk
 } from '../event/eventActions'
 
@@ -329,9 +329,9 @@ export function loadTokenBalance(tokenID, addressId) {
     }
 }
 
-export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
+export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) {
     return async (dispatch, getState) => {
-        dispatch(aceEntryLoadingChangeWrapper(address, tokenID, true))
+        dispatch(aceEntriesLoadingChangeWrapper(addresses, tokenID, true))
         await verifyContractInstance(tokenID, dispatch, getState)
         const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
 
@@ -344,8 +344,8 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
         const transferEventsFrom = contractInstance.Transfer(
             {
                 // These are the standard ERC20 Transfer event fields
-                _from: address,    // address sending token
-                _to: null,      // address receiving token
+                _from: addresses,    // addresses sending token
+                _to: null,      // addresses receiving token
             },
             {
                 fromBlock,
@@ -355,8 +355,8 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
         const transferEventsTo = contractInstance.Transfer(
             {
                 // These are the standard ERC20 Transfer event fields
-                _from: null,    // address sending token
-                _to: address,      // address receiving token
+                _from: null,    // addresses sending token
+                _to: addresses,      // addresses receiving token
             },
             {
                 fromBlock,
@@ -392,8 +392,8 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, address) {
         }))
         await Promise.all(eventPromises)
 
-        dispatch(aceEntryLoadingChange(address, tokenID, false))
-        dispatch(aceEntryBlockRangeChange(address, tokenID, fromBlock, toBlock))
+        dispatch(aceEntriesLoadingChange(addresses, tokenID, false))
+        dispatch(aceEntriesBlockRangeChange(addresses, tokenID, fromBlock, toBlock))
     }
 }
 

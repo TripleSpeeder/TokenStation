@@ -23,39 +23,41 @@ export function createAceEntry(addressId, tokenId) {
     }
 }
 
-export const ACE_ENTRY_LOADING_CHANGE = 'ACE_ENTRY_LOADING_CHANGE'
-export function aceEntryLoadingChange(addressId, tokenId, isLoading) {
-    const aceId = buildAdressContractEventId(addressId, tokenId)
+export const ACE_ENTRIES_LOADING_CHANGE = 'ACE_ENTRIES_LOADING_CHANGE'
+export function aceEntriesLoadingChange(addressIds, tokenId, isLoading) {
+    const aceIds = addressIds.map(addressId => (buildAdressContractEventId(addressId, tokenId)))
     return {
-        type: ACE_ENTRY_LOADING_CHANGE,
+        type: ACE_ENTRIES_LOADING_CHANGE,
         payload: {
-            aceId,
+            aceIds,
             isLoading,
         }
     }
 }
 
-export const ACE_ENTRY_BLOCK_RANGE_CHANGE = 'ACE_ENTRY_BLOCK_RANGE_CHANGE'
-export function aceEntryBlockRangeChange(addressId, tokenId, fromBlock, toBlock) {
-    const aceId = buildAdressContractEventId(addressId, tokenId)
+export const ACE_ENTRIES_BLOCK_RANGE_CHANGE = 'ACE_ENTRIES_BLOCK_RANGE_CHANGE'
+export function aceEntriesBlockRangeChange(addressIds, tokenId, fromBlock, toBlock) {
+    const aceIds = addressIds.map(addressId => (buildAdressContractEventId(addressId, tokenId)))
     return {
-        type: ACE_ENTRY_BLOCK_RANGE_CHANGE,
+        type: ACE_ENTRIES_BLOCK_RANGE_CHANGE,
         payload: {
-            aceId,
+            aceIds,
             fromBlock,
             toBlock,
         }
     }
 }
 
-export function aceEntryLoadingChangeWrapper(addressId, tokenId, isLoading) {
+export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading) {
     return async (dispatch, getState) => {
-        const aceId = buildAdressContractEventId(addressId, tokenId)
-        if (getState().events.aceById[aceId] === undefined) {
-            // create a new entry for this token and address
-            dispatch(createAceEntry(addressId, tokenId))
-        }
-        dispatch(aceEntryLoadingChange(addressId, tokenId, isLoading))
+        addressIds.forEach(addressId => {
+            const aceId = buildAdressContractEventId(addressId, tokenId)
+            if (getState().events.aceById[aceId] === undefined) {
+                // create a new entry for this token and address
+                dispatch(createAceEntry(addressId, tokenId))
+            }
+        })
+        dispatch(aceEntriesLoadingChange(addressIds, tokenId, isLoading))
     }
 }
 

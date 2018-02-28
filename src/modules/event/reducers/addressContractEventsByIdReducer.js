@@ -1,5 +1,5 @@
 import {
-    ACE_ENTRY_BLOCK_RANGE_CHANGE, ACE_ENTRY_LOADING_CHANGE, ADD_EVENTS, buildEventId,
+    ACE_ENTRIES_BLOCK_RANGE_CHANGE, ACE_ENTRIES_LOADING_CHANGE, ADD_EVENTS, buildEventId,
     CREATE_ACE_ENTRY
 } from '../eventActions'
 
@@ -68,49 +68,46 @@ function addTransferEvents(state, action) {
     return newState
 }
 
-function aceEntryLoadingChange(state, action) {
+function aceEntriesLoadingChange(state, action) {
     const {payload} = action
-    const {aceId, isLoading} = payload
-    const aceEntry = state[aceId]
-    if (aceEntry) {
-        return {
-            ...state,
-            [aceId] : {
+    const {aceIds, isLoading} = payload
+    const newState = state
+
+    aceIds.forEach(aceId => {
+        const aceEntry = newState[aceId]
+        if (aceEntry) {
+            newState[aceId] = {
                 ...aceEntry,
-                isLoading,
+                isLoading
             }
         }
-    } else {
-        // entry not found, ignore...
-        return state
-    }
+    })
+    return newState
 }
 
-function aceEntryBlockRangeChange(state, action) {
+function aceEntriesBlockRangeChange(state, action) {
     const {payload} = action
-    const {aceId, fromBlock, toBlock} = payload
-    const aceEntry = state[aceId]
-    if (aceEntry) {
-        // update checked block range
-        if (aceEntry.firstBlock === 0) {
-            aceEntry.firstBlock = fromBlock
-        } else {
-            aceEntry.firstBlock = Math.min(fromBlock, aceEntry.firstBlock)
-        }
-        if (aceEntry.lastBlock === 0) {
-            aceEntry.lastBlock = toBlock
-        } else {
-            aceEntry.lastBlock = Math.max(toBlock, aceEntry.lastBlock)
-        }
+    const {aceIds, fromBlock, toBlock} = payload
+    const newState = state
 
-        return {
-            ...state,
-            [aceId] : aceEntry
+    aceIds.forEach(aceId => {
+        const aceEntry = newState[aceId]
+        if (aceEntry) {
+            // update checked block range
+            if (aceEntry.firstBlock === 0) {
+                aceEntry.firstBlock = fromBlock
+            } else {
+                aceEntry.firstBlock = Math.min(fromBlock, aceEntry.firstBlock)
+            }
+            if (aceEntry.lastBlock === 0) {
+                aceEntry.lastBlock = toBlock
+            } else {
+                aceEntry.lastBlock = Math.max(toBlock, aceEntry.lastBlock)
+            }
+            newState[aceId] = aceEntry
         }
-    } else {
-        // entry not found, ignore...
-        return state
-    }
+    })
+    return newState
 }
 
 export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL, action) => {
@@ -119,10 +116,10 @@ export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_B
             return createAceEntry(state, action)
         case ADD_EVENTS:
             return addTransferEvents(state, action)
-        case ACE_ENTRY_LOADING_CHANGE:
-            return aceEntryLoadingChange(state, action)
-        case ACE_ENTRY_BLOCK_RANGE_CHANGE:
-            return aceEntryBlockRangeChange(state, action)
+        case ACE_ENTRIES_LOADING_CHANGE:
+            return aceEntriesLoadingChange(state, action)
+        case ACE_ENTRIES_BLOCK_RANGE_CHANGE:
+            return aceEntriesBlockRangeChange(state, action)
         default:
     }
     return state;
