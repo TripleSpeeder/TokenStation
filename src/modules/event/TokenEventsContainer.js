@@ -50,10 +50,10 @@ class TokenEventsContainer extends Component {
         return (
             <div>
                 <Header block as='h2'>
-                    TODO: Show all transfer events of {this.props.token.name} involving currently watched addresses.
+                    {this.props.token.name} token transfers
                 </Header>
                 <AddressEventsList transferEventIds={this.props.transferEventIds}
-                    address={'TODO'}
+                    address={''}
                 />
             </div>
         )

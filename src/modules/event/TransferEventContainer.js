@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import TransferEvent from './TransferEvent'
 
-class TransferEventContainer extends Component {
+class TransferEventContainer extends PureComponent {
     constructor(props, context) {
         super(props, context)
     }

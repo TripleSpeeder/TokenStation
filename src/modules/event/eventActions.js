@@ -65,20 +65,23 @@ export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
     return async (dispatch, getState) => {
         // Make sure that there are AddressContractEvent entries
         // for all events and to/from addresses
+        const watchedAddressIds = getState().addresses.allIds
         events.forEach(transferEvent => {
             const {_from, _to} = transferEvent.args
-            const aceFromId = buildAdressContractEventId(_from, tokenId)
-            const aceToId = buildAdressContractEventId(_to, tokenId)
-
-            // TODO: Only create new entries for addresses that are being tracked
             // TODO: Collect all new entries and just dispatch one batch event
-            if (getState().events.aceById[aceFromId] === undefined) {
-                // create a new entry for this token and address
-                dispatch(createAceEntry(_from, tokenId))
+            if (watchedAddressIds.includes(_from.toLowerCase())) {
+                const aceFromId = buildAdressContractEventId(_from, tokenId)
+                if (getState().events.aceById[aceFromId] === undefined) {
+                    // create a new entry for this token and address
+                    dispatch(createAceEntry(_from, tokenId))
+                }
             }
-            if (getState().events.aceById[aceToId] === undefined) {
-                // create a new entry for this token and address
-                dispatch(createAceEntry(_to, tokenId))
+            if (watchedAddressIds.includes(_to.toLowerCase())) {
+                const aceToId = buildAdressContractEventId(_to, tokenId)
+                if (getState().events.aceById[aceToId] === undefined) {
+                    // create a new entry for this token and address
+                    dispatch(createAceEntry(_to, tokenId))
+                }
             }
         })
         // now it's safe to do the actual dispatch of addEvents

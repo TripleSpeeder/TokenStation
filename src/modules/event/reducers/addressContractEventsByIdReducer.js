@@ -56,13 +56,15 @@ function addTransferEvents(state, action) {
         const aceToId = buildAdressContractEventId(_to, tokenId)
         const aceIds = [aceToId, aceFromId]
         aceIds.forEach(aceId => {
-            // prevent duplicate eventID entries
-            if (newState[aceId].eventIds.includes(transferEventId ))
-            {
-                console.warn("Ignoring duplicate event " + transferEventId )
-                return
+            // only add event if an according aceEntry is existing!
+            if (newState[aceId]) {
+                // prevent duplicate eventID entries
+                    if (newState[aceId].eventIds.includes(transferEventId)) {
+                        console.warn("Ignoring duplicate event " + transferEventId)
+                        return
+                    }
+                newState[aceId].eventIds = newState[aceId].eventIds.concat(transferEventId)
             }
-            newState[aceId].eventIds = newState[aceId].eventIds.concat(transferEventId)
         })
     })
     return newState
