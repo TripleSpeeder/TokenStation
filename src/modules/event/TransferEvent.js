@@ -3,9 +3,18 @@ import PropTypes from 'prop-types'
 import {Icon, Table} from 'semantic-ui-react'
 import TxHashDisplay from '../common/TxHashDisplay'
 
+export const TRANSFER_EVENT_TYPES = {
+    NEUTRAL: 'neutral',
+    POSITIVE: 'postivie',
+    NEGATIVE: 'negative'
+}
+
 const TransferEvent = (props) => {
     const {txHash, blockNumber, from, to, type, quantity, positive, negative} = props
-    const icon = positive ? <Icon name='plus' color='green' circular/> : <Icon name='minus' color='red' circular/>
+    let icon = null
+    if (type !== TRANSFER_EVENT_TYPES.NEUTRAL) {
+        icon = positive ? <Icon name='plus' color='green' circular/> : <Icon name='minus' color='red' circular/>
+    }
     return (
         <Table.Row>
             <Table.Cell>
@@ -25,7 +34,11 @@ TransferEvent.propTypes = {
     blockNumber: PropTypes.number.isRequired,
     from: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.oneOf([
+        TRANSFER_EVENT_TYPES.NEUTRAL,
+        TRANSFER_EVENT_TYPES.POSITIVE,
+        TRANSFER_EVENT_TYPES.NEGATIVE
+    ]).isRequired,
     quantity: PropTypes.object.isRequired, // BigNum
     positive: PropTypes.bool.isRequired,
     negative: PropTypes.bool.isRequired,

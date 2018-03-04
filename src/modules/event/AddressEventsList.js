@@ -13,7 +13,7 @@ const AddressEventsList = (props) => {
                     <Table.HeaderCell>From</Table.HeaderCell>
                     <Table.HeaderCell>To</Table.HeaderCell>
                     <Table.HeaderCell></Table.HeaderCell>
-                    <Table.HeaderCell>Quantity</Table.HeaderCell>
+                    <Table.HeaderCell textAlign={'right'}>Quantity</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
 
