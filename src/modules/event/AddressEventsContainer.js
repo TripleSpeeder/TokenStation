@@ -2,15 +2,11 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {loadTokenTransferEvents} from '../token/tokenActions'
 import {connect} from 'react-redux'
-import {Button, Header, List} from 'semantic-ui-react'
+import {Button, Header} from 'semantic-ui-react'
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
 import AddressEventsList from './AddressEventsList'
 
 class AddressEventsContainer extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     componentDidMount() {
         this.checkEventsLoaded(this.props)
     }

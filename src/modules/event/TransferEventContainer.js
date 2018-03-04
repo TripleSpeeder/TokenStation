@@ -4,10 +4,6 @@ import {connect} from 'react-redux'
 import TransferEvent, {TRANSFER_EVENT_TYPES} from './TransferEvent'
 
 class TransferEventContainer extends PureComponent {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     render() {
         const {txHash, blockNumber, from, to, type, quantity, positive, negative} = this.props
         return (

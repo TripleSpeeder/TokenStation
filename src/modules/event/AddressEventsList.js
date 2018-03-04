@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Table, Menu, Icon} from 'semantic-ui-react'
+import {Table} from 'semantic-ui-react'
 import TransferEventContainer from './TransferEventContainer'
 
 const AddressEventsList = (props) => {

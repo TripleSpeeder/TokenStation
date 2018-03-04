@@ -8,10 +8,6 @@ import {buildAdressContractEventId} from './reducers/addressContractEventsByIdRe
 import AddressEventsList from './AddressEventsList'
 
 class TokenEventsContainer extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     componentDidMount() {
         this.checkEventsLoaded(this.props)
     }
@@ -38,7 +34,7 @@ class TokenEventsContainer extends Component {
 
         Bonus points for also checking the already queried block ranges of all ace entries and
         fetch missing blockranges if necessary, so in the end all watched addresses have
-        have the same blockrange checked.
+        the same blockrange checked.
         */
         if (props.web3 && props.missingAceEntryAddresses.length) {
             props.loadTokenTransferEvents(0, 0, props.token.id, props.missingAceEntryAddresses)
@@ -71,13 +67,15 @@ TokenEventsContainer.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
     const tokenId = parseInt(ownProps.match.params.tokenId, 10)
     const token = state.tokens.byId[tokenId]
+    const transferEventIds = token.eventIds
     const etherscanUrl = buildEtherscanLink(token.address)
+
     // check if any addressContractEvents are not yet loaded
     const missingAceEntryAddresses = state.addresses.allIds.filter(entry => {
         const aceId = buildAdressContractEventId(entry, tokenId)
         return (state.events.aceById[aceId] === undefined)
     })
-    const transferEventIds = token.eventIds
+
     return {
         web3: state.web3Instance.isLoading ? null : state.web3Instance.web3,
         token: token,
