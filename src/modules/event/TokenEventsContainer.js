@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {buildEtherscanLink} from '../../utils/etherscanUtils'
 import {connect} from 'react-redux'
 import {loadTokenTransferEvents} from '../token/tokenActions'
-import {Header} from 'semantic-ui-react'
+import {Button, Header} from 'semantic-ui-react'
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
 import AddressEventsList from './AddressEventsList'
 
@@ -27,14 +27,6 @@ class TokenEventsContainer extends Component {
     }
 
     checkEventsLoaded(props) {
-        /*
-        For each address check if ace-entry is existing, Collect all missing addresses.
-        then trigger loadTokenTransferEvents, providing missing addresses.
-
-        Bonus points for also checking the already queried block ranges of all ace entries and
-        fetch missing blockranges if necessary, so in the end all watched addresses have
-        the same blockrange checked.
-        */
         if (props.web3 && props.missingAceEntryAddresses.length) {
             const firstBlock = props.minStart === Number.MAX_SAFE_INTEGER ? 0
                 : props.minStart
@@ -44,11 +36,27 @@ class TokenEventsContainer extends Component {
 
     }
 
+    loadMoreEvents = () => {
+        // query the next 10000 blocks for token transfers to/from my addresses
+        const rangeStart = this.props.minStart - 10000
+        const rangeEnd = this.props.minStart
+        console.log("Loading events " + rangeStart + "-" + rangeEnd)
+        this.props.loadTokenTransferEvents(
+            rangeStart,
+            rangeEnd,
+            this.props.token.id,
+            this.props.addresses
+        )
+    }
+
     render() {
         return (
             <div>
                 <Header block as='h2'>
                     {this.props.token.name} token transfers
+                </Header>
+                <Header as='h3'>
+                    Queried block {this.props.minStart} to {this.props.maxEnd}. <Button loading={this.props.eventsAreLoading} disabled={this.props.eventsAreLoading} onClick={this.loadMoreEvents}>Load more!</Button>
                 </Header>
                 <AddressEventsList transferEventIds={this.props.transferEventIds}
                     address={''}
@@ -93,6 +101,7 @@ const mapStateToProps = (state, ownProps) => {
      */
 
     // check if any addressContractEvents are missing
+    let eventsAreLoading = false
     const missingAceEntryAddresses = state.addresses.allIds.filter(entry => {
         const aceId = buildAdressContractEventId(entry, tokenId)
         const aceEntry = state.events.aceById[aceId]
@@ -102,6 +111,7 @@ const mapStateToProps = (state, ownProps) => {
         }
         if (aceEntry.isLoading) {
             // ignore for now, will recheck once it's loaded
+            eventsAreLoading = true // at least one ace entry is loading right now
             return false
         }
         if (aceEntry.firstBlock === 0) {
@@ -125,7 +135,9 @@ const mapStateToProps = (state, ownProps) => {
         missingAceEntryAddresses,
         transferEventIds,
         minStart,
-        maxEnd
+        maxEnd,
+        addresses: state.addresses.allIds,
+        eventsAreLoading
     }
 }
 const mapDispatchToProps = dispatch => ({
