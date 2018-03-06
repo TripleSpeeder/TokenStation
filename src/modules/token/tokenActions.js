@@ -373,7 +373,9 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
                     reject("Error getting events for token " + tokenID + ": " + error)
                 } else {
                     console.log("Got " + events.length + " events.")
-                    dispatch(addEventsThunk(events, tokenID))
+                    if (events.length) {
+                        dispatch(addEventsThunk(events, tokenID))
+                    }
                     resolve()
                 }
             })
@@ -385,15 +387,16 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
                     reject("Error getting events for token " + tokenID + ": " + error)
                 } else {
                     console.log("Got " + events.length + " events.")
-                    dispatch(addEventsThunk(events, tokenID))
+                    if (events.length) {
+                        dispatch(addEventsThunk(events, tokenID))
+                    }
                     resolve()
                 }
             })
         }))
         await Promise.all(eventPromises)
-
-        dispatch(aceEntriesLoadingChange(addresses, tokenID, false))
         dispatch(aceEntriesBlockRangeChange(addresses, tokenID, fromBlock, toBlock))
+        dispatch(aceEntriesLoadingChange(addresses, tokenID, false))
     }
 }
 
