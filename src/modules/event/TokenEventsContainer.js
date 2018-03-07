@@ -87,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
     state.addresses.allIds.forEach(addressId => {
         const aceId = buildAdressContractEventId(addressId, tokenId)
         const aceEntry = state.events.aceById[aceId]
-        if (aceEntry && (!aceEntry.isLoading) && (aceEntry.firstBlock > 0)) {
+        if (aceEntry && (aceEntry.firstBlock > 0)) {
             // okay, entry existing and initialized. Now look at checked block range
             minStart = Math.min(minStart, aceEntry.firstBlock)
             maxEnd = Math.max(maxEnd, aceEntry.lastBlock)
