@@ -24,7 +24,7 @@ class BalancesListContainer extends Component {
 
     checkResumeLoading(props) {
         // in case address balance was in loading state while hydrating, continue loading
-        if (!this.state.resumedAfterRehydrate && props.web3) {
+        if (!this.state.resumedAfterRehydrate) {
             this.setState({
                 resumedAfterRehydrate: true
             })
@@ -82,7 +82,6 @@ const mapStateToProps = state => {
     const balancesByToken = groupBy(matchedBalances, 'tokenId')
 
     return {
-        web3: state.web3Instance.web3,
         balancesByToken,
         hydratedWhileLoadingBalances,
     }

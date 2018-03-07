@@ -4,6 +4,7 @@ import {Route, Router, Switch} from 'react-router'
 import configureStore from './store'
 import { history } from './store'
 import Web3Container from './modules/web3/web3Container'
+import Web3Gate from './modules/web3/web3Gate'
 import {Container, Menu} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import TokenLoaderContainer from './modules/token/TokenLoaderContainer'
@@ -26,37 +27,39 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <PersistGate persistor={persistor}>
-                    <Router history={history}>
-                        <div>
+                    <Web3Gate>
+                        <Router history={history}>
+                            <div>
 
-                            <Menu fixed='top' inverted>
-                                <Container>
-                                    <Menu.Item header>
-                                        <Link to='/'>Tokenstation</Link>
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        <Link to='/'>Home</Link>
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        <Link to='/alltokens'>Full token list</Link>
-                                    </Menu.Item>
+                                <Menu fixed='top' inverted>
+                                    <Container>
+                                        <Menu.Item header>
+                                            <Link to='/'>Tokenstation</Link>
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <Link to='/'>Home</Link>
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <Link to='/alltokens'>Full token list</Link>
+                                        </Menu.Item>
+                                    </Container>
+                                </Menu>
+
+                                <Container style={{ marginTop: '7em' }}>
+                                    <TokenLoaderContainer/>
+                                    <Switch>
+                                        <Route exact path='/' component={BalancesContainer}/>
+                                        <Route path='/alltokens/' component={TokenListContainer}/>
+                                        <Route path='/token/:tokenId/' component={TokenEventsContainer}/>
+                                        <Route path='/:address/transfers/:tokenId' component={AddressEventsContainer}/>
+                                        <Route path='/:address/' component={BalancesContainer}/>
+                                        <Route component={NoMatch} />
+                                    </Switch>
+                                    <Web3Container />
                                 </Container>
-                            </Menu>
-
-                            <Container style={{ marginTop: '7em' }}>
-                                <TokenLoaderContainer/>
-                                <Switch>
-                                    <Route exact path='/' component={BalancesContainer}/>
-                                    <Route path='/alltokens/' component={TokenListContainer}/>
-                                    <Route path='/token/:tokenId/' component={TokenEventsContainer}/>
-                                    <Route path='/:address/transfers/:tokenId' component={AddressEventsContainer}/>
-                                    <Route path='/:address/' component={BalancesContainer}/>
-                                    <Route component={NoMatch} />
-                                </Switch>
-                                <Web3Container />
-                            </Container>
-                        </div>
-                    </Router>
+                            </div>
+                        </Router>
+                    </Web3Gate>
                 </PersistGate>
             </Provider>
         )

@@ -20,19 +20,17 @@ class TokenLoaderContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if ((newProps.listState === TOKEN_LIST_STATES.VIRGIN) && (newProps.web3)) {
-            newProps.initializeTokenList(newProps.web3, this.registryABI, this.registryAddress)
+        if (newProps.listState === TOKEN_LIST_STATES.VIRGIN) {
+            newProps.initializeTokenList(this.registryABI, this.registryAddress)
         }
 
         // in case the list was in loading state while hydrating, continue initialisation
         if ((newProps.listState === TOKEN_LIST_STATES.LOADING) &&
-            (newProps.web3) &&
             (!this.state.loadingStarted)) {
             this.setState({
                 loadingStarted: true
             })
             newProps.initializeTokenList(
-                newProps.web3,
                 this.registryABI,
                 this.registryAddress,
                 newProps.lastTokenId,
@@ -75,7 +73,7 @@ class TokenLoaderContainer extends Component {
     }
 
     reloadTokens(event, data) {
-        this.props.initializeTokenList(this.props.web3, this.registryABI, this.registryAddress)
+        this.props.initializeTokenList(this.registryABI, this.registryAddress)
     }
 }
 
@@ -108,8 +106,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    initializeTokenList: (web3, registryABI, registryAddress, lastTokenId, total) => {
-        dispatch(initializeTokenList(web3, registryABI, registryAddress, lastTokenId, total))
+    initializeTokenList: (registryABI, registryAddress, lastTokenId, total) => {
+        dispatch(initializeTokenList(registryABI, registryAddress, lastTokenId, total))
     }
 })
 

@@ -29,8 +29,7 @@ class Address extends PureComponent {
 
     checkResumeLoading(props) {
         // in case address balance was in loading state while hydrating, continue loading
-        if ((props.web3) &&
-            (props.balancesState === ADDRESS_BALANCES_STATES.HYDRATED_WHILE_LOADING) &&
+        if ((props.balancesState === ADDRESS_BALANCES_STATES.HYDRATED_WHILE_LOADING) &&
             (!this.state.resumedAfterRehydrate)) {
             this.setState({
                 resumedAfterRehydrate: true
@@ -99,7 +98,6 @@ const mapStateToProps = (state, ownProps) => {
     const progressCurrent = matchedBalanceEntries.length
 
     return {
-        web3: state.web3Instance.web3,
         address: addressEntry.address,
         balancesState: addressEntry.balancesState,
         iconName: addressEntry.type === ADDRESS_TYPE_OWNED ? 'unlock' : 'lock',

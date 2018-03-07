@@ -16,7 +16,7 @@ class AddressEventsContainer extends Component {
     }
 
     checkEventsLoaded(props) {
-        if (props.web3 && !props.aceEntry) {
+        if (!props.aceEntry) {
             props.loadTokenTransferEvents(0,0,props.tokenId, props.address)
         }
     }
@@ -70,7 +70,6 @@ const mapStateToProps = (state, ownProps) => {
     const firstBlock = aceEntry ? aceEntry.firstBlock : 0
     const lastBlock = aceEntry ? aceEntry.lastBlock : 0
     return {
-        web3: state.web3Instance.isLoading ? null : state.web3Instance.web3,
         tokenId,
         address,
         transferEventIds: eventIds,

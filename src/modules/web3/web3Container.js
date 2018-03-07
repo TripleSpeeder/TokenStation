@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
-import {initialize, setCurrentBlock, stopBlockFilter} from './web3Actions'
 import Web3Info from "./web3Info"
 import {Segment} from 'semantic-ui-react'
 
@@ -11,29 +10,16 @@ class Web3Container extends Component {
         this.filter = null
     }
 
-    componentDidMount() {
-        this.props.initialize()
-    }
-
-    componentWillUnmount() {
-        // Stop listening to new block events
-        this.props.stopBlockFilter()
-    }
-
     render() {
-        const apiVersion = this.props.web3 ? this.props.web3.version.api : ''
-        if (this.props.isLoading) {
-            return <Segment>Web3 initializing...</Segment>
-        } else {
-            return <Segment>
-                <Web3Info apiVersion={apiVersion}
-                             name={this.props.name}
-                             block={this.props.block}
-                             id={this.props.id}
-                             nodeVersion={this.props.nodeVersion}
-                />
-            </Segment>
-        }
+        const apiVersion = this.props.web3.version.api
+        return <Segment>
+            <Web3Info apiVersion={apiVersion}
+                         name={this.props.name}
+                         block={this.props.block}
+                         id={this.props.id}
+                         nodeVersion={this.props.nodeVersion}
+            />
+        </Segment>
     }
 }
 
@@ -55,16 +41,4 @@ const mapStateToProps = (state, ownProps) => ({
     nodeVersion: state.web3Instance.nodeVersion
 })
 
-const mapDispatchToProps = dispatch => ({
-    initialize: () => {
-        dispatch(initialize())
-    },
-    setCurrentBlock: (block) => {
-        dispatch(setCurrentBlock(block))
-    },
-    stopBlockFilter: () => {
-        dispatch(stopBlockFilter())
-    }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Web3Container)
+export default connect(mapStateToProps)(Web3Container)

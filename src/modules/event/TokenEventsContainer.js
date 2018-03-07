@@ -27,7 +27,7 @@ class TokenEventsContainer extends Component {
     }
 
     checkEventsLoaded(props) {
-        if (props.web3 && props.missingAceEntryAddresses.length) {
+        if (props.missingAceEntryAddresses.length) {
             const firstBlock = props.minStart === Number.MAX_SAFE_INTEGER ? 0
                 : props.minStart
             const lastBlock = props.maxEnd
@@ -129,7 +129,6 @@ const mapStateToProps = (state, ownProps) => {
     })
 
     return {
-        web3: state.web3Instance.isLoading ? null : state.web3Instance.web3,
         token: token,
         etherscanUrl: etherscanUrl,
         missingAceEntryAddresses,

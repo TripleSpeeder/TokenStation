@@ -192,7 +192,7 @@ export function filterNewToken(tokenId) {
     }
 }
 
-export function initializeTokenList(web3, registryABI, registryAddress, lastId=0, total=0) {
+export function initializeTokenList(registryABI, registryAddress, lastId=0, total=0) {
     return async (dispatch, getState) => {
 
         // check if existing data needs to be cleared
@@ -206,6 +206,7 @@ export function initializeTokenList(web3, registryABI, registryAddress, lastId=0
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.LOADING))
 
         // prepare access to Parity's token registry
+        const {web3} = getState().web3Instance
         const registryContract = contract({abi: registryABI})
         registryContract.setProvider(web3.currentProvider)
         const registry = await registryContract.at(registryAddress)

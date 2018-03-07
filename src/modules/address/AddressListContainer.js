@@ -15,7 +15,7 @@ class AddressListContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.web3 && (newProps.web3 !== this.props.web3)) {
+        if (newProps.web3 !== this.props.web3) {
             this.updateWeb3Accounts(newProps.web3)
             if (newProps.web3.currentProvider.isMetaMask === true) {
                 console.log("Metamask detected. Watching for account changes")

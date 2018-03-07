@@ -63,7 +63,6 @@ const mapStateToProps = state => {
     const filterIsActive = (state.tokens.listState.filter.length > 0)
 
     return {
-        web3: state.web3Instance.web3,
         visibleTokenIds: state.tokens.allIds.slice(0, displayCount),
         allTokenIds: state.tokens.allIds,
         filterIsActive: filterIsActive,
