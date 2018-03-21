@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "formsy-react": "^1.1.4",
+    "formsy-semantic-ui-react": "^0.3.2",
     "history": "^4.7.2",
     "proptypes": "^1.1.0",
     "react": "^16.2.0",

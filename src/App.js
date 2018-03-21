@@ -13,6 +13,7 @@ import TokenListContainer from './modules/token/TokenListContainer'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import TokenEventsContainer from './modules/event/TokenEventsContainer'
 import AddressEventsContainer from './modules/event/AddressEventsContainer'
+import TransferFormContainer from './modules/forms/transferForm/TransferFormContainer'
 
 let {store, persistor} = configureStore()
 
@@ -49,6 +50,7 @@ class App extends Component {
                                     <TokenLoaderContainer/>
                                     <Switch>
                                         <Route exact path='/' component={BalancesContainer}/>
+                                        <Route path='/transfer/' component={TransferFormContainer}/>
                                         <Route path='/alltokens/' component={TokenListContainer}/>
                                         <Route path='/token/:tokenId/' component={TokenEventsContainer}/>
                                         <Route path='/:address/transfers/:tokenId' component={AddressEventsContainer}/>
