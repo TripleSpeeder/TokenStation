@@ -25,6 +25,7 @@ class BalanceItemContainer extends Component {
                          total={this.props.total}
                          reloadBalance={this.reloadBalance}
                          loading={this.props.loading}
+                         tokenEventsLinkOptions={this.props.tokenEventsLinkOptions}
             />
         )
     }
@@ -63,10 +64,15 @@ const mapStateToProps = (state, ownProps) => {
             loading = true
     })
 
+    const tokenEventsLinkOptions = {
+        pathname: '/token/' + ownProps.tokenId,
+    }
+
     return {
         token,
         total,
-        loading
+        loading,
+        tokenEventsLinkOptions,
     }
 }
 
