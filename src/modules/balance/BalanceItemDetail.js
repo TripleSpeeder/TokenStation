@@ -4,7 +4,7 @@ import {Table, Icon, Button} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 const BalanceItemDetail = (props) => {
-    const {address, balance, loading, reloadBalance, url} = props
+    const {address, balance, loading, reloadBalance, url, openTransferModal} = props
     return (
         <Table.Row>
             <Table.Cell>
@@ -17,6 +17,7 @@ const BalanceItemDetail = (props) => {
                         icon='refresh'
                         loading={loading}
                         onClick={reloadBalance} />
+                <Button size='mini' onClick={openTransferModal}>Transfer</Button>
             </Table.Cell>
 
         </Table.Row>
@@ -28,6 +29,8 @@ BalanceItemDetail.propTypes = {
     balance: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
     url: PropTypes.string.isRequired,
+    openTransferModal: PropTypes.func.isRequired,
+    reloadBalance: PropTypes.func.isRequired,
 }
 
 BalanceItemDetail.defaultProps = {

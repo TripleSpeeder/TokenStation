@@ -14,6 +14,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react'
 import TokenEventsContainer from './modules/event/TokenEventsContainer'
 import AddressEventsContainer from './modules/event/AddressEventsContainer'
 import TransferFormContainer from './modules/forms/transferForm/TransferFormContainer'
+import ModalRoot from './modules/modal/ModalRoot'
 
 let {store, persistor} = configureStore()
 
@@ -31,6 +32,8 @@ class App extends Component {
                     <Web3Gate>
                         <Router history={history}>
                             <div>
+
+                                <ModalRoot/>
 
                                 <Menu fixed='top' inverted>
                                     <Container>

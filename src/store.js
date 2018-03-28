@@ -10,6 +10,7 @@ import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import {BALANCE_STATES} from './modules/balance/balanceActions'
 import {events} from './modules/event/reducers/eventReducer'
+import {modal} from './modules/modal/modalReducer'
 
 /*
 - Restore all BigNumber instances that have been converted to string while being hydrated
@@ -119,6 +120,7 @@ const reducer = combineReducers({
     addresses,
     balance,
     events,
+    modal,
 })
 
 const rootConfig = {
@@ -129,7 +131,7 @@ const rootConfig = {
         addressesTransform
     ],
     // Don't persist these subtrees:
-    blacklist: ['web3Instance', 'tokens', 'events'],
+    blacklist: ['web3Instance', 'tokens', 'events', 'modal'],
 }
 const persistedReducer = persistReducer(rootConfig, reducer)
 
