@@ -8,19 +8,39 @@ class AddressListContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.updateWeb3Accounts = this.updateWeb3Accounts.bind(this)
+        this.checkAccountTimer = 0
     }
 
     render() {
         return <AddressList addressIds={this.props.addressIds}/>
     }
 
+    componentDidMount() {
+        this.initAccounts()
+    }
+
     componentWillReceiveProps(newProps) {
         if (newProps.web3 !== this.props.web3) {
-            this.updateWeb3Accounts(newProps.web3)
-            if (newProps.web3.currentProvider.isMetaMask === true) {
-                console.log("Metamask detected. Watching for account changes")
-                setInterval(this.updateWeb3Accounts, 100)
-            }
+            this.initAccounts(newProps.web3)
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.checkAccountTimer) {
+            clearInterval(this.checkAccountTimer)
+            this.checkAccountTimer = 0
+        }
+    }
+
+    initAccounts(web3 = this.props.web3) {
+        if (this.checkAccountTimer) {
+            clearInterval(this.checkAccountTimer)
+            this.checkAccountTimer = 0
+        }
+        this.updateWeb3Accounts(this.props.web3)
+        if (this.props.web3.currentProvider.isMetaMask === true) {
+            console.log("Metamask detected. Watching for account changes")
+            this.checkAccountTimer = setInterval(this.updateWeb3Accounts, 100)
         }
     }
 
