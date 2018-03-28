@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Web3Info = (props) => {
+    const {name, id, apiVersion, nodeVersion, block} = props
     return (
         <div>
-            Network: {props.name} ({props.id}) | Block: {props.block.number} ({props.block.timestamp})
-            | Web3 API version: {props.apiVersion} | Node version: {props.nodeVersion}
+            Network: {name} ({id}) | Block: {block ? block.number : '?'} ({block ? block.timestamp : '?'})
+            | Web3 API version: {apiVersion} | Node version: {nodeVersion}
         </div>
     )
 
