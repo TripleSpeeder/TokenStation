@@ -216,7 +216,7 @@ export function initializeTokenList(registryABI, registryAddress, lastId=0, tota
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=150
+        const limit=1500
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -420,5 +420,44 @@ async function verifyContractInstance(tokenId, dispatch, getState) {
         // refresh token, as the loadingPromise has just been added to state
         volatileToken = getState().tokens.volatileById[tokenId]
         return volatileToken.loadingPromise
+    }
+}
+
+export const TRANSACTION_STATES = {
+    IDLE: 'IDLE',
+    INITIALIZING: 'INITIALIZING',
+    WAITING_FOR_SIGNATURE: 'WAITING_FOR_SIGNATURE',
+    WAITING_FOR_CONFIRMATION: 'WAITING_FOR_CONFIRMATION',
+    CONFIRMED: 'CONFIRMED',
+    FAILED: 'FAILED'
+}
+
+export function transferToken(tokenID, tokenAmount, fromAddress, toAddress) {
+    return async (dispatch, getState) => {
+        dispatch(changeTransactionState(TRANSACTION_STATES.INITIALIZING))
+        // obtain token contract instance
+        await verifyContractInstance(tokenID, dispatch, getState)
+        const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
+        // TODO: check if eth balance is sufficient for required gas
+        // TODO: check if token balance is sufficient
+
+        dispatch(changeTransactionState(TRANSACTION_STATES.WAITING_FOR_SIGNATURE))
+        // TODO: initialize transfer
+
+        dispatch(changeTransactionState(TRANSACTION_STATES.WAITING_FOR_CONFIRMATION))
+
+        // finalize transfer
+        dispatch(changeTransactionState(TRANSACTION_STATES.CONFIRMED))
+    }
+}
+
+export const CHANGE_TRANSACTION_STATE = 'CHANGE_TRANSACTION_STATE'
+export function changeTransactionState(transactionState, message='') {
+    return {
+        type: CHANGE_TRANSACTION_STATE,
+        payload: {
+            transactionState,
+            message
+        }
     }
 }

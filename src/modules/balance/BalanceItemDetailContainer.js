@@ -54,7 +54,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(reloadBalance(ownProps.tokenBalanceId))
     },
     openTransferModal: () => {
-        dispatch(showModal('TEST_MODAL', {}))
+        dispatch(showModal('TRANSFER_FORM_CONTAINER',
+            {
+                tokenBalanceId: ownProps.tokenBalanceId,
+            }
+        ))
     }
 })
 

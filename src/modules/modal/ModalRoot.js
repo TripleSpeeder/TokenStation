@@ -2,9 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import TestModal from './TestModal'
 import {hideModal} from './modalActions'
+import TransferFormContainer from '../forms/transferForm/TransferFormContainer'
 
 export const MODAL_COMPONENTS = {
-    'TEST_MODAL': TestModal
+    'TEST_MODAL': TestModal,
+    'TRANSFER_FORM_CONTAINER': TransferFormContainer
     /* other modals */
 }
 
