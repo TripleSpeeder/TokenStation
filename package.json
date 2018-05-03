@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bignumber.js": "^7.0.1",
     "formsy-react": "^1.1.4",
     "formsy-semantic-ui-react": "^0.3.2",
     "history": "^4.7.2",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@storybook/react": "^3.4.3",
     "babel-core": "^6.26.3",
-    "human-standard-token-abi": "^1.0.2"
+    "human-standard-token-abi": "^1.0.2",
+    "storybook-react-router": "^1.0.1"
   }
 }
