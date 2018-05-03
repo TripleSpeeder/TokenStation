@@ -1,15 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {List} from 'semantic-ui-react'
-import Address from './Address'
+import {List, Table} from 'semantic-ui-react'
+import AddressContainer from './AddressContainer'
 
 const AddressList = (props) => {
     return (
-        <List celled divided>
+        <Table>
+            <Table.Body>
             {props.addressIds.map((addressId) =>
-                <Address key={addressId} addressId={addressId}/>
+                <AddressContainer key={addressId} addressId={addressId}/>
             )}
-        </List>
+            </Table.Body>
+        </Table>
     )
 }
 

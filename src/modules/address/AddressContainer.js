@@ -2,16 +2,13 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {
-    ADDRESS_BALANCES_STATES,
-    ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED, removeAddress,
-    resumeGetBalances
+    ADDRESS_BALANCES_STATES, removeAddress, resumeGetBalances
 } from './addressActions'
-import {Button, List, Icon, Progress} from 'semantic-ui-react'
 import {BALANCE_STATES} from '../balance/balanceActions'
-import AddressDisplay from '../common/AddressDisplay'
+import AddressRow from './AddressRow'
 
 
-class Address extends PureComponent {
+class AddressContainer extends PureComponent {
 
     constructor(props, context) {
         super(props, context)
@@ -45,38 +42,13 @@ class Address extends PureComponent {
     }
 
     render() {
-        let removeButton = null
-        if (this.props.canRemove) {
-            removeButton = <List.Content floated='right'>
-                <Button size='tiny' onClick={this.handleRemove} icon='delete'/>
-            </List.Content>
-        }
-        let listProgress = null
-        if (this.props.progressCurrent < this.props.progressTotal) {
-            listProgress = <List.Description>
-                <Progress size='small'
-                          value={this.props.progressCurrent}
-                          total={this.props.progressTotal}
-                          progress='ratio'
-                          precision={1}
-                />
-            </List.Description>
-        }
-        return (
-            <List.Item>
-                {removeButton}
-                <List.Content>
-                    <List.Header>
-                        <Icon name={this.props.iconName}/> <AddressDisplay address={this.props.address}/>
-                    </List.Header>
-                    {listProgress}
-                </List.Content>
-            </List.Item>
-        )
+        return <AddressRow address={this.props.address}
+                           addressType={this.props.addressType}
+        />
     }
 }
 
-Address.propTypes = {
+AddressContainer.propTypes = {
     addressId: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     removeAddress: PropTypes.func.isRequired,
@@ -86,7 +58,7 @@ Address.propTypes = {
     progressCurrent: PropTypes.number.isRequired
 }
 
-Address.defaultProps = {}
+AddressContainer.defaultProps = {}
 
 const mapStateToProps = (state, ownProps) => {
     const addressEntry = state.addresses.byId[ownProps.addressId]
@@ -100,9 +72,8 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         address: addressEntry.address,
+        addressType: addressEntry.type,
         balancesState: addressEntry.balancesState,
-        iconName: addressEntry.type === ADDRESS_TYPE_OWNED ? 'unlock' : 'lock',
-        canRemove: addressEntry.type === ADDRESS_TYPE_EXTERNAL,
         progressTotal,
         progressCurrent
     }
@@ -117,4 +88,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Address)
+export default connect(mapStateToProps, mapDispatchToProps)(AddressContainer)
