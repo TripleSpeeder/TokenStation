@@ -2,13 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Header, Message} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
+import BalancesList from '../balance/BalancesList'
 
 const Overview = (props) => {
-    const {hasAccounts} = props
+    const {hasAccounts, balancesByToken} = props
 
     let body
     if (hasAccounts) {
-        body = <p>Token overview goes here...</p>
+        body = <BalancesList balancesByToken={balancesByToken}/>
     } else {
         body = <Message>
             <Message.Header>
@@ -27,7 +28,8 @@ const Overview = (props) => {
 }
 
 Overview.propTypes = {
-    hasAccounts: PropTypes.bool.isRequired
+    hasAccounts: PropTypes.bool.isRequired,
+    balancesByToken: PropTypes.object.isRequired
 }
 
 Overview.defaultProps = {

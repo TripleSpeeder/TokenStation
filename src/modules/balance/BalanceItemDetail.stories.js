@@ -19,7 +19,7 @@ export const actions = {
     reloadBalance: action('reloadBalance'),
 };
 
-storiesOf('BalanceItemDetail', module)
+storiesOf('Modules/BalanceItemDetail', module)
     .addDecorator(StoryRouter())
     .addDecorator(story => (<Table>{story()}</Table>))
     .add('external', () => <BalanceItemDetail address={props.address}
