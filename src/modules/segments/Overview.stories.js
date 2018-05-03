@@ -15,7 +15,8 @@ const props = {
         2: [mockStore.getState().balance.byId['b4']],
         3: [mockStore.getState().balance.byId['b5'],
             mockStore.getState().balance.byId['b6']]
-    }
+    },
+    emptyObject: {}
 }
 
 const actions = {
@@ -31,5 +32,9 @@ storiesOf('Segments/Overview', module)
     />)
     .add('no accounts', () => <Overview
         hasAccounts={false}
-        balancesByToken={{}}
+        balancesByToken={props.emptyObject}
+    />)
+    .add('no balances', () => <Overview
+        hasAccounts={true}
+        balancesByToken={props.emptyObject}
     />)

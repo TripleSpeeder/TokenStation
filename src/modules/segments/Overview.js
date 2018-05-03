@@ -9,7 +9,19 @@ const Overview = (props) => {
 
     let body
     if (hasAccounts) {
-        body = <BalancesList balancesByToken={balancesByToken}/>
+        if (Object.keys(balancesByToken).length) {
+            body = <BalancesList balancesByToken={balancesByToken}/>
+        }
+        else {
+            body = <Message>
+                <Message.Header>
+                    No balances
+                </Message.Header>
+                <p>There are no token balances on your accounts. Open the <Link to={'/todo'}>Account Manager</Link> to
+                   add additional accounts, or open the <Link to={'/todo'}>Token Manager</Link> to add tracked
+                   tokens.</p>
+            </Message>
+        }
     } else {
         body = <Message>
             <Message.Header>
