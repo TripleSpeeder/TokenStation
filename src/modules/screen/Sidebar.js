@@ -10,6 +10,7 @@ const Sidebar = (props) => {
 
     return (
         <Menu icon='labeled' inverted vertical pointing size={'large'}>
+            <Menu.Item header>TokenStation</Menu.Item>
             <Menu.Item name='overview' active={activeItem === 'overview'} onClick={handleItemClick}>
                 <Icon name='home' />
                 Overview
