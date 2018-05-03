@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Header, Popup} from 'semantic-ui-react'
 
 const AddressDisplay = (props) => {
     const {address, ensName} = props
