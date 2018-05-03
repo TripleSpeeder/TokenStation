@@ -9,12 +9,20 @@ class BalanceItemContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.reloadBalance = this.reloadBalance.bind(this)
+        this.toggleCollapse = this.toggleCollapse.bind(this)
+        this.state = {
+            expanded: false
+        }
     }
 
     reloadBalance() {
         this.props.tokenBalances.forEach(tokenBalance => {
             this.props.reloadBalance(tokenBalance.balanceId)
         })
+    }
+
+    toggleCollapse() {
+        this.setState({ expanded: !this.state.expanded })
     }
 
     render() {
@@ -26,10 +34,13 @@ class BalanceItemContainer extends Component {
                          reloadBalance={this.reloadBalance}
                          loading={this.props.loading}
                          tokenEventsLinkOptions={this.props.tokenEventsLinkOptions}
+                         expanded={this.state.expanded}
+                         toggleCollapse={this.toggleCollapse}
             />
         )
     }
 
+    /*
     shouldComponentUpdate(nextProps) {
         // Render() should only ever be necessary when loading state, token itself or
         // it's total balance changes, i.e. an address was added/removed to
@@ -39,7 +50,7 @@ class BalanceItemContainer extends Component {
             (nextProps.tokenId !== this.props.tokenId) ||
             (nextProps.loading !== this.props.loading)
         )
-    }
+    }*/
 }
 
 BalanceItemContainer.propTypes = {

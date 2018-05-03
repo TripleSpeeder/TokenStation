@@ -13,6 +13,7 @@ class BalanceItemDetailContainer extends Component {
     render() {
         return (
             <BalanceItemDetail address={this.props.address}
+                               addressType={this.props.addressType}
                                balance={this.props.balance}
                                reloadBalance={this.props.reloadBalance}
                                loading={this.props.loading}

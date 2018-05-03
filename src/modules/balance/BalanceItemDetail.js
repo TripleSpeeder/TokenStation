@@ -11,6 +11,8 @@ const BalanceItemDetail = (props) => {
     return (
         <Table.Row>
             <Table.Cell>
+            </Table.Cell>
+            <Table.Cell>
                 <Icon name='angle right' /> <Link to={url}>{address}</Link>
             </Table.Cell>
             <Table.Cell><Balance balance={balance}/></Table.Cell>
