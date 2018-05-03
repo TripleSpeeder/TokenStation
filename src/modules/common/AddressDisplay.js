@@ -10,7 +10,7 @@ const AddressDisplay = (props) => {
             <div><small>{address}</small></div>
         </div>
     } else {
-        return <div><strong>{address}</strong></div>
+        return <strong>{address}</strong>
     }
 }
 

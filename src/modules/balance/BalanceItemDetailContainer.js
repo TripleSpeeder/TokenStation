@@ -19,6 +19,7 @@ class BalanceItemDetailContainer extends Component {
                                loading={this.props.loading}
                                url={this.props.url}
                                openTransferModal={this.props.openTransferModal}
+                               ensName={this.props.ensName}
             />
         )
     }
@@ -46,6 +47,7 @@ const mapStateToProps = (state, ownProps) => {
         balance,
         address: addressEntry.address,
         addressType: addressEntry.type,
+        ensName: addressEntry.ensName,
         loading: balanceEntry.balanceState===BALANCE_STATES.LOADING,
         url: "/"+addressEntry.address+"/transfers/"+token.id
     }
