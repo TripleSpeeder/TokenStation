@@ -8,6 +8,7 @@ import {
 } from './addressActions'
 import {Button, List, Icon, Progress} from 'semantic-ui-react'
 import {BALANCE_STATES} from '../balance/balanceActions'
+import AddressDisplay from '../common/AddressDisplay'
 
 
 class Address extends PureComponent {
@@ -66,7 +67,7 @@ class Address extends PureComponent {
                 {removeButton}
                 <List.Content>
                     <List.Header>
-                        <Icon name={this.props.iconName}/> {this.props.address}
+                        <Icon name={this.props.iconName}/> <AddressDisplay address={this.props.address}/>
                     </List.Header>
                     {listProgress}
                 </List.Content>
