@@ -11,7 +11,8 @@ import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActio
 export const props = {
     address: '0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0',
     balance: BigNumber('234.12345678901'),
-    url: 'https://some.link'
+    url: 'https://some.link',
+    ensName: 'gimme.eth'
 }
 
 export const actions = {
@@ -30,6 +31,15 @@ storiesOf('Modules/BalanceItemDetail', module)
                                               loading={false}
                                               addressType={ADDRESS_TYPE_EXTERNAL}
     />)
+    .add('external+ens', () => <BalanceItemDetail address={props.address}
+                                              balance={props.balance}
+                                              url={props.url}
+                                              openTransferModal={actions.openTransferModal}
+                                              reloadBalance={actions.reloadBalance}
+                                              loading={false}
+                                              addressType={ADDRESS_TYPE_EXTERNAL}
+                                              ensName={props.ensName}
+    />)
     .add('extloading', () => <BalanceItemDetail address={props.address}
                                                 balance={props.balance}
                                                 url={props.url}
@@ -39,12 +49,21 @@ storiesOf('Modules/BalanceItemDetail', module)
                                                 addressType={ADDRESS_TYPE_EXTERNAL}
     />)
     .add('own', () => <BalanceItemDetail address={props.address}
-                                              balance={props.balance}
-                                              url={props.url}
-                                              openTransferModal={actions.openTransferModal}
-                                              reloadBalance={actions.reloadBalance}
-                                              loading={false}
-                                              addressType={ADDRESS_TYPE_OWNED}
+                                         balance={props.balance}
+                                         url={props.url}
+                                         openTransferModal={actions.openTransferModal}
+                                         reloadBalance={actions.reloadBalance}
+                                         loading={false}
+                                         addressType={ADDRESS_TYPE_OWNED}
+    />)
+    .add('own+ens', () => <BalanceItemDetail address={props.address}
+                                         balance={props.balance}
+                                         url={props.url}
+                                         openTransferModal={actions.openTransferModal}
+                                         reloadBalance={actions.reloadBalance}
+                                         loading={false}
+                                         addressType={ADDRESS_TYPE_OWNED}
+                                         ensName={props.ensName}
     />)
     .add('ownloading', () => <BalanceItemDetail address={props.address}
                                                 balance={props.balance}

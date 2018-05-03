@@ -14,7 +14,7 @@ const BalanceItemDetail = (props) => {
             <Table.Cell>
             </Table.Cell>
             <Table.Cell>
-                <Icon name='angle right' /> <Link to={url}><AddressDisplay address={address} ensName={ensName}/></Link>
+                <Link to={url}><AddressDisplay address={address} ensName={ensName}/></Link>
             </Table.Cell>
             <Table.Cell><Balance balance={balance}/></Table.Cell>
             <Table.Cell>
