@@ -44,6 +44,7 @@ class AddressContainer extends PureComponent {
     render() {
         return <AddressRow address={this.props.address}
                            addressType={this.props.addressType}
+                           ensName={this.props.ensName}
                            handleRemove={this.handleRemove}
         />
     }
@@ -52,6 +53,7 @@ class AddressContainer extends PureComponent {
 AddressContainer.propTypes = {
     addressId: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
+    ensName: PropTypes.string,
     removeAddress: PropTypes.func.isRequired,
     progressTotal: PropTypes.number.isRequired,
     progressCurrent: PropTypes.number.isRequired
@@ -72,6 +74,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         address: addressEntry.address,
         addressType: addressEntry.type,
+        ensName: addressEntry.ensName,
         balancesState: addressEntry.balancesState,
         progressTotal,
         progressCurrent
