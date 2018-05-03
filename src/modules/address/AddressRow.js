@@ -6,7 +6,7 @@ import AddressDisplay from '../common/AddressDisplay'
 
 const AddressRow = (props) => {
 
-    const {address, addressType, ensName} = props
+    const {address, addressType, ensName, handleRemove} = props
 
     let iconName, popupContent, removeButton
     if (addressType === ADDRESS_TYPE_OWNED) {
@@ -16,7 +16,7 @@ const AddressRow = (props) => {
     } else {
         iconName = 'eye'
         popupContent = 'This is a watch-only address'
-        removeButton = <Button size='tiny' onClick={this.handleRemove} icon='delete'/>
+        removeButton = <Button size='tiny' onClick={handleRemove} icon='delete'/>
     }
 
     const icon = <Popup trigger={<Icon size='large' name={iconName}/>}
@@ -54,6 +54,7 @@ AddressRow.propTypes = {
     address: PropTypes.string.isRequired,
     ensName: PropTypes.string,
     addressType: PropTypes.oneOf([ADDRESS_TYPE_OWNED, ADDRESS_TYPE_EXTERNAL]).isRequired,
+    handleRemove: PropTypes.func.isRequired
 }
 
 AddressRow.defaultProps = {

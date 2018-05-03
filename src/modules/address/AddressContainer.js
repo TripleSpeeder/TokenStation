@@ -44,6 +44,7 @@ class AddressContainer extends PureComponent {
     render() {
         return <AddressRow address={this.props.address}
                            addressType={this.props.addressType}
+                           handleRemove={this.handleRemove}
         />
     }
 }
@@ -52,8 +53,6 @@ AddressContainer.propTypes = {
     addressId: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     removeAddress: PropTypes.func.isRequired,
-    iconName: PropTypes.string.isRequired,
-    canRemove: PropTypes.bool.isRequired,
     progressTotal: PropTypes.number.isRequired,
     progressCurrent: PropTypes.number.isRequired
 }

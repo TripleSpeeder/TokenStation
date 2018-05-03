@@ -11,9 +11,31 @@ export const props = {
     ensName: 'cool.stuff.eth'
 }
 
+const actions = {
+    handleRemove: action('handleRemove'),
+}
+
 storiesOf('Modules/AddressRow', module)
     .addDecorator(story => <Table><Table.Body>{story()}</Table.Body></Table>)
-    .add('owned', () => <AddressRow address={props.address} addressType={ADDRESS_TYPE_OWNED}/>)
-    .add('owned+ens', () => <AddressRow address={props.address} addressType={ADDRESS_TYPE_OWNED} ensName={props.ensName}/>)
-    .add('external', () => <AddressRow address={props.address} addressType={ADDRESS_TYPE_EXTERNAL} />)
-    .add('external+ens', () => <AddressRow address={props.address} addressType={ADDRESS_TYPE_EXTERNAL} ensName={props.ensName}/>)
+    .add('owned', () => <AddressRow
+        address={props.address}
+        addressType={ADDRESS_TYPE_OWNED}
+        handleRemove={actions.handleRemove}
+    />)
+    .add('owned+ens', () => <AddressRow
+        address={props.address}
+        addressType={ADDRESS_TYPE_OWNED}
+        ensName={props.ensName}
+        handleRemove={actions.handleRemove}
+    />)
+    .add('external', () => <AddressRow
+        address={props.address}
+        addressType={ADDRESS_TYPE_EXTERNAL}
+        handleRemove={actions.handleRemove}
+    />)
+    .add('external+ens', () => <AddressRow
+        address={props.address}
+        addressType={ADDRESS_TYPE_EXTERNAL}
+        ensName={props.ensName}
+        handleRemove={actions.handleRemove}
+    />)
