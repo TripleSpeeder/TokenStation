@@ -7,33 +7,28 @@ import {Provider} from 'react-redux'
 import AddressList from './AddressList'
 import mockStore from '../mocks/MockStore'
 
-const props = {
+export const addressListProps = {
     ownAddressIds: ['0xAccountAddress1', '0xAccountAddress2'],
     watchAddressIds: ['0xAccountAddress3', '0xAccountAddress4', '0xAccountAddress5', '0xAccountAddress6'],
     noIds: []
-}
-
-const actions = {
-    reloadBalance: action('reloadBalance'),
-    toggleCollapse: action('toggleCollapse')
 }
 
 storiesOf('Modules/AddressList', module)
     .addDecorator(story => <Provider store={mockStore}>{story()}</Provider>)
     .addDecorator(StoryRouter())
     .add('default', () => <AddressList
-        ownAddressIds={props.ownAddressIds}
-        watchAddressIds={props.watchAddressIds}
+        ownAddressIds={addressListProps.ownAddressIds}
+        watchAddressIds={addressListProps.watchAddressIds}
     />)
     .add('onlyWatched', () => <AddressList
-        ownAddressIds={props.noIds}
-        watchAddressIds={props.watchAddressIds}
+        ownAddressIds={addressListProps.noIds}
+        watchAddressIds={addressListProps.watchAddressIds}
     />)
     .add('onlyOwn', () => <AddressList
-        ownAddressIds={props.ownAddressIds}
-        watchAddressIds={props.noIds}
+        ownAddressIds={addressListProps.ownAddressIds}
+        watchAddressIds={addressListProps.noIds}
     />)
     .add('noAddresses', () => <AddressList
-        ownAddressIds={props.noIds}
-        watchAddressIds={props.noIds}
+        ownAddressIds={addressListProps.noIds}
+        watchAddressIds={addressListProps.noIds}
     />)

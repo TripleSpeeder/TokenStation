@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {changeOwnAddresses} from './addressActions'
+import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED, changeOwnAddresses} from './addressActions'
 import AddressList from './AddressList'
 
 class AddressListContainer extends Component {
@@ -12,7 +12,9 @@ class AddressListContainer extends Component {
     }
 
     render() {
-        return <AddressList addressIds={this.props.addressIds}/>
+        return <AddressList watchAddressIds={this.props.watchAddressIds}
+                            ownAddressIds={this.props.ownAddressIds}
+        />
     }
 
     componentDidMount() {
@@ -20,7 +22,7 @@ class AddressListContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.web3 !== this.props.web3) {
+        if (newProps.web3 && (newProps.web3 !== this.props.web3)) {
             this.initAccounts(newProps.web3)
         }
     }
@@ -33,14 +35,16 @@ class AddressListContainer extends Component {
     }
 
     initAccounts(web3 = this.props.web3) {
-        if (this.checkAccountTimer) {
-            clearInterval(this.checkAccountTimer)
-            this.checkAccountTimer = 0
-        }
-        this.updateWeb3Accounts(this.props.web3)
-        if (this.props.web3.currentProvider.isMetaMask === true) {
-            console.log("Metamask detected. Watching for account changes")
-            this.checkAccountTimer = setInterval(this.updateWeb3Accounts, 100)
+        if (web3) {
+            if (this.checkAccountTimer) {
+                clearInterval(this.checkAccountTimer)
+                this.checkAccountTimer = 0
+            }
+            this.updateWeb3Accounts(this.props.web3)
+            if (this.props.web3.currentProvider.isMetaMask === true) {
+                console.log("Metamask detected. Watching for account changes")
+                this.checkAccountTimer = setInterval(this.updateWeb3Accounts, 100)
+            }
         }
     }
 
@@ -55,19 +59,23 @@ class AddressListContainer extends Component {
 
 AddressListContainer.propTypes = {
     web3: PropTypes.object,
-    addressIds: PropTypes.array.isRequired
+    ownAddressIds: PropTypes.array.isRequired,
+    watchAddressIds: PropTypes.array.isRequired,
 }
 
 AddressListContainer.defaultProps = {
     //myProp: <defaultValue>
 }
 
-const mapStateToProps = state => (
-    {
-        addressIds: state.addresses.allIds,
-        web3: state.web3Instance.web3,
+const mapStateToProps = state => {
+    const ownAddressIds = state.addresses.allIds.filter(id => (state.addresses.byId[id].type === ADDRESS_TYPE_OWNED))
+    const watchAddressIds = state.addresses.allIds.filter(id => (state.addresses.byId[id].type === ADDRESS_TYPE_EXTERNAL))
+    return {
+        ownAddressIds,
+        watchAddressIds,
+        web3: state.web3Instance ? state.web3Instance.web3 : null
     }
-)
+}
 
 const mapDispatchToProps = dispatch => ({
     changeOwnAddresses: (accounts) => {
