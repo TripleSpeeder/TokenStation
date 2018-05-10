@@ -9,7 +9,7 @@ const Sidebar = (props) => {
     const handleItemClick = (e, { name }) => clickItem(name)
 
     return (
-        <Menu icon='labeled' inverted vertical pointing size={'large'}>
+        <Menu icon='labeled' fluid inverted vertical pointing size={'large'}>
             <Menu.Item header>TokenStation</Menu.Item>
             <Menu.Item name='overview' active={activeItem === 'overview'} onClick={handleItemClick}>
                 <Icon name='home' />
@@ -32,10 +32,6 @@ const Sidebar = (props) => {
 Sidebar.propTypes = {
     activeItem: PropTypes.string.isRequired,
     clickItem: PropTypes.func.isRequired
-}
-
-Sidebar.defaultProps = {
-    //myProp: <defaultValue>
 }
 
 export default Sidebar

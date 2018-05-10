@@ -1,25 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Header} from 'semantic-ui-react'
-import AddressList from '../address/AddressList'
 import AddressListContainer from '../address/AddressListContainer'
 
 const Accounts = (props) => {
-    const {ownAddressIds, watchAddressIds} = props
     return (
-        <div>
-            <Header as={'h1'}>Accounts</Header>
+        <React.Fragment>
+            <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Manage Accounts</Header>
             <AddressListContainer />
-        </div>
+        </React.Fragment>
     )
-}
-
-Accounts.propTypes = {
-    //myProp: PropTypes.object.isRequired
-}
-
-Accounts.defaultProps = {
-    //myProp: <defaultValue>
 }
 
 export default Accounts

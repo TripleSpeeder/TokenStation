@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Header, List, Message, Table} from 'semantic-ui-react'
+import {Header, Message, Segment, Table} from 'semantic-ui-react'
 import AddressContainer from './AddressContainer'
 
 const AddressList = (props) => {
     let ownTable, watchTable
 
     if (props.ownAddressIds.length) {
-        ownTable = <Table>
+        ownTable = <Table basic='very' selectable>
             <Table.Body>
                 {props.ownAddressIds.map((addressId) =>
                     <AddressContainer key={addressId} addressId={addressId}/>
@@ -24,7 +24,7 @@ const AddressList = (props) => {
     }
 
     if (props.watchAddressIds.length) {
-        watchTable = <Table>
+        watchTable = <Table basic='very' selectable>
             <Table.Body>
                 {props.watchAddressIds.map((addressId) =>
                     <AddressContainer key={addressId} addressId={addressId}/>
@@ -41,23 +41,22 @@ const AddressList = (props) => {
     }
 
     return (
-        <div>
-            <Header as='h2'>Personal Accounts</Header>
-            {ownTable}
-            <Header as='h2'>Watched Accounts</Header>
-            {watchTable}
-        </div>
+        <React.Fragment>
+            <Segment>
+                <Header dividing as='h2'>Personal Accounts</Header>
+                {ownTable}
+            </Segment>
+            <Segment>
+                <Header dividing as='h2'>Watched Accounts</Header>
+                {watchTable}
+            </Segment>
+        </React.Fragment>
     )
 }
 
 AddressList.propTypes = {
-    //myProp: PropTypes.object.isRequired
     ownAddressIds: PropTypes.array.isRequired,
     watchAddressIds: PropTypes.array.isRequired,
-}
-
-AddressList.defaultProps = {
-    //myProp: <defaultValue>
 }
 
 export default AddressList
