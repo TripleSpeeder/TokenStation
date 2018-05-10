@@ -32,10 +32,10 @@ const Overview = (props) => {
     }
 
     return (
-        <div>
-            <Header as={'h1'}>Overview</Header>
+        <React.Fragment>
+            <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Overview</Header>
             {body}
-        </div>
+        </React.Fragment>
     )
 }
 

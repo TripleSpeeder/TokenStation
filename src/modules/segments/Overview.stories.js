@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import mockStore from '../mocks/MockStore'
 import Overview from './Overview'
 
-const props = {
+export const overviewProps = {
     // keys: tokenID, values: Arrays of balance entries
     balancesByToken: {
         1: [mockStore.getState().balance.byId['b1'],
@@ -28,13 +28,13 @@ storiesOf('Segments/Overview', module)
     .addDecorator(StoryRouter())
     .add('default', () => <Overview
         hasAccounts={true}
-        balancesByToken={props.balancesByToken}
+        balancesByToken={overviewProps.balancesByToken}
     />)
     .add('no accounts', () => <Overview
         hasAccounts={false}
-        balancesByToken={props.emptyObject}
+        balancesByToken={overviewProps.emptyObject}
     />)
     .add('no balances', () => <Overview
         hasAccounts={true}
-        balancesByToken={props.emptyObject}
+        balancesByToken={overviewProps.emptyObject}
     />)
