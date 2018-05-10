@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Button, Form, Icon, Input, Message} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {setFilterString} from './tokenActions'
+import TokenListFilter from './TokenListFilter'
 
 class TokenListFilterContainer extends Component {
     constructor(props, context) {
@@ -15,24 +15,12 @@ class TokenListFilterContainer extends Component {
     }
 
     render() {
-        return (
-            <Form>
-                <Input label='Filter'
-                       name='filter'
-                       icon='search'
-                       placeholder='Enter name, symbol or contract address'
-                       fluid
-                       onChange={this.handleChange}
-                       value={this.props.filterString}
-                />
-                <Message info icon size='small' hidden={!this.props.filterIsActive}>
-                    <Icon size='small' name='info'/>
-                    <Message.Content>
-                        Showing {this.props.displayed} of {this.props.total} tokens. <Button compact onClick={this.props.clearFilter}>Clear filter</Button>
-                    </Message.Content>
-                </Message>
-            </Form>
-        )
+        return <TokenListFilter filterString={this.props.filterString}
+                                handleChange={this.handleChange}
+                                filterIsActive={this.props.filterIsActive}
+                                displayed={this.props.displayed}
+                                total={this.props.total}
+                                clearFilter={this.props.clearFilter}/>
     }
 }
 
@@ -44,7 +32,7 @@ TokenListFilterContainer.propTypes = {
     filterString: PropTypes.string.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     total: state.tokens.allIds.length,
     displayed: state.tokens.listState.matchedTokenIds.length,
     filterIsActive: state.tokens.listState.filter.length > 0,

@@ -3,14 +3,16 @@ import PropTypes from 'prop-types'
 import {Header, Message} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import BalancesList from '../balance/BalancesList'
+import TokenListFilterContainer from '../token/TokenListFilterContainer'
 
 const Overview = (props) => {
     const {hasAccounts, balancesByToken} = props
 
-    let body
+    let body, showFilter=false
     if (hasAccounts) {
         if (Object.keys(balancesByToken).length) {
             body = <BalancesList balancesByToken={balancesByToken}/>
+            showFilter = true
         }
         else {
             body = <Message>
@@ -34,6 +36,7 @@ const Overview = (props) => {
     return (
         <React.Fragment>
             <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Overview</Header>
+            {showFilter && <TokenListFilterContainer/>}
             {body}
         </React.Fragment>
     )

@@ -99,7 +99,9 @@ const tokens = {
         }
     },
     listState: {
-        total: 3
+        total: 3,
+        matchedTokenIds: [1, 2],
+        filter: 'myFilterString',
     }
 }
 
