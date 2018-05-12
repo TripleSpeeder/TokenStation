@@ -1,0 +1,3603 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Common/AddressDisplay default 1`] = `
+<div>
+  <strong>
+    0x0D0707963952f2fBA59dD06f2b425ace40b492Fe
+  </strong>
+</div>
+`;
+
+exports[`Storyshots Common/AddressDisplay withENS 1`] = `
+<div>
+  <div>
+    <strong>
+      cool.stuff.eth
+    </strong>
+  </div>
+  <div>
+    <small>
+      0x0D0707963952f2fBA59dD06f2b425ace40b492Fe
+    </small>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Common/Balance negativeNoDecimals 1`] = `
+<span
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  -200.000
+</span>
+`;
+
+exports[`Storyshots Common/Balance negativeWithDecimals 1`] = `
+<span
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  -234.123
+</span>
+`;
+
+exports[`Storyshots Common/Balance noDecimals 1`] = `
+<span
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  200.000
+</span>
+`;
+
+exports[`Storyshots Common/Balance withDecimals 1`] = `
+<span
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  234.123
+</span>
+`;
+
+exports[`Storyshots Common/Balance zeroBalance 1`] = `
+<span
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  0.000
+</span>
+`;
+
+exports[`Storyshots Common/TxHashDisplay default 1`] = `
+<span
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  0x4cb4cc06...
+</span>
+`;
+
+exports[`Storyshots Modules/AddressList default 1`] = `
+Array [
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Personal Accounts
+    </h2>
+    <table
+        className="ui selectable very basic table"
+    >
+        <tbody
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="unlock large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <div>
+                            <strong>
+                                cool.stuff.eth
+                            </strong>
+                        </div>
+                        <div>
+                            <small>
+                                0xAccountAddress1
+                            </small>
+                        </div>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                />
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="unlock large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress2
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                />
+            </tr>
+        </tbody>
+    </table>
+</div>,
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Watched Accounts
+    </h2>
+    <table
+        className="ui selectable very basic table"
+    >
+        <tbody
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress3
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <div>
+                            <strong>
+                                joe.doe.eth
+                            </strong>
+                        </div>
+                        <div>
+                            <small>
+                                0xAccountAddress4
+                            </small>
+                        </div>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress5
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress6
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>,
+]
+`;
+
+exports[`Storyshots Modules/AddressList noAddresses 1`] = `
+Array [
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Personal Accounts
+    </h2>
+    <div
+        className="ui message"
+    >
+        <div
+            className="header"
+        >
+            No personal accounts
+        </div>
+        <p>
+            You need to share your accounts so they are visible here. Log in to Metamask or share accounts in Mist .
+        </p>
+    </div>
+</div>,
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Watched Accounts
+    </h2>
+    <div
+        className="ui message"
+    >
+        <div
+            className="header"
+        >
+            No watched accounts
+        </div>
+        <p>
+            You don't have any watched accounts. Open the Account Manager to setup watch-only accounts.
+        </p>
+    </div>
+</div>,
+]
+`;
+
+exports[`Storyshots Modules/AddressList onlyOwn 1`] = `
+Array [
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Personal Accounts
+    </h2>
+    <table
+        className="ui selectable very basic table"
+    >
+        <tbody
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="unlock large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <div>
+                            <strong>
+                                cool.stuff.eth
+                            </strong>
+                        </div>
+                        <div>
+                            <small>
+                                0xAccountAddress1
+                            </small>
+                        </div>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                />
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="unlock large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress2
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                />
+            </tr>
+        </tbody>
+    </table>
+</div>,
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Watched Accounts
+    </h2>
+    <div
+        className="ui message"
+    >
+        <div
+            className="header"
+        >
+            No watched accounts
+        </div>
+        <p>
+            You don't have any watched accounts. Open the Account Manager to setup watch-only accounts.
+        </p>
+    </div>
+</div>,
+]
+`;
+
+exports[`Storyshots Modules/AddressList onlyWatched 1`] = `
+Array [
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Personal Accounts
+    </h2>
+    <div
+        className="ui message"
+    >
+        <div
+            className="header"
+        >
+            No personal accounts
+        </div>
+        <p>
+            You need to share your accounts so they are visible here. Log in to Metamask or share accounts in Mist .
+        </p>
+    </div>
+</div>,
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Watched Accounts
+    </h2>
+    <table
+        className="ui selectable very basic table"
+    >
+        <tbody
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress3
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <div>
+                            <strong>
+                                joe.doe.eth
+                            </strong>
+                        </div>
+                        <div>
+                            <small>
+                                0xAccountAddress4
+                            </small>
+                        </div>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress5
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress6
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>,
+]
+`;
+
+exports[`Storyshots Modules/AddressRow external 1`] = `
+<table
+  className="ui table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="collapsing left aligned"
+      >
+        <i
+          aria-hidden="true"
+          className="eye large icon"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        />
+      </td>
+      <td
+        className="left aligned"
+      >
+        <div>
+          <strong>
+            0x0D0707963952f2fBA59dD06f2b425ace40b492Fe
+          </strong>
+        </div>
+      </td>
+      <td
+        className="collapsing right aligned"
+      >
+        <button
+          className="ui tiny icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="delete icon"
+          />
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/AddressRow external+ens 1`] = `
+<table
+  className="ui table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="collapsing left aligned"
+      >
+        <i
+          aria-hidden="true"
+          className="eye large icon"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        />
+      </td>
+      <td
+        className="left aligned"
+      >
+        <div>
+          <div>
+            <strong>
+              cool.stuff.eth
+            </strong>
+          </div>
+          <div>
+            <small>
+              0x0D0707963952f2fBA59dD06f2b425ace40b492Fe
+            </small>
+          </div>
+        </div>
+      </td>
+      <td
+        className="collapsing right aligned"
+      >
+        <button
+          className="ui tiny icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="delete icon"
+          />
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/AddressRow owned 1`] = `
+<table
+  className="ui table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="collapsing left aligned"
+      >
+        <i
+          aria-hidden="true"
+          className="unlock large icon"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        />
+      </td>
+      <td
+        className="left aligned"
+      >
+        <div>
+          <strong>
+            0x0D0707963952f2fBA59dD06f2b425ace40b492Fe
+          </strong>
+        </div>
+      </td>
+      <td
+        className="collapsing right aligned"
+      />
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/AddressRow owned+ens 1`] = `
+<table
+  className="ui table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="collapsing left aligned"
+      >
+        <i
+          aria-hidden="true"
+          className="unlock large icon"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        />
+      </td>
+      <td
+        className="left aligned"
+      >
+        <div>
+          <div>
+            <strong>
+              cool.stuff.eth
+            </strong>
+          </div>
+          <div>
+            <small>
+              0x0D0707963952f2fBA59dD06f2b425ace40b492Fe
+            </small>
+          </div>
+        </div>
+      </td>
+      <td
+        className="collapsing right aligned"
+      />
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItem collapsed 1`] = `
+<table
+  className="ui compact table"
+>
+  <thead
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <th
+        className="one wide"
+      >
+        <button
+          className="ui large circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="chevron down icon"
+          />
+        </button>
+      </th>
+      <th
+        className="eight wide"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Arcade Network Token
+           (
+          ANT
+          )
+        </a>
+      </th>
+      <th
+        className="five wide"
+      >
+        <div
+          className="ui mini statistic"
+        >
+          <div
+            className="value"
+          >
+            <span
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              2588.503
+            </span>
+          </div>
+        </div>
+      </th>
+      <th
+        className="two wide"
+      >
+        <button
+          className="ui circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+      </th>
+    </tr>
+  </thead>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItem collapsed.loading 1`] = `
+<table
+  className="ui compact table"
+>
+  <thead
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <th
+        className="one wide"
+      >
+        <button
+          className="ui large circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="chevron down icon"
+          />
+        </button>
+      </th>
+      <th
+        className="eight wide"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Arcade Network Token
+           (
+          ANT
+          )
+        </a>
+      </th>
+      <th
+        className="five wide"
+      >
+        <div
+          className="ui mini statistic"
+        >
+          <div
+            className="value"
+          >
+            <span
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              2588.503
+            </span>
+          </div>
+        </div>
+      </th>
+      <th
+        className="two wide"
+      >
+        <button
+          className="ui circular icon loading button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+      </th>
+    </tr>
+  </thead>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItem expanded 1`] = `
+<table
+  className="ui compact table"
+>
+  <thead
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <th
+        className="one wide"
+      >
+        <button
+          className="ui large circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="chevron up icon"
+          />
+        </button>
+      </th>
+      <th
+        className="eight wide"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Arcade Network Token
+           (
+          ANT
+          )
+        </a>
+      </th>
+      <th
+        className="five wide"
+      >
+        <div
+          className="ui mini statistic"
+        >
+          <div
+            className="value"
+          >
+            <span
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              2588.503
+            </span>
+          </div>
+        </div>
+      </th>
+      <th
+        className="two wide"
+      >
+        <button
+          className="ui circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      />
+      <td
+        className=""
+      >
+        <a
+          href="/0xAccountAddress1/transfers/1"
+          onClick={[Function]}
+        >
+          <div>
+            <div>
+              <strong>
+                cool.stuff.eth
+              </strong>
+            </div>
+            <div>
+              <small>
+                0xAccountAddress1
+              </small>
+            </div>
+          </div>
+        </a>
+      </td>
+      <td
+        className=""
+      >
+        <span
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          5.556
+        </span>
+      </td>
+      <td
+        className=""
+      >
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="external share icon"
+          />
+        </button>
+      </td>
+    </tr>
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      />
+      <td
+        className=""
+      >
+        <a
+          href="/0xAccountAddress2/transfers/1"
+          onClick={[Function]}
+        >
+          <div>
+            <strong>
+              0xAccountAddress2
+            </strong>
+          </div>
+        </a>
+      </td>
+      <td
+        className=""
+      >
+        <span
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          11.111
+        </span>
+      </td>
+      <td
+        className=""
+      >
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="external share icon"
+          />
+        </button>
+      </td>
+    </tr>
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      />
+      <td
+        className=""
+      >
+        <a
+          href="/0xAccountAddress3/transfers/1"
+          onClick={[Function]}
+        >
+          <div>
+            <strong>
+              0xAccountAddress3
+            </strong>
+          </div>
+        </a>
+      </td>
+      <td
+        className=""
+      >
+        <span
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          16.667
+        </span>
+      </td>
+      <td
+        className=""
+      >
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+        <button
+          className="ui mini circular icon disabled button"
+          disabled={true}
+          onClick={[Function]}
+          role="button"
+          tabIndex={-1}
+        >
+          <i
+            aria-hidden="true"
+            className="external share icon"
+          />
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItem expanded.loading 1`] = `
+<table
+  className="ui compact table"
+>
+  <thead
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <th
+        className="one wide"
+      >
+        <button
+          className="ui large circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="chevron up icon"
+          />
+        </button>
+      </th>
+      <th
+        className="eight wide"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Arcade Network Token
+           (
+          ANT
+          )
+        </a>
+      </th>
+      <th
+        className="five wide"
+      >
+        <div
+          className="ui mini statistic"
+        >
+          <div
+            className="value"
+          >
+            <span
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              2588.503
+            </span>
+          </div>
+        </div>
+      </th>
+      <th
+        className="two wide"
+      >
+        <button
+          className="ui circular icon loading button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      />
+      <td
+        className=""
+      >
+        <a
+          href="/0xAccountAddress1/transfers/1"
+          onClick={[Function]}
+        >
+          <div>
+            <div>
+              <strong>
+                cool.stuff.eth
+              </strong>
+            </div>
+            <div>
+              <small>
+                0xAccountAddress1
+              </small>
+            </div>
+          </div>
+        </a>
+      </td>
+      <td
+        className=""
+      >
+        <span
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          5.556
+        </span>
+      </td>
+      <td
+        className=""
+      >
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="external share icon"
+          />
+        </button>
+      </td>
+    </tr>
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      />
+      <td
+        className=""
+      >
+        <a
+          href="/0xAccountAddress2/transfers/1"
+          onClick={[Function]}
+        >
+          <div>
+            <strong>
+              0xAccountAddress2
+            </strong>
+          </div>
+        </a>
+      </td>
+      <td
+        className=""
+      >
+        <span
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          11.111
+        </span>
+      </td>
+      <td
+        className=""
+      >
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="external share icon"
+          />
+        </button>
+      </td>
+    </tr>
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      />
+      <td
+        className=""
+      >
+        <a
+          href="/0xAccountAddress3/transfers/1"
+          onClick={[Function]}
+        >
+          <div>
+            <strong>
+              0xAccountAddress3
+            </strong>
+          </div>
+        </a>
+      </td>
+      <td
+        className=""
+      >
+        <span
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          16.667
+        </span>
+      </td>
+      <td
+        className=""
+      >
+        <button
+          className="ui mini circular icon button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="refresh icon"
+          />
+        </button>
+        <button
+          className="ui mini circular icon disabled button"
+          disabled={true}
+          onClick={[Function]}
+          role="button"
+          tabIndex={-1}
+        >
+          <i
+            aria-hidden="true"
+            className="external share icon"
+          />
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItemDetail external 1`] = `
+<table
+  className="ui table"
+>
+  <tr
+    className=""
+  >
+    <td
+      className=""
+    />
+    <td
+      className=""
+    >
+      <a
+        href="https://some.link"
+        onClick={[Function]}
+      >
+        <div>
+          <strong>
+            0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0
+          </strong>
+        </div>
+      </a>
+    </td>
+    <td
+      className=""
+    >
+      <span
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        234.123
+      </span>
+    </td>
+    <td
+      className=""
+    >
+      <button
+        className="ui mini circular icon button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="refresh icon"
+        />
+      </button>
+      <button
+        className="ui mini circular icon disabled button"
+        disabled={true}
+        onClick={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <i
+          aria-hidden="true"
+          className="external share icon"
+        />
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItemDetail external+ens 1`] = `
+<table
+  className="ui table"
+>
+  <tr
+    className=""
+  >
+    <td
+      className=""
+    />
+    <td
+      className=""
+    >
+      <a
+        href="https://some.link"
+        onClick={[Function]}
+      >
+        <div>
+          <div>
+            <strong>
+              gimme.eth
+            </strong>
+          </div>
+          <div>
+            <small>
+              0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0
+            </small>
+          </div>
+        </div>
+      </a>
+    </td>
+    <td
+      className=""
+    >
+      <span
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        234.123
+      </span>
+    </td>
+    <td
+      className=""
+    >
+      <button
+        className="ui mini circular icon button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="refresh icon"
+        />
+      </button>
+      <button
+        className="ui mini circular icon disabled button"
+        disabled={true}
+        onClick={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <i
+          aria-hidden="true"
+          className="external share icon"
+        />
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItemDetail extloading 1`] = `
+<table
+  className="ui table"
+>
+  <tr
+    className=""
+  >
+    <td
+      className=""
+    />
+    <td
+      className=""
+    >
+      <a
+        href="https://some.link"
+        onClick={[Function]}
+      >
+        <div>
+          <strong>
+            0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0
+          </strong>
+        </div>
+      </a>
+    </td>
+    <td
+      className=""
+    >
+      <span
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        234.123
+      </span>
+    </td>
+    <td
+      className=""
+    >
+      <button
+        className="ui mini circular icon loading button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="refresh icon"
+        />
+      </button>
+      <button
+        className="ui mini circular icon disabled button"
+        disabled={true}
+        onClick={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <i
+          aria-hidden="true"
+          className="external share icon"
+        />
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItemDetail own 1`] = `
+<table
+  className="ui table"
+>
+  <tr
+    className=""
+  >
+    <td
+      className=""
+    />
+    <td
+      className=""
+    >
+      <a
+        href="https://some.link"
+        onClick={[Function]}
+      >
+        <div>
+          <strong>
+            0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0
+          </strong>
+        </div>
+      </a>
+    </td>
+    <td
+      className=""
+    >
+      <span
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        234.123
+      </span>
+    </td>
+    <td
+      className=""
+    >
+      <button
+        className="ui mini circular icon button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="refresh icon"
+        />
+      </button>
+      <button
+        className="ui mini circular icon button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="external share icon"
+        />
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItemDetail own+ens 1`] = `
+<table
+  className="ui table"
+>
+  <tr
+    className=""
+  >
+    <td
+      className=""
+    />
+    <td
+      className=""
+    >
+      <a
+        href="https://some.link"
+        onClick={[Function]}
+      >
+        <div>
+          <div>
+            <strong>
+              gimme.eth
+            </strong>
+          </div>
+          <div>
+            <small>
+              0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0
+            </small>
+          </div>
+        </div>
+      </a>
+    </td>
+    <td
+      className=""
+    >
+      <span
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        234.123
+      </span>
+    </td>
+    <td
+      className=""
+    >
+      <button
+        className="ui mini circular icon button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="refresh icon"
+        />
+      </button>
+      <button
+        className="ui mini circular icon button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="external share icon"
+        />
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`Storyshots Modules/BalanceItemDetail ownloading 1`] = `
+<table
+  className="ui table"
+>
+  <tr
+    className=""
+  >
+    <td
+      className=""
+    />
+    <td
+      className=""
+    >
+      <a
+        href="https://some.link"
+        onClick={[Function]}
+      >
+        <div>
+          <strong>
+            0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0
+          </strong>
+        </div>
+      </a>
+    </td>
+    <td
+      className=""
+    >
+      <span
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        234.123
+      </span>
+    </td>
+    <td
+      className=""
+    >
+      <button
+        className="ui mini circular icon loading button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="refresh icon"
+        />
+      </button>
+      <button
+        className="ui mini circular icon button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="external share icon"
+        />
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`Storyshots Modules/TokenListFilter empty 1`] = `
+<p>
+  <div
+    className="ui fluid labeled input"
+  >
+    <div
+      className="ui label label"
+      onClick={[Function]}
+    >
+      Filter
+    </div>
+    <input
+      disabled={undefined}
+      name="filter"
+      onChange={[Function]}
+      placeholder="Enter name, symbol or contract address"
+      tabIndex={undefined}
+      type="text"
+      value=""
+    />
+  </div>
+</p>
+`;
+
+exports[`Storyshots Modules/TokenListFilter withFilterString 1`] = `
+<p>
+  <div
+    className="ui fluid icon labeled input"
+  >
+    <div
+      className="ui label label"
+      onClick={[Function]}
+    >
+      Filter
+    </div>
+    <input
+      disabled={undefined}
+      name="filter"
+      onChange={[Function]}
+      placeholder="Enter name, symbol or contract address"
+      tabIndex={undefined}
+      type="text"
+      value="someSearchString"
+    />
+    <i
+      aria-hidden="true"
+      className="eraser circular link icon"
+      iconPosition="right"
+      onClick={[Function]}
+    />
+  </div>
+</p>
+`;
+
+exports[`Storyshots Screens/Accounts default 1`] = `
+<div
+  className="ui vertically padded grid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="four wide column"
+    >
+      <div
+        className="ui large fluid inverted pointing vertical labeled icon menu"
+      >
+        <div
+          className="header item"
+          onClick={[Function]}
+        >
+          TokenStation
+        </div>
+        <a
+          className="item"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="home icon"
+          />
+          Overview
+        </a>
+        <a
+          className="active item"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="users icon"
+          />
+          Manage Accounts
+        </a>
+        <a
+          className="item"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="cube icon"
+          />
+          Manage Contracts
+        </a>
+      </div>
+    </div>
+    <div
+      className="twelve wide column"
+    >
+      <h1
+        className="ui green block inverted center aligned header"
+      >
+        Manage Accounts
+      </h1>
+      <div
+        className="ui segment"
+      >
+        <h2
+          className="ui dividing header"
+        >
+          Personal Accounts
+        </h2>
+        <table
+          className="ui selectable very basic table"
+        >
+          <tbody
+            className=""
+          >
+            <tr
+              className=""
+            >
+              <td
+                className="collapsing left aligned"
+              >
+                <i
+                  aria-hidden="true"
+                  className="unlock large icon"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+              </td>
+              <td
+                className="left aligned"
+              >
+                <div>
+                  <div>
+                    <strong>
+                      cool.stuff.eth
+                    </strong>
+                  </div>
+                  <div>
+                    <small>
+                      0xAccountAddress1
+                    </small>
+                  </div>
+                </div>
+              </td>
+              <td
+                className="collapsing right aligned"
+              />
+            </tr>
+            <tr
+              className=""
+            >
+              <td
+                className="collapsing left aligned"
+              >
+                <i
+                  aria-hidden="true"
+                  className="unlock large icon"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+              </td>
+              <td
+                className="left aligned"
+              >
+                <div>
+                  <strong>
+                    0xAccountAddress2
+                  </strong>
+                </div>
+              </td>
+              <td
+                className="collapsing right aligned"
+              />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        className="ui segment"
+      >
+        <h2
+          className="ui dividing header"
+        >
+          Watched Accounts
+        </h2>
+        <table
+          className="ui selectable very basic table"
+        >
+          <tbody
+            className=""
+          >
+            <tr
+              className=""
+            >
+              <td
+                className="collapsing left aligned"
+              >
+                <i
+                  aria-hidden="true"
+                  className="eye large icon"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+              </td>
+              <td
+                className="left aligned"
+              >
+                <div>
+                  <strong>
+                    0xAccountAddress3
+                  </strong>
+                </div>
+              </td>
+              <td
+                className="collapsing right aligned"
+              >
+                <button
+                  className="ui tiny icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="delete icon"
+                  />
+                </button>
+              </td>
+            </tr>
+            <tr
+              className=""
+            >
+              <td
+                className="collapsing left aligned"
+              >
+                <i
+                  aria-hidden="true"
+                  className="eye large icon"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+              </td>
+              <td
+                className="left aligned"
+              >
+                <div>
+                  <div>
+                    <strong>
+                      joe.doe.eth
+                    </strong>
+                  </div>
+                  <div>
+                    <small>
+                      0xAccountAddress4
+                    </small>
+                  </div>
+                </div>
+              </td>
+              <td
+                className="collapsing right aligned"
+              >
+                <button
+                  className="ui tiny icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="delete icon"
+                  />
+                </button>
+              </td>
+            </tr>
+            <tr
+              className=""
+            >
+              <td
+                className="collapsing left aligned"
+              >
+                <i
+                  aria-hidden="true"
+                  className="eye large icon"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+              </td>
+              <td
+                className="left aligned"
+              >
+                <div>
+                  <strong>
+                    0xAccountAddress5
+                  </strong>
+                </div>
+              </td>
+              <td
+                className="collapsing right aligned"
+              >
+                <button
+                  className="ui tiny icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="delete icon"
+                  />
+                </button>
+              </td>
+            </tr>
+            <tr
+              className=""
+            >
+              <td
+                className="collapsing left aligned"
+              >
+                <i
+                  aria-hidden="true"
+                  className="eye large icon"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+              </td>
+              <td
+                className="left aligned"
+              >
+                <div>
+                  <strong>
+                    0xAccountAddress6
+                  </strong>
+                </div>
+              </td>
+              <td
+                className="collapsing right aligned"
+              >
+                <button
+                  className="ui tiny icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="delete icon"
+                  />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Screens/Overview default 1`] = `
+<div
+  className="ui vertically padded grid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="four wide column"
+    >
+      <div
+        className="ui large fluid inverted pointing vertical labeled icon menu"
+      >
+        <div
+          className="header item"
+          onClick={[Function]}
+        >
+          TokenStation
+        </div>
+        <a
+          className="active item"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="home icon"
+          />
+          Overview
+        </a>
+        <a
+          className="item"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="users icon"
+          />
+          Manage Accounts
+        </a>
+        <a
+          className="item"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="cube icon"
+          />
+          Manage Contracts
+        </a>
+      </div>
+    </div>
+    <div
+      className="twelve wide column"
+    >
+      <h1
+        className="ui green block inverted center aligned header"
+      >
+        Overview
+      </h1>
+      <p>
+        <div
+          className="ui fluid icon labeled input"
+        >
+          <div
+            className="ui label label"
+            onClick={[Function]}
+          >
+            Filter
+          </div>
+          <input
+            disabled={undefined}
+            name="filter"
+            onChange={[Function]}
+            placeholder="Enter name, symbol or contract address"
+            tabIndex={undefined}
+            type="text"
+            value="myFilterString"
+          />
+          <i
+            aria-hidden="true"
+            className="eraser circular link icon"
+            iconPosition="right"
+            onClick={[Function]}
+          />
+        </div>
+      </p>
+      <div>
+        <table
+          className="ui compact table"
+        >
+          <thead
+            className=""
+          >
+            <tr
+              className=""
+            >
+              <th
+                className="one wide"
+              >
+                <button
+                  className="ui large circular icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="chevron down icon"
+                  />
+                </button>
+              </th>
+              <th
+                className="eight wide"
+              >
+                <a
+                  href="/token/1"
+                  onClick={[Function]}
+                >
+                  Arcade Network Token
+                   (
+                  ANT
+                  )
+                </a>
+              </th>
+              <th
+                className="five wide"
+              >
+                <div
+                  className="ui mini statistic"
+                >
+                  <div
+                    className="value"
+                  >
+                    <span
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      33.333
+                    </span>
+                  </div>
+                </div>
+              </th>
+              <th
+                className="two wide"
+              >
+                <button
+                  className="ui circular icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="refresh icon"
+                  />
+                </button>
+              </th>
+            </tr>
+          </thead>
+        </table>
+        <table
+          className="ui compact table"
+        >
+          <thead
+            className=""
+          >
+            <tr
+              className=""
+            >
+              <th
+                className="one wide"
+              >
+                <button
+                  className="ui large circular icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="chevron down icon"
+                  />
+                </button>
+              </th>
+              <th
+                className="eight wide"
+              >
+                <a
+                  href="/token/2"
+                  onClick={[Function]}
+                >
+                  District0x Network Token
+                   (
+                  DNT
+                  )
+                </a>
+              </th>
+              <th
+                className="five wide"
+              >
+                <div
+                  className="ui mini statistic"
+                >
+                  <div
+                    className="value"
+                  >
+                    <span
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      22.222
+                    </span>
+                  </div>
+                </div>
+              </th>
+              <th
+                className="two wide"
+              >
+                <button
+                  className="ui circular icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="refresh icon"
+                  />
+                </button>
+              </th>
+            </tr>
+          </thead>
+        </table>
+        <table
+          className="ui compact table"
+        >
+          <thead
+            className=""
+          >
+            <tr
+              className=""
+            >
+              <th
+                className="one wide"
+              >
+                <button
+                  className="ui large circular icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="chevron down icon"
+                  />
+                </button>
+              </th>
+              <th
+                className="eight wide"
+              >
+                <a
+                  href="/token/3"
+                  onClick={[Function]}
+                >
+                  OmiseGo
+                   (
+                  OMG
+                  )
+                </a>
+              </th>
+              <th
+                className="five wide"
+              >
+                <div
+                  className="ui mini statistic"
+                >
+                  <div
+                    className="value"
+                  >
+                    <span
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      27.778
+                    </span>
+                  </div>
+                </div>
+              </th>
+              <th
+                className="two wide"
+              >
+                <button
+                  className="ui circular icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="refresh icon"
+                  />
+                </button>
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Segments/Accounts default 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Manage Accounts
+</h1>,
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Personal Accounts
+    </h2>
+    <table
+        className="ui selectable very basic table"
+    >
+        <tbody
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="unlock large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <div>
+                            <strong>
+                                cool.stuff.eth
+                            </strong>
+                        </div>
+                        <div>
+                            <small>
+                                0xAccountAddress1
+                            </small>
+                        </div>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                />
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="unlock large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress2
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                />
+            </tr>
+        </tbody>
+    </table>
+</div>,
+  <div
+    className="ui segment"
+>
+    <h2
+        className="ui dividing header"
+    >
+        Watched Accounts
+    </h2>
+    <table
+        className="ui selectable very basic table"
+    >
+        <tbody
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress3
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <div>
+                            <strong>
+                                joe.doe.eth
+                            </strong>
+                        </div>
+                        <div>
+                            <small>
+                                0xAccountAddress4
+                            </small>
+                        </div>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress5
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+            <tr
+                className=""
+            >
+                <td
+                    className="collapsing left aligned"
+                >
+                    <i
+                        aria-hidden="true"
+                        className="eye large icon"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                    />
+                </td>
+                <td
+                    className="left aligned"
+                >
+                    <div>
+                        <strong>
+                            0xAccountAddress6
+                        </strong>
+                    </div>
+                </td>
+                <td
+                    className="collapsing right aligned"
+                >
+                    <button
+                        className="ui tiny icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="delete icon"
+                        />
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>,
+]
+`;
+
+exports[`Storyshots Segments/Overview default 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Overview
+</h1>,
+  <p>
+    <div
+        className="ui fluid icon labeled input"
+    >
+        <div
+            className="ui label label"
+            onClick={[Function]}
+        >
+            Filter
+        </div>
+        <input
+            disabled={undefined}
+            name="filter"
+            onChange={[Function]}
+            placeholder="Enter name, symbol or contract address"
+            tabIndex={undefined}
+            type="text"
+            value="myFilterString"
+        />
+        <i
+            aria-hidden="true"
+            className="eraser circular link icon"
+            iconPosition="right"
+            onClick={[Function]}
+        />
+    </div>
+</p>,
+  <div>
+    <table
+        className="ui compact table"
+    >
+        <thead
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <th
+                    className="one wide"
+                >
+                    <button
+                        className="ui large circular icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="chevron down icon"
+                        />
+                    </button>
+                </th>
+                <th
+                    className="eight wide"
+                >
+                    <a
+                        href="/token/1"
+                        onClick={[Function]}
+                    >
+                        Arcade Network Token
+                         (
+                        ANT
+                        )
+                    </a>
+                </th>
+                <th
+                    className="five wide"
+                >
+                    <div
+                        className="ui mini statistic"
+                    >
+                        <div
+                            className="value"
+                        >
+                            <span
+                                onBlur={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                            >
+                                33.333
+                            </span>
+                        </div>
+                    </div>
+                </th>
+                <th
+                    className="two wide"
+                >
+                    <button
+                        className="ui circular icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="refresh icon"
+                        />
+                    </button>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <table
+        className="ui compact table"
+    >
+        <thead
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <th
+                    className="one wide"
+                >
+                    <button
+                        className="ui large circular icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="chevron down icon"
+                        />
+                    </button>
+                </th>
+                <th
+                    className="eight wide"
+                >
+                    <a
+                        href="/token/2"
+                        onClick={[Function]}
+                    >
+                        District0x Network Token
+                         (
+                        DNT
+                        )
+                    </a>
+                </th>
+                <th
+                    className="five wide"
+                >
+                    <div
+                        className="ui mini statistic"
+                    >
+                        <div
+                            className="value"
+                        >
+                            <span
+                                onBlur={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                            >
+                                22.222
+                            </span>
+                        </div>
+                    </div>
+                </th>
+                <th
+                    className="two wide"
+                >
+                    <button
+                        className="ui circular icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="refresh icon"
+                        />
+                    </button>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <table
+        className="ui compact table"
+    >
+        <thead
+            className=""
+        >
+            <tr
+                className=""
+            >
+                <th
+                    className="one wide"
+                >
+                    <button
+                        className="ui large circular icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="chevron down icon"
+                        />
+                    </button>
+                </th>
+                <th
+                    className="eight wide"
+                >
+                    <a
+                        href="/token/3"
+                        onClick={[Function]}
+                    >
+                        OmiseGo
+                         (
+                        OMG
+                        )
+                    </a>
+                </th>
+                <th
+                    className="five wide"
+                >
+                    <div
+                        className="ui mini statistic"
+                    >
+                        <div
+                            className="value"
+                        >
+                            <span
+                                onBlur={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                            >
+                                27.778
+                            </span>
+                        </div>
+                    </div>
+                </th>
+                <th
+                    className="two wide"
+                >
+                    <button
+                        className="ui circular icon button"
+                        disabled={undefined}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={undefined}
+                    >
+                        <i
+                            aria-hidden="true"
+                            className="refresh icon"
+                        />
+                    </button>
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>,
+]
+`;
+
+exports[`Storyshots Segments/Overview no accounts 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Overview
+</h1>,
+  <div
+    className="ui message"
+>
+    <div
+        className="header"
+    >
+        No accounts
+    </div>
+    <p>
+        You have no watched or unlocked accounts. Open the 
+        <a
+            href="/todo"
+            onClick={[Function]}
+        >
+            Account Manager
+        </a>
+         to setup accounts.
+    </p>
+</div>,
+]
+`;
+
+exports[`Storyshots Segments/Overview no balances 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Overview
+</h1>,
+  <div
+    className="ui message"
+>
+    <div
+        className="header"
+    >
+        No balances
+    </div>
+    <p>
+        There are no token balances on your accounts. Open the 
+        <a
+            href="/todo"
+            onClick={[Function]}
+        >
+            Account Manager
+        </a>
+         to add additional accounts, or open the 
+        <a
+            href="/todo"
+            onClick={[Function]}
+        >
+            Token Manager
+        </a>
+         to add tracked tokens.
+    </p>
+</div>,
+]
+`;
+
+exports[`Storyshots Segments/Sidebar accounts 1`] = `
+<div
+  className="ui padded grid"
+>
+  <div
+    className="four wide column"
+  >
+    <div
+      className="ui large fluid inverted pointing vertical labeled icon menu"
+    >
+      <div
+        className="header item"
+        onClick={[Function]}
+      >
+        TokenStation
+      </div>
+      <a
+        className="item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="home icon"
+        />
+        Overview
+      </a>
+      <a
+        className="active item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="users icon"
+        />
+        Manage Accounts
+      </a>
+      <a
+        className="item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="cube icon"
+        />
+        Manage Contracts
+      </a>
+    </div>
+  </div>
+  <div
+    className="column"
+  >
+    screen content here
+  </div>
+</div>
+`;
+
+exports[`Storyshots Segments/Sidebar overview 1`] = `
+<div
+  className="ui padded grid"
+>
+  <div
+    className="four wide column"
+  >
+    <div
+      className="ui large fluid inverted pointing vertical labeled icon menu"
+    >
+      <div
+        className="header item"
+        onClick={[Function]}
+      >
+        TokenStation
+      </div>
+      <a
+        className="active item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="home icon"
+        />
+        Overview
+      </a>
+      <a
+        className="item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="users icon"
+        />
+        Manage Accounts
+      </a>
+      <a
+        className="item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="cube icon"
+        />
+        Manage Contracts
+      </a>
+    </div>
+  </div>
+  <div
+    className="column"
+  >
+    screen content here
+  </div>
+</div>
+`;
+
+exports[`Storyshots Segments/Sidebar token 1`] = `
+<div
+  className="ui padded grid"
+>
+  <div
+    className="four wide column"
+  >
+    <div
+      className="ui large fluid inverted pointing vertical labeled icon menu"
+    >
+      <div
+        className="header item"
+        onClick={[Function]}
+      >
+        TokenStation
+      </div>
+      <a
+        className="item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="home icon"
+        />
+        Overview
+      </a>
+      <a
+        className="item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="users icon"
+        />
+        Manage Accounts
+      </a>
+      <a
+        className="active item"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="cube icon"
+        />
+        Manage Contracts
+      </a>
+    </div>
+  </div>
+  <div
+    className="column"
+  >
+    screen content here
+  </div>
+</div>
+`;
