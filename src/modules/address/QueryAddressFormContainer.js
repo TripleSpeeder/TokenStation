@@ -41,7 +41,7 @@ class QueryAddressFormContainer extends Component {
     render() {
         return (
             <QueryAddressForm handleChange={this.handleChange}
-                              handlesubmit={this.handleSubmit}
+                              handleSubmit={this.handleSubmit}
                               valid={this.state.valid}
                               address={this.state.address}
             />

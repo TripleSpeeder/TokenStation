@@ -8,19 +8,17 @@ const QueryAddressForm = (props) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group>
-                <Form.Input inline
-                            width={11}
+            <Form.Group inline>
+                <Form.Input width={10}
                             name='address'
-                            icon='diamond'
-                            iconPosition='left'
                             placeholder='Address or ENS name'
                             error={!valid}
                             onChange={handleChange}
                             value={address}
+                            label={'Add account'}
                 />
                 <Form.Button
-                    content='add address'
+                    content='Submit'
                     disabled={!valid}
                     width={6}
                 />

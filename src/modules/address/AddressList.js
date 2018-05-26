@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Header, Message, Segment, Table} from 'semantic-ui-react'
+import {Divider, Header, Message, Segment, Table} from 'semantic-ui-react'
 import AddressContainer from './AddressContainer'
+import QueryAddressFormContainer from "./QueryAddressFormContainer"
 
 const AddressList = (props) => {
     let ownTable, watchTable
@@ -36,7 +37,7 @@ const AddressList = (props) => {
             <Message.Header>
                 No watched accounts
             </Message.Header>
-            <p>You don't have any watched accounts. Open the Account Manager to setup watch-only accounts.</p>
+            <p>You don't have any watched accounts.</p>
         </Message>
     }
 
@@ -49,6 +50,8 @@ const AddressList = (props) => {
             <Segment>
                 <Header dividing as='h2'>Watched Accounts</Header>
                 {watchTable}
+                <Divider/>
+                <QueryAddressFormContainer />
             </Segment>
         </React.Fragment>
     )

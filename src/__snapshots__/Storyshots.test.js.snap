@@ -370,6 +370,58 @@ Array [
             </tr>
         </tbody>
     </table>
+    <div
+        className="ui divider"
+    />
+    <form
+        action={undefined}
+        className="ui form"
+        onSubmit={[Function]}
+    >
+        <div
+            className="inline fields"
+        >
+            <div
+                className="error ten wide field"
+            >
+                <label
+                    htmlFor={undefined}
+                >
+                    Add account
+                </label>
+                <div
+                    className="ui input"
+                    content={undefined}
+                >
+                    <input
+                        disabled={undefined}
+                        name="address"
+                        onChange={[Function]}
+                        placeholder="Address or ENS name"
+                        required={undefined}
+                        tabIndex={undefined}
+                        type="text"
+                        value=""
+                    />
+                </div>
+            </div>
+            <div
+                className="disabled six wide field"
+            >
+                <button
+                    className="ui disabled button"
+                    disabled={true}
+                    onClick={[Function]}
+                    required={undefined}
+                    role="button"
+                    tabIndex={-1}
+                    type={undefined}
+                >
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
 </div>,
 ]
 `;
@@ -414,9 +466,61 @@ Array [
             No watched accounts
         </div>
         <p>
-            You don't have any watched accounts. Open the Account Manager to setup watch-only accounts.
+            You don't have any watched accounts.
         </p>
     </div>
+    <div
+        className="ui divider"
+    />
+    <form
+        action={undefined}
+        className="ui form"
+        onSubmit={[Function]}
+    >
+        <div
+            className="inline fields"
+        >
+            <div
+                className="error ten wide field"
+            >
+                <label
+                    htmlFor={undefined}
+                >
+                    Add account
+                </label>
+                <div
+                    className="ui input"
+                    content={undefined}
+                >
+                    <input
+                        disabled={undefined}
+                        name="address"
+                        onChange={[Function]}
+                        placeholder="Address or ENS name"
+                        required={undefined}
+                        tabIndex={undefined}
+                        type="text"
+                        value=""
+                    />
+                </div>
+            </div>
+            <div
+                className="disabled six wide field"
+            >
+                <button
+                    className="ui disabled button"
+                    disabled={true}
+                    onClick={[Function]}
+                    required={undefined}
+                    role="button"
+                    tabIndex={-1}
+                    type={undefined}
+                >
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
 </div>,
 ]
 `;
@@ -522,9 +626,61 @@ Array [
             No watched accounts
         </div>
         <p>
-            You don't have any watched accounts. Open the Account Manager to setup watch-only accounts.
+            You don't have any watched accounts.
         </p>
     </div>
+    <div
+        className="ui divider"
+    />
+    <form
+        action={undefined}
+        className="ui form"
+        onSubmit={[Function]}
+    >
+        <div
+            className="inline fields"
+        >
+            <div
+                className="error ten wide field"
+            >
+                <label
+                    htmlFor={undefined}
+                >
+                    Add account
+                </label>
+                <div
+                    className="ui input"
+                    content={undefined}
+                >
+                    <input
+                        disabled={undefined}
+                        name="address"
+                        onChange={[Function]}
+                        placeholder="Address or ENS name"
+                        required={undefined}
+                        tabIndex={undefined}
+                        type="text"
+                        value=""
+                    />
+                </div>
+            </div>
+            <div
+                className="disabled six wide field"
+            >
+                <button
+                    className="ui disabled button"
+                    disabled={true}
+                    onClick={[Function]}
+                    required={undefined}
+                    role="button"
+                    tabIndex={-1}
+                    type={undefined}
+                >
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
 </div>,
 ]
 `;
@@ -743,6 +899,58 @@ Array [
             </tr>
         </tbody>
     </table>
+    <div
+        className="ui divider"
+    />
+    <form
+        action={undefined}
+        className="ui form"
+        onSubmit={[Function]}
+    >
+        <div
+            className="inline fields"
+        >
+            <div
+                className="error ten wide field"
+            >
+                <label
+                    htmlFor={undefined}
+                >
+                    Add account
+                </label>
+                <div
+                    className="ui input"
+                    content={undefined}
+                >
+                    <input
+                        disabled={undefined}
+                        name="address"
+                        onChange={[Function]}
+                        placeholder="Address or ENS name"
+                        required={undefined}
+                        tabIndex={undefined}
+                        type="text"
+                        value=""
+                    />
+                </div>
+            </div>
+            <div
+                className="disabled six wide field"
+            >
+                <button
+                    className="ui disabled button"
+                    disabled={true}
+                    onClick={[Function]}
+                    required={undefined}
+                    role="button"
+                    tabIndex={-1}
+                    type={undefined}
+                >
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
 </div>,
 ]
 `;
@@ -2100,13 +2308,18 @@ exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
   onSubmit={[Function]}
 >
   <div
-    className="fields"
+    className="inline fields"
   >
     <div
-      className="error inline eleven wide field"
+      className="error ten wide field"
     >
+      <label
+        htmlFor={undefined}
+      >
+        Add account
+      </label>
       <div
-        className="ui left icon input"
+        className="ui input"
         content={undefined}
       >
         <input
@@ -2118,10 +2331,6 @@ exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
           tabIndex={undefined}
           type="text"
           value=""
-        />
-        <i
-          aria-hidden="true"
-          className="diamond icon"
         />
       </div>
     </div>
@@ -2137,7 +2346,7 @@ exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
         tabIndex={-1}
         type={undefined}
       >
-        add address
+        Submit
       </button>
     </div>
   </div>
@@ -2151,13 +2360,18 @@ exports[`Storyshots Modules/QueryAddressForm invalid 1`] = `
   onSubmit={[Function]}
 >
   <div
-    className="fields"
+    className="inline fields"
   >
     <div
-      className="error inline eleven wide field"
+      className="error ten wide field"
     >
+      <label
+        htmlFor={undefined}
+      >
+        Add account
+      </label>
       <div
-        className="ui left icon input"
+        className="ui input"
         content={undefined}
       >
         <input
@@ -2169,10 +2383,6 @@ exports[`Storyshots Modules/QueryAddressForm invalid 1`] = `
           tabIndex={undefined}
           type="text"
           value="0x111222333"
-        />
-        <i
-          aria-hidden="true"
-          className="diamond icon"
         />
       </div>
     </div>
@@ -2188,7 +2398,7 @@ exports[`Storyshots Modules/QueryAddressForm invalid 1`] = `
         tabIndex={-1}
         type={undefined}
       >
-        add address
+        Submit
       </button>
     </div>
   </div>
@@ -2202,13 +2412,18 @@ exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
   onSubmit={[Function]}
 >
   <div
-    className="fields"
+    className="inline fields"
   >
     <div
-      className="inline eleven wide field"
+      className="ten wide field"
     >
+      <label
+        htmlFor={undefined}
+      >
+        Add account
+      </label>
       <div
-        className="ui left icon input"
+        className="ui input"
         content={undefined}
       >
         <input
@@ -2220,10 +2435,6 @@ exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
           tabIndex={undefined}
           type="text"
           value="0xAccountAddress1"
-        />
-        <i
-          aria-hidden="true"
-          className="diamond icon"
         />
       </div>
     </div>
@@ -2239,7 +2450,7 @@ exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
         tabIndex={undefined}
         type={undefined}
       >
-        add address
+        Submit
       </button>
     </div>
   </div>
@@ -2632,6 +2843,58 @@ exports[`Storyshots Screens/Accounts default 1`] = `
             </tr>
           </tbody>
         </table>
+        <div
+          className="ui divider"
+        />
+        <form
+          action={undefined}
+          className="ui form"
+          onSubmit={[Function]}
+        >
+          <div
+            className="inline fields"
+          >
+            <div
+              className="error ten wide field"
+            >
+              <label
+                htmlFor={undefined}
+              >
+                Add account
+              </label>
+              <div
+                className="ui input"
+                content={undefined}
+              >
+                <input
+                  disabled={undefined}
+                  name="address"
+                  onChange={[Function]}
+                  placeholder="Address or ENS name"
+                  required={undefined}
+                  tabIndex={undefined}
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              className="disabled six wide field"
+            >
+              <button
+                className="ui disabled button"
+                disabled={true}
+                onClick={[Function]}
+                required={undefined}
+                role="button"
+                tabIndex={-1}
+                type={undefined}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -3245,6 +3508,58 @@ Array [
             </tr>
         </tbody>
     </table>
+    <div
+        className="ui divider"
+    />
+    <form
+        action={undefined}
+        className="ui form"
+        onSubmit={[Function]}
+    >
+        <div
+            className="inline fields"
+        >
+            <div
+                className="error ten wide field"
+            >
+                <label
+                    htmlFor={undefined}
+                >
+                    Add account
+                </label>
+                <div
+                    className="ui input"
+                    content={undefined}
+                >
+                    <input
+                        disabled={undefined}
+                        name="address"
+                        onChange={[Function]}
+                        placeholder="Address or ENS name"
+                        required={undefined}
+                        tabIndex={undefined}
+                        type="text"
+                        value=""
+                    />
+                </div>
+            </div>
+            <div
+                className="disabled six wide field"
+            >
+                <button
+                    className="ui disabled button"
+                    disabled={true}
+                    onClick={[Function]}
+                    required={undefined}
+                    role="button"
+                    tabIndex={-1}
+                    type={undefined}
+                >
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
 </div>,
 ]
 `;

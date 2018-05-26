@@ -13,7 +13,6 @@ class BalancesContainer extends Component {
             <div>
                 <Segment>
                     <AddressListContainer/>
-                    <QueryAddressFormContainer/>
                 </Segment>
                 <Segment>
                     <TokenListFilterContainer/>
