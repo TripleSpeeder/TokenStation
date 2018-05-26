@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {BigNumber} from 'bignumber.js'
+import BigNumber from 'bignumber.js'
 import {BALANCE_STATES, reloadBalance} from './balanceActions'
 import BalanceItem from './BalanceItem'
 import _ from 'lodash'
@@ -67,7 +67,7 @@ const mapStateToProps = (state, ownProps) => {
     // calculate total balance of all addresses
     const total = _.reduce(ownProps.tokenBalances, (sum, tokenBalance) => {
         return sum.plus(tokenBalance.balance)
-    }, BigNumber(0) ).dividedBy(token.decimals)
+    }, new BigNumber(0) ).dividedBy(token.decimals)
 
     // if any of the tokenBalances is loading, the whole container is loading
     let loading = false

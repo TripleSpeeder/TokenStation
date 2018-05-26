@@ -4,7 +4,7 @@ import {action} from '@storybook/addon-actions'
 import StoryRouter from 'storybook-react-router'
 import {Provider} from 'react-redux'
 
-import {BigNumber} from 'bignumber.js'
+import BigNumber from 'bignumber.js'
 import BalanceItem from './BalanceItem'
 import mockStore from '../mocks/MockStore'
 
@@ -16,7 +16,7 @@ const props = {
         mockStore.getState().balance.byId['b2'],
         mockStore.getState().balance.byId['b3']
     ],
-    total: BigNumber('2588.50288453'),
+    total: new BigNumber('2588.50288453'),
     tokenEventsLinkOptions: {},
 }
 
