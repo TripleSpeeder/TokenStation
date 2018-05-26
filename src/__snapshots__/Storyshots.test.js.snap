@@ -2093,6 +2093,159 @@ exports[`Storyshots Modules/BalanceItemDetail ownloading 1`] = `
 </table>
 `;
 
+exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
+<form
+  action={undefined}
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="fields"
+  >
+    <div
+      className="error inline eleven wide field"
+    >
+      <div
+        className="ui left icon input"
+        content={undefined}
+      >
+        <input
+          disabled={undefined}
+          name="address"
+          onChange={[Function]}
+          placeholder="Address or ENS name"
+          required={undefined}
+          tabIndex={undefined}
+          type="text"
+          value=""
+        />
+        <i
+          aria-hidden="true"
+          className="diamond icon"
+        />
+      </div>
+    </div>
+    <div
+      className="disabled six wide field"
+    >
+      <button
+        className="ui disabled button"
+        disabled={true}
+        onClick={[Function]}
+        required={undefined}
+        role="button"
+        tabIndex={-1}
+        type={undefined}
+      >
+        add address
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Modules/QueryAddressForm invalid 1`] = `
+<form
+  action={undefined}
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="fields"
+  >
+    <div
+      className="error inline eleven wide field"
+    >
+      <div
+        className="ui left icon input"
+        content={undefined}
+      >
+        <input
+          disabled={undefined}
+          name="address"
+          onChange={[Function]}
+          placeholder="Address or ENS name"
+          required={undefined}
+          tabIndex={undefined}
+          type="text"
+          value="0x111222333"
+        />
+        <i
+          aria-hidden="true"
+          className="diamond icon"
+        />
+      </div>
+    </div>
+    <div
+      className="disabled six wide field"
+    >
+      <button
+        className="ui disabled button"
+        disabled={true}
+        onClick={[Function]}
+        required={undefined}
+        role="button"
+        tabIndex={-1}
+        type={undefined}
+      >
+        add address
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
+<form
+  action={undefined}
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="fields"
+  >
+    <div
+      className="inline eleven wide field"
+    >
+      <div
+        className="ui left icon input"
+        content={undefined}
+      >
+        <input
+          disabled={undefined}
+          name="address"
+          onChange={[Function]}
+          placeholder="Address or ENS name"
+          required={undefined}
+          tabIndex={undefined}
+          type="text"
+          value="0xAccountAddress1"
+        />
+        <i
+          aria-hidden="true"
+          className="diamond icon"
+        />
+      </div>
+    </div>
+    <div
+      className="six wide field"
+    >
+      <button
+        className="ui button"
+        disabled={undefined}
+        onClick={[Function]}
+        required={undefined}
+        role="button"
+        tabIndex={undefined}
+        type={undefined}
+      >
+        add address
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
 exports[`Storyshots Modules/TokenListFilter empty 1`] = `
 <p>
   <div

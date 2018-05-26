@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import QueryAddressForm from "../address/QueryAddressForm"
 import {Segment} from 'semantic-ui-react'
 import BalancesListContainer from './BalancesListContainer'
 import AddressListContainer from '../address/AddressListContainer'
 import TokenListFilterContainer from '../token/TokenListFilterContainer'
+import QueryAddressFormContainer from "../address/QueryAddressFormContainer"
 
 
 class BalancesContainer extends Component {
@@ -13,7 +13,7 @@ class BalancesContainer extends Component {
             <div>
                 <Segment>
                     <AddressListContainer/>
-                    <QueryAddressForm/>
+                    <QueryAddressFormContainer/>
                 </Segment>
                 <Segment>
                     <TokenListFilterContainer/>
