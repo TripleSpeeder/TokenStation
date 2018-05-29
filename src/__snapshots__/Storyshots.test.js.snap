@@ -2457,6 +2457,114 @@ exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
 </form>
 `;
 
+exports[`Storyshots Modules/SelectableTokenListItem checked 1`] = `
+<table
+  className="ui celled table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="collapsing"
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui checked fitted checkbox"
+            content={undefined}
+            onChange={[Function]}
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          >
+            <input
+              checked={true}
+              className="hidden"
+              id={undefined}
+              name={undefined}
+              onClick={[Function]}
+              readOnly={true}
+              required={undefined}
+              tabIndex={0}
+              type="checkbox"
+              value={undefined}
+            />
+            <label
+              htmlFor={undefined}
+            />
+          </div>
+        </div>
+      </td>
+      <td
+        className=""
+      >
+        a token name
+         (
+        ATN
+        )
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/SelectableTokenListItem unchecked 1`] = `
+<table
+  className="ui celled table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="collapsing"
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui fitted checkbox"
+            content={undefined}
+            onChange={[Function]}
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          >
+            <input
+              checked={false}
+              className="hidden"
+              id={undefined}
+              name={undefined}
+              onClick={[Function]}
+              readOnly={true}
+              required={undefined}
+              tabIndex={0}
+              type="checkbox"
+              value={undefined}
+            />
+            <label
+              htmlFor={undefined}
+            />
+          </div>
+        </div>
+      </td>
+      <td
+        className=""
+      >
+        a token name
+         (
+        ATN
+        )
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
 exports[`Storyshots Modules/TokenListFilter empty 1`] = `
 <p>
   <div
