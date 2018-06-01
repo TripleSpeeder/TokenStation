@@ -3,11 +3,18 @@ import PropTypes from 'prop-types'
 import {Progress} from 'semantic-ui-react'
 
 const TokenLoader = (props) => {
+    const {currentlyLoadingToken, progressCurrent, progressTotal} = props
+    const progressColor = "green"
+    let label = currentlyLoadingToken
+    if (progressCurrent < progressTotal) {
+        label += " (" + progressCurrent + "/" + progressTotal + ")"
+    }
+
     return <div>
-        <Progress value={props.progressCurrent}
-                  total={props.progressTotal}
-                  color='green'
-                  label={props.currentlyLoadingToken}
+        <Progress value={progressCurrent}
+                  total={progressTotal}
+                  color={progressColor}
+                  label={label}
                   size='small'/>
     </div>
 }
