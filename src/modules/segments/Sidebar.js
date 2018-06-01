@@ -21,7 +21,7 @@ const Sidebar = (props) => {
                 Manage Accounts
             </Menu.Item>
 
-            <Menu.Item name='token' active={activeItem === 'token'} onClick={handleItemClick}>
+            <Menu.Item name='tokenContracts' active={activeItem === 'tokenContracts'} onClick={handleItemClick}>
                 <Icon name='cube' />
                 Manage Contracts
             </Menu.Item>
