@@ -2457,6 +2457,142 @@ exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
 </form>
 `;
 
+exports[`Storyshots Modules/SelectableTokenList default 1`] = `
+<table
+  className="ui celled table"
+>
+  <tr
+    className=""
+  >
+    <td
+      className="collapsing"
+    >
+      <div
+        className="field"
+      >
+        <div
+          className="ui fitted checkbox"
+          content={undefined}
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            id={undefined}
+            name={undefined}
+            onClick={[Function]}
+            readOnly={true}
+            required={undefined}
+            tabIndex={0}
+            type="checkbox"
+            value={undefined}
+          />
+          <label
+            htmlFor={undefined}
+          />
+        </div>
+      </div>
+    </td>
+    <td
+      className=""
+    >
+      Arcade Network Token
+       (
+      ANT
+      )
+    </td>
+  </tr>
+  <tr
+    className=""
+  >
+    <td
+      className="collapsing"
+    >
+      <div
+        className="field"
+      >
+        <div
+          className="ui fitted checkbox"
+          content={undefined}
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            id={undefined}
+            name={undefined}
+            onClick={[Function]}
+            readOnly={true}
+            required={undefined}
+            tabIndex={0}
+            type="checkbox"
+            value={undefined}
+          />
+          <label
+            htmlFor={undefined}
+          />
+        </div>
+      </div>
+    </td>
+    <td
+      className=""
+    >
+      District0x Network Token
+       (
+      DNT
+      )
+    </td>
+  </tr>
+  <tr
+    className=""
+  >
+    <td
+      className="collapsing"
+    >
+      <div
+        className="field"
+      >
+        <div
+          className="ui fitted checkbox"
+          content={undefined}
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            id={undefined}
+            name={undefined}
+            onClick={[Function]}
+            readOnly={true}
+            required={undefined}
+            tabIndex={0}
+            type="checkbox"
+            value={undefined}
+          />
+          <label
+            htmlFor={undefined}
+          />
+        </div>
+      </div>
+    </td>
+    <td
+      className=""
+    >
+      OmiseGo
+       (
+      OMG
+      )
+    </td>
+  </tr>
+</table>
+`;
+
 exports[`Storyshots Modules/SelectableTokenListItem checked 1`] = `
 <table
   className="ui celled table"

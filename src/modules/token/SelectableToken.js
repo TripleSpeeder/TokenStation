@@ -6,12 +6,10 @@ const SelectableToken = (props) => {
 
     const {id, address, name, symbol, checked, onToggle} = props
 
-    const handleChange = (e, { name, value }) => onToggle(id)
-
     return (
         <Table.Row>
             <Table.Cell collapsing>
-                <Form.Checkbox checked={checked} onChange={handleChange}/>
+                <Form.Checkbox checked={checked} onChange={onToggle}/>
             </Table.Cell>
             <Table.Cell>
                 {name} ({symbol})
@@ -21,7 +19,7 @@ const SelectableToken = (props) => {
 }
 
 SelectableToken.propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     checked: PropTypes.bool,
     address: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
