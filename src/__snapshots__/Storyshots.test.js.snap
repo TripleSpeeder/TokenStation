@@ -4313,3 +4313,176 @@ exports[`Storyshots Segments/Sidebar token 1`] = `
   </div>
 </div>
 `;
+
+exports[`Storyshots Segments/TokenContracts default 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Manage Token Contracts
+</h1>,
+  <p>
+    <div
+        className="ui fluid icon labeled input"
+    >
+        <div
+            className="ui label label"
+            onClick={[Function]}
+        >
+            Filter
+        </div>
+        <input
+            disabled={undefined}
+            name="filter"
+            onChange={[Function]}
+            placeholder="Enter name, symbol or contract address"
+            tabIndex={undefined}
+            type="text"
+            value="myFilterString"
+        />
+        <i
+            aria-hidden="true"
+            className="eraser circular link icon"
+            iconPosition="right"
+            onClick={[Function]}
+        />
+    </div>
+</p>,
+  <div
+    className="ui divider"
+/>,
+  <table
+    className="ui celled table"
+>
+    <tr
+        className=""
+    >
+        <td
+            className="collapsing"
+        >
+            <div
+                className="field"
+            >
+                <div
+                    className="ui fitted checkbox"
+                    content={undefined}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                >
+                    <input
+                        checked={false}
+                        className="hidden"
+                        id={undefined}
+                        name={undefined}
+                        onClick={[Function]}
+                        readOnly={true}
+                        required={undefined}
+                        tabIndex={0}
+                        type="checkbox"
+                        value={undefined}
+                    />
+                    <label
+                        htmlFor={undefined}
+                    />
+                </div>
+            </div>
+        </td>
+        <td
+            className=""
+        >
+            Arcade Network Token
+             (
+            ANT
+            )
+        </td>
+    </tr>
+    <tr
+        className=""
+    >
+        <td
+            className="collapsing"
+        >
+            <div
+                className="field"
+            >
+                <div
+                    className="ui fitted checkbox"
+                    content={undefined}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                >
+                    <input
+                        checked={false}
+                        className="hidden"
+                        id={undefined}
+                        name={undefined}
+                        onClick={[Function]}
+                        readOnly={true}
+                        required={undefined}
+                        tabIndex={0}
+                        type="checkbox"
+                        value={undefined}
+                    />
+                    <label
+                        htmlFor={undefined}
+                    />
+                </div>
+            </div>
+        </td>
+        <td
+            className=""
+        >
+            District0x Network Token
+             (
+            DNT
+            )
+        </td>
+    </tr>
+    <tr
+        className=""
+    >
+        <td
+            className="collapsing"
+        >
+            <div
+                className="field"
+            >
+                <div
+                    className="ui fitted checkbox"
+                    content={undefined}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                >
+                    <input
+                        checked={false}
+                        className="hidden"
+                        id={undefined}
+                        name={undefined}
+                        onClick={[Function]}
+                        readOnly={true}
+                        required={undefined}
+                        tabIndex={0}
+                        type="checkbox"
+                        value={undefined}
+                    />
+                    <label
+                        htmlFor={undefined}
+                    />
+                </div>
+            </div>
+        </td>
+        <td
+            className=""
+        >
+            OmiseGo
+             (
+            OMG
+            )
+        </td>
+    </tr>
+</table>,
+]
+`;
