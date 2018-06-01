@@ -35,7 +35,7 @@ class TokenListContainer extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <TokenListFilterContainer/>
                 <Divider/>
                 <TokenList
@@ -44,7 +44,7 @@ class TokenListContainer extends Component {
                     visibleMatchedTokenIds={this.props.visibleMatchedTokenIds}
                     visibilityUpdate={this.visibilityUpdate}
                 />
-            </div>
+            </React.Fragment>
             )
     }
 }
