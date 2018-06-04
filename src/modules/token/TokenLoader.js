@@ -4,6 +4,10 @@ import {Progress} from 'semantic-ui-react'
 
 const TokenLoader = (props) => {
     const {currentlyLoadingToken, progressCurrent, progressTotal} = props
+    if (progressCurrent === progressTotal) {
+        return null
+    }
+
     const progressColor = "green"
     let label = currentlyLoadingToken
     if (progressCurrent < progressTotal) {
