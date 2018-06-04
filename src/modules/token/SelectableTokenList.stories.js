@@ -11,3 +11,4 @@ export const SelectableTokenListProps = {
 storiesOf('Modules/SelectableTokenList', module)
     .addDecorator(story => <Provider store={mockStore}>{story()}</Provider>)
     .add('default', () => <SelectableTokenList tokenList={SelectableTokenListProps.tokenIds}/>)
+    .add('empty', () => <SelectableTokenList tokenList={[]}/>)
