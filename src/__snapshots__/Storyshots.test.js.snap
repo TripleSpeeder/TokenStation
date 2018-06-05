@@ -2593,6 +2593,16 @@ exports[`Storyshots Modules/SelectableTokenList default 1`] = `
 </table>
 `;
 
+exports[`Storyshots Modules/SelectableTokenList empty 1`] = `
+<table
+  className="ui celled table"
+>
+  <tbody
+    className=""
+  />
+</table>
+`;
+
 exports[`Storyshots Modules/SelectableTokenListItem checked 1`] = `
 <table
   className="ui celled table"
@@ -2753,6 +2763,77 @@ exports[`Storyshots Modules/TokenListFilter withFilterString 1`] = `
     />
   </div>
 </p>
+`;
+
+exports[`Storyshots Modules/TokenLoader almost 1`] = `
+<div>
+  <div
+    className="ui green small progress"
+    data-percent={99}
+  >
+    <div
+      className="bar"
+      style={
+        Object {
+          "width": "99.8888888888889%",
+        }
+      }
+    />
+    <div
+      className="label"
+    >
+      District0x Network Token (899/900)
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/TokenLoader complete 1`] = `null`;
+
+exports[`Storyshots Modules/TokenLoader initial 1`] = `
+<div>
+  <div
+    className="ui green small progress"
+    data-percent={0}
+  >
+    <div
+      className="bar"
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    />
+    <div
+      className="label"
+    >
+       (0/900)
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/TokenLoader thirtyPercent 1`] = `
+<div>
+  <div
+    className="ui green small progress"
+    data-percent={33}
+  >
+    <div
+      className="bar"
+      style={
+        Object {
+          "width": "33.33333333333333%",
+        }
+      }
+    />
+    <div
+      className="label"
+    >
+      District0x Network Token (300/900)
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Storyshots Screens/Accounts default 1`] = `
