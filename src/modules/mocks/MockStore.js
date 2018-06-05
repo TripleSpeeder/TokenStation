@@ -3,6 +3,7 @@ import {action} from '@storybook/addon-actions'
 import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActions'
 import {BigNumber} from 'bignumber.js'
 import {BALANCE_STATES} from '../balance/balanceActions'
+import {TOKEN_LIST_STATES} from '../token/tokenActions'
 
 const addresses = {
     allIds: [
@@ -49,7 +50,7 @@ const addresses = {
     }
 }
 
-const tokens = {
+const tokens_initialized = {
     allIds: [1, 2, 3],
     byId: {
         1: {
@@ -99,9 +100,81 @@ const tokens = {
         }
     },
     listState: {
+        listState: TOKEN_LIST_STATES.INITIALIZED,
         total: 3,
+        matchedTokenIds: [],
+        filter: ''
+    }
+}
+
+const tokens_filtered = {
+    ...tokens_initialized,
+    listState: {
+        ...tokens_initialized.listState,
         matchedTokenIds: [1, 2],
-        filter: 'myFilterString',
+        filter: 'Network',
+    }
+}
+
+const tokens_filtered_nomatch = {
+    ...tokens_initialized,
+    listState: {
+        ...tokens_initialized.listState,
+        matchedTokenIds: [],
+        filter: 'filterstring not matching anything',
+    }
+}
+
+const tokens_virgin = {
+    allIds: [],
+    byId: {},
+    listState: {
+        listState: TOKEN_LIST_STATES.VIRGIN,
+        total: 0,
+        matchedTokenIds: [],
+        filter: '',
+    }
+}
+
+const tokens_loading = {
+    allIds: [1,2],
+    byId: {
+        1: {
+            address: '0x1ContractAddress',
+            decimals: new BigNumber(18),
+            eventIds: [],
+            id: 1,
+            imageUrl: null,
+            loading: false,
+            name: 'Arcade Network Token',
+            supply: {
+                loading: false,
+                supply: new BigNumber(20000000)
+            },
+            symbol: 'ANT',
+            website: null,
+        },
+        2: {
+            address: '0x2ContractAddress',
+            decimals: new BigNumber(18),
+            eventIds: [],
+            id: 1,
+            imageUrl: null,
+            loading: false,
+            name: 'District0x Network Token',
+            supply: {
+                loading: false,
+                supply: new BigNumber(1000000000000000000000000000)
+            },
+            symbol: 'DNT',
+            website: null,
+        },
+    },
+    listState: {
+        listState: TOKEN_LIST_STATES.LOADING,
+        total: 3,
+        matchedTokenIds: [],
+        filter: '',
     }
 }
 
@@ -157,7 +230,59 @@ const mockStore = {
     getState: () => {
         return {
             balance: balance,
-            tokens: tokens,
+            tokens: tokens_initialized,
+            addresses: addresses,
+
+        };
+    },
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+};
+
+const mockStore_filtered = {
+    getState: () => {
+        return {
+            balance: balance,
+            tokens: tokens_filtered,
+            addresses: addresses,
+
+        };
+    },
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+};
+
+const mockStore_nomatch = {
+    getState: () => {
+        return {
+            balance: balance,
+            tokens: tokens_filtered_nomatch,
+            addresses: addresses,
+
+        };
+    },
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+};
+
+const mockStore_virgin = {
+    getState: () => {
+        return {
+            balance: balance,
+            tokens: tokens_virgin,
+            addresses: addresses,
+
+        };
+    },
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+};
+
+const mockStore_loading = {
+    getState: () => {
+        return {
+            balance: balance,
+            tokens: tokens_loading,
             addresses: addresses,
 
         };
@@ -167,3 +292,7 @@ const mockStore = {
 };
 
 export default mockStore
+export { mockStore_filtered }
+export { mockStore_nomatch }
+export { mockStore_loading }
+export { mockStore_virgin }

@@ -3,6 +3,7 @@ import {connect} from "react-redux"
 import {Divider} from 'semantic-ui-react'
 import TokenListFilterContainer from './TokenListFilterContainer'
 import SelectableTokenList from "./SelectableTokenList"
+import TokenLoaderContainer from './TokenLoaderContainer'
 
 class SelectableTokenListContainer extends Component {
     constructor(props, context) {
@@ -12,10 +13,11 @@ class SelectableTokenListContainer extends Component {
     render() {
         return (
             <React.Fragment>
+                <TokenLoaderContainer/>
                 <TokenListFilterContainer/>
                 <Divider/>
                 <SelectableTokenList
-                    tokenList={this.props.allTokenIds}
+                    tokenList={this.props.tokenIds}
                 />
             </React.Fragment>
             )
@@ -23,8 +25,9 @@ class SelectableTokenListContainer extends Component {
 }
 
 const mapStateToProps = state => {
+    const filterIsActive = state.tokens.listState.filter.length
     return {
-        allTokenIds: state.tokens.allIds,
+        tokenIds: filterIsActive ? state.tokens.listState.matchedTokenIds : state.tokens.allIds,
     }
 }
 

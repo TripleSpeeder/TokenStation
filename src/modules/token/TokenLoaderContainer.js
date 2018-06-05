@@ -47,29 +47,12 @@ class TokenLoaderContainer extends Component {
     }
 
     render() {
-        if (this.props.isLoading) {
-            return (
-                <Segment>
-                    <TokenLoader progressTotal={this.props.progressTotal}
-                                 currentlyLoadingToken={this.props.currentlyLoadingToken}
-                                 progressCurrent={this.props.progressCurrent}
-                    />
-                </Segment>
-            )
-        } else {
-            return (
-                <Segment>
-                    <Button size='mini' as='div' labelPosition='left' onClick={this.reloadTokens}>
-                        <Label as='a' basic pointing='right'>Loaded {this.props.progressTotal} tokens.
-                        </Label>
-                        <Button size='mini' icon>
-                            <Icon name='refresh' />
-                            Reload
-                        </Button>
-                    </Button>
-                </Segment>
-            )
-        }
+        return (
+            <TokenLoader progressTotal={this.props.progressTotal}
+                         currentlyLoadingToken={this.props.currentlyLoadingToken}
+                         progressCurrent={this.props.progressCurrent}
+            />
+        )
     }
 
     reloadTokens(event, data) {
@@ -95,7 +78,6 @@ const mapStateToProps = state => {
     const listState = state.tokens.listState.listState
 
     return {
-        web3: state.web3Instance.web3,
         progressTotal,
         progressCurrent,
         currentlyLoadingToken: lastToken,

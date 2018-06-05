@@ -2594,13 +2594,34 @@ exports[`Storyshots Modules/SelectableTokenList default 1`] = `
 `;
 
 exports[`Storyshots Modules/SelectableTokenList empty 1`] = `
-<table
-  className="ui celled table"
+<div
+  className="ui negative message"
 >
-  <tbody
-    className=""
-  />
-</table>
+  <div
+    className="header"
+  >
+    No token contracts available.
+  </div>
+  <div
+    className="content"
+  >
+    Things you can try:
+  </div>
+  <ul
+    className="list"
+  >
+    <li
+      className="content"
+    >
+      change/clear the filterstring
+    </li>
+    <li
+      className="content"
+    >
+      wait until all tokens are loaded
+    </li>
+  </ul>
+</div>
 `;
 
 exports[`Storyshots Modules/SelectableTokenListItem checked 1`] = `
@@ -2766,7 +2787,9 @@ exports[`Storyshots Modules/TokenListFilter withFilterString 1`] = `
 `;
 
 exports[`Storyshots Modules/TokenLoader almost 1`] = `
-<div>
+<div
+  className="ui basic segment"
+>
   <div
     className="ui green small progress"
     data-percent={99}
@@ -2782,7 +2805,7 @@ exports[`Storyshots Modules/TokenLoader almost 1`] = `
     <div
       className="label"
     >
-      District0x Network Token (899/900)
+      Loading District0x Network Token (899/900)
     </div>
   </div>
 </div>
@@ -2791,7 +2814,9 @@ exports[`Storyshots Modules/TokenLoader almost 1`] = `
 exports[`Storyshots Modules/TokenLoader complete 1`] = `null`;
 
 exports[`Storyshots Modules/TokenLoader initial 1`] = `
-<div>
+<div
+  className="ui basic segment"
+>
   <div
     className="ui green small progress"
     data-percent={0}
@@ -2807,14 +2832,16 @@ exports[`Storyshots Modules/TokenLoader initial 1`] = `
     <div
       className="label"
     >
-       (0/900)
+      Loading  (0/900)
     </div>
   </div>
 </div>
 `;
 
 exports[`Storyshots Modules/TokenLoader thirtyPercent 1`] = `
-<div>
+<div
+  className="ui basic segment"
+>
   <div
     className="ui green small progress"
     data-percent={33}
@@ -2830,7 +2857,7 @@ exports[`Storyshots Modules/TokenLoader thirtyPercent 1`] = `
     <div
       className="label"
     >
-      District0x Network Token (300/900)
+      Loading District0x Network Token (300/900)
     </div>
   </div>
 </div>
@@ -3287,7 +3314,7 @@ exports[`Storyshots Screens/Overview default 1`] = `
       </h1>
       <p>
         <div
-          className="ui fluid icon labeled input"
+          className="ui fluid labeled input"
         >
           <div
             className="ui label label"
@@ -3302,13 +3329,7 @@ exports[`Storyshots Screens/Overview default 1`] = `
             placeholder="Enter name, symbol or contract address"
             tabIndex={undefined}
             type="text"
-            value="myFilterString"
-          />
-          <i
-            aria-hidden="true"
-            className="eraser circular link icon"
-            iconPosition="right"
-            onClick={[Function]}
+            value=""
           />
         </div>
       </p>
@@ -3614,7 +3635,7 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
       </h1>
       <p>
         <div
-          className="ui fluid icon labeled input"
+          className="ui fluid labeled input"
         >
           <div
             className="ui label label"
@@ -3629,13 +3650,7 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
             placeholder="Enter name, symbol or contract address"
             tabIndex={undefined}
             type="text"
-            value="myFilterString"
-          />
-          <i
-            aria-hidden="true"
-            className="eraser circular link icon"
-            iconPosition="right"
-            onClick={[Function]}
+            value=""
           />
         </div>
       </p>
@@ -4125,7 +4140,7 @@ Array [
 </h1>,
   <p>
     <div
-        className="ui fluid icon labeled input"
+        className="ui fluid labeled input"
     >
         <div
             className="ui label label"
@@ -4140,13 +4155,7 @@ Array [
             placeholder="Enter name, symbol or contract address"
             tabIndex={undefined}
             type="text"
-            value="myFilterString"
-        />
-        <i
-            aria-hidden="true"
-            className="eraser circular link icon"
-            iconPosition="right"
-            onClick={[Function]}
+            value=""
         />
     </div>
 </p>,
@@ -4622,7 +4631,7 @@ exports[`Storyshots Segments/Sidebar token 1`] = `
 </div>
 `;
 
-exports[`Storyshots Segments/TokenContracts default 1`] = `
+exports[`Storyshots Segments/TokenContracts contracts loaded 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
@@ -4631,7 +4640,7 @@ Array [
 </h1>,
   <p>
     <div
-        className="ui fluid icon labeled input"
+        className="ui fluid labeled input"
     >
         <div
             className="ui label label"
@@ -4646,13 +4655,7 @@ Array [
             placeholder="Enter name, symbol or contract address"
             tabIndex={undefined}
             type="text"
-            value="myFilterString"
-        />
-        <i
-            aria-hidden="true"
-            className="eraser circular link icon"
-            iconPosition="right"
-            onClick={[Function]}
+            value=""
         />
     </div>
 </p>,
@@ -4792,5 +4795,411 @@ Array [
         </td>
     </tr>
 </table>,
+]
+`;
+
+exports[`Storyshots Segments/TokenContracts contracts loading 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Manage Token Contracts
+</h1>,
+  <div
+    className="ui basic segment"
+>
+    <div
+        className="ui green small progress"
+        data-percent={66}
+    >
+        <div
+            className="bar"
+            style={
+                Object {
+                    "width": "66.66666666666666%",
+                  }
+            }
+        />
+        <div
+            className="label"
+        >
+            Loading District0x Network Token (2/3)
+        </div>
+    </div>
+</div>,
+  <p>
+    <div
+        className="ui fluid labeled input"
+    >
+        <div
+            className="ui label label"
+            onClick={[Function]}
+        >
+            Filter
+        </div>
+        <input
+            disabled={undefined}
+            name="filter"
+            onChange={[Function]}
+            placeholder="Enter name, symbol or contract address"
+            tabIndex={undefined}
+            type="text"
+            value=""
+        />
+    </div>
+</p>,
+  <div
+    className="ui divider"
+/>,
+  <table
+    className="ui celled table"
+>
+    <tr
+        className=""
+    >
+        <td
+            className="collapsing"
+        >
+            <div
+                className="field"
+            >
+                <div
+                    className="ui fitted checkbox"
+                    content={undefined}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                >
+                    <input
+                        checked={false}
+                        className="hidden"
+                        id={undefined}
+                        name={undefined}
+                        onClick={[Function]}
+                        readOnly={true}
+                        required={undefined}
+                        tabIndex={0}
+                        type="checkbox"
+                        value={undefined}
+                    />
+                    <label
+                        htmlFor={undefined}
+                    />
+                </div>
+            </div>
+        </td>
+        <td
+            className=""
+        >
+            Arcade Network Token
+             (
+            ANT
+            )
+        </td>
+    </tr>
+    <tr
+        className=""
+    >
+        <td
+            className="collapsing"
+        >
+            <div
+                className="field"
+            >
+                <div
+                    className="ui fitted checkbox"
+                    content={undefined}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                >
+                    <input
+                        checked={false}
+                        className="hidden"
+                        id={undefined}
+                        name={undefined}
+                        onClick={[Function]}
+                        readOnly={true}
+                        required={undefined}
+                        tabIndex={0}
+                        type="checkbox"
+                        value={undefined}
+                    />
+                    <label
+                        htmlFor={undefined}
+                    />
+                </div>
+            </div>
+        </td>
+        <td
+            className=""
+        >
+            District0x Network Token
+             (
+            DNT
+            )
+        </td>
+    </tr>
+</table>,
+]
+`;
+
+exports[`Storyshots Segments/TokenContracts filtered 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Manage Token Contracts
+</h1>,
+  <p>
+    <div
+        className="ui fluid icon labeled input"
+    >
+        <div
+            className="ui label label"
+            onClick={[Function]}
+        >
+            Filter
+        </div>
+        <input
+            disabled={undefined}
+            name="filter"
+            onChange={[Function]}
+            placeholder="Enter name, symbol or contract address"
+            tabIndex={undefined}
+            type="text"
+            value="Network"
+        />
+        <i
+            aria-hidden="true"
+            className="eraser circular link icon"
+            iconPosition="right"
+            onClick={[Function]}
+        />
+    </div>
+</p>,
+  <div
+    className="ui divider"
+/>,
+  <table
+    className="ui celled table"
+>
+    <tr
+        className=""
+    >
+        <td
+            className="collapsing"
+        >
+            <div
+                className="field"
+            >
+                <div
+                    className="ui fitted checkbox"
+                    content={undefined}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                >
+                    <input
+                        checked={false}
+                        className="hidden"
+                        id={undefined}
+                        name={undefined}
+                        onClick={[Function]}
+                        readOnly={true}
+                        required={undefined}
+                        tabIndex={0}
+                        type="checkbox"
+                        value={undefined}
+                    />
+                    <label
+                        htmlFor={undefined}
+                    />
+                </div>
+            </div>
+        </td>
+        <td
+            className=""
+        >
+            Arcade Network Token
+             (
+            ANT
+            )
+        </td>
+    </tr>
+    <tr
+        className=""
+    >
+        <td
+            className="collapsing"
+        >
+            <div
+                className="field"
+            >
+                <div
+                    className="ui fitted checkbox"
+                    content={undefined}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                >
+                    <input
+                        checked={false}
+                        className="hidden"
+                        id={undefined}
+                        name={undefined}
+                        onClick={[Function]}
+                        readOnly={true}
+                        required={undefined}
+                        tabIndex={0}
+                        type="checkbox"
+                        value={undefined}
+                    />
+                    <label
+                        htmlFor={undefined}
+                    />
+                </div>
+            </div>
+        </td>
+        <td
+            className=""
+        >
+            District0x Network Token
+             (
+            DNT
+            )
+        </td>
+    </tr>
+</table>,
+]
+`;
+
+exports[`Storyshots Segments/TokenContracts no match 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Manage Token Contracts
+</h1>,
+  <p>
+    <div
+        className="ui fluid icon labeled input"
+    >
+        <div
+            className="ui label label"
+            onClick={[Function]}
+        >
+            Filter
+        </div>
+        <input
+            disabled={undefined}
+            name="filter"
+            onChange={[Function]}
+            placeholder="Enter name, symbol or contract address"
+            tabIndex={undefined}
+            type="text"
+            value="filterstring not matching anything"
+        />
+        <i
+            aria-hidden="true"
+            className="eraser circular link icon"
+            iconPosition="right"
+            onClick={[Function]}
+        />
+    </div>
+</p>,
+  <div
+    className="ui divider"
+/>,
+  <div
+    className="ui negative message"
+>
+    <div
+        className="header"
+    >
+        No token contracts available.
+    </div>
+    <div
+        className="content"
+    >
+        Things you can try:
+    </div>
+    <ul
+        className="list"
+    >
+        <li
+            className="content"
+        >
+            change/clear the filterstring
+        </li>
+        <li
+            className="content"
+        >
+            wait until all tokens are loaded
+        </li>
+    </ul>
+</div>,
+]
+`;
+
+exports[`Storyshots Segments/TokenContracts virgin 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+>
+    Manage Token Contracts
+</h1>,
+  <p>
+    <div
+        className="ui fluid labeled input"
+    >
+        <div
+            className="ui label label"
+            onClick={[Function]}
+        >
+            Filter
+        </div>
+        <input
+            disabled={undefined}
+            name="filter"
+            onChange={[Function]}
+            placeholder="Enter name, symbol or contract address"
+            tabIndex={undefined}
+            type="text"
+            value=""
+        />
+    </div>
+</p>,
+  <div
+    className="ui divider"
+/>,
+  <div
+    className="ui negative message"
+>
+    <div
+        className="header"
+    >
+        No token contracts available.
+    </div>
+    <div
+        className="content"
+    >
+        Things you can try:
+    </div>
+    <ul
+        className="list"
+    >
+        <li
+            className="content"
+        >
+            change/clear the filterstring
+        </li>
+        <li
+            className="content"
+        >
+            wait until all tokens are loaded
+        </li>
+    </ul>
+</div>,
 ]
 `;
