@@ -17,9 +17,14 @@ class TokenLoaderContainer extends Component {
     }
 
     componentDidMount() {
+        this.checkTokenList(this.props)
     }
 
     componentWillReceiveProps(newProps) {
+        this.checkTokenList(newProps)
+    }
+
+    checkTokenList(newProps) {
         if (newProps.listState === TOKEN_LIST_STATES.VIRGIN) {
             newProps.initializeTokenList(this.registryABI, this.registryAddress)
         }
