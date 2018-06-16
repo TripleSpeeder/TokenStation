@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Header, Message} from 'semantic-ui-react'
+import {Divider, Header, Message} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import BalancesList from '../balance/BalancesList'
 import TokenListFilterContainer from '../token/TokenListFilterContainer'
@@ -37,6 +37,7 @@ const Overview = (props) => {
         <React.Fragment>
             <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Overview</Header>
             {showFilter && <TokenListFilterContainer/>}
+            <Divider/>
             {body}
         </React.Fragment>
     )

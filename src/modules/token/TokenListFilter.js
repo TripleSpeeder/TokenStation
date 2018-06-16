@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Input, Icon} from 'semantic-ui-react'
+import {Input, Icon, Divider} from 'semantic-ui-react'
 
 const TokenListFilter = (props) => {
     const {filterString, handleChange, filterIsActive, clearFilter, displayed, total} = props
@@ -9,16 +9,14 @@ const TokenListFilter = (props) => {
         icon = <Icon name='eraser' iconPosition='right' circular link onClick={clearFilter} />
     }
     return (
-        <p>
-            <Input label='Filter'
-                   name='filter'
-                   placeholder='Enter name, symbol or contract address'
-                   onChange={handleChange}
-                   value={filterString}
-                   icon={icon}
-                   fluid
-            />
-        </p>
+        <Input label='Filter'
+               name='filter'
+               placeholder='Enter name, symbol or contract address'
+               onChange={handleChange}
+               value={filterString}
+               icon={icon}
+               fluid
+        />
     )
 }
 
