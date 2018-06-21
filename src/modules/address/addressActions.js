@@ -1,4 +1,4 @@
-import {loadTokenBalance} from '../token/tokenActions'
+import {loadMultiTokenBalances, loadTokenBalance} from '../token/tokenActions'
 import {buildBalanceId} from '../balance/balanceActions'
 
 export const ADDRESS_TYPE_EXTERNAL='ADDRESS_TYPE_EXTERNAL'
@@ -83,12 +83,12 @@ export function addNewAddress(address, type) {
     return (dispatch, getState) => {
         // a new address is added.
         dispatch(addAddress(address, type))
-        // get ID of new address
-        const addressId = findAddressId(address)
-        // indicate balance loading state
-        dispatch(addressBalancesStateChanged(addressId, ADDRESS_BALANCES_STATES.LOADING))
-        // start getting balances
-        batchGetBalances(performance.now(), 0, addressId, dispatch, getState, 0)
+        // If i'm tracking tokens start getting balance right away
+        const trackedIds = getState().tokens.trackedIds
+        if (trackedIds.length) {
+            // load balance for all tracked tokens
+            dispatch(loadMultiTokenBalances(trackedIds, address))
+        }
     }
 }
 

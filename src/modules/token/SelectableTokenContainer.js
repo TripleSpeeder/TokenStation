@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
 import SelectableToken from "./SelectableToken"
-import {changeTokenTracking} from './tokenActions'
+import {changeTokenTrackingThunk} from './tokenActions'
 
 
 class SelectableTokenContainer extends Component {
@@ -22,7 +22,7 @@ class SelectableTokenContainer extends Component {
                                 name={this.props.tokenName}
                                 symbol={this.props.tokenSymbol}
                                 onChange={this.handleChange}
-                                checked={this.props.checked}
+                                checked={this.props.tokenTracked}
         />
     }
 }
@@ -41,17 +41,18 @@ SelectableTokenContainer.defaultProps = {
 
 const mapStateToProps = (state, ownProps) => {
     const token = state.tokens.byId[ownProps.tokenId]
+    const tracked = (state.tokens.trackedIds.indexOf(ownProps.tokenId) > -1)
     return {
         tokenAddress: token.address,
         tokenName: token.name,
         tokenSymbol: token.symbol,
-        tokenTracked: token.tracked,
+        tokenTracked: tracked,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     onChange: (tokenId, checked) => {
-        dispatch(changeTokenTracking(tokenId, checked))
+        dispatch(changeTokenTrackingThunk(tokenId, checked))
     }
 })
 
