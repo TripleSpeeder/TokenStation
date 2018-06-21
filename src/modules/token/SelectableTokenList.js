@@ -10,10 +10,12 @@ const SelectableTokenList = (props) => {
     if (tokenList.length) {
         return (
             <Table celled>
+                <Table.Body>
                 {tokenList.map((tokenId) => <SelectableTokenContainer
                     key={tokenId}
                     tokenId={tokenId}
                 />)}
+                </Table.Body>
             </Table>
         )
     } else {
