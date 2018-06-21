@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import {tokens} from "./modules/token/reducers/tokenReducer"
 import {web3Instance} from "./modules/web3/web3Reducer"
 import createHistory from 'history/createBrowserHistory'
@@ -135,12 +135,16 @@ const rootConfig = {
 }
 const persistedReducer = persistReducer(rootConfig, reducer)
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 export default () => {
     let store = createStore(
         persistedReducer,
-        applyMiddleware(
-            thunk,
-            logger,
+        compose(
+            applyMiddleware(
+                thunk,
+                logger,
+            )
         )
     )
     let persistor = persistStore(store )
