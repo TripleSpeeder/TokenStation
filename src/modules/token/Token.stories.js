@@ -55,7 +55,7 @@ export const tokenItemProps = {
 const actions = {
     handleRefresh: action('handleRefresh'),
 }
-
+/*
 storiesOf('Modules/TokenListItem', module)
     .addDecorator(StoryRouter())
     .addDecorator(story => (<Item.Group divided>{story()}</Item.Group>))
@@ -83,3 +83,4 @@ storiesOf('Modules/TokenListItem', module)
                                         loadingBalance={true}
                                         tokenEventsLinkOptions={tokenItemProps.tokenEventsLinkOptions}
     />)
+*/

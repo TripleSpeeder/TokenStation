@@ -2733,57 +2733,53 @@ exports[`Storyshots Modules/SelectableTokenListItem unchecked 1`] = `
 `;
 
 exports[`Storyshots Modules/TokenListFilter empty 1`] = `
-<p>
+<div
+  className="ui fluid labeled input"
+>
   <div
-    className="ui fluid labeled input"
+    className="ui label label"
+    onClick={[Function]}
   >
-    <div
-      className="ui label label"
-      onClick={[Function]}
-    >
-      Filter
-    </div>
-    <input
-      disabled={undefined}
-      name="filter"
-      onChange={[Function]}
-      placeholder="Enter name, symbol or contract address"
-      tabIndex={undefined}
-      type="text"
-      value=""
-    />
+    Filter
   </div>
-</p>
+  <input
+    disabled={undefined}
+    name="filter"
+    onChange={[Function]}
+    placeholder="Enter name, symbol or contract address"
+    tabIndex={undefined}
+    type="text"
+    value=""
+  />
+</div>
 `;
 
 exports[`Storyshots Modules/TokenListFilter withFilterString 1`] = `
-<p>
+<div
+  className="ui fluid icon labeled input"
+>
   <div
-    className="ui fluid icon labeled input"
+    className="ui label label"
+    onClick={[Function]}
   >
-    <div
-      className="ui label label"
-      onClick={[Function]}
-    >
-      Filter
-    </div>
-    <input
-      disabled={undefined}
-      name="filter"
-      onChange={[Function]}
-      placeholder="Enter name, symbol or contract address"
-      tabIndex={undefined}
-      type="text"
-      value="someSearchString"
-    />
-    <i
-      aria-hidden="true"
-      className="eraser circular link icon"
-      iconPosition="right"
-      onClick={[Function]}
-    />
+    Filter
   </div>
-</p>
+  <input
+    disabled={undefined}
+    name="filter"
+    onChange={[Function]}
+    placeholder="Enter name, symbol or contract address"
+    tabIndex={undefined}
+    type="text"
+    value="someSearchString"
+  />
+  <i
+    aria-hidden="true"
+    className="eraser circular link icon"
+    iconPosition="right"
+    onClick={[Function]}
+  />
+</div>
 `;
 
 exports[`Storyshots Modules/TokenLoader almost 1`] = `
@@ -3312,27 +3308,28 @@ exports[`Storyshots Screens/Overview default 1`] = `
       >
         Overview
       </h1>
-      <p>
+      <div
+        className="ui fluid labeled input"
+      >
         <div
-          className="ui fluid labeled input"
+          className="ui label label"
+          onClick={[Function]}
         >
-          <div
-            className="ui label label"
-            onClick={[Function]}
-          >
-            Filter
-          </div>
-          <input
-            disabled={undefined}
-            name="filter"
-            onChange={[Function]}
-            placeholder="Enter name, symbol or contract address"
-            tabIndex={undefined}
-            type="text"
-            value=""
-          />
+          Filter
         </div>
-      </p>
+        <input
+          disabled={undefined}
+          name="filter"
+          onChange={[Function]}
+          placeholder="Enter name, symbol or contract address"
+          tabIndex={undefined}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="ui divider"
+      />
       <div>
         <table
           className="ui compact table"
@@ -3633,27 +3630,25 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
       >
         Manage Token Contracts
       </h1>
-      <p>
+      <div
+        className="ui fluid labeled input"
+      >
         <div
-          className="ui fluid labeled input"
+          className="ui label label"
+          onClick={[Function]}
         >
-          <div
-            className="ui label label"
-            onClick={[Function]}
-          >
-            Filter
-          </div>
-          <input
-            disabled={undefined}
-            name="filter"
-            onChange={[Function]}
-            placeholder="Enter name, symbol or contract address"
-            tabIndex={undefined}
-            type="text"
-            value=""
-          />
+          Filter
         </div>
-      </p>
+        <input
+          disabled={undefined}
+          name="filter"
+          onChange={[Function]}
+          placeholder="Enter name, symbol or contract address"
+          tabIndex={undefined}
+          type="text"
+          value=""
+        />
+      </div>
       <div
         className="ui divider"
       />
@@ -4138,27 +4133,28 @@ Array [
 >
     Overview
 </h1>,
-  <p>
+  <div
+    className="ui fluid labeled input"
+>
     <div
-        className="ui fluid labeled input"
+        className="ui label label"
+        onClick={[Function]}
     >
-        <div
-            className="ui label label"
-            onClick={[Function]}
-        >
-            Filter
-        </div>
-        <input
-            disabled={undefined}
-            name="filter"
-            onChange={[Function]}
-            placeholder="Enter name, symbol or contract address"
-            tabIndex={undefined}
-            type="text"
-            value=""
-        />
+        Filter
     </div>
-</p>,
+    <input
+        disabled={undefined}
+        name="filter"
+        onChange={[Function]}
+        placeholder="Enter name, symbol or contract address"
+        tabIndex={undefined}
+        type="text"
+        value=""
+    />
+</div>,
+  <div
+    className="ui divider"
+/>,
   <div>
     <table
         className="ui compact table"
@@ -4406,6 +4402,9 @@ Array [
     Overview
 </h1>,
   <div
+    className="ui divider"
+/>,
+  <div
     className="ui message"
 >
     <div
@@ -4434,6 +4433,9 @@ Array [
 >
     Overview
 </h1>,
+  <div
+    className="ui divider"
+/>,
   <div
     className="ui message"
 >
@@ -4638,27 +4640,25 @@ Array [
 >
     Manage Token Contracts
 </h1>,
-  <p>
+  <div
+    className="ui fluid labeled input"
+>
     <div
-        className="ui fluid labeled input"
+        className="ui label label"
+        onClick={[Function]}
     >
-        <div
-            className="ui label label"
-            onClick={[Function]}
-        >
-            Filter
-        </div>
-        <input
-            disabled={undefined}
-            name="filter"
-            onChange={[Function]}
-            placeholder="Enter name, symbol or contract address"
-            tabIndex={undefined}
-            type="text"
-            value=""
-        />
+        Filter
     </div>
-</p>,
+    <input
+        disabled={undefined}
+        name="filter"
+        onChange={[Function]}
+        placeholder="Enter name, symbol or contract address"
+        tabIndex={undefined}
+        type="text"
+        value=""
+    />
+</div>,
   <div
     className="ui divider"
 />,
@@ -4827,27 +4827,25 @@ Array [
         </div>
     </div>
 </div>,
-  <p>
+  <div
+    className="ui fluid labeled input"
+>
     <div
-        className="ui fluid labeled input"
+        className="ui label label"
+        onClick={[Function]}
     >
-        <div
-            className="ui label label"
-            onClick={[Function]}
-        >
-            Filter
-        </div>
-        <input
-            disabled={undefined}
-            name="filter"
-            onChange={[Function]}
-            placeholder="Enter name, symbol or contract address"
-            tabIndex={undefined}
-            type="text"
-            value=""
-        />
+        Filter
     </div>
-</p>,
+    <input
+        disabled={undefined}
+        name="filter"
+        onChange={[Function]}
+        placeholder="Enter name, symbol or contract address"
+        tabIndex={undefined}
+        type="text"
+        value=""
+    />
+</div>,
   <div
     className="ui divider"
 />,
@@ -4951,33 +4949,31 @@ Array [
 >
     Manage Token Contracts
 </h1>,
-  <p>
+  <div
+    className="ui fluid icon labeled input"
+>
     <div
-        className="ui fluid icon labeled input"
+        className="ui label label"
+        onClick={[Function]}
     >
-        <div
-            className="ui label label"
-            onClick={[Function]}
-        >
-            Filter
-        </div>
-        <input
-            disabled={undefined}
-            name="filter"
-            onChange={[Function]}
-            placeholder="Enter name, symbol or contract address"
-            tabIndex={undefined}
-            type="text"
-            value="Network"
-        />
-        <i
-            aria-hidden="true"
-            className="eraser circular link icon"
-            iconPosition="right"
-            onClick={[Function]}
-        />
+        Filter
     </div>
-</p>,
+    <input
+        disabled={undefined}
+        name="filter"
+        onChange={[Function]}
+        placeholder="Enter name, symbol or contract address"
+        tabIndex={undefined}
+        type="text"
+        value="Network"
+    />
+    <i
+        aria-hidden="true"
+        className="eraser circular link icon"
+        iconPosition="right"
+        onClick={[Function]}
+    />
+</div>,
   <div
     className="ui divider"
 />,
@@ -5081,33 +5077,31 @@ Array [
 >
     Manage Token Contracts
 </h1>,
-  <p>
+  <div
+    className="ui fluid icon labeled input"
+>
     <div
-        className="ui fluid icon labeled input"
+        className="ui label label"
+        onClick={[Function]}
     >
-        <div
-            className="ui label label"
-            onClick={[Function]}
-        >
-            Filter
-        </div>
-        <input
-            disabled={undefined}
-            name="filter"
-            onChange={[Function]}
-            placeholder="Enter name, symbol or contract address"
-            tabIndex={undefined}
-            type="text"
-            value="filterstring not matching anything"
-        />
-        <i
-            aria-hidden="true"
-            className="eraser circular link icon"
-            iconPosition="right"
-            onClick={[Function]}
-        />
+        Filter
     </div>
-</p>,
+    <input
+        disabled={undefined}
+        name="filter"
+        onChange={[Function]}
+        placeholder="Enter name, symbol or contract address"
+        tabIndex={undefined}
+        type="text"
+        value="filterstring not matching anything"
+    />
+    <i
+        aria-hidden="true"
+        className="eraser circular link icon"
+        iconPosition="right"
+        onClick={[Function]}
+    />
+</div>,
   <div
     className="ui divider"
 />,
@@ -5149,27 +5143,25 @@ Array [
 >
     Manage Token Contracts
 </h1>,
-  <p>
+  <div
+    className="ui fluid labeled input"
+>
     <div
-        className="ui fluid labeled input"
+        className="ui label label"
+        onClick={[Function]}
     >
-        <div
-            className="ui label label"
-            onClick={[Function]}
-        >
-            Filter
-        </div>
-        <input
-            disabled={undefined}
-            name="filter"
-            onChange={[Function]}
-            placeholder="Enter name, symbol or contract address"
-            tabIndex={undefined}
-            type="text"
-            value=""
-        />
+        Filter
     </div>
-</p>,
+    <input
+        disabled={undefined}
+        name="filter"
+        onChange={[Function]}
+        placeholder="Enter name, symbol or contract address"
+        tabIndex={undefined}
+        type="text"
+        value=""
+    />
+</div>,
   <div
     className="ui divider"
 />,
