@@ -52,6 +52,7 @@ const addresses = {
 
 const tokens_initialized = {
     allIds: [1, 2, 3],
+    trackedIds: [2],
     byId: {
         1: {
             address: '0x1ContractAddress',
@@ -67,7 +68,6 @@ const tokens_initialized = {
             },
             symbol: 'ANT',
             website: null,
-            tracked: false,
         },
         2: {
             address: '0x2ContractAddress',
@@ -83,7 +83,6 @@ const tokens_initialized = {
             },
             symbol: 'DNT',
             website: null,
-            tracked: true,
         },
         3: {
             address: '0x3ContractAddress',
@@ -99,7 +98,6 @@ const tokens_initialized = {
             },
             symbol: 'OMG',
             website: null,
-            tracked: true,
         }
     },
     listState: {
@@ -141,6 +139,7 @@ const tokens_virgin = {
 
 const tokens_loading = {
     allIds: [1,2],
+    trackedIds: [],
     byId: {
         1: {
             address: '0x1ContractAddress',
@@ -156,7 +155,6 @@ const tokens_loading = {
             },
             symbol: 'ANT',
             website: null,
-            tracked: false,
         },
         2: {
             address: '0x2ContractAddress',
@@ -172,7 +170,6 @@ const tokens_loading = {
             },
             symbol: 'DNT',
             website: null,
-            tracked: false,
         },
     },
     listState: {
@@ -237,7 +234,6 @@ const mockStore = {
             balance: balance,
             tokens: tokens_initialized,
             addresses: addresses,
-
         };
     },
     subscribe: () => 0,
@@ -250,7 +246,6 @@ const mockStore_filtered = {
             balance: balance,
             tokens: tokens_filtered,
             addresses: addresses,
-
         };
     },
     subscribe: () => 0,
@@ -263,7 +258,6 @@ const mockStore_nomatch = {
             balance: balance,
             tokens: tokens_filtered_nomatch,
             addresses: addresses,
-
         };
     },
     subscribe: () => 0,
@@ -276,7 +270,6 @@ const mockStore_virgin = {
             balance: balance,
             tokens: tokens_virgin,
             addresses: addresses,
-
         };
     },
     subscribe: () => 0,
@@ -289,7 +282,6 @@ const mockStore_loading = {
             balance: balance,
             tokens: tokens_loading,
             addresses: addresses,
-
         };
     },
     subscribe: () => 0,

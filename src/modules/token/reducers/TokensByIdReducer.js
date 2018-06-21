@@ -110,20 +110,6 @@ function addTransferEvents(state, action) {
     }
 }
 
-/* Set the "tracked" property of token */
-function changeTokenTracking(state, action) {
-    const {payload} = action
-    const {tokenId, doTrack} = payload
-    const token = state[tokenId]
-    return {
-        ...state,
-        [tokenId]: {
-            ...token,
-            tracked: doTrack
-        }
-    }
-}
-
 export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
     switch (action.type) {
         case ADD_TOKEN: {
@@ -147,8 +133,6 @@ export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
         case ADD_EVENTS: {
             return addTransferEvents(state, action)
         }
-        case CHANGE_TOKEN_TRACKING:
-            return changeTokenTracking(state, action)
         default:
             return state
     }
