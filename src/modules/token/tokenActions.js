@@ -339,15 +339,7 @@ export function loadTokenSupply(tokenID) {
 }
 
 export function loadTokenBalance(tokenID, addressId) {
-    return async (dispatch, getState) => {
-        dispatch(balanceStateChanged(tokenID, addressId, BALANCE_STATES.LOADING))
-        await verifyContractInstance(tokenID, dispatch, getState)
-        const volatileToken = getState().tokens.volatileById[tokenID]
-        const address = getState().addresses.byId[addressId].address
-        const balance = await volatileToken.contractInstance.balanceOf(address)
-        dispatch(setBalanceByAddressAndToken(addressId, tokenID, balance))
-        dispatch(balanceStateChanged(tokenID, addressId, BALANCE_STATES.INITIALIZED))
-    }
+    return loadMultiTokenBalances([tokenID], addressId)
 }
 
 export function loadMultiTokenBalances(tokenIDs, addressId) {
