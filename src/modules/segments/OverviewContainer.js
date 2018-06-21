@@ -19,7 +19,7 @@ class OverviewContainer extends Component {
 }
 
 OverviewContainer.propTypes = {
-    hasAccounts: PropTypes.number.isRequired,
+    hasAccounts: PropTypes.bool.isRequired,
     balancesByToken: PropTypes.object.isRequired
 }
 
@@ -28,7 +28,7 @@ OverviewContainer.defaultProps = {
 }
 
 const mapStateToProps = state => {
-    const hasAccounts = (state.addresses.allIds.length)
+    const hasAccounts = (state.addresses.allIds.length > 0)
     // all currently watched addressIds
     const addressIds = Object.keys(state.addresses.byId)
     // all positive balance IDs
