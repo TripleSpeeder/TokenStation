@@ -2,16 +2,18 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
 import SelectableToken from "./SelectableToken"
+import {changeTokenTracking} from './tokenActions'
 
 
 class SelectableTokenContainer extends Component {
     constructor(props, context) {
         super(props, context)
-        this.handleToggle = this.handleToggle.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
-    handleToggle(e, obj) {
-        this.props.onToggle(this.props.tokenId)
+    handleChange(e, data) {
+        const {checked} = data
+        this.props.onChange(this.props.tokenId, checked)
     }
 
     render() {
@@ -19,7 +21,9 @@ class SelectableTokenContainer extends Component {
                                 address={this.props.tokenAddress}
                                 name={this.props.tokenName}
                                 symbol={this.props.tokenSymbol}
-                                onToggle={this.handleToggle}/>
+                                onChange={this.handleChange}
+                                checked={this.props.checked}
+        />
     }
 }
 
@@ -28,7 +32,7 @@ SelectableTokenContainer.propTypes = {
     tokenAddress: PropTypes.string.isRequired,
     tokenName: PropTypes.string.isRequired,
     tokenSymbol: PropTypes.string.isRequired,
-    onToggle: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
 }
 
 SelectableTokenContainer.defaultProps = {
@@ -41,13 +45,13 @@ const mapStateToProps = (state, ownProps) => {
         tokenAddress: token.address,
         tokenName: token.name,
         tokenSymbol: token.symbol,
+        tokenTracked: token.tracked,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    onToggle: (tokenId) => {
-        // dispatch(toggleTrackToken(tokenID))
-        console.log("TODO: dispatch(toggleTrackToken(" + tokenId + "))")
+    onChange: (tokenId, checked) => {
+        dispatch(changeTokenTracking(tokenId, checked))
     }
 })
 

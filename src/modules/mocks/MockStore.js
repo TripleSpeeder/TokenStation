@@ -67,6 +67,7 @@ const tokens_initialized = {
             },
             symbol: 'ANT',
             website: null,
+            tracked: false,
         },
         2: {
             address: '0x2ContractAddress',
@@ -82,6 +83,7 @@ const tokens_initialized = {
             },
             symbol: 'DNT',
             website: null,
+            tracked: true,
         },
         3: {
             address: '0x3ContractAddress',
@@ -97,6 +99,7 @@ const tokens_initialized = {
             },
             symbol: 'OMG',
             website: null,
+            tracked: true,
         }
     },
     listState: {
@@ -153,6 +156,7 @@ const tokens_loading = {
             },
             symbol: 'ANT',
             website: null,
+            tracked: false,
         },
         2: {
             address: '0x2ContractAddress',
@@ -168,6 +172,7 @@ const tokens_loading = {
             },
             symbol: 'DNT',
             website: null,
+            tracked: false,
         },
     },
     listState: {

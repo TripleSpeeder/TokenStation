@@ -4,12 +4,12 @@ import {Table, Form} from 'semantic-ui-react'
 
 const SelectableToken = (props) => {
 
-    const {id, address, name, symbol, checked, onToggle} = props
+    const {id, address, name, symbol, checked, onChange} = props
 
     return (
         <Table.Row>
             <Table.Cell collapsing>
-                <Form.Checkbox checked={checked} onChange={onToggle}/>
+                <Form.Checkbox checked={checked} onChange={onChange}/>
             </Table.Cell>
             <Table.Cell>
                 {name} ({symbol})
@@ -24,11 +24,7 @@ SelectableToken.propTypes = {
     address: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     symbol: PropTypes.string.isRequired,
-    onToggle: PropTypes.func.isRequired,
-}
-
-SelectableToken.defaultProps = {
-    checked: false
+    onChange: PropTypes.func.isRequired,
 }
 
 export default SelectableToken

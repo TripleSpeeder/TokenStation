@@ -147,6 +147,17 @@ export function resetDisplayCount() {
     }
 }
 
+export const CHANGE_TOKEN_TRACKING = 'CHANGE_TOKEN_TRACKING'
+export function changeTokenTracking(tokenId, doTrack) {
+    return {
+        type: CHANGE_TOKEN_TRACKING,
+        payload: {
+            tokenId,
+            doTrack,
+        }
+    }
+}
+
 export function setFilterString(filterString) {
     return (dispatch, getState) => {
         // Filter token list based on filterstring
@@ -216,7 +227,7 @@ export function initializeTokenList(registryABI, registryAddress, lastId=0, tota
         tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
 
         /* Limit number of tokens for debugging only */
-        const limit=1500
+        const limit=15
         if (tokenCount > limit) tokenCount = limit
         /* Limit number of tokens for debugging only */
 
@@ -247,6 +258,8 @@ export function initializeTokenList(registryABI, registryAddress, lastId=0, tota
             if (filter.length) {
                 dispatch(filterNewToken(id))
             }
+
+            // TODO: Move this to the place where a token is set to be tracked
             // if there is already an address set, immediately check the balance
             getState().addresses.allIds.forEach(addressId => {
                     dispatch(loadTokenBalance(id, addressId))
@@ -275,6 +288,7 @@ function mapParityToken(id, parityToken) {
         },
         balance: undefined,
         eventIds: [],
+        tracked: false,
     }
 }
 

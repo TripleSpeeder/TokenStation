@@ -26,12 +26,12 @@ storiesOf('Modules/SelectableTokenListItem', module)
                                            name={SelectableTokenItemProps.name}
                                            symbol={SelectableTokenItemProps.symbol}
                                            checked={true}
-                                           onToggle={SelectableTokenItemActions.toggleToken}
+                                           onChange={SelectableTokenItemActions.toggleToken}
     />)
     .add('unchecked', () => <SelectableToken id={SelectableTokenItemProps.id}
                                              address={SelectableTokenItemProps.address}
                                              name={SelectableTokenItemProps.name}
                                              symbol={SelectableTokenItemProps.symbol}
                                              checked={false}
-                                             onToggle={SelectableTokenItemActions.toggleToken}
+                                             onChange={SelectableTokenItemActions.toggleToken}
     />)

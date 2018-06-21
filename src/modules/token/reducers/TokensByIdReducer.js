@@ -1,5 +1,5 @@
 import {
-    ADD_TOKEN, CLEAR_TOKEN_BALANCES, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN,
+    ADD_TOKEN, CHANGE_TOKEN_TRACKING, CLEAR_TOKEN_BALANCES, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN,
     SET_TOKEN_SUPPLY
 } from '../tokenActions'
 import {ADD_EVENTS, buildEventId} from '../../event/eventActions'
@@ -110,6 +110,20 @@ function addTransferEvents(state, action) {
     }
 }
 
+/* Set the "tracked" property of token */
+function changeTokenTracking(state, action) {
+    const {payload} = action
+    const {tokenId, doTrack} = payload
+    const token = state[tokenId]
+    return {
+        ...state,
+        [tokenId]: {
+            ...token,
+            tracked: doTrack
+        }
+    }
+}
+
 export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
     switch (action.type) {
         case ADD_TOKEN: {
@@ -133,6 +147,8 @@ export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
         case ADD_EVENTS: {
             return addTransferEvents(state, action)
         }
+        case CHANGE_TOKEN_TRACKING:
+            return changeTokenTracking(state, action)
         default:
             return state
     }

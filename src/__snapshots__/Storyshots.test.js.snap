@@ -2461,135 +2461,139 @@ exports[`Storyshots Modules/SelectableTokenList default 1`] = `
 <table
   className="ui celled table"
 >
-  <tr
+  <tbody
     className=""
   >
-    <td
-      className="collapsing"
-    >
-      <div
-        className="field"
-      >
-        <div
-          className="ui fitted checkbox"
-          content={undefined}
-          onChange={[Function]}
-          onClick={[Function]}
-          onMouseDown={[Function]}
-        >
-          <input
-            checked={false}
-            className="hidden"
-            id={undefined}
-            name={undefined}
-            onClick={[Function]}
-            readOnly={true}
-            required={undefined}
-            tabIndex={0}
-            type="checkbox"
-            value={undefined}
-          />
-          <label
-            htmlFor={undefined}
-          />
-        </div>
-      </div>
-    </td>
-    <td
+    <tr
       className=""
     >
-      Arcade Network Token
-       (
-      ANT
-      )
-    </td>
-  </tr>
-  <tr
-    className=""
-  >
-    <td
-      className="collapsing"
-    >
-      <div
-        className="field"
+      <td
+        className="collapsing"
       >
         <div
-          className="ui fitted checkbox"
-          content={undefined}
-          onChange={[Function]}
-          onClick={[Function]}
-          onMouseDown={[Function]}
+          className="field"
         >
-          <input
-            checked={false}
-            className="hidden"
-            id={undefined}
-            name={undefined}
+          <div
+            className="ui fitted checkbox"
+            content={undefined}
+            onChange={[Function]}
             onClick={[Function]}
-            readOnly={true}
-            required={undefined}
-            tabIndex={0}
-            type="checkbox"
-            value={undefined}
-          />
-          <label
-            htmlFor={undefined}
-          />
+            onMouseDown={[Function]}
+          >
+            <input
+              checked={false}
+              className="hidden"
+              id={undefined}
+              name={undefined}
+              onClick={[Function]}
+              readOnly={true}
+              required={undefined}
+              tabIndex={0}
+              type="checkbox"
+              value={undefined}
+            />
+            <label
+              htmlFor={undefined}
+            />
+          </div>
         </div>
-      </div>
-    </td>
-    <td
+      </td>
+      <td
+        className=""
+      >
+        Arcade Network Token
+         (
+        ANT
+        )
+      </td>
+    </tr>
+    <tr
       className=""
     >
-      District0x Network Token
-       (
-      DNT
-      )
-    </td>
-  </tr>
-  <tr
-    className=""
-  >
-    <td
-      className="collapsing"
-    >
-      <div
-        className="field"
+      <td
+        className="collapsing"
       >
         <div
-          className="ui fitted checkbox"
-          content={undefined}
-          onChange={[Function]}
-          onClick={[Function]}
-          onMouseDown={[Function]}
+          className="field"
         >
-          <input
-            checked={false}
-            className="hidden"
-            id={undefined}
-            name={undefined}
+          <div
+            className="ui fitted checkbox"
+            content={undefined}
+            onChange={[Function]}
             onClick={[Function]}
-            readOnly={true}
-            required={undefined}
-            tabIndex={0}
-            type="checkbox"
-            value={undefined}
-          />
-          <label
-            htmlFor={undefined}
-          />
+            onMouseDown={[Function]}
+          >
+            <input
+              checked={false}
+              className="hidden"
+              id={undefined}
+              name={undefined}
+              onClick={[Function]}
+              readOnly={true}
+              required={undefined}
+              tabIndex={0}
+              type="checkbox"
+              value={undefined}
+            />
+            <label
+              htmlFor={undefined}
+            />
+          </div>
         </div>
-      </div>
-    </td>
-    <td
+      </td>
+      <td
+        className=""
+      >
+        District0x Network Token
+         (
+        DNT
+        )
+      </td>
+    </tr>
+    <tr
       className=""
     >
-      OmiseGo
-       (
-      OMG
-      )
-    </td>
-  </tr>
+      <td
+        className="collapsing"
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui fitted checkbox"
+            content={undefined}
+            onChange={[Function]}
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          >
+            <input
+              checked={false}
+              className="hidden"
+              id={undefined}
+              name={undefined}
+              onClick={[Function]}
+              readOnly={true}
+              required={undefined}
+              tabIndex={0}
+              type="checkbox"
+              value={undefined}
+            />
+            <label
+              htmlFor={undefined}
+            />
+          </div>
+        </div>
+      </td>
+      <td
+        className=""
+      >
+        OmiseGo
+         (
+        OMG
+        )
+      </td>
+    </tr>
+  </tbody>
 </table>
 `;
 
@@ -3655,135 +3659,139 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
       <table
         className="ui celled table"
       >
-        <tr
+        <tbody
           className=""
         >
-          <td
-            className="collapsing"
-          >
-            <div
-              className="field"
-            >
-              <div
-                className="ui fitted checkbox"
-                content={undefined}
-                onChange={[Function]}
-                onClick={[Function]}
-                onMouseDown={[Function]}
-              >
-                <input
-                  checked={false}
-                  className="hidden"
-                  id={undefined}
-                  name={undefined}
-                  onClick={[Function]}
-                  readOnly={true}
-                  required={undefined}
-                  tabIndex={0}
-                  type="checkbox"
-                  value={undefined}
-                />
-                <label
-                  htmlFor={undefined}
-                />
-              </div>
-            </div>
-          </td>
-          <td
+          <tr
             className=""
           >
-            Arcade Network Token
-             (
-            ANT
-            )
-          </td>
-        </tr>
-        <tr
-          className=""
-        >
-          <td
-            className="collapsing"
-          >
-            <div
-              className="field"
+            <td
+              className="collapsing"
             >
               <div
-                className="ui fitted checkbox"
-                content={undefined}
-                onChange={[Function]}
-                onClick={[Function]}
-                onMouseDown={[Function]}
+                className="field"
               >
-                <input
-                  checked={false}
-                  className="hidden"
-                  id={undefined}
-                  name={undefined}
+                <div
+                  className="ui fitted checkbox"
+                  content={undefined}
+                  onChange={[Function]}
                   onClick={[Function]}
-                  readOnly={true}
-                  required={undefined}
-                  tabIndex={0}
-                  type="checkbox"
-                  value={undefined}
-                />
-                <label
-                  htmlFor={undefined}
-                />
+                  onMouseDown={[Function]}
+                >
+                  <input
+                    checked={false}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    required={undefined}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                  />
+                  <label
+                    htmlFor={undefined}
+                  />
+                </div>
               </div>
-            </div>
-          </td>
-          <td
+            </td>
+            <td
+              className=""
+            >
+              Arcade Network Token
+               (
+              ANT
+              )
+            </td>
+          </tr>
+          <tr
             className=""
           >
-            District0x Network Token
-             (
-            DNT
-            )
-          </td>
-        </tr>
-        <tr
-          className=""
-        >
-          <td
-            className="collapsing"
-          >
-            <div
-              className="field"
+            <td
+              className="collapsing"
             >
               <div
-                className="ui fitted checkbox"
-                content={undefined}
-                onChange={[Function]}
-                onClick={[Function]}
-                onMouseDown={[Function]}
+                className="field"
               >
-                <input
-                  checked={false}
-                  className="hidden"
-                  id={undefined}
-                  name={undefined}
+                <div
+                  className="ui fitted checkbox"
+                  content={undefined}
+                  onChange={[Function]}
                   onClick={[Function]}
-                  readOnly={true}
-                  required={undefined}
-                  tabIndex={0}
-                  type="checkbox"
-                  value={undefined}
-                />
-                <label
-                  htmlFor={undefined}
-                />
+                  onMouseDown={[Function]}
+                >
+                  <input
+                    checked={false}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    required={undefined}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                  />
+                  <label
+                    htmlFor={undefined}
+                  />
+                </div>
               </div>
-            </div>
-          </td>
-          <td
+            </td>
+            <td
+              className=""
+            >
+              District0x Network Token
+               (
+              DNT
+              )
+            </td>
+          </tr>
+          <tr
             className=""
           >
-            OmiseGo
-             (
-            OMG
-            )
-          </td>
-        </tr>
+            <td
+              className="collapsing"
+            >
+              <div
+                className="field"
+              >
+                <div
+                  className="ui fitted checkbox"
+                  content={undefined}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <input
+                    checked={false}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    required={undefined}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                  />
+                  <label
+                    htmlFor={undefined}
+                  />
+                </div>
+              </div>
+            </td>
+            <td
+              className=""
+            >
+              OmiseGo
+               (
+              OMG
+              )
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -4665,135 +4673,139 @@ Array [
   <table
     className="ui celled table"
 >
-    <tr
+    <tbody
         className=""
     >
-        <td
-            className="collapsing"
-        >
-            <div
-                className="field"
-            >
-                <div
-                    className="ui fitted checkbox"
-                    content={undefined}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onMouseDown={[Function]}
-                >
-                    <input
-                        checked={false}
-                        className="hidden"
-                        id={undefined}
-                        name={undefined}
-                        onClick={[Function]}
-                        readOnly={true}
-                        required={undefined}
-                        tabIndex={0}
-                        type="checkbox"
-                        value={undefined}
-                    />
-                    <label
-                        htmlFor={undefined}
-                    />
-                </div>
-            </div>
-        </td>
-        <td
+        <tr
             className=""
         >
-            Arcade Network Token
-             (
-            ANT
-            )
-        </td>
-    </tr>
-    <tr
-        className=""
-    >
-        <td
-            className="collapsing"
-        >
-            <div
-                className="field"
+            <td
+                className="collapsing"
             >
                 <div
-                    className="ui fitted checkbox"
-                    content={undefined}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onMouseDown={[Function]}
+                    className="field"
                 >
-                    <input
-                        checked={false}
-                        className="hidden"
-                        id={undefined}
-                        name={undefined}
+                    <div
+                        className="ui fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
                         onClick={[Function]}
-                        readOnly={true}
-                        required={undefined}
-                        tabIndex={0}
-                        type="checkbox"
-                        value={undefined}
-                    />
-                    <label
-                        htmlFor={undefined}
-                    />
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={false}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
                 </div>
-            </div>
-        </td>
-        <td
+            </td>
+            <td
+                className=""
+            >
+                Arcade Network Token
+                 (
+                ANT
+                )
+            </td>
+        </tr>
+        <tr
             className=""
         >
-            District0x Network Token
-             (
-            DNT
-            )
-        </td>
-    </tr>
-    <tr
-        className=""
-    >
-        <td
-            className="collapsing"
-        >
-            <div
-                className="field"
+            <td
+                className="collapsing"
             >
                 <div
-                    className="ui fitted checkbox"
-                    content={undefined}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onMouseDown={[Function]}
+                    className="field"
                 >
-                    <input
-                        checked={false}
-                        className="hidden"
-                        id={undefined}
-                        name={undefined}
+                    <div
+                        className="ui fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
                         onClick={[Function]}
-                        readOnly={true}
-                        required={undefined}
-                        tabIndex={0}
-                        type="checkbox"
-                        value={undefined}
-                    />
-                    <label
-                        htmlFor={undefined}
-                    />
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={false}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
                 </div>
-            </div>
-        </td>
-        <td
+            </td>
+            <td
+                className=""
+            >
+                District0x Network Token
+                 (
+                DNT
+                )
+            </td>
+        </tr>
+        <tr
             className=""
         >
-            OmiseGo
-             (
-            OMG
-            )
-        </td>
-    </tr>
+            <td
+                className="collapsing"
+            >
+                <div
+                    className="field"
+                >
+                    <div
+                        className="ui fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={false}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
+                </div>
+            </td>
+            <td
+                className=""
+            >
+                OmiseGo
+                 (
+                OMG
+                )
+            </td>
+        </tr>
+    </tbody>
 </table>,
 ]
 `;
@@ -4852,92 +4864,96 @@ Array [
   <table
     className="ui celled table"
 >
-    <tr
+    <tbody
         className=""
     >
-        <td
-            className="collapsing"
-        >
-            <div
-                className="field"
-            >
-                <div
-                    className="ui fitted checkbox"
-                    content={undefined}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onMouseDown={[Function]}
-                >
-                    <input
-                        checked={false}
-                        className="hidden"
-                        id={undefined}
-                        name={undefined}
-                        onClick={[Function]}
-                        readOnly={true}
-                        required={undefined}
-                        tabIndex={0}
-                        type="checkbox"
-                        value={undefined}
-                    />
-                    <label
-                        htmlFor={undefined}
-                    />
-                </div>
-            </div>
-        </td>
-        <td
+        <tr
             className=""
         >
-            Arcade Network Token
-             (
-            ANT
-            )
-        </td>
-    </tr>
-    <tr
-        className=""
-    >
-        <td
-            className="collapsing"
-        >
-            <div
-                className="field"
+            <td
+                className="collapsing"
             >
                 <div
-                    className="ui fitted checkbox"
-                    content={undefined}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onMouseDown={[Function]}
+                    className="field"
                 >
-                    <input
-                        checked={false}
-                        className="hidden"
-                        id={undefined}
-                        name={undefined}
+                    <div
+                        className="ui fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
                         onClick={[Function]}
-                        readOnly={true}
-                        required={undefined}
-                        tabIndex={0}
-                        type="checkbox"
-                        value={undefined}
-                    />
-                    <label
-                        htmlFor={undefined}
-                    />
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={false}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
                 </div>
-            </div>
-        </td>
-        <td
+            </td>
+            <td
+                className=""
+            >
+                Arcade Network Token
+                 (
+                ANT
+                )
+            </td>
+        </tr>
+        <tr
             className=""
         >
-            District0x Network Token
-             (
-            DNT
-            )
-        </td>
-    </tr>
+            <td
+                className="collapsing"
+            >
+                <div
+                    className="field"
+                >
+                    <div
+                        className="ui fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={false}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
+                </div>
+            </td>
+            <td
+                className=""
+            >
+                District0x Network Token
+                 (
+                DNT
+                )
+            </td>
+        </tr>
+    </tbody>
 </table>,
 ]
 `;
@@ -4980,92 +4996,96 @@ Array [
   <table
     className="ui celled table"
 >
-    <tr
+    <tbody
         className=""
     >
-        <td
-            className="collapsing"
-        >
-            <div
-                className="field"
-            >
-                <div
-                    className="ui fitted checkbox"
-                    content={undefined}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onMouseDown={[Function]}
-                >
-                    <input
-                        checked={false}
-                        className="hidden"
-                        id={undefined}
-                        name={undefined}
-                        onClick={[Function]}
-                        readOnly={true}
-                        required={undefined}
-                        tabIndex={0}
-                        type="checkbox"
-                        value={undefined}
-                    />
-                    <label
-                        htmlFor={undefined}
-                    />
-                </div>
-            </div>
-        </td>
-        <td
+        <tr
             className=""
         >
-            Arcade Network Token
-             (
-            ANT
-            )
-        </td>
-    </tr>
-    <tr
-        className=""
-    >
-        <td
-            className="collapsing"
-        >
-            <div
-                className="field"
+            <td
+                className="collapsing"
             >
                 <div
-                    className="ui fitted checkbox"
-                    content={undefined}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onMouseDown={[Function]}
+                    className="field"
                 >
-                    <input
-                        checked={false}
-                        className="hidden"
-                        id={undefined}
-                        name={undefined}
+                    <div
+                        className="ui fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
                         onClick={[Function]}
-                        readOnly={true}
-                        required={undefined}
-                        tabIndex={0}
-                        type="checkbox"
-                        value={undefined}
-                    />
-                    <label
-                        htmlFor={undefined}
-                    />
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={false}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
                 </div>
-            </div>
-        </td>
-        <td
+            </td>
+            <td
+                className=""
+            >
+                Arcade Network Token
+                 (
+                ANT
+                )
+            </td>
+        </tr>
+        <tr
             className=""
         >
-            District0x Network Token
-             (
-            DNT
-            )
-        </td>
-    </tr>
+            <td
+                className="collapsing"
+            >
+                <div
+                    className="field"
+                >
+                    <div
+                        className="ui fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={false}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
+                </div>
+            </td>
+            <td
+                className=""
+            >
+                District0x Network Token
+                 (
+                DNT
+                )
+            </td>
+        </tr>
+    </tbody>
 </table>,
 ]
 `;
