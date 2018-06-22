@@ -1,4 +1,10 @@
-import {BALANCE_STATES, CREATE_BALANCE_ENTRY, SET_BALANCE, SET_BALANCE_STATE} from '../balanceActions'
+import {
+    BALANCE_STATES,
+    CREATE_BALANCE_ENTRY,
+    DELETE_BALANCE_ENTRY,
+    SET_BALANCE,
+    SET_BALANCE_STATE
+} from '../balanceActions'
 
 const BALANCE_BY_ID_INITIAL = {}
 
@@ -44,6 +50,14 @@ function balanceStateChanged(state, action){
 
 }
 
+function deleteBalanceEntry(state, action) {
+    const {payload} = action
+    const {balanceId} = payload
+    delete state[balanceId]
+    return state
+}
+
+
 export const byId = (state=BALANCE_BY_ID_INITIAL, action) => {
     switch (action.type) {
         case CREATE_BALANCE_ENTRY: {
@@ -52,8 +66,12 @@ export const byId = (state=BALANCE_BY_ID_INITIAL, action) => {
         case SET_BALANCE: {
             return setBalance(state, action)
         }
-        case SET_BALANCE_STATE:
+        case SET_BALANCE_STATE: {
             return balanceStateChanged(state, action)
+        }
+        case DELETE_BALANCE_ENTRY: {
+            return deleteBalanceEntry(state, action)
+        }
         default:
             return state;
     }

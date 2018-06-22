@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {BALANCE_STATES, setBalanceByAddressAndToken} from './balanceActions'
+import {BALANCE_STATES} from './balanceActions'
 import BalancesList from './BalancesList'
 import groupBy from 'lodash/groupBy';
 import {loadTokenBalance} from '../token/tokenActions'
@@ -88,9 +88,6 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    setBalanceByAddressAndToken: (addressId, tokenId, balance) => {
-        dispatch(setBalanceByAddressAndToken(addressId, tokenId, balance))
-    },
     loadTokenBalance: (tokenId, addressId) => {
         dispatch(loadTokenBalance(tokenId, addressId))
     }

@@ -41,6 +41,16 @@ export function createBalanceEntry(balanceId, addressId, tokenId) {
     }
 }
 
+export const DELETE_BALANCE_ENTRY = 'DELETE_BALANCE_ENTRY'
+export function deleteBalanceEntry(balanceId) {
+    return {
+        type: DELETE_BALANCE_ENTRY,
+        payload: {
+            balanceId,
+        }
+    }
+}
+
 export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
     return(dispatch, getState) => {
         let balanceId = buildBalanceId(addressId, tokenId)
@@ -70,6 +80,17 @@ export function reloadBalance(balanceId) {
     return (dispatch, getState) => {
         const balance = getState().balance.byId[balanceId]
         dispatch(loadTokenBalance(balance.tokenId, balance.addressId))
+    }
+}
+
+export function clearTokenBalances(tokenId) {
+    return (dispatch, getState) => {
+        const balancesToClear = Object.values(getState().balance.byId).filter(balanceEntry => {
+            return (balanceEntry.tokenId === tokenId)
+        })
+        balancesToClear.forEach(balanceEntry => {
+            dispatch(deleteBalanceEntry(balanceEntry.balanceId))
+        })
     }
 }
 

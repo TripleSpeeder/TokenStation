@@ -1,6 +1,11 @@
 import contract from 'truffle-contract'
 import erc20ABI from 'human-standard-token-abi'
-import {BALANCE_STATES, balanceStateChanged, setBalanceByAddressAndToken} from '../balance/balanceActions'
+import {
+    BALANCE_STATES,
+    balanceStateChanged,
+    clearTokenBalances,
+    setBalanceByAddressAndToken
+} from '../balance/balanceActions'
 import {
     aceEntriesBlockRangeChange, aceEntriesLoadingChange, aceEntriesLoadingChangeWrapper,
     addEventsThunk
@@ -105,13 +110,6 @@ export function setTokenLoadingPromise(tokenID, loadingPromise) {
     }
 }
 
-export const CLEAR_TOKEN_BALANCES = 'CLEAR_TOKEN_BALANCES'
-export function clearTokenBalances() {
-    return {
-        type: CLEAR_TOKEN_BALANCES,
-    }
-}
-
 export const CLEAR_TOKEN_LIST = 'CLEAR_TOKEN_LIST'
 export function clearTokenList() {
     return {
@@ -167,6 +165,9 @@ export function changeTokenTrackingThunk(tokenId, doTrack) {
                     dispatch(loadTokenBalance(tokenId, addressId))
                 }
             )
+        } else {
+            // If I stop tracking a token, also clear all balances for it
+            dispatch(clearTokenBalances(tokenId))
         }
     }
 }

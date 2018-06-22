@@ -1,4 +1,4 @@
-import {SET_BALANCE} from '../balanceActions'
+import {DELETE_BALANCE_ENTRY, SET_BALANCE} from '../balanceActions'
 
 const POSITIVE_BALANCES_INITIAL = []
 
@@ -10,7 +10,8 @@ function setBalance(state, action) {
         // this balance entry is currently marked as having a balance...
         if (balance.isZero()) {
             // no more balance. Remove from array
-            const newState = state.filter(entry => entry !== 5)
+            // TODO: FIX THIS
+            const newState = state.filter(entry => entry !== 5) // 5 ???!??!?!?
             return newState
         } else {
             // all set, no need for action
@@ -28,10 +29,24 @@ function setBalance(state, action) {
     }
 }
 
+function deleteBalanceEntry(state, action) {
+    const {payload} = action
+    const {balanceId} = payload
+    const index = state.indexOf(balanceId)
+    if (index > -1){
+        state.splice(index, 1)
+        return state
+    }
+    return state
+}
+
 export const positiveIds = (state=POSITIVE_BALANCES_INITIAL, action) => {
     switch (action.type) {
         case SET_BALANCE: {
             return setBalance(state, action)
+        }
+        case DELETE_BALANCE_ENTRY: {
+            return deleteBalanceEntry(state, action)
         }
         default:
             return state;

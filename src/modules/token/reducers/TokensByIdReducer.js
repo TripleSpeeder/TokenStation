@@ -1,5 +1,5 @@
 import {
-    ADD_TOKEN, CHANGE_TOKEN_TRACKING, CLEAR_TOKEN_BALANCES, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN,
+    ADD_TOKEN, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN,
     SET_TOKEN_SUPPLY
 } from '../tokenActions'
 import {ADD_EVENTS, buildEventId} from '../../event/eventActions'
@@ -72,15 +72,6 @@ function loadingSupplyChanged(state, action) {
     }
 }
 
-function clearTokenBalances(state, action) {
-    // walk through all tokens and set their balance to null
-    let newState = {...state}
-    Object.keys(newState).forEach(key => {
-        newState[key].balance = undefined
-    })
-    return newState
-}
-
 function addTransferEvents(state, action) {
     // Attach the new event to the according token contract
     const {payload} = action
@@ -123,9 +114,6 @@ export const tokensByIdReducer = (state = TOKENS_BY_ID_INITIAL, action) => {
         }
         case IS_LOADING_SUPPLY: {
             return loadingSupplyChanged(state, action)
-        }
-        case CLEAR_TOKEN_BALANCES: {
-            return clearTokenBalances(state, action)
         }
         case CLEAR_TOKEN_LIST: {
             return clearTokensById(state, action)
