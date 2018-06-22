@@ -225,6 +225,12 @@ const balance = {
             balance: new BigNumber('300'),
             balanceState: BALANCE_STATES.INITIALIZED
         }
+    },
+    positiveIds: ['b1','b2','b3','b4','b5','b6'],
+    listState: {
+        filter: '',
+        matchedBalanceIds: [],
+        displayCount: 10,
     }
 }
 

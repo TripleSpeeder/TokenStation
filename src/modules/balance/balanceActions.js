@@ -1,4 +1,4 @@
-import {loadTokenBalance} from '../token/tokenActions'
+import {loadTokenBalance, resetDisplayCount} from '../token/tokenActions'
 
 export const BALANCE_STATES = {
     VIRGIN: 'virgin',
@@ -50,6 +50,51 @@ export function deleteBalanceEntry(balanceId) {
         }
     }
 }
+
+export const CHANGE_BALANCE_FILTER_PROPS = 'CHANGE_BALANCE_FILTER_PROPS'
+export function changeBalanceFilterProps(filter, matchedBalanceIds) {
+    return {
+        type: CHANGE_BALANCE_FILTER_PROPS,
+        payload: {
+            filter,
+            matchedBalanceIds
+        }
+    }
+}
+
+export const RESET_BALANCE_DISPLAY_COUNT = 'RESET_BALANCE_DISPLAY_COUNT'
+export function resetBalanceDisplayCount() {
+    return {
+        type: RESET_BALANCE_DISPLAY_COUNT,
+    }
+}
+
+
+export function setBalanceFilterString(filterString) {
+    return (dispatch, getState) => {
+        // Filter balance list based on filterstring. Look at
+        const searchString = filterString.toLowerCase()
+
+        // Default: Show all positive balances
+        let balanceIds = getState().balance.positiveIds
+
+        // If a searchstring is provided, filter balanceIds
+        if (searchString.length) {
+            const matchedIds = balanceIds.filter(balanceId => {
+                const balanceEntry = getState().balance.byId[balanceId]
+                const token = getState().tokens.byId[balanceEntry.tokenId]
+                return (
+                    token.name.toLowerCase().includes(searchString) ||
+                    token.symbol.toLowerCase().includes(searchString) ||
+                    token.address.toLowerCase().includes(searchString)
+                )
+            })
+            balanceIds = matchedIds
+        }
+        dispatch(changeBalanceFilterProps(searchString, balanceIds))
+    }
+}
+
 
 export function setBalanceByAddressAndToken(addressId, tokenId, balance) {
     return(dispatch, getState) => {

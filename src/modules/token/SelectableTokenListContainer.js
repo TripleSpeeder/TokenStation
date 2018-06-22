@@ -14,7 +14,7 @@ class SelectableTokenListContainer extends Component {
         return (
             <React.Fragment>
                 <TokenLoaderContainer/>
-                <TokenListFilterContainer/>
+                <TokenListFilterContainer target={'tokenlist'}/>
                 <Divider/>
                 <SelectableTokenList
                     tokenList={this.props.tokenIds}

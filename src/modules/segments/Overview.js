@@ -8,20 +8,24 @@ import TokenListFilterContainer from '../token/TokenListFilterContainer'
 const Overview = (props) => {
     const {hasAccounts, balancesByToken} = props
 
-    let body, showFilter=false
+    let body
     if (hasAccounts) {
         if (Object.keys(balancesByToken).length) {
             body = <BalancesList balancesByToken={balancesByToken}/>
-            showFilter = true
         }
         else {
             body = <Message>
                 <Message.Header>
                     No balances
                 </Message.Header>
-                <p>There are no token balances on your accounts. Open the <Link to={'/todo'}>Account Manager</Link> to
-                   add additional accounts, or open the <Link to={'/todo'}>Token Manager</Link> to add tracked
-                   tokens.</p>
+                <Message.Content>
+                    There are no token balances to display. Things you can try:
+                </Message.Content>
+                <Message.List>
+                    <Message.Item>Change the filterstring</Message.Item>
+                    <Message.Item>Open the <Link to={'/todo'}>Account Manager</Link> to add additional accounts</Message.Item>
+                    <Message.Item>Open the <Link to={'/todo'}>Token Manager</Link> to tracked additional tokens</Message.Item>
+                </Message.List>
             </Message>
         }
     } else {
@@ -36,7 +40,7 @@ const Overview = (props) => {
     return (
         <React.Fragment>
             <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Overview</Header>
-            {showFilter && <TokenListFilterContainer/>}
+            {hasAccounts && <TokenListFilterContainer target={'balancelist'} />}
             <Divider/>
             {body}
         </React.Fragment>
@@ -45,7 +49,7 @@ const Overview = (props) => {
 
 Overview.propTypes = {
     hasAccounts: PropTypes.bool.isRequired,
-    balancesByToken: PropTypes.object.isRequired
+    balancesByToken: PropTypes.object.isRequired,
 }
 
 Overview.defaultProps = {

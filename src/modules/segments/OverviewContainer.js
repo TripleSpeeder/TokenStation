@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Overview from './Overview'
 import {connect} from 'react-redux'
 import groupBy from 'lodash/groupBy';
-import {BALANCE_STATES} from '../balance/balanceActions'
 
 class OverviewContainer extends Component {
     constructor(props, context) {
@@ -29,39 +28,18 @@ OverviewContainer.defaultProps = {
 
 const mapStateToProps = state => {
     const hasAccounts = (state.addresses.allIds.length > 0)
-    // all currently watched addressIds
-    const addressIds = Object.keys(state.addresses.byId)
-    // all positive balance IDs
-    const positiveBalanceIds = state.balance.positiveIds
-    // all balances that were loading while being hydrated
-    const hydratedWhileLoadingBalances = Object.values(state.balance.byId).filter(balanceEntry => {
-        return balanceEntry.balanceState === BALANCE_STATES.HYDRATED_WHILE_LOADING
-    })
-    // all tokenIds
-    let tokenIds = state.tokens.allIds
+    const filterIsActive = (state.balance.listState.filter.length > 0)
 
-    const filterIsActive = (state.tokens.listState.filter.length > 0)
-    if (filterIsActive)
-        tokenIds = state.tokens.listState.matchedTokenIds
-
-    // all BalanceEntries with positive balance
-    const positiveBalances = positiveBalanceIds.map(id => state.balance.byId[id])
-
-    // now search positiveBalances that match the watched addresses and the token filter
-    const matchedBalances = Object.values(positiveBalances).filter(balanceEntry => {
-        return (
-            (addressIds.indexOf(balanceEntry.addressId) > -1) &&
-            (tokenIds.indexOf(balanceEntry.tokenId) > -1)
-        )
-    })
-
+    // get balanceIds to display
+    const balanceIds = filterIsActive ? state.balance.listState.matchedBalanceIds : state.balance.positiveIds
+    // map IDs to Entries
+    const balanceEntries = balanceIds.map(id => state.balance.byId[id])
     // now group the balances by token
-    const balancesByToken = groupBy(matchedBalances, 'tokenId')
+    const balancesByToken = groupBy(balanceEntries, 'tokenId')
 
     return {
         hasAccounts,
         balancesByToken,
-        hydratedWhileLoadingBalances,
     }
 }
 

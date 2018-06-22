@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {setFilterString} from './tokenActions'
 import TokenListFilter from './TokenListFilter'
+import {setBalanceFilterString} from '../balance/balanceActions'
 
 class TokenListFilterContainer extends Component {
     constructor(props, context) {
@@ -25,6 +26,7 @@ class TokenListFilterContainer extends Component {
 }
 
 TokenListFilterContainer.propTypes = {
+    target: PropTypes.string.isRequired,
     total: PropTypes.number.isRequired,
     displayed: PropTypes.number.isRequired,
     clearFilter: PropTypes.func.isRequired,
@@ -32,21 +34,55 @@ TokenListFilterContainer.propTypes = {
     filterString: PropTypes.string.isRequired,
 }
 
-const mapStateToProps = (state) => ({
-    total: state.tokens.allIds.length,
-    displayed: state.tokens.listState.matchedTokenIds.length,
-    filterIsActive: state.tokens.listState.filter.length > 0,
-    filterString: state.tokens.listState.filter,
-})
+const mapStateToProps = (state, ownProps) => {
+    const {target} = ownProps
 
-const mapDispatchToProps = dispatch => ({
-    clearFilter: () => {
-        dispatch(setFilterString(''))
-    },
-    setFilterString: (filter) => {
-        dispatch(setFilterString(filter))
+    if (target === 'tokenlist') {
+        return {
+            total: state.tokens.allIds.length,
+            displayed: state.tokens.listState.matchedTokenIds.length,
+            filterIsActive: state.tokens.listState.filter.length > 0,
+            filterString: state.tokens.listState.filter,
+        }
     }
-})
+    if (target === 'balancelist') {
+        return {
+            total: state.balance.positiveIds.length,
+            displayed: state.balance.listState.matchedBalanceIds.length,
+            filterIsActive: state.balance.listState.filter.length > 0,
+            filterString: state.balance.listState.filter,
+        }
+    }
+
+    return {}
+}
+
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const {target} = ownProps
+
+    if (target === 'tokenlist') {
+        return {
+            clearFilter: () => {
+                dispatch(setFilterString(''))
+            },
+            setFilterString: (filter) => {
+                dispatch(setFilterString(filter))
+            }
+        }
+    }
+
+    if (target === 'balancelist') {
+        return {
+            clearFilter: () => {
+                dispatch(setBalanceFilterString(''))
+            },
+            setFilterString: (filter) => {
+                dispatch(setBalanceFilterString(filter))
+            }
+        }
+    }
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(TokenListFilterContainer)

@@ -2517,14 +2517,14 @@ exports[`Storyshots Modules/SelectableTokenList default 1`] = `
           className="field"
         >
           <div
-            className="ui fitted checkbox"
+            className="ui checked fitted checkbox"
             content={undefined}
             onChange={[Function]}
             onClick={[Function]}
             onMouseDown={[Function]}
           >
             <input
-              checked={false}
+              checked={true}
               className="hidden"
               id={undefined}
               name={undefined}
@@ -3715,14 +3715,14 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
                 className="field"
               >
                 <div
-                  className="ui fitted checkbox"
+                  className="ui checked fitted checkbox"
                   content={undefined}
                   onChange={[Function]}
                   onClick={[Function]}
                   onMouseDown={[Function]}
                 >
                   <input
-                    checked={false}
+                    checked={true}
                     className="hidden"
                     id={undefined}
                     name={undefined}
@@ -4442,6 +4442,25 @@ Array [
     Overview
 </h1>,
   <div
+    className="ui fluid labeled input"
+>
+    <div
+        className="ui label label"
+        onClick={[Function]}
+    >
+        Filter
+    </div>
+    <input
+        disabled={undefined}
+        name="filter"
+        onChange={[Function]}
+        placeholder="Enter name, symbol or contract address"
+        tabIndex={undefined}
+        type="text"
+        value=""
+    />
+</div>,
+  <div
     className="ui divider"
 />,
   <div
@@ -4452,23 +4471,44 @@ Array [
     >
         No balances
     </div>
-    <p>
-        There are no token balances on your accounts. Open the 
-        <a
-            href="/todo"
-            onClick={[Function]}
+    <div
+        className="content"
+    >
+        There are no token balances to display. Things you can try:
+    </div>
+    <ul
+        className="list"
+    >
+        <li
+            className="content"
         >
-            Account Manager
-        </a>
-         to add additional accounts, or open the 
-        <a
-            href="/todo"
-            onClick={[Function]}
+            Change the filterstring
+        </li>
+        <li
+            className="content"
         >
-            Token Manager
-        </a>
-         to add tracked tokens.
-    </p>
+            Open the 
+            <a
+                href="/todo"
+                onClick={[Function]}
+            >
+                Account Manager
+            </a>
+             to add additional accounts
+        </li>
+        <li
+            className="content"
+        >
+            Open the 
+            <a
+                href="/todo"
+                onClick={[Function]}
+            >
+                Token Manager
+            </a>
+             to tracked additional tokens
+        </li>
+    </ul>
 </div>,
 ]
 `;
@@ -4729,14 +4769,14 @@ Array [
                     className="field"
                 >
                     <div
-                        className="ui fitted checkbox"
+                        className="ui checked fitted checkbox"
                         content={undefined}
                         onChange={[Function]}
                         onClick={[Function]}
                         onMouseDown={[Function]}
                     >
                         <input
-                            checked={false}
+                            checked={true}
                             className="hidden"
                             id={undefined}
                             name={undefined}
@@ -5052,14 +5092,14 @@ Array [
                     className="field"
                 >
                     <div
-                        className="ui fitted checkbox"
+                        className="ui checked fitted checkbox"
                         content={undefined}
                         onChange={[Function]}
                         onClick={[Function]}
                         onMouseDown={[Function]}
                     >
                         <input
-                            checked={false}
+                            checked={true}
                             className="hidden"
                             id={undefined}
                             name={undefined}
