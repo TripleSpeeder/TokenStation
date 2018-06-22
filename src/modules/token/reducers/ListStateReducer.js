@@ -9,6 +9,8 @@ const LISTSTATE_INITIAL = {
     filter: '',
     matchedTokenIds: [],
     displayCount: 10,
+    showOnlyTracked: false,
+    filterIsActive: false,
 }
 
 function resetDisplayCount(state) {
@@ -39,18 +41,19 @@ function changeValidTokenCount(state, action){
 
 function changeFilterProps(state, action){
     const {payload} = action
-    const {filter, matchedTokenIds} = payload
+    const {filter, matchedTokenIds, showOnlyTracked, filterIsActive} = payload
     return {
         ...state,
         filter,
-        matchedTokenIds
+        matchedTokenIds,
+        showOnlyTracked,
+        filterIsActive,
     }
 }
 
 function showMoreItems(state) {
     const stepSize = 3
-    const filterIsActive = (state.filter.length > 0)
-    if (filterIsActive)
+    if (state.filterIsActive)
     {
         // check filtered numbers
         if (state.displayCount >= state.matchedTokenIds.length) {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setFilterString} from './tokenActions'
+import {setFilterProps} from './tokenActions'
 import TokenListFilter from './TokenListFilter'
 import {setBalanceFilterString} from '../balance/balanceActions'
 
@@ -41,8 +41,9 @@ const mapStateToProps = (state, ownProps) => {
         return {
             total: state.tokens.allIds.length,
             displayed: state.tokens.listState.matchedTokenIds.length,
-            filterIsActive: state.tokens.listState.filter.length > 0,
+            filterIsActive: state.tokens.listState.filterIsActive,
             filterString: state.tokens.listState.filter,
+            showOnlyTracked: state.tokens.listState.showOnlyTracked,
         }
     }
     if (target === 'balancelist') {
@@ -64,10 +65,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     if (target === 'tokenlist') {
         return {
             clearFilter: () => {
-                dispatch(setFilterString(''))
+                dispatch(setFilterProps({filterString: ''}))
             },
             setFilterString: (filter) => {
-                dispatch(setFilterString(filter))
+                dispatch(setFilterProps({filterString: filter}))
             }
         }
     }

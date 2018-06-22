@@ -60,7 +60,7 @@ const mapStateToProps = state => {
     const lastTokenId = (lastTokenIdIndex >= 0) ? state.tokens.allIds[lastTokenIdIndex] : null
     const lastToken = lastTokenId ? state.tokens.byId[lastTokenId] : null
     const displayCount = state.tokens.listState.displayCount
-    const filterIsActive = (state.tokens.listState.filter.length > 0)
+    const filterIsActive = (state.tokens.listState.filterIsActive)
 
     return {
         visibleTokenIds: state.tokens.allIds.slice(0, displayCount),

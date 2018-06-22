@@ -128,12 +128,14 @@ export function changeValidTokenCount(count) {
 }
 
 export const CHANGE_FILTER_PROPS = 'CHANGE_FILTER_PROPS'
-export function changeFilterProps(filter, matchedTokenIds) {
+export function changeFilterProps(filter, matchedTokenIds, showOnlyTracked, filterIsActive) {
     return {
         type: CHANGE_FILTER_PROPS,
         payload: {
             filter,
-            matchedTokenIds
+            matchedTokenIds,
+            showOnlyTracked,
+            filterIsActive,
         }
     }
 }
@@ -172,31 +174,51 @@ export function changeTokenTrackingThunk(tokenId, doTrack) {
     }
 }
 
-export function setFilterString(filterString) {
+export function setFilterProps(filterProps) {
     return (dispatch, getState) => {
-        // Filter token list based on filterstring
-        const searchString = filterString.toLowerCase()
 
-        // in case filterstring changed, reset the number of displayed tokens to it's default value
+        let {filterString, showOnlyTracked} = filterProps
         const oldFilterString = getState().tokens.listState.filter.toLowerCase()
-        if (oldFilterString !== searchString){
+        const oldShowOnlyTracked = getState().tokens.listState.showOnlyTracked
+        if (filterString === undefined) {
+            filterString = oldFilterString
+        }
+        if (showOnlyTracked === undefined) {
+            showOnlyTracked = oldShowOnlyTracked
+        }
+
+        // Filter token list based on filterstring and show tracked only/all
+        const searchString = filterString.toLowerCase()
+        const filterIsActive = ((searchString.length > 0) || showOnlyTracked)
+        const filterChanged = ((oldFilterString !== searchString) || (oldShowOnlyTracked !== showOnlyTracked))
+
+        // in case filter props changed, reset the number of displayed tokens to it's default value
+        if (filterChanged) {
             dispatch(resetDisplayCount())
         }
 
+        // start with all tokens
         let tokenIds = getState().tokens.allIds
+
+        // filter by tracked status
+        if (showOnlyTracked) {
+            // get all tokens that are being tracked
+            tokenIds = getState().tokens.trackedIds
+        }
+
+        // filter by search string
         if (searchString.length) {
-            const filteredTokens = Object.values(getState().tokens.byId).filter(o => {
-                // get all tokens that have a matching name, symbol or address
+            tokenIds = tokenIds.filter(tokenId => {
+                const token = getState().tokens.byId[tokenId]
                 return (
-                    o.name.toLowerCase().includes(searchString) ||
-                    o.symbol.toLowerCase().includes(searchString) ||
-                    o.address.toLowerCase().includes(searchString)
+                    token.name.toLowerCase().includes(searchString) ||
+                    token.symbol.toLowerCase().includes(searchString) ||
+                    token.address.toLowerCase().includes(searchString)
                 )
             })
-            // map tokens back to their tokenIDs
-            tokenIds = filteredTokens.map(token => (token.id))
         }
-        dispatch(changeFilterProps(searchString, tokenIds))
+
+        dispatch(changeFilterProps(searchString, tokenIds, showOnlyTracked, filterIsActive))
     }
 }
 

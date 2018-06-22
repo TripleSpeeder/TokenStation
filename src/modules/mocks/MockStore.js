@@ -104,7 +104,9 @@ const tokens_initialized = {
         listState: TOKEN_LIST_STATES.INITIALIZED,
         total: 3,
         matchedTokenIds: [],
-        filter: ''
+        filter: '',
+        filterIsActive: false,
+        showOnlyTracked: false,
     }
 }
 
@@ -114,6 +116,8 @@ const tokens_filtered = {
         ...tokens_initialized.listState,
         matchedTokenIds: [1, 2],
         filter: 'Network',
+        filterIsActive: true,
+        showOnlyTracked: false,
     }
 }
 
@@ -123,6 +127,8 @@ const tokens_filtered_nomatch = {
         ...tokens_initialized.listState,
         matchedTokenIds: [],
         filter: 'filterstring not matching anything',
+        filterIsActive: true,
+        showOnlyTracked: false,
     }
 }
 
@@ -134,6 +140,8 @@ const tokens_virgin = {
         total: 0,
         matchedTokenIds: [],
         filter: '',
+        filterIsActive: false,
+        showOnlyTracked: false,
     }
 }
 
@@ -177,6 +185,8 @@ const tokens_loading = {
         total: 3,
         matchedTokenIds: [],
         filter: '',
+        filterIsActive: false,
+        showOnlyTracked: false,
     }
 }
 

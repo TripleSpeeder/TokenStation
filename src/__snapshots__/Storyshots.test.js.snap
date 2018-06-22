@@ -3635,23 +3635,62 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
         Manage Token Contracts
       </h1>
       <div
-        className="ui fluid labeled input"
+        className="ui divided middle aligned two column grid"
       >
         <div
-          className="ui label label"
-          onClick={[Function]}
+          className="row"
         >
-          Filter
+          <div
+            className="six wide column"
+          >
+            <div
+              className="ui toggle checkbox"
+              onChange={[Function]}
+              onClick={[Function]}
+              onMouseDown={[Function]}
+            >
+              <input
+                checked={false}
+                className="hidden"
+                id={undefined}
+                name={undefined}
+                onClick={[Function]}
+                readOnly={true}
+                tabIndex={0}
+                type="checkbox"
+                value={undefined}
+              />
+              <label
+                htmlFor={undefined}
+              >
+                Only show tracked token
+              </label>
+            </div>
+          </div>
+          <div
+            className="ten wide column"
+          >
+            <div
+              className="ui fluid labeled input"
+            >
+              <div
+                className="ui label label"
+                onClick={[Function]}
+              >
+                Filter
+              </div>
+              <input
+                disabled={undefined}
+                name="filter"
+                onChange={[Function]}
+                placeholder="Enter name, symbol or contract address"
+                tabIndex={undefined}
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
         </div>
-        <input
-          disabled={undefined}
-          name="filter"
-          onChange={[Function]}
-          placeholder="Enter name, symbol or contract address"
-          tabIndex={undefined}
-          type="text"
-          value=""
-        />
       </div>
       <div
         className="ui divider"
@@ -4689,23 +4728,62 @@ Array [
     Manage Token Contracts
 </h1>,
   <div
-    className="ui fluid labeled input"
+    className="ui divided middle aligned two column grid"
 >
     <div
-        className="ui label label"
-        onClick={[Function]}
+        className="row"
     >
-        Filter
+        <div
+            className="six wide column"
+        >
+            <div
+                className="ui toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+            >
+                <input
+                    checked={false}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                />
+                <label
+                    htmlFor={undefined}
+                >
+                    Only show tracked token
+                </label>
+            </div>
+        </div>
+        <div
+            className="ten wide column"
+        >
+            <div
+                className="ui fluid labeled input"
+            >
+                <div
+                    className="ui label label"
+                    onClick={[Function]}
+                >
+                    Filter
+                </div>
+                <input
+                    disabled={undefined}
+                    name="filter"
+                    onChange={[Function]}
+                    placeholder="Enter name, symbol or contract address"
+                    tabIndex={undefined}
+                    type="text"
+                    value=""
+                />
+            </div>
+        </div>
     </div>
-    <input
-        disabled={undefined}
-        name="filter"
-        onChange={[Function]}
-        placeholder="Enter name, symbol or contract address"
-        tabIndex={undefined}
-        type="text"
-        value=""
-    />
 </div>,
   <div
     className="ui divider"
@@ -4880,23 +4958,62 @@ Array [
     </div>
 </div>,
   <div
-    className="ui fluid labeled input"
+    className="ui divided middle aligned two column grid"
 >
     <div
-        className="ui label label"
-        onClick={[Function]}
+        className="row"
     >
-        Filter
+        <div
+            className="six wide column"
+        >
+            <div
+                className="ui toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+            >
+                <input
+                    checked={false}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                />
+                <label
+                    htmlFor={undefined}
+                >
+                    Only show tracked token
+                </label>
+            </div>
+        </div>
+        <div
+            className="ten wide column"
+        >
+            <div
+                className="ui fluid labeled input"
+            >
+                <div
+                    className="ui label label"
+                    onClick={[Function]}
+                >
+                    Filter
+                </div>
+                <input
+                    disabled={undefined}
+                    name="filter"
+                    onChange={[Function]}
+                    placeholder="Enter name, symbol or contract address"
+                    tabIndex={undefined}
+                    type="text"
+                    value=""
+                />
+            </div>
+        </div>
     </div>
-    <input
-        disabled={undefined}
-        name="filter"
-        onChange={[Function]}
-        placeholder="Enter name, symbol or contract address"
-        tabIndex={undefined}
-        type="text"
-        value=""
-    />
 </div>,
   <div
     className="ui divider"
@@ -5006,29 +5123,68 @@ Array [
     Manage Token Contracts
 </h1>,
   <div
-    className="ui fluid icon labeled input"
+    className="ui divided middle aligned two column grid"
 >
     <div
-        className="ui label label"
-        onClick={[Function]}
+        className="row"
     >
-        Filter
+        <div
+            className="six wide column"
+        >
+            <div
+                className="ui toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+            >
+                <input
+                    checked={false}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                />
+                <label
+                    htmlFor={undefined}
+                >
+                    Only show tracked token
+                </label>
+            </div>
+        </div>
+        <div
+            className="ten wide column"
+        >
+            <div
+                className="ui fluid icon labeled input"
+            >
+                <div
+                    className="ui label label"
+                    onClick={[Function]}
+                >
+                    Filter
+                </div>
+                <input
+                    disabled={undefined}
+                    name="filter"
+                    onChange={[Function]}
+                    placeholder="Enter name, symbol or contract address"
+                    tabIndex={undefined}
+                    type="text"
+                    value="Network"
+                />
+                <i
+                    aria-hidden="true"
+                    className="eraser circular link icon"
+                    iconPosition="right"
+                    onClick={[Function]}
+                />
+            </div>
+        </div>
     </div>
-    <input
-        disabled={undefined}
-        name="filter"
-        onChange={[Function]}
-        placeholder="Enter name, symbol or contract address"
-        tabIndex={undefined}
-        type="text"
-        value="Network"
-    />
-    <i
-        aria-hidden="true"
-        className="eraser circular link icon"
-        iconPosition="right"
-        onClick={[Function]}
-    />
 </div>,
   <div
     className="ui divider"
@@ -5138,29 +5294,68 @@ Array [
     Manage Token Contracts
 </h1>,
   <div
-    className="ui fluid icon labeled input"
+    className="ui divided middle aligned two column grid"
 >
     <div
-        className="ui label label"
-        onClick={[Function]}
+        className="row"
     >
-        Filter
+        <div
+            className="six wide column"
+        >
+            <div
+                className="ui toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+            >
+                <input
+                    checked={false}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                />
+                <label
+                    htmlFor={undefined}
+                >
+                    Only show tracked token
+                </label>
+            </div>
+        </div>
+        <div
+            className="ten wide column"
+        >
+            <div
+                className="ui fluid icon labeled input"
+            >
+                <div
+                    className="ui label label"
+                    onClick={[Function]}
+                >
+                    Filter
+                </div>
+                <input
+                    disabled={undefined}
+                    name="filter"
+                    onChange={[Function]}
+                    placeholder="Enter name, symbol or contract address"
+                    tabIndex={undefined}
+                    type="text"
+                    value="filterstring not matching anything"
+                />
+                <i
+                    aria-hidden="true"
+                    className="eraser circular link icon"
+                    iconPosition="right"
+                    onClick={[Function]}
+                />
+            </div>
+        </div>
     </div>
-    <input
-        disabled={undefined}
-        name="filter"
-        onChange={[Function]}
-        placeholder="Enter name, symbol or contract address"
-        tabIndex={undefined}
-        type="text"
-        value="filterstring not matching anything"
-    />
-    <i
-        aria-hidden="true"
-        className="eraser circular link icon"
-        iconPosition="right"
-        onClick={[Function]}
-    />
 </div>,
   <div
     className="ui divider"
@@ -5204,23 +5399,62 @@ Array [
     Manage Token Contracts
 </h1>,
   <div
-    className="ui fluid labeled input"
+    className="ui divided middle aligned two column grid"
 >
     <div
-        className="ui label label"
-        onClick={[Function]}
+        className="row"
     >
-        Filter
+        <div
+            className="six wide column"
+        >
+            <div
+                className="ui toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+            >
+                <input
+                    checked={false}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                />
+                <label
+                    htmlFor={undefined}
+                >
+                    Only show tracked token
+                </label>
+            </div>
+        </div>
+        <div
+            className="ten wide column"
+        >
+            <div
+                className="ui fluid labeled input"
+            >
+                <div
+                    className="ui label label"
+                    onClick={[Function]}
+                >
+                    Filter
+                </div>
+                <input
+                    disabled={undefined}
+                    name="filter"
+                    onChange={[Function]}
+                    placeholder="Enter name, symbol or contract address"
+                    tabIndex={undefined}
+                    type="text"
+                    value=""
+                />
+            </div>
+        </div>
     </div>
-    <input
-        disabled={undefined}
-        name="filter"
-        onChange={[Function]}
-        placeholder="Enter name, symbol or contract address"
-        tabIndex={undefined}
-        type="text"
-        value=""
-    />
 </div>,
   <div
     className="ui divider"
