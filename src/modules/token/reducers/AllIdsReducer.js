@@ -5,8 +5,15 @@ const ALL_TOKENS_INITIAL = []
 function addTokenId(state, action) {
     const {payload} = action
     const {tokenID} = payload
-    // Just append the new token's ID to the list of all IDs
-    return state.concat(tokenID);
+    // prevent duplicate token
+    if (state.indexOf(tokenID) === -1) {
+        // append the new token's ID to the list of all IDs
+        return state.concat(tokenID);
+    }
+    else {
+        // duplicate
+        return state
+    }
 }
 
 function clearAllTokens(state, action) {

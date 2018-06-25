@@ -13,10 +13,16 @@ function clearTokensById(state, action) {
 function addTokenEntry(state, action) {
     const {payload} = action
     const {tokenID, token} = payload
-    // insert new token
-    return {
-        ...state,
-        [tokenID]: token
+    // prevent duplicate entries
+    if (state[tokenID] === undefined) {
+        // insert new token
+        return {
+            ...state,
+            [tokenID]: token
+        }
+    } else {
+        // ignore duplicate...
+        return state
     }
 }
 

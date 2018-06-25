@@ -23,12 +23,18 @@ function setTokenContractInstance(state, action) {
 function addTokenId(state, action) {
     const {payload} = action
     const {tokenID} = payload
-    // insert new token
-    return {
-        ...state,
-        [tokenID]: {
-            tokenID,
+    // prevent duplicate entries
+    if (state[tokenID] === undefined) {
+        // insert new token
+        return {
+            ...state,
+            [tokenID]: {
+                tokenID,
+            }
         }
+    } else {
+        // ignore duplicate...
+        return state
     }
 }
 
