@@ -13,6 +13,7 @@ State tree:
         filter: 'Dumb'
         matchedTokenIds: [6]
         total: 2
+        activePage: 1
     }
     byId: {
         [1]: {

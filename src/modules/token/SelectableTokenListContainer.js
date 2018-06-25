@@ -1,20 +1,26 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux"
-import {Grid, Divider, Checkbox} from 'semantic-ui-react'
+import {Grid, Divider, Checkbox, Pagination, Container} from 'semantic-ui-react'
 import TokenListFilterContainer from './TokenListFilterContainer'
 import SelectableTokenList from "./SelectableTokenList"
 import TokenLoaderContainer from './TokenLoaderContainer'
-import {setFilterProps} from './tokenActions'
+import {changeTokenListPage, setFilterProps} from './tokenActions'
 
 class SelectableTokenListContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.handleShowOnlyTrackedChange = this.handleShowOnlyTrackedChange.bind(this)
+        this.handlePaginationChange = this.handlePaginationChange.bind(this)
     }
 
     handleShowOnlyTrackedChange(e, data) {
         const {checked} = data
         this.props.setShowTracked(checked)
+    }
+
+    handlePaginationChange(e, data) {
+        const {activePage} = data
+        this.props.setTokenListPage(activePage)
     }
 
     render() {
@@ -35,23 +41,43 @@ class SelectableTokenListContainer extends Component {
                 <SelectableTokenList
                     tokenList={this.props.tokenIds}
                 />
+                <Container textAlign={'center'}>
+                    <Pagination activePage={this.props.activePage}
+                                onPageChange={this.handlePaginationChange}
+                                totalPages={this.props.totalPages}/>
+                </Container>
             </React.Fragment>
             )
     }
 }
 
 const mapStateToProps = state => {
+    const itemsPerPage = 20
+    let totalPages = 1
+    const activePage = state.tokens.listState.activePage
     const filterIsActive = state.tokens.listState.filterIsActive
+    let tokenIds = filterIsActive ? state.tokens.listState.matchedTokenIds : state.tokens.allIds
     const showOnlyTracked = state.tokens.listState.showOnlyTracked
+    const numVisibleTokens = tokenIds.length
+    if (numVisibleTokens) {
+        totalPages = Math.ceil(numVisibleTokens / itemsPerPage)
+    }
+    const sliceStart = (activePage-1)*itemsPerPage
+    tokenIds = tokenIds.slice(sliceStart, sliceStart+itemsPerPage)
     return {
-        tokenIds: filterIsActive ? state.tokens.listState.matchedTokenIds : state.tokens.allIds,
+        tokenIds,
         showOnlyTracked,
+        activePage,
+        totalPages,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     setShowTracked: (showOnlyTracked) => {
         dispatch(setFilterProps({showOnlyTracked}))
+    },
+    setTokenListPage: (activePage) => {
+        dispatch(changeTokenListPage(activePage))
     }
 })
 

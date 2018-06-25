@@ -1,5 +1,10 @@
 import {
-    CHANGE_FILTER_PROPS, CHANGE_TOKEN_LIST_STATE, CHANGE_VALID_TOKEN_COUNT, RESET_DISPLAY_COUNT, SHOW_MORE_ITEMS,
+    CHANGE_FILTER_PROPS,
+    CHANGE_TOKEN_LIST_PAGE,
+    CHANGE_TOKEN_LIST_STATE,
+    CHANGE_VALID_TOKEN_COUNT,
+    RESET_DISPLAY_COUNT,
+    SHOW_MORE_ITEMS,
     TOKEN_LIST_STATES
 } from '../tokenActions'
 
@@ -11,6 +16,7 @@ const LISTSTATE_INITIAL = {
     displayCount: 10,
     showOnlyTracked: false,
     filterIsActive: false,
+    activePage: 1,
 }
 
 function resetDisplayCount(state) {
@@ -80,6 +86,15 @@ function showMoreItems(state) {
     }
 }
 
+function tokenListPageChanged(state, action)  {
+    const {payload} = action
+    const {activePage} = payload
+    return {
+        ...state,
+        activePage,
+    }
+}
+
 export const listStateReducer = (state=LISTSTATE_INITIAL, action) => {
     switch (action.type) {
         case CHANGE_TOKEN_LIST_STATE:
@@ -92,6 +107,8 @@ export const listStateReducer = (state=LISTSTATE_INITIAL, action) => {
             return showMoreItems(state)
         case RESET_DISPLAY_COUNT:
             return resetDisplayCount(state)
+        case CHANGE_TOKEN_LIST_PAGE:
+            return tokenListPageChanged(state, action)
         default:
             return state
     }

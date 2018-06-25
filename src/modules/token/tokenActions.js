@@ -158,6 +158,16 @@ export function changeTokenTracking(tokenId, doTrack) {
     }
 }
 
+export const CHANGE_TOKEN_LIST_PAGE = 'CHANGE_TOKENLIST_PAGE'
+export function changeTokenListPage(activePage) {
+    return {
+        type: CHANGE_TOKEN_LIST_PAGE,
+        payload: {
+            activePage
+        }
+    }
+}
+
 export function changeTokenTrackingThunk(tokenId, doTrack) {
     return (dispatch, getState) => {
         dispatch(changeTokenTracking(tokenId, doTrack))
@@ -192,9 +202,11 @@ export function setFilterProps(filterProps) {
         const filterIsActive = ((searchString.length > 0) || showOnlyTracked)
         const filterChanged = ((oldFilterString !== searchString) || (oldShowOnlyTracked !== showOnlyTracked))
 
-        // in case filter props changed, reset the number of displayed tokens to it's default value
         if (filterChanged) {
+            // in case filter props changed, reset the number of displayed tokens to it's default value and set
+            // default page
             dispatch(resetDisplayCount())
+            dispatch(changeTokenListPage(1))
         }
 
         // start with all tokens
