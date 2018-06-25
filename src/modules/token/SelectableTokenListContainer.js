@@ -24,6 +24,15 @@ class SelectableTokenListContainer extends Component {
     }
 
     render() {
+        let pager = null
+        if (this.props.totalPages > 1) {
+            pager = <Container textAlign={'center'}>
+                        <Pagination activePage={this.props.activePage}
+                                    onPageChange={this.handlePaginationChange}
+                                    totalPages={this.props.totalPages}/>
+                    </Container>
+
+        }
         return (
             <React.Fragment>
                 <TokenLoaderContainer/>
@@ -41,11 +50,7 @@ class SelectableTokenListContainer extends Component {
                 <SelectableTokenList
                     tokenList={this.props.tokenIds}
                 />
-                <Container textAlign={'center'}>
-                    <Pagination activePage={this.props.activePage}
-                                onPageChange={this.handlePaginationChange}
-                                totalPages={this.props.totalPages}/>
-                </Container>
+                {pager}
             </React.Fragment>
             )
     }

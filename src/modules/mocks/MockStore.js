@@ -107,6 +107,7 @@ const tokens_initialized = {
         filter: '',
         filterIsActive: false,
         showOnlyTracked: false,
+        activePage: 1,
     }
 }
 
@@ -118,6 +119,7 @@ const tokens_filtered = {
         filter: 'Network',
         filterIsActive: true,
         showOnlyTracked: false,
+        activePage: 1,
     }
 }
 
@@ -129,6 +131,7 @@ const tokens_filtered_nomatch = {
         filter: 'filterstring not matching anything',
         filterIsActive: true,
         showOnlyTracked: false,
+        activePage: 1,
     }
 }
 
@@ -142,6 +145,7 @@ const tokens_virgin = {
         filter: '',
         filterIsActive: false,
         showOnlyTracked: false,
+        activePage: 1,
     }
 }
 
@@ -187,6 +191,7 @@ const tokens_loading = {
         filter: '',
         filterIsActive: false,
         showOnlyTracked: false,
+        activePage: 1,
     }
 }
 
