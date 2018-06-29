@@ -48,7 +48,6 @@ class SelectableTokenListContainer extends Component {
                                     onPageChange={this.handlePaginationChange}
                                     totalPages={this.props.totalPages}/>
                     </Container>
-
         }
         return (
             <React.Fragment>
