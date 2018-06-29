@@ -1,10 +1,14 @@
 import {
-    ADD_TOKEN, ADD_VOLATILE_TOKEN,
+    ADD_TOKEN, ADD_VOLATILE_TOKEN, CLEAR_TOKEN_LIST,
     SET_TOKEN_CONTRACT_INSTANCE,
     SET_TOKEN_LOADING_PROMISE,
 } from '../tokenActions'
 
 const VOLATILE_TOKENS_BY_ID_INITIAL = {}
+
+function clearTokens() {
+    return VOLATILE_TOKENS_BY_ID_INITIAL
+}
 
 function setTokenContractInstance(state, action) {
     const {payload} = action
@@ -67,6 +71,9 @@ export const volatileTokensByIdReducer = (state = VOLATILE_TOKENS_BY_ID_INITIAL,
         }
         case SET_TOKEN_CONTRACT_INSTANCE: {
             return setTokenContractInstance(state, action)
+        }
+        case CLEAR_TOKEN_LIST: {
+            return clearTokens()
         }
         default:
             return state
