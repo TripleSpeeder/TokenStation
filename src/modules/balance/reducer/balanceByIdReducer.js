@@ -5,8 +5,13 @@ import {
     SET_BALANCE,
     SET_BALANCE_STATE
 } from '../balanceActions'
+import {CLEAR_TOKEN_LIST} from '../../token/tokenActions'
 
 const BALANCE_BY_ID_INITIAL = {}
+
+function clearAllBalances() {
+    return BALANCE_BY_ID_INITIAL;
+}
 
 function setBalance(state, action) {
     const {payload} = action
@@ -71,6 +76,9 @@ export const byId = (state=BALANCE_BY_ID_INITIAL, action) => {
         }
         case DELETE_BALANCE_ENTRY: {
             return deleteBalanceEntry(state, action)
+        }
+        case CLEAR_TOKEN_LIST: {
+            return clearAllBalances()
         }
         default:
             return state;
