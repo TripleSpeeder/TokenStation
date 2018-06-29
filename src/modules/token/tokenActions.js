@@ -265,9 +265,9 @@ export function loadTokenList(url) {
         // Check if there is currently a filter set
         const filterIsActive = (getState().tokens.listState.filterIsActive)
         // add tokens
-        jsonTokens.forEach((listToken, index) => {
-            const token = mapListToken(index, listToken)
-            dispatch(addToken(index, token))
+        jsonTokens.forEach((listToken) => {
+            const token = mapListToken(listToken)
+            dispatch(addToken(token.address, token))
         })
         // if there is already a filter set, re-evaluate the filter results
         if (filterIsActive) {
@@ -278,9 +278,9 @@ export function loadTokenList(url) {
     }
 }
 
-function mapListToken(id, listToken) {
+function mapListToken(listToken) {
     return {
-        id: id,
+        id: listToken['address'],
         address: listToken['address'],
         symbol: listToken['symbol'],
         decimals: Math.pow(10, listToken['decimals']),
@@ -295,7 +295,6 @@ function mapListToken(id, listToken) {
         },
         balance: undefined,
         eventIds: [],
-        tracked: false,
         loading: false,
     }
 }
@@ -312,10 +311,7 @@ export function instantiateTokenContract(tokenID) {
                 const {web3} = getState().web3Instance
                 const ERC20Contract = contract({abi: erc20ABI})
                 ERC20Contract.setProvider(web3.currentProvider)
-                var t0 = performance.now();
                 const contractInstance = await ERC20Contract.at(token.address)
-                var t1 = performance.now();
-                console.log("Instantiating contract took " + (t1 - t0) + " milliseconds for " + token.name)
                 dispatch(setTokenContractInstance(tokenID, contractInstance))
                 // indicate we finished loading the token
                 dispatch(loadingTokenChanged(tokenID, false))
