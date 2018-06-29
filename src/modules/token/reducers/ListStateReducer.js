@@ -2,7 +2,7 @@ import {
     CHANGE_FILTER_PROPS,
     CHANGE_TOKEN_LIST_PAGE,
     CHANGE_TOKEN_LIST_STATE,
-    CHANGE_VALID_TOKEN_COUNT,
+    CHANGE_VALID_TOKEN_COUNT, CLEAR_TOKEN_LIST,
     RESET_DISPLAY_COUNT,
     SHOW_MORE_ITEMS,
     TOKEN_LIST_STATES
@@ -17,6 +17,16 @@ const LISTSTATE_INITIAL = {
     showOnlyTracked: false,
     filterIsActive: false,
     activePage: 1,
+}
+
+function clearTokenList(state) {
+    return {
+        ...state,
+        displayCount: LISTSTATE_INITIAL.displayCount,
+        matchedTokenIds: LISTSTATE_INITIAL.matchedTokenIds,
+        activePage: LISTSTATE_INITIAL.activePage,
+        total: LISTSTATE_INITIAL.total,
+    }
 }
 
 function resetDisplayCount(state) {
@@ -109,6 +119,8 @@ export const listStateReducer = (state=LISTSTATE_INITIAL, action) => {
             return resetDisplayCount(state)
         case CHANGE_TOKEN_LIST_PAGE:
             return tokenListPageChanged(state, action)
+        case CLEAR_TOKEN_LIST:
+            return clearTokenList(state)
         default:
             return state
     }
