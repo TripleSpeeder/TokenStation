@@ -3668,7 +3668,7 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
             </div>
           </div>
           <div
-            className="ten wide column"
+            className="nine wide column"
           >
             <div
               className="ui fluid labeled input"
@@ -3688,6 +3688,67 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
                 type="text"
                 value=""
               />
+            </div>
+          </div>
+          <div
+            className="one wide column"
+          >
+            <div
+              aria-busy={undefined}
+              aria-disabled={undefined}
+              aria-expanded={false}
+              aria-multiselectable={undefined}
+              className="ui dropdown"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              role="listbox"
+              tabIndex={0}
+            >
+              <div
+                aria-live="polite"
+                className="text"
+                role="alert"
+              />
+              <i
+                aria-hidden="true"
+                className="setting icon"
+                onClick={[Function]}
+              />
+              <div
+                className="menu transition"
+              >
+                <div
+                  aria-checked={undefined}
+                  aria-disabled={undefined}
+                  aria-selected={undefined}
+                  className="item"
+                  onClick={[Function]}
+                  role="option"
+                >
+                  <span
+                    className="text"
+                  >
+                    Clear tokens
+                  </span>
+                </div>
+                <div
+                  aria-checked={undefined}
+                  aria-disabled={undefined}
+                  aria-selected={undefined}
+                  className="item"
+                  onClick={[Function]}
+                  role="option"
+                >
+                  <span
+                    className="text"
+                  >
+                    Reload tokens
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -4761,7 +4822,7 @@ Array [
             </div>
         </div>
         <div
-            className="ten wide column"
+            className="nine wide column"
         >
             <div
                 className="ui fluid labeled input"
@@ -4781,6 +4842,67 @@ Array [
                     type="text"
                     value=""
                 />
+            </div>
+        </div>
+        <div
+            className="one wide column"
+        >
+            <div
+                aria-busy={undefined}
+                aria-disabled={undefined}
+                aria-expanded={false}
+                aria-multiselectable={undefined}
+                className="ui dropdown"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseDown={[Function]}
+                role="listbox"
+                tabIndex={0}
+            >
+                <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                />
+                <i
+                    aria-hidden="true"
+                    className="setting icon"
+                    onClick={[Function]}
+                />
+                <div
+                    className="menu transition"
+                >
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Clear tokens
+                        </span>
+                    </div>
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Reload tokens
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -4991,7 +5113,7 @@ Array [
             </div>
         </div>
         <div
-            className="ten wide column"
+            className="nine wide column"
         >
             <div
                 className="ui fluid labeled input"
@@ -5011,6 +5133,67 @@ Array [
                     type="text"
                     value=""
                 />
+            </div>
+        </div>
+        <div
+            className="one wide column"
+        >
+            <div
+                aria-busy={undefined}
+                aria-disabled={undefined}
+                aria-expanded={false}
+                aria-multiselectable={undefined}
+                className="ui dropdown"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseDown={[Function]}
+                role="listbox"
+                tabIndex={0}
+            >
+                <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                />
+                <i
+                    aria-hidden="true"
+                    className="setting icon"
+                    onClick={[Function]}
+                />
+                <div
+                    className="menu transition"
+                >
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Clear tokens
+                        </span>
+                    </div>
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Reload tokens
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -5156,7 +5339,7 @@ Array [
             </div>
         </div>
         <div
-            className="ten wide column"
+            className="nine wide column"
         >
             <div
                 className="ui fluid icon labeled input"
@@ -5182,6 +5365,67 @@ Array [
                     iconPosition="right"
                     onClick={[Function]}
                 />
+            </div>
+        </div>
+        <div
+            className="one wide column"
+        >
+            <div
+                aria-busy={undefined}
+                aria-disabled={undefined}
+                aria-expanded={false}
+                aria-multiselectable={undefined}
+                className="ui dropdown"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseDown={[Function]}
+                role="listbox"
+                tabIndex={0}
+            >
+                <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                />
+                <i
+                    aria-hidden="true"
+                    className="setting icon"
+                    onClick={[Function]}
+                />
+                <div
+                    className="menu transition"
+                >
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Clear tokens
+                        </span>
+                    </div>
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Reload tokens
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -5327,7 +5571,7 @@ Array [
             </div>
         </div>
         <div
-            className="ten wide column"
+            className="nine wide column"
         >
             <div
                 className="ui fluid icon labeled input"
@@ -5353,6 +5597,67 @@ Array [
                     iconPosition="right"
                     onClick={[Function]}
                 />
+            </div>
+        </div>
+        <div
+            className="one wide column"
+        >
+            <div
+                aria-busy={undefined}
+                aria-disabled={undefined}
+                aria-expanded={false}
+                aria-multiselectable={undefined}
+                className="ui dropdown"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseDown={[Function]}
+                role="listbox"
+                tabIndex={0}
+            >
+                <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                />
+                <i
+                    aria-hidden="true"
+                    className="setting icon"
+                    onClick={[Function]}
+                />
+                <div
+                    className="menu transition"
+                >
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Clear tokens
+                        </span>
+                    </div>
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Reload tokens
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -5432,7 +5737,7 @@ Array [
             </div>
         </div>
         <div
-            className="ten wide column"
+            className="nine wide column"
         >
             <div
                 className="ui fluid labeled input"
@@ -5452,6 +5757,67 @@ Array [
                     type="text"
                     value=""
                 />
+            </div>
+        </div>
+        <div
+            className="one wide column"
+        >
+            <div
+                aria-busy={undefined}
+                aria-disabled={undefined}
+                aria-expanded={false}
+                aria-multiselectable={undefined}
+                className="ui dropdown"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseDown={[Function]}
+                role="listbox"
+                tabIndex={0}
+            >
+                <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                />
+                <i
+                    aria-hidden="true"
+                    className="setting icon"
+                    onClick={[Function]}
+                />
+                <div
+                    className="menu transition"
+                >
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Clear tokens
+                        </span>
+                    </div>
+                    <div
+                        aria-checked={undefined}
+                        aria-disabled={undefined}
+                        aria-selected={undefined}
+                        className="item"
+                        onClick={[Function]}
+                        role="option"
+                    >
+                        <span
+                            className="text"
+                        >
+                            Reload tokens
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

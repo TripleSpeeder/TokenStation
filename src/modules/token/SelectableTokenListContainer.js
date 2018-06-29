@@ -1,16 +1,25 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux"
-import {Grid, Divider, Checkbox, Pagination, Container} from 'semantic-ui-react'
+import {Grid, Divider, Checkbox, Pagination, Container, Dropdown} from 'semantic-ui-react'
 import TokenListFilterContainer from './TokenListFilterContainer'
 import SelectableTokenList from "./SelectableTokenList"
 import TokenLoaderContainer from './TokenLoaderContainer'
-import {changeTokenListPage, setFilterProps} from './tokenActions'
+import {changeTokenListPage, clearTokenList, loadTokenList, setFilterProps, TOKEN_LIST_STATES} from './tokenActions'
 
 class SelectableTokenListContainer extends Component {
     constructor(props, context) {
         super(props, context)
+        this.tokenListUrl = "/tokens_1.json"
         this.handleShowOnlyTrackedChange = this.handleShowOnlyTrackedChange.bind(this)
         this.handlePaginationChange = this.handlePaginationChange.bind(this)
+        this.handleLoadTokens = this.handleLoadTokens.bind(this)
+        this.handleClearTokens = this.handleClearTokens.bind(this)
+    }
+
+    componentDidMount() {
+        if (this.props.listState === TOKEN_LIST_STATES.VIRGIN) {
+            this.props.loadTokenList(this.tokenListUrl)
+        }
     }
 
     handleShowOnlyTrackedChange(e, data) {
@@ -21,6 +30,14 @@ class SelectableTokenListContainer extends Component {
     handlePaginationChange(e, data) {
         const {activePage} = data
         this.props.setTokenListPage(activePage)
+    }
+
+    handleLoadTokens() {
+        this.props.loadTokenList(this.tokenListUrl)
+    }
+
+    handleClearTokens() {
+        this.props.clearTokenList()
     }
 
     render() {
@@ -41,8 +58,16 @@ class SelectableTokenListContainer extends Component {
                         <Grid.Column width={6}>
                             <Checkbox toggle label='Only show tracked token' checked={this.props.showOnlyTracked} onChange={this.handleShowOnlyTrackedChange} />
                         </Grid.Column>
-                        <Grid.Column  width={10}>
+                        <Grid.Column width={9}>
                             <TokenListFilterContainer target={'tokenlist'}/>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                            <Dropdown icon={'setting'}>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item text='Clear tokens' onClick={this.handleClearTokens} />
+                                    <Dropdown.Item text='Reload tokens' onClick={this.handleLoadTokens} />
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -57,6 +82,7 @@ class SelectableTokenListContainer extends Component {
 }
 
 const mapStateToProps = state => {
+    const listState = state.tokens.listState.listState
     const itemsPerPage = 20
     let totalPages = 1
     const activePage = state.tokens.listState.activePage
@@ -74,6 +100,7 @@ const mapStateToProps = state => {
         showOnlyTracked,
         activePage,
         totalPages,
+        listState,
     }
 }
 
@@ -83,6 +110,12 @@ const mapDispatchToProps = dispatch => ({
     },
     setTokenListPage: (activePage) => {
         dispatch(changeTokenListPage(activePage))
+    },
+    loadTokenList: (url) => {
+        dispatch(loadTokenList(url))
+    },
+    clearTokenList: () => {
+        dispatch(clearTokenList())
     }
 })
 

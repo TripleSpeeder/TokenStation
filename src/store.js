@@ -12,71 +12,6 @@ import {BALANCE_STATES} from './modules/balance/balanceActions'
 import {events} from './modules/event/reducers/eventReducer'
 import {modal} from './modules/modal/modalReducer'
 
-/*
-- Restore all BigNumber instances that have been converted to string while being hydrated
- */
-const tokensByIdTransform = createTransform(
-    // transform state on its way to being serialized and persisted.
-    (inboundState, key) => {
-        const newState = {...inboundState}
-        Object.keys(newState).forEach(tokenId => {
-            const tokenEntry = newState[tokenId]
-            newState[tokenId] = {
-                ...tokenEntry,
-                eventIds: []    // Clear eventIds, as events are not persisted
-            }
-        })
-        return newState
-    },
-    // transform state being rehydrated
-    (outboundState, key) => {
-        // for each entry in token.byIds, restore BigNumbers
-        const newState = {...outboundState}
-        Object.keys(newState).forEach(tokenId => {
-            const tokenEntry = newState[tokenId]
-            newState[tokenId] = {
-                ...tokenEntry,
-                decimals: window.web3.toBigNumber(tokenEntry.decimals),
-                supply: {
-                    ...tokenEntry.supply,
-                    supply: tokenEntry.supply.supply ? window.web3.toBigNumber(tokenEntry.supply.supply) : undefined
-                }
-            }
-        })
-
-        return newState;
-    },
-    // define which reducers this transform gets called for.
-    { whitelist: ['byId'] }
-);
-
-/*
-- Mark all balances that have been hydrated while being in state "loading" as "hydrated_while_loading", so i can restart loading them.
-- Restore all BigNumber instances that have been converted to string while being hydrated
- */
-const balanceTransform = createTransform(
-    // transform state on its way to being serialized and persisted.
-    (inboundState, key) => {
-        return inboundState
-    },
-    // transform state being rehydrated
-    (outboundState, key) => {
-        // for each entry in balance.byId, restore BigNumbers
-        const newState = {...outboundState}
-        Object.keys(newState.byId).forEach(balanceId => {
-            const balanceEntry = newState.byId[balanceId]
-            const newBalanceState = balanceEntry.balanceState === BALANCE_STATES.LOADING ? BALANCE_STATES.HYDRATED_WHILE_LOADING : balanceEntry.balanceState
-            newState.byId[balanceId] = {
-                ...balanceEntry,
-                balance: window.web3.toBigNumber(balanceEntry.balance),
-                balanceState: newBalanceState
-            }
-        })
-        return newState;
-    },
-    // define which reducers this transform gets called for.
-    { whitelist: ['balance'] }
-);
 
 /*
 Mark all address entries that have been hydrated while being in state "loading" as "hydrated_while_loading", so i can restart loading them.
@@ -103,20 +38,9 @@ const addressesTransform = createTransform(
     { whitelist: ['addresses'] }
 );
 
-
-const tokensConfig = {
-    key: 'tokens',
-    storage: storage,
-    transforms: [
-        tokensByIdTransform
-    ],
-    // Don't persist these subtrees:
-    blacklist: ['volatileById']
-}
-
 const reducer = combineReducers({
     web3Instance,
-    tokens: persistReducer(tokensConfig, tokens),
+    tokens,
     addresses,
     balance,
     events,
@@ -127,11 +51,10 @@ const rootConfig = {
     key: 'root',
     storage: storage,
     transforms: [
-        balanceTransform,
         addressesTransform
     ],
     // Don't persist these subtrees:
-    blacklist: ['web3Instance', 'tokens', 'events', 'modal'],
+    blacklist: ['web3Instance', 'tokens', 'balance', 'events', 'modal'],
 }
 const persistedReducer = persistReducer(rootConfig, reducer)
 

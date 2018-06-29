@@ -251,78 +251,44 @@ export function filterNewToken(tokenId) {
     }
 }
 
-export function initializeTokenList(registryABI, registryAddress, lastId=0, total=0) {
+export function loadTokenList(url) {
     return async (dispatch, getState) => {
-
-        // check if existing data needs to be cleared
-        const {listState} = getState().tokens.listState
-        if ((listState !== TOKEN_LIST_STATES.VIRGIN) && (lastId===0)) {
-            console.log("Clearing token list!")
-            dispatch(clearTokenList())
-            dispatch(tokenListStateChanged(TOKEN_LIST_STATES.VIRGIN))
-        }
-
+        // clear existing tokens
+        dispatch(clearTokenList())
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.LOADING))
-
-        // prepare access to Parity's token registry
-        const {web3} = getState().web3Instance
-        const registryContract = contract({abi: registryABI})
-        registryContract.setProvider(web3.currentProvider)
-        const registry = await registryContract.at(registryAddress)
-
-        // get number of tokens in registry
-        let tokenCount = await registry.tokenCount()
-        tokenCount = tokenCount.toNumber()  // registry returns BigNum instance
-
-        /* Limit number of tokens for debugging only */
-        const limit=1500
-        if (tokenCount > limit) tokenCount = limit
-        /* Limit number of tokens for debugging only */
-
-        // Some tokens are invalid (address is 0x0), so they will screw up
-        // the progress calculation. Track the number of valid tokens separately, so
-        // the progress can reach 100% eventually
-        let validTokenCount = total
-        if (validTokenCount === 0) {
-            // I'm starting from scratch...
-            validTokenCount = tokenCount
-            dispatch(changeValidTokenCount(validTokenCount))
+        // fetch json file from url
+        const response = await fetch(url)
+        // parse json
+        const jsonTokens = await response.json()
+        // set total number of tokens (for loading progress)
+        dispatch(changeValidTokenCount(jsonTokens.length))
+        // Check if there is currently a filter set
+        const filterIsActive = (getState().tokens.listState.filterIsActive)
+        // add tokens
+        jsonTokens.forEach((listToken, index) => {
+            const token = mapListToken(index, listToken)
+            dispatch(addToken(index, token))
+        })
+        // if there is already a filter set, re-evaluate the filter results
+        if (filterIsActive) {
+            dispatch(setFilterProps({}))
         }
-
-        for (let id=lastId; id < tokenCount ; id++) {
-            let parityToken = await registry.token(id)
-            const address = parityToken[0]
-            if (address ==='0x0000000000000000000000000000000000000000') {
-                validTokenCount -= 1
-                dispatch(changeValidTokenCount(validTokenCount))
-                continue
-            }
-            // console.log("Got token " + id + ": " + parityToken[3] + " at " + address)
-            const token = mapParityToken(id, parityToken)
-            dispatch(addToken(id, token))
-
-            // if there is already a filter set, re-evaluate the filter results
-            const {filter} = getState().tokens.listState
-            if (filter.length) {
-                dispatch(filterNewToken(id))
-            }
-        }
-        // individual entries are still loading, but from List Module perspective I'm done
+        // Finished loading
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.INITIALIZED))
     }
 }
 
-function mapParityToken(id, parityToken) {
+function mapListToken(id, listToken) {
     return {
-        loading: false,
         id: id,
-        address: parityToken[0],
-        symbol: parityToken[1],
-        decimals: parityToken[2],
-        name: parityToken[3],
+        address: listToken['address'],
+        symbol: listToken['symbol'],
+        decimals: Math.pow(10, listToken['decimals']),
+        name: listToken['name'],
         description: null,
-        website: null,
+        website: listToken['website'],
         imageUrl: null,
+
         supply: {
             loading: false,
             supply: undefined
@@ -330,6 +296,7 @@ function mapParityToken(id, parityToken) {
         balance: undefined,
         eventIds: [],
         tracked: false,
+        loading: false,
     }
 }
 
