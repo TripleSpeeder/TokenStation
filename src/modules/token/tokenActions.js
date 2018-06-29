@@ -273,6 +273,27 @@ export function loadTokenList(url) {
         if (filterIsActive) {
             dispatch(setFilterProps({}))
         }
+
+        // Crosscheck tokens with currently tracked tokens
+        const allTokenIds = getState().tokens.allIds
+        const existingTrackedTokens = getState().tokens.trackedIds.filter(tokenId => {
+            return (allTokenIds.indexOf(tokenId) > -1)
+        })
+        // load balances for tracked tokens
+        if (existingTrackedTokens.length) {
+            getState().addresses.allIds.forEach(addressId => {
+                    dispatch(loadMultiTokenBalances(existingTrackedTokens, addressId))
+                }
+            )
+        }
+        // stop tracking non-existing tokens
+        const trackedTokensToRemove = getState().tokens.trackedIds.filter(tokenId => {
+            return (existingTrackedTokens.indexOf(tokenId) === -1)
+        })
+        trackedTokensToRemove.forEach(tokenId => {
+            dispatch(changeTokenTracking(tokenId, false))
+        })
+
         // Finished loading
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.INITIALIZED))
     }

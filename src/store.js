@@ -38,9 +38,17 @@ const addressesTransform = createTransform(
     { whitelist: ['addresses'] }
 );
 
+const tokensConfig = {
+    key: 'tokens',
+    storage: storage,
+    transforms: [],
+    // Only persist tracked tokens
+    whitelist: ['trackedIds']
+}
+
 const reducer = combineReducers({
     web3Instance,
-    tokens,
+    tokens: persistReducer(tokensConfig, tokens),
     addresses,
     balance,
     events,

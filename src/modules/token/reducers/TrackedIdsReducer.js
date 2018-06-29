@@ -1,10 +1,6 @@
-import {CHANGE_TOKEN_TRACKING, CLEAR_TOKEN_LIST} from '../tokenActions'
+import {CHANGE_TOKEN_LIST_STATE, CHANGE_TOKEN_TRACKING, TOKEN_LIST_STATES} from '../tokenActions'
 
 const TRACKED_TOKENS_INITIAL = []
-
-function clearAllTokens(state, action) {
-    return TRACKED_TOKENS_INITIAL
-}
 
 function changeTokenTracking(state, action) {
     const {payload} = action
@@ -26,9 +22,6 @@ function changeTokenTracking(state, action) {
 
 export const trackedTokensReducer = (state=TRACKED_TOKENS_INITIAL, action) => {
     switch (action.type) {
-        case CLEAR_TOKEN_LIST: {
-            return clearAllTokens(state, action)
-        }
         case CHANGE_TOKEN_TRACKING:
             return changeTokenTracking(state, action)
         default:
