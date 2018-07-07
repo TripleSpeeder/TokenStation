@@ -16,16 +16,6 @@ class TokenEventsContainer extends Component {
         this.checkEventsLoaded(newProps)
     }
 
-    loadMoreEvents = () => {
-        // query the next 10000 blocks for token transfers to/from my address
-        this.props.loadTokenTransferEvents(
-            this.props.firstBlock - 10000,
-            this.props.firstBlock,
-            this.props.tokenId,
-            this.props.address
-        )
-    }
-
     checkEventsLoaded(props) {
         if (props.missingAceEntryAddresses.length) {
             const firstBlock = props.minStart === Number.MAX_SAFE_INTEGER ? 0
@@ -75,7 +65,7 @@ TokenEventsContainer.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const tokenId = parseInt(ownProps.match.params.tokenId, 10)
+    const tokenId = ownProps.match.params.tokenId
     const token = state.tokens.byId[tokenId]
     const transferEventIds = token.eventIds
     const etherscanUrl = buildEtherscanLink(token.address)
