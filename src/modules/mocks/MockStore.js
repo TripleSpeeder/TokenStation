@@ -52,7 +52,7 @@ const addresses = {
 
 const tokens_initialized = {
     allIds: [1, 2, 3],
-    trackedIds: [2],
+    trackedIds: [1,3],
     byId: {
         1: {
             address: '0x1ContractAddress',

@@ -1,42 +1,32 @@
 import React from 'react'
-import {storiesOf} from '@storybook/react'
+import {storiesOf, action} from '@storybook/react'
 import {Provider} from 'react-redux';
 import mockStore from '../mocks/MockStore'
 import TokenSelector from "./TokenSelector"
 
 
 export const tokenSelectorProps = {
-    tokenName: "District0x Network Token",
     trackedTokens: [
-        {
-            "title": "District0x Network Token (DNT)",
-            "description": "0xaaabbbcccc111222333",
-            "image": "https://s3.amazonaws.com/uifaces/faces/twitter/baires/128.jpg",
-            "price": undefined
-        },
-        {
-            "title": "Aragon Network Token (ANT)",
-            "description": "0x223344556677889900",
-            "image": "https://s3.amazonaws.com/uifaces/faces/twitter/gizmeedevil1991/128.jpg",
-            "price": undefined
-        },
-        {
-            "title": "EOS",
-            "description": "0x223344556677889900",
-            "image": "https://s3.amazonaws.com/uifaces/faces/twitter/baliomega/128.jpg",
-            "price": undefined
-        },
+        mockStore.getState().tokens.byId[1],
+        mockStore.getState().tokens.byId[2],
+        mockStore.getState().tokens.byId[3],
     ]
 }
 
 export const tokenSelectorActions = {
-    onTokenSelected: action('handleRefresh'),
+    onTokenSelect: action('tokenSelect'),
+    onSearchChange: action('onSearchChange'),
 }
 
 storiesOf('Modules/TokenSelector', module)
     .addDecorator(story => <Provider store={mockStore}>{story()}</Provider>)
-    .add('default', () => <TokenSelector
-        tokenList={tokenSelectorProps.trackedTokens}
-        on
+    .add('withResults', () => <TokenSelector onSearchChange={tokenSelectorActions.onSearchChange}
+                                             onTokenSelect={tokenSelectorActions.onTokenSelect}
+                                             results={tokenSelectorProps.trackedTokens}
+                                             value={'matching search string'}
     />)
-    .add('preselected', () => <TokenSelector tokenList={tokenSelectorProps.trackedTokens}/>)
+    .add('preselected', () => <TokenSelector onSearchChange={tokenSelectorActions.onSearchChange}
+                                             onTokenSelect={tokenSelectorActions.onTokenSelect}
+                                             value={tokenSelectorProps.trackedTokens[1].name}
+                                             results={[]}
+    />)
