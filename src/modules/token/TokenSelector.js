@@ -29,6 +29,10 @@ class TokenSelector extends Component {
         const { value, onSearchChange, onTokenSelect, results} = this.props
         return (
             <Search
+                input={{
+                    fluid: true,
+                    label: "Select token"
+                }}
                 loading={false}
                 onResultSelect={onTokenSelect}
                 onSearchChange={_.debounce(onSearchChange, 500, { leading: true })}

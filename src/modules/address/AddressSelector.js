@@ -21,6 +21,10 @@ class AddressSelector extends Component {
         const { value, onSearchChange, onAddressSelect, results} = this.props
         return (
             <Search
+                input={{
+                    fluid: true,
+                    label: "Select Account"
+                }}
                 loading={false}
                 onResultSelect={onAddressSelect}
                 onSearchChange={_.debounce(onSearchChange, 500, { leading: true })}
