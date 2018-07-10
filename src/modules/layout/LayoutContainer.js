@@ -12,6 +12,7 @@ import {Route, Switch} from 'react-router'
 import Sidebar from '../segments/Sidebar'
 import Accounts from '../segments/Accounts'
 import TokenContracts from '../segments/TokenContracts'
+import Events from '../segments/Events'
 
 class LayoutContainer extends Component {
     constructor(props, context) {
@@ -51,6 +52,7 @@ class LayoutContainer extends Component {
                             <Route exact path='/' component={OverviewContainer}/>
                             <Route exact path='/overview/' component={OverviewContainer}/>
                             <Route path='/accounts/' component={Accounts}/>
+                            <Route path='/events/' component={Events}/>
                             <Route path='/tokenContracts/' component={TokenContracts}/>
 
                             /* old routes below */

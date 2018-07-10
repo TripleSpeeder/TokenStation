@@ -18,5 +18,6 @@ storiesOf('Segments/Sidebar', module)
 
     .add('overview', () => <Sidebar activeItem={'overview'} clickItem={sidebarActions.clickSidebar}/>)
     .add('accounts', () => <Sidebar activeItem={'accounts'} clickItem={sidebarActions.clickSidebar}/>)
+    .add('events', () => <Sidebar activeItem={'events'} clickItem={sidebarActions.clickSidebar}/>)
     .add('token', () => <Sidebar activeItem={'tokenContracts'} clickItem={sidebarActions.clickSidebar}/>)
 

@@ -21,6 +21,11 @@ const Sidebar = (props) => {
                 Manage Accounts
             </Menu.Item>
 
+            <Menu.Item name='events' active={activeItem === 'events'} onClick={handleItemClick}>
+                <Icon name='exchange' />
+                View Transfer Events
+            </Menu.Item>
+
             <Menu.Item name='tokenContracts' active={activeItem === 'tokenContracts'} onClick={handleItemClick}>
                 <Icon name='cube' />
                 Manage Contracts

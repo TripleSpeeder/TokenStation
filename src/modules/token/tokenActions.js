@@ -110,6 +110,37 @@ export function setTokenLoadingPromise(tokenID, loadingPromise) {
     }
 }
 
+export const CHANGE_TOKEN_SELECTOR_FILTER_PROPS = 'CHANGE_FILTER_PROPS'
+export function changeTokenSelectorFilterProps(filter, matchedTokenIds) {
+    return {
+        type: CHANGE_TOKEN_SELECTOR_FILTER_PROPS,
+        payload: {
+            filter,
+            matchedTokenIds,
+        }
+    }
+}
+
+export function setTokenSelectorFilter(filter) {
+    return (dispatch, getState) => {
+        // get all tokens that are being tracked
+        let matchedTokenIds = getState().tokens.trackedIds
+
+        // filter by search string
+        if (filter.length) {
+            matchedTokenIds = matchedTokenIds.filter(tokenId => {
+                const token = getState().tokens.byId[tokenId]
+                return (
+                    token.name.toLowerCase().includes(filter) ||
+                    token.symbol.toLowerCase().includes(filter) ||
+                    token.address.toLowerCase().includes(filter)
+                )
+            })
+        }
+        dispatch(changeTokenSelectorFilterProps(filter, matchedTokenIds))
+    }
+}
+
 export const CLEAR_TOKEN_LIST = 'CLEAR_TOKEN_LIST'
 export function clearTokenList() {
     return {

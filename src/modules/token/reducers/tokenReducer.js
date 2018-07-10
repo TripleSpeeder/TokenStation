@@ -4,6 +4,7 @@ import {tokensByIdReducer} from './TokensByIdReducer'
 import {allTokensReducer} from './AllIdsReducer'
 import {volatileTokensByIdReducer} from './volatileTokensByIdReducer'
 import {trackedTokensReducer} from './TrackedIdsReducer'
+import {selectorReducer} from './SelectorReducer'
 
 /*
 State tree:
@@ -60,4 +61,5 @@ export const tokens = combineReducers({
     allIds : allTokensReducer,
     trackedIds: trackedTokensReducer,
     volatileById: volatileTokensByIdReducer,
+    selector: selectorReducer,
 });

@@ -108,6 +108,10 @@ const tokens_initialized = {
         filterIsActive: false,
         showOnlyTracked: false,
         activePage: 1,
+    },
+    selector: {
+        filter: 'searchstring',
+        resultIds: [1,2]
     }
 }
 
