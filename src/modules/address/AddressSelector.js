@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Label, Search} from "semantic-ui-react"
+import {Search} from "semantic-ui-react"
 import {connect} from "react-redux"
 import _ from 'lodash'
 import AddressDisplay from "../common/AddressDisplay"
@@ -13,9 +13,6 @@ resultRenderer.propTypes = {
 }
 
 class AddressSelector extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
 
     render() {
         const { value, onSearchChange, onAddressSelect, results} = this.props

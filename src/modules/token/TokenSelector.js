@@ -21,9 +21,6 @@ resultRenderer.propTypes = {
 }
 
 class TokenSelector extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
 
     render() {
         const { value, onSearchChange, onTokenSelect, results} = this.props

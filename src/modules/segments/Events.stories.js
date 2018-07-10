@@ -18,5 +18,5 @@ storiesOf('Segments/Events', module)
     .add('no addresses', () => <Events/>)
 
 storiesOf('Segments/Events', module)
-    .addDecorator(story => <Provider store={mockStore}>{story()}</Provider>)
+    .addDecorator(story => <Provider store={mockStore_virgin}>{story()}</Provider>)
     .add('no contracts', () => <Events/>)

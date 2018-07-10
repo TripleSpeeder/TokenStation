@@ -1,20 +1,15 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import AddressSelector from '../address/AddressSelector'
 import {Container, Grid} from 'semantic-ui-react'
 import TokenSelector from '../token/TokenSelector'
 import {
-    CHANGE_TOKEN_SELECTOR_FILTER_PROPS,
-    changeTokenSelectorFilterProps,
-    setFilterProps,
+    changeSelectorTokenId,
     setTokenSelectorFilter
 } from '../token/tokenActions'
 import {connect} from 'react-redux'
+import {changeSelectorAddressId, setAddressSelectorFilter} from '../address/addressActions'
 
 class EventFilterContainer extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
 
     render() {
         const {
@@ -56,9 +51,24 @@ EventFilterContainer.defaultProps = {
 }
 
 const mapStateToProps = (state) => {
+    // value of token selector should either be the searchstring or the last selected token
+    let tokenValue = state.tokens.selector.filter
+    if (state.tokens.selector.selectedTokenId) {
+        const selectedToken = state.tokens.byId[state.tokens.selector.selectedTokenId]
+        tokenValue = selectedToken.name
+    }
+
+    // value of address selector should either be the searchstring or the last selected address
+    let addressValue = state.addresses.selector.filter
+    if (state.addresses.selector.selectedAddressId) {
+        addressValue = state.addresses.selector.selectedAddressId
+    }
+
     return {
-        tokenValue: state.tokens.selector.filter,
+        tokenValue: tokenValue,
         tokenResults: state.tokens.selector.matchedTokenIds.map(id => state.tokens.byId[id]),
+        addressValue: addressValue,
+        addressResults: state.addresses.selector.matchedAddressIds.map(id => state.addresses.byId[id])
     }
 }
 
@@ -68,16 +78,13 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setTokenSelectorFilter(data.value))
         },
         onTokenSelect: (e, data) => {
-            console.log("TODO")
-            // dispatch(setFilterProps({filterString: ''}))
+            dispatch(changeSelectorTokenId(data.result.id))
         },
         onAddressSearchChange: (e, data) => {
-            console.log("TODO")
-            // dispatch(setFilterProps({filterString: ''}))
+            dispatch(setAddressSelectorFilter(data.value))
         },
         onAddressSelect: (e, data) => {
-            console.log("TODO")
-            // dispatch(setFilterProps({filterString: ''}))
+            dispatch(changeSelectorAddressId(data.result.address))
         },
     }
 }

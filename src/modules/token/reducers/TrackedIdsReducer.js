@@ -1,4 +1,4 @@
-import {CHANGE_TOKEN_LIST_STATE, CHANGE_TOKEN_TRACKING, TOKEN_LIST_STATES} from '../tokenActions'
+import {CHANGE_TOKEN_TRACKING} from '../tokenActions'
 
 const TRACKED_TOKENS_INITIAL = []
 

@@ -110,7 +110,7 @@ export function setTokenLoadingPromise(tokenID, loadingPromise) {
     }
 }
 
-export const CHANGE_TOKEN_SELECTOR_FILTER_PROPS = 'CHANGE_FILTER_PROPS'
+export const CHANGE_TOKEN_SELECTOR_FILTER_PROPS = 'CHANGE_TOKEN_SELECTOR_FILTER_PROPS'
 export function changeTokenSelectorFilterProps(filter, matchedTokenIds) {
     return {
         type: CHANGE_TOKEN_SELECTOR_FILTER_PROPS,
@@ -123,6 +123,9 @@ export function changeTokenSelectorFilterProps(filter, matchedTokenIds) {
 
 export function setTokenSelectorFilter(filter) {
     return (dispatch, getState) => {
+        // whenever the filter changes, reset the selected token
+        dispatch(changeSelectorTokenId(undefined))
+
         // get all tokens that are being tracked
         let matchedTokenIds = getState().tokens.trackedIds
 
@@ -138,6 +141,16 @@ export function setTokenSelectorFilter(filter) {
             })
         }
         dispatch(changeTokenSelectorFilterProps(filter, matchedTokenIds))
+    }
+}
+
+export const CHANGE_SELECTOR_TOKENID = 'CHANGE_SELECTOR_TOKENID'
+export function changeSelectorTokenId(selectedTokenId) {
+    return {
+        type: CHANGE_SELECTOR_TOKENID,
+        payload: {
+            selectedTokenId,
+        }
     }
 }
 
