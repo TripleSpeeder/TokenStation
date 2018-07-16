@@ -8,6 +8,7 @@ import {Container} from 'semantic-ui-react'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import ModalRoot from './modules/modal/ModalRoot'
 import LayoutContainer from './modules/layout/LayoutContainer'
+import TokenLoaderGate from './modules/token/TokenLoaderGate'
 
 let {store, persistor} = configureStore()
 
@@ -17,12 +18,14 @@ class App extends Component {
             <Provider store={store}>
                 <PersistGate persistor={persistor}>
                     <Web3Gate>
-                        <Router history={history}>
-                            <Container>
-                                <ModalRoot/>
-                                <LayoutContainer/>
-                            </Container>
-                        </Router>
+                        <TokenLoaderGate>
+                            <Router history={history}>
+                                <Container>
+                                    <ModalRoot/>
+                                    <LayoutContainer/>
+                                </Container>
+                            </Router>
+                        </TokenLoaderGate>
                     </Web3Gate>
                 </PersistGate>
             </Provider>

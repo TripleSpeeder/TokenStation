@@ -9,17 +9,9 @@ import {changeTokenListPage, clearTokenList, loadTokenList, setFilterProps, TOKE
 class SelectableTokenListContainer extends Component {
     constructor(props, context) {
         super(props, context)
-        this.tokenListUrl = "/tokens_1.json"
         this.handleShowOnlyTrackedChange = this.handleShowOnlyTrackedChange.bind(this)
         this.handlePaginationChange = this.handlePaginationChange.bind(this)
         this.handleLoadTokens = this.handleLoadTokens.bind(this)
-        this.handleClearTokens = this.handleClearTokens.bind(this)
-    }
-
-    componentDidMount() {
-        if (this.props.listState === TOKEN_LIST_STATES.VIRGIN) {
-            this.props.loadTokenList(this.tokenListUrl)
-        }
     }
 
     handleShowOnlyTrackedChange(e, data) {
@@ -33,10 +25,6 @@ class SelectableTokenListContainer extends Component {
     }
 
     handleLoadTokens() {
-        this.props.loadTokenList(this.tokenListUrl)
-    }
-
-    handleClearTokens() {
         this.props.clearTokenList()
     }
 
@@ -63,7 +51,6 @@ class SelectableTokenListContainer extends Component {
                         <Grid.Column width={1}>
                             <Dropdown icon={'setting'}>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item text='Clear tokens' onClick={this.handleClearTokens} />
                                     <Dropdown.Item text='Reload tokens' onClick={this.handleLoadTokens} />
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -109,9 +96,6 @@ const mapDispatchToProps = dispatch => ({
     },
     setTokenListPage: (activePage) => {
         dispatch(changeTokenListPage(activePage))
-    },
-    loadTokenList: (url) => {
-        dispatch(loadTokenList(url))
     },
     clearTokenList: () => {
         dispatch(clearTokenList())
