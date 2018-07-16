@@ -36,15 +36,12 @@ const mapStateToProps = (state, ownProps) => {
     const token = state.tokens.byId[transferEvent.tokenId]
     const quantity = rawEvent.args._value.dividedBy(token.decimals)
     const from = rawEvent.args._from
-    const to= rawEvent.args._to
+    const to = rawEvent.args._to
+    // events that are not to/from one of the watched accounts are neutral
     let type = TRANSFER_EVENT_TYPES.NEUTRAL
-    let positive = false
-    let negative = false
     if (ownProps.address.length) {
         // check if transfer is to/from own address
         type = ownProps.address === from ? TRANSFER_EVENT_TYPES.NEGATIVE : TRANSFER_EVENT_TYPES.POSITIVE
-        positive = (type === TRANSFER_EVENT_TYPES.POSITIVE)
-        negative = (type === TRANSFER_EVENT_TYPES.NEGATIVE)
     }
     return {
         txHash: rawEvent.transactionHash,
@@ -53,8 +50,6 @@ const mapStateToProps = (state, ownProps) => {
         to,
         type,
         quantity,
-        positive,
-        negative
     }
 }
 

@@ -77,7 +77,7 @@ const mapStateToProps = (state, ownProps) => {
     })
 
     const tokenEventsLinkOptions = {
-        pathname: '/token/' + ownProps.tokenId,
+        pathname: '/events/' + ownProps.tokenId,
     }
 
     return {

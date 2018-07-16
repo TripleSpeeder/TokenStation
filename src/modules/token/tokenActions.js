@@ -134,9 +134,9 @@ export function setTokenSelectorFilter(filter) {
             matchedTokenIds = matchedTokenIds.filter(tokenId => {
                 const token = getState().tokens.byId[tokenId]
                 return (
-                    token.name.toLowerCase().includes(filter) ||
-                    token.symbol.toLowerCase().includes(filter) ||
-                    token.address.toLowerCase().includes(filter)
+                    token.name.toLowerCase().includes(filter.toLowerCase()) ||
+                    token.symbol.toLowerCase().includes(filter.toLowerCase()) ||
+                    token.address.toLowerCase().includes(filter.toLowerCase())
                 )
             })
         }

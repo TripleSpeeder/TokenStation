@@ -1,18 +1,14 @@
 import React, {Component} from 'react'
 import { withRouter } from "react-router-dom";
-import TokenListContainer from '../token/TokenListContainer'
-import TokenEventsContainer from '../event/TokenEventsContainer'
 import TransferFormContainer from '../forms/transferForm/TransferFormContainer'
 import OverviewContainer from '../segments/OverviewContainer'
-import AddressEventsContainer from '../event/AddressEventsContainer'
-import BalancesContainer from '../balance/BalancesContainer'
 import Web3Container from '../web3/web3Container'
 import {Grid} from 'semantic-ui-react'
 import {Route, Switch} from 'react-router'
 import Sidebar from '../segments/Sidebar'
 import Accounts from '../segments/Accounts'
 import TokenContracts from '../segments/TokenContracts'
-import Events from '../segments/Events'
+import EventsContainer from '../segments/EventsContainer'
 
 class LayoutContainer extends Component {
     constructor(props, context) {
@@ -29,7 +25,7 @@ class LayoutContainer extends Component {
         this.setState({
             activeScreen: newScreen
         })
-        this.props.history.push(newScreen)
+        this.props.history.push('/'+newScreen)
     }
 
     render() {
@@ -52,15 +48,13 @@ class LayoutContainer extends Component {
                             <Route exact path='/' component={OverviewContainer}/>
                             <Route exact path='/overview/' component={OverviewContainer}/>
                             <Route path='/accounts/' component={Accounts}/>
-                            <Route path='/events/' component={Events}/>
+                            <Route path='/events/:tokenId/:address' component={EventsContainer}/>
+                            <Route path='/events/:tokenId/' component={EventsContainer}/>
+                            <Route path='/events/' component={EventsContainer}/>
                             <Route path='/tokenContracts/' component={TokenContracts}/>
 
                             /* old routes below */
                             <Route path='/transfer/' component={TransferFormContainer}/>
-                            <Route path='/alltokens/' component={TokenListContainer}/>
-                            <Route path='/token/:tokenId/' component={TokenEventsContainer}/>
-                            <Route path='/:address/transfers/:tokenId' component={AddressEventsContainer}/>
-                            <Route path='/:address/' component={BalancesContainer}/>
 
                             <Route component={NoMatch} />
                         </Switch>

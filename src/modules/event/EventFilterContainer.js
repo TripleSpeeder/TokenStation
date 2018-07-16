@@ -19,6 +19,7 @@ class EventFilterContainer extends Component {
 
         return (
             <Container>
+
             <Grid>
                 <Grid.Row>
                     <Grid.Column width={8}>

@@ -49,7 +49,7 @@ const mapStateToProps = (state, ownProps) => {
         addressType: addressEntry.type,
         ensName: addressEntry.ensName,
         loading: balanceEntry.balanceState===BALANCE_STATES.LOADING,
-        url: "/"+addressEntry.address+"/transfers/"+token.id
+        url: "/events/" + token.id + "/" + addressEntry.address
     }
 }
 
