@@ -128,7 +128,13 @@ export function initialize() {
                 console.log("Error watching for block events: " + error)
             } else {
                 const block = await web3.eth.getBlockPromise(blockHash)
-                dispatch(setCurrentBlock(block))
+                if (block) {
+                    dispatch(setCurrentBlock(block))
+                }
+                else {
+                    console.log("Ignoring null-block!")
+                    console.log(block)
+                }
             }
         })
         dispatch(setBlockFilter(filter))
