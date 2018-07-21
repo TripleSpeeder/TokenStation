@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {loadTokenTransferEvents} from '../token/tokenActions'
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
-import AddressEventsList from './AddressEventsList'
+import TransferEventsList from './TransferEventsList'
 
 class TokenEventsContainer extends Component {
 
     render() {
         const {aceEventIds} = this.props
         return (
-            <AddressEventsList transferEventIds={aceEventIds}/>
+            <TransferEventsList transferEventIds={aceEventIds}/>
         )
     }
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Table} from 'semantic-ui-react'
 import TransferEventContainer from './TransferEventContainer'
 
-const AddressEventsList = (props) => {
+const TransferEventsList = (props) => {
     return (
         <Table striped compact>
             <Table.Header>
@@ -28,13 +28,13 @@ const AddressEventsList = (props) => {
     )
 }
 
-AddressEventsList.propTypes = {
+TransferEventsList.propTypes = {
     //myProp: PropTypes.object.isRequired
     transferEventIds: PropTypes.array.isRequired,
 }
 
-AddressEventsList.defaultProps = {
+TransferEventsList.defaultProps = {
     //myProp: <defaultValue>
 }
 
-export default AddressEventsList
+export default TransferEventsList
