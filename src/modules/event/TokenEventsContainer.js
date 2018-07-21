@@ -59,7 +59,7 @@ class TokenEventsContainer extends Component {
 }
 
 TokenEventsContainer.propTypes = {
-    token: PropTypes.object.isRequired
+    token: PropTypes.object
 }
 
 TokenEventsContainer.defaultProps = {
