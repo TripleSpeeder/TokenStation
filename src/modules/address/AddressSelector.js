@@ -5,7 +5,7 @@ import {connect} from "react-redux"
 import _ from 'lodash'
 import AddressDisplay from "../common/AddressDisplay"
 
-const resultRenderer = ({ address, ensName }) => <AddressDisplay address={address} ensName={ensName}/>
+const resultRenderer = ({address}) => <AddressDisplay address={address.address} ensName={address.ensName}/>
 
 resultRenderer.propTypes = {
     address: PropTypes.string.isRequired,

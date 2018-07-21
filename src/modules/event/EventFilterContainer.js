@@ -65,11 +65,19 @@ const mapStateToProps = (state) => {
         addressValue = state.addresses.selector.selectedAddressId
     }
 
+    // build up address selector results. State just contains matched addresses, but in order
+    // for the Search component to work correctly, addresses need to have "key" property.
+    let addressResults = state.addresses.selector.matchedAddressIds.map(id => ({
+            address: state.addresses.byId[id],
+            key: id,
+        })
+    )
+
     return {
         tokenValue: tokenValue,
         tokenResults: state.tokens.selector.matchedTokenIds.map(id => state.tokens.byId[id]),
         addressValue: addressValue,
-        addressResults: state.addresses.selector.matchedAddressIds.map(id => state.addresses.byId[id])
+        addressResults,
     }
 }
 
@@ -85,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setAddressSelectorFilter(data.value))
         },
         onAddressSelect: (e, data) => {
-            dispatch(changeSelectorAddressId(data.result.address))
+            dispatch(changeSelectorAddressId(data.result.address.address))
         },
     }
 }
