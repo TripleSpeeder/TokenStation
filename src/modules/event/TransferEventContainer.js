@@ -23,7 +23,6 @@ class TransferEventContainer extends PureComponent {
 TransferEventContainer.propTypes = {
     //myProp: PropTypes.object.isRequired
     transferEventId: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired
 }
 
 TransferEventContainer.defaultProps = {
@@ -32,6 +31,7 @@ TransferEventContainer.defaultProps = {
 
 const mapStateToProps = (state, ownProps) => {
     const transferEvent = state.events.byId[ownProps.transferEventId]
+    const addressId = state.addresses.selector.selectedAddressId
     const rawEvent = transferEvent.transferEvent
     const token = state.tokens.byId[transferEvent.tokenId]
     const quantity = rawEvent.args._value.dividedBy(token.decimals)
@@ -39,9 +39,9 @@ const mapStateToProps = (state, ownProps) => {
     const to = rawEvent.args._to
     // events that are not to/from one of the watched accounts are neutral
     let type = TRANSFER_EVENT_TYPES.NEUTRAL
-    if (ownProps.address.length) {
+    if (addressId) {
         // check if transfer is to/from own address
-        type = ownProps.address === from ? TRANSFER_EVENT_TYPES.NEGATIVE : TRANSFER_EVENT_TYPES.POSITIVE
+        type = addressId.toLowerCase() === from ? TRANSFER_EVENT_TYPES.NEGATIVE : TRANSFER_EVENT_TYPES.POSITIVE
     }
     return {
         txHash: rawEvent.transactionHash,

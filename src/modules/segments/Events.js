@@ -10,9 +10,9 @@ const Events = (props) => {
             <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Transfer Events</Header>
             <EventFilterContainer/>
             <EventLoaderContainer/>
+            <TokenEventsContainer/>
         </React.Fragment>
     )
-    // TODO: Add TokenEventsContainer to display actual list of events
 }
 
 export default Events

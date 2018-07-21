@@ -12,7 +12,7 @@ function addEventIds(state, action) {
         const existingIndex = state.indexOf(transferEventId)
         if (existingIndex > -1) {
             console.warn("Ignoring duplicate event " + transferEventId)
-            return state
+            return
         }
         newState = newState.concat(transferEventId)
     })

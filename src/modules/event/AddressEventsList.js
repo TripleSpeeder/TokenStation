@@ -21,7 +21,6 @@ const AddressEventsList = (props) => {
                 {props.transferEventIds.map(transferEventId =>
                     <TransferEventContainer key={transferEventId}
                                             transferEventId={transferEventId}
-                                            address={props.address}
                     />
                 )}
             </Table.Body>
@@ -32,7 +31,6 @@ const AddressEventsList = (props) => {
 AddressEventsList.propTypes = {
     //myProp: PropTypes.object.isRequired
     transferEventIds: PropTypes.array.isRequired,
-    address: PropTypes.string.isRequired,
 }
 
 AddressEventsList.defaultProps = {
