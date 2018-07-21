@@ -12,12 +12,10 @@ const resultRenderer = ({ name, symbol, address }) => (
     </div>
 )
 */
-const resultRenderer = ({ name }) => <Label content={name} />
+const resultRenderer = ({ token }) => <Label content={token.name} />
 
 resultRenderer.propTypes = {
-    name: PropTypes.string.isRequired,
-    symbol: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
+    token: PropTypes.object.isRequired,
 }
 
 class TokenSelector extends Component {

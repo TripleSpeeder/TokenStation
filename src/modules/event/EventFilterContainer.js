@@ -59,6 +59,16 @@ const mapStateToProps = (state) => {
         tokenValue = selectedToken.name
     }
 
+    // build up token selector results. State just contains matched tokenIDs, but in order
+    // for the Search component to work correctly, results need to have "key" property.
+    let tokenResults = state.tokens.selector.matchedTokenIds.map(id =>
+        ({
+            token: state.tokens.byId[id],
+            key: id
+        })
+    )
+
+
     // value of address selector should either be the searchstring or the last selected address
     let addressValue = state.addresses.selector.filter
     if (state.addresses.selector.selectedAddressId) {
@@ -67,7 +77,8 @@ const mapStateToProps = (state) => {
 
     // build up address selector results. State just contains matched addresses, but in order
     // for the Search component to work correctly, addresses need to have "key" property.
-    let addressResults = state.addresses.selector.matchedAddressIds.map(id => ({
+    let addressResults = state.addresses.selector.matchedAddressIds.map(id =>
+        ({
             address: state.addresses.byId[id],
             key: id,
         })
@@ -75,7 +86,7 @@ const mapStateToProps = (state) => {
 
     return {
         tokenValue: tokenValue,
-        tokenResults: state.tokens.selector.matchedTokenIds.map(id => state.tokens.byId[id]),
+        tokenResults,
         addressValue: addressValue,
         addressResults,
     }
@@ -87,7 +98,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setTokenSelectorFilter(data.value))
         },
         onTokenSelect: (e, data) => {
-            dispatch(changeSelectorTokenId(data.result.id))
+            dispatch(changeSelectorTokenId(data.result.token.id))
         },
         onAddressSearchChange: (e, data) => {
             dispatch(setAddressSelectorFilter(data.value))
