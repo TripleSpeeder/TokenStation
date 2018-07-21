@@ -24,13 +24,15 @@ export function createAceEntry(addressId, tokenId) {
 }
 
 export const ACE_ENTRIES_LOADING_CHANGE = 'ACE_ENTRIES_LOADING_CHANGE'
-export function aceEntriesLoadingChange(addressIds, tokenId, isLoading) {
+export function aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock) {
     const aceIds = addressIds.map(addressId => (buildAdressContractEventId(addressId, tokenId)))
     return {
         type: ACE_ENTRIES_LOADING_CHANGE,
         payload: {
             aceIds,
             isLoading,
+            loadingFromBlock,
+            loadingToBlock,
         }
     }
 }
@@ -48,7 +50,7 @@ export function aceEntriesBlockRangeChange(addressIds, tokenId, fromBlock, toBlo
     }
 }
 
-export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading) {
+export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock) {
     return async (dispatch, getState) => {
         addressIds.forEach(addressId => {
             const aceId = buildAdressContractEventId(addressId, tokenId)
@@ -57,7 +59,7 @@ export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading) {
                 dispatch(createAceEntry(addressId, tokenId))
             }
         })
-        dispatch(aceEntriesLoadingChange(addressIds, tokenId, isLoading))
+        dispatch(aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock))
     }
 }
 

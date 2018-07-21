@@ -421,15 +421,15 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
 
 export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) {
     return async (dispatch, getState) => {
-        dispatch(aceEntriesLoadingChangeWrapper(addresses, tokenID, true))
-        await verifyContractInstance(tokenID, dispatch, getState)
-        const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
-
         // if no from/toblock are provided, use default values
         if (fromBlock === 0)
             fromBlock = getState().web3Instance.block.number - 10000
         if (toBlock === 0)
             toBlock = getState().web3Instance.block.number
+
+        dispatch(aceEntriesLoadingChangeWrapper(addresses, tokenID, true, fromBlock, toBlock))
+        await verifyContractInstance(tokenID, dispatch, getState)
+        const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
 
         const transferEventsFrom = contractInstance.Transfer(
             {
@@ -486,7 +486,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
         }))
         await Promise.all(eventPromises)
         dispatch(aceEntriesBlockRangeChange(addresses, tokenID, fromBlock, toBlock))
-        dispatch(aceEntriesLoadingChange(addresses, tokenID, false))
+        dispatch(aceEntriesLoadingChange(addresses, tokenID, false, 0, 0))
     }
 }
 

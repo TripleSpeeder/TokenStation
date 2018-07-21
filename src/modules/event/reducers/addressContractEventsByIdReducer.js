@@ -19,6 +19,8 @@ const ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL = {
         loading: false,
         firstBlock: 0,
         lastBlock: 0,
+        loadingFromBlock: 0,
+        loadingToBlock: 0,
         eventIds: [],
     },
 }
@@ -38,6 +40,8 @@ function createAceEntry(state, action) {
             firstBlock: 0,
             lastBlock: 0,
             eventIds: [],
+            loadingFromBlock: 0,
+            loadingToBlock: 0,
         }
     }
 }
@@ -47,7 +51,7 @@ function addTransferEvents(state, action) {
     const {payload} = action
     const {events, tokenId} = payload
 
-    const newState = state
+    const newState = {...state}
 
     events.forEach(transferEvent => {
         const transferEventId = buildEventId(transferEvent)
@@ -72,15 +76,18 @@ function addTransferEvents(state, action) {
 
 function aceEntriesLoadingChange(state, action) {
     const {payload} = action
-    const {aceIds, isLoading} = payload
-    const newState = state
+    const {aceIds, isLoading, loadingFromBlock, loadingToBlock} = payload
+
+    const newState = {...state}
 
     aceIds.forEach(aceId => {
         const aceEntry = newState[aceId]
         if (aceEntry) {
             newState[aceId] = {
                 ...aceEntry,
-                isLoading
+                isLoading,
+                loadingFromBlock,
+                loadingToBlock,
             }
         }
     })
@@ -90,7 +97,8 @@ function aceEntriesLoadingChange(state, action) {
 function aceEntriesBlockRangeChange(state, action) {
     const {payload} = action
     const {aceIds, fromBlock, toBlock} = payload
-    const newState = state
+
+    const newState = {...state}
 
     aceIds.forEach(aceId => {
         const aceEntry = newState[aceId]
