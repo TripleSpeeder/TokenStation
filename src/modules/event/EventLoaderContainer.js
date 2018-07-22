@@ -51,7 +51,7 @@ class EventLoaderContainer extends Component {
     render() {
         const {
             loading, resultCount, resultFromBlock, resultFromBlockDate, resultToBlock,
-            loadingFromBlock, loadingToBlock } = this.props
+            loadingFromBlock, loadingToBlock, loadingCurrentBlock } = this.props
         return (
             <EventLoader
                 loading={loading}
@@ -62,7 +62,7 @@ class EventLoaderContainer extends Component {
                 onLoadMore={this.loadMoreEvents}
                 loadingFromBlock={loadingFromBlock}
                 loadingToBlock={loadingToBlock}
-                loadingCurrentBlock={loadingFromBlock}
+                loadingCurrentBlock={loadingCurrentBlock}
             />
         )
     }
@@ -86,6 +86,7 @@ const mapStateToProps = (state) => {
     let aceEntry = undefined
     let loadingFromBlock = 0
     let loadingToBlock = 0
+    let loadingCurrentBlock = 0
     const tokenId = state.tokens.selector.selectedTokenId
     const addressId = state.addresses.selector.selectedAddressId
     const currentBlock = state.web3Instance.block.number
@@ -101,6 +102,7 @@ const mapStateToProps = (state) => {
             loading = aceEntry.isLoading
             loadingFromBlock = aceEntry.loadingFromBlock
             loadingToBlock = aceEntry.loadingToBlock
+            loadingCurrentBlock = aceEntry.loadingCurrentBlock
         }
     }
 
@@ -116,7 +118,8 @@ const mapStateToProps = (state) => {
         aceId,
         hasAceEntry: Boolean(aceEntry),
         loadingToBlock,
-        loadingFromBlock
+        loadingFromBlock,
+        loadingCurrentBlock,
     }
 }
 

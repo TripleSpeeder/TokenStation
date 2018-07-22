@@ -21,6 +21,7 @@ const ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL = {
         lastBlock: 0,
         loadingFromBlock: 0,
         loadingToBlock: 0,
+        loadingCurrentBlock: 0,
         eventIds: [],
     },
 }
@@ -42,6 +43,7 @@ function createAceEntry(state, action) {
             eventIds: [],
             loadingFromBlock: 0,
             loadingToBlock: 0,
+            loadingCurrentBlock: 0,
         }
     }
 }
@@ -76,7 +78,7 @@ function addTransferEvents(state, action) {
 
 function aceEntriesLoadingChange(state, action) {
     const {payload} = action
-    const {aceIds, isLoading, loadingFromBlock, loadingToBlock} = payload
+    const {aceIds, isLoading, loadingFromBlock, loadingToBlock, loadingCurrentBlock} = payload
 
     const newState = {...state}
 
@@ -88,6 +90,7 @@ function aceEntriesLoadingChange(state, action) {
                 isLoading,
                 loadingFromBlock,
                 loadingToBlock,
+                loadingCurrentBlock,
             }
         }
     })

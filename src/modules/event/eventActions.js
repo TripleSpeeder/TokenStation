@@ -24,7 +24,7 @@ export function createAceEntry(addressId, tokenId) {
 }
 
 export const ACE_ENTRIES_LOADING_CHANGE = 'ACE_ENTRIES_LOADING_CHANGE'
-export function aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock) {
+export function aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock, loadingCurrentBlock) {
     const aceIds = addressIds.map(addressId => (buildAdressContractEventId(addressId, tokenId)))
     return {
         type: ACE_ENTRIES_LOADING_CHANGE,
@@ -33,6 +33,7 @@ export function aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingF
             isLoading,
             loadingFromBlock,
             loadingToBlock,
+            loadingCurrentBlock,
         }
     }
 }
@@ -61,7 +62,7 @@ export function setAceEntryEventIds(aceId, eventIds) {
     }
 }
 
-export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock) {
+export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock, loadingCurrentBlock) {
     return async (dispatch, getState) => {
         addressIds.forEach(addressId => {
             const aceId = buildAdressContractEventId(addressId, tokenId)
@@ -70,7 +71,7 @@ export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading, l
                 dispatch(createAceEntry(addressId, tokenId))
             }
         })
-        dispatch(aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock))
+        dispatch(aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock, loadingCurrentBlock))
     }
 }
 
