@@ -1,6 +1,6 @@
 import {
     ACE_ENTRIES_BLOCK_RANGE_CHANGE, ACE_ENTRIES_LOADING_CHANGE, ADD_EVENTS, buildEventId,
-    CREATE_ACE_ENTRY
+    CREATE_ACE_ENTRY, SET_ACE_ENTRY_EVENT_IDS
 } from '../eventActions'
 
 /*
@@ -120,6 +120,19 @@ function aceEntriesBlockRangeChange(state, action) {
     return newState
 }
 
+function setAceEntryEventIds(state, action) {
+    const {payload} = action
+    const {aceId, eventIds} = payload
+
+    return {
+        ...state,
+        [aceId]: {
+            ...state[aceId],
+            eventIds
+        }
+    }
+}
+
 export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL, action) => {
     switch (action.type) {
         case CREATE_ACE_ENTRY:
@@ -130,6 +143,8 @@ export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_B
             return aceEntriesLoadingChange(state, action)
         case ACE_ENTRIES_BLOCK_RANGE_CHANGE:
             return aceEntriesBlockRangeChange(state, action)
+        case SET_ACE_ENTRY_EVENT_IDS:
+            return setAceEntryEventIds(state, action)
         default:
     }
     return state;

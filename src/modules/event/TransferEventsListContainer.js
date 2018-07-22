@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {loadTokenTransferEvents} from '../token/tokenActions'
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
 import TransferEventsList from './TransferEventsList'
 
-class TokenEventsContainer extends Component {
+class TransferEventsListContainer extends Component {
 
     render() {
         const {aceEventIds} = this.props
@@ -15,11 +14,11 @@ class TokenEventsContainer extends Component {
     }
 }
 
-TokenEventsContainer.propTypes = {
+TransferEventsListContainer.propTypes = {
     token: PropTypes.object
 }
 
-TokenEventsContainer.defaultProps = {
+TransferEventsListContainer.defaultProps = {
     //myProp: <defaultValue>
 }
 
@@ -37,4 +36,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(TokenEventsContainer)
+export default connect(mapStateToProps)(TransferEventsListContainer)

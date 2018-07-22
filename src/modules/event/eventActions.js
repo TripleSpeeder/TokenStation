@@ -50,6 +50,17 @@ export function aceEntriesBlockRangeChange(addressIds, tokenId, fromBlock, toBlo
     }
 }
 
+export const SET_ACE_ENTRY_EVENT_IDS = 'SET_ACE_ENTRY_EVENT_IDS'
+export function setAceEntryEventIds(aceId, eventIds) {
+    return {
+        type: SET_ACE_ENTRY_EVENT_IDS,
+        payload: {
+            aceId,
+            eventIds
+        }
+    }
+}
+
 export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock) {
     return async (dispatch, getState) => {
         addressIds.forEach(addressId => {
@@ -64,15 +75,17 @@ export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading, l
 }
 
 export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
-    return async (dispatch, getState) => {
+    return (dispatch, getState) => {
         // Make sure that there are AddressContractEvent entries
         // for all events and to/from addresses
+        let aceIdsToSort = []
         const watchedAddressIds = getState().addresses.allIds
         events.forEach(transferEvent => {
             const {_from, _to} = transferEvent.args
             // TODO: Collect all new entries and just dispatch one batch event
             if (watchedAddressIds.includes(_from.toLowerCase())) {
                 const aceFromId = buildAdressContractEventId(_from, tokenId)
+                aceIdsToSort.push(aceFromId)
                 if (getState().events.aceById[aceFromId] === undefined) {
                     // create a new entry for this token and address
                     dispatch(createAceEntry(_from, tokenId))
@@ -80,6 +93,7 @@ export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
             }
             if (watchedAddressIds.includes(_to.toLowerCase())) {
                 const aceToId = buildAdressContractEventId(_to, tokenId)
+                aceIdsToSort.push(aceToId)
                 if (getState().events.aceById[aceToId] === undefined) {
                     // create a new entry for this token and address
                     dispatch(createAceEntry(_to, tokenId))
@@ -88,6 +102,24 @@ export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
         })
         // now it's safe to do the actual dispatch of addEvents
         dispatch(addEvents(events, tokenId, fromBlock, toBlock))
+        // finally re-sort eventIds of all changed aceIds
+        dispatch(sortEventsThunk(aceIdsToSort))
+    }
+}
+
+export function sortEventsThunk(aceIds) {
+    return (dispatch, getState) => {
+        const eventsById = getState().events.byId
+        // sort eventIds of provided ace entries based on the blockheight they appeared at
+        aceIds.forEach(aceId => {
+            // sort eventIds based on blockheight
+            // use .slice() to work on a copy of the eventIds array, otherwise i would mutate current state...
+            let eventIds = getState().events.aceById[aceId].eventIds.slice().sort((eventA, eventB) => {
+                return eventsById[eventB].transferEvent.blockNumber - eventsById[eventA].transferEvent.blockNumber
+            })
+            // set new eventIds array via dedicated action
+            dispatch(setAceEntryEventIds(aceId, eventIds))
+        })
     }
 }
 

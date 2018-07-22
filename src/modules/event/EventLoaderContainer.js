@@ -5,6 +5,7 @@ import EventLoader from './EventLoader'
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
 import {loadTokenTransferEvents} from '../token/tokenActions'
 
+
 class EventLoaderContainer extends Component {
     constructor(props, context) {
         super(props, context)
@@ -46,7 +47,6 @@ class EventLoaderContainer extends Component {
             this.props.addressId
         )
     }
-
 
     render() {
         const {
