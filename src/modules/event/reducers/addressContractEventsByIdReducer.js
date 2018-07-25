@@ -1,6 +1,6 @@
 import {
     ACE_ENTRIES_BLOCK_RANGE_CHANGE, ACE_ENTRIES_LOADING_CHANGE, ADD_EVENTS, buildEventId,
-    CREATE_ACE_ENTRY
+    CREATE_ACE_ENTRY, SET_ACE_ENTRY_EVENT_IDS
 } from '../eventActions'
 
 /*
@@ -19,6 +19,9 @@ const ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL = {
         loading: false,
         firstBlock: 0,
         lastBlock: 0,
+        loadingFromBlock: 0,
+        loadingToBlock: 0,
+        loadingCurrentBlock: 0,
         eventIds: [],
     },
 }
@@ -38,6 +41,9 @@ function createAceEntry(state, action) {
             firstBlock: 0,
             lastBlock: 0,
             eventIds: [],
+            loadingFromBlock: 0,
+            loadingToBlock: 0,
+            loadingCurrentBlock: 0,
         }
     }
 }
@@ -47,7 +53,7 @@ function addTransferEvents(state, action) {
     const {payload} = action
     const {events, tokenId} = payload
 
-    const newState = state
+    const newState = {...state}
 
     events.forEach(transferEvent => {
         const transferEventId = buildEventId(transferEvent)
@@ -72,15 +78,19 @@ function addTransferEvents(state, action) {
 
 function aceEntriesLoadingChange(state, action) {
     const {payload} = action
-    const {aceIds, isLoading} = payload
-    const newState = state
+    const {aceIds, isLoading, loadingFromBlock, loadingToBlock, loadingCurrentBlock} = payload
+
+    const newState = {...state}
 
     aceIds.forEach(aceId => {
         const aceEntry = newState[aceId]
         if (aceEntry) {
             newState[aceId] = {
                 ...aceEntry,
-                isLoading
+                isLoading,
+                loadingFromBlock,
+                loadingToBlock,
+                loadingCurrentBlock,
             }
         }
     })
@@ -90,7 +100,8 @@ function aceEntriesLoadingChange(state, action) {
 function aceEntriesBlockRangeChange(state, action) {
     const {payload} = action
     const {aceIds, fromBlock, toBlock} = payload
-    const newState = state
+
+    const newState = {...state}
 
     aceIds.forEach(aceId => {
         const aceEntry = newState[aceId]
@@ -112,6 +123,19 @@ function aceEntriesBlockRangeChange(state, action) {
     return newState
 }
 
+function setAceEntryEventIds(state, action) {
+    const {payload} = action
+    const {aceId, eventIds} = payload
+
+    return {
+        ...state,
+        [aceId]: {
+            ...state[aceId],
+            eventIds
+        }
+    }
+}
+
 export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL, action) => {
     switch (action.type) {
         case CREATE_ACE_ENTRY:
@@ -122,6 +146,8 @@ export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_B
             return aceEntriesLoadingChange(state, action)
         case ACE_ENTRIES_BLOCK_RANGE_CHANGE:
             return aceEntriesBlockRangeChange(state, action)
+        case SET_ACE_ENTRY_EVENT_IDS:
+            return setAceEntryEventIds(state, action)
         default:
     }
     return state;

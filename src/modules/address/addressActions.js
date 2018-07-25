@@ -143,6 +143,49 @@ export function changeOwnAddresses(accounts) {
     }
 }
 
+export const CHANGE_ADDRESS_SELECTOR_FILTER_PROPS = 'CHANGE_ADDRESS_SELECTOR_FILTER_PROPS'
+export function changeAddressSelectorFilterProps(filter, matchedAddressIds) {
+    return {
+        type: CHANGE_ADDRESS_SELECTOR_FILTER_PROPS,
+        payload: {
+            filter,
+            matchedAddressIds,
+        }
+    }
+}
+
+export function setAddressSelectorFilter(filter) {
+    return (dispatch, getState) => {
+        // whenever the filter changes, reset the selected address
+        dispatch(changeSelectorAddressId(undefined))
+
+        // start with all watched addresses
+        let matchedAddressIds = getState().addresses.allIds
+
+        // filter by search string
+        if (filter.length) {
+            matchedAddressIds = matchedAddressIds.filter(addressId => {
+                const addressEntry = getState().addresses.byId[addressId]
+                return (
+                    addressEntry.address.toLowerCase().includes(filter)
+                    // TODO: Check ENS name of address
+                )
+            })
+        }
+        dispatch(changeAddressSelectorFilterProps(filter, matchedAddressIds))
+    }
+}
+
+export const CHANGE_SELECTOR_ADDRESSID = 'CHANGE_SELECTOR_ADDRESSID'
+export function changeSelectorAddressId(selectedAddressId) {
+    return {
+        type: CHANGE_SELECTOR_ADDRESSID,
+        payload: {
+            selectedAddressId,
+        }
+    }
+}
+
 export function findAddressId(address) {
     // Quick implementation as I know that the ID is the same as the actual address...
     // TODO: Real implementation: Search through addresses and return ID of found address entry

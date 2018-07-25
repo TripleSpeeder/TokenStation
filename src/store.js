@@ -1,7 +1,6 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import {tokens} from "./modules/token/reducers/tokenReducer"
 import {web3Instance} from "./modules/web3/web3Reducer"
-import createHistory from 'history/createBrowserHistory'
 import thunk from 'redux-thunk'
 import {addresses} from './modules/address/reducers/addressReducer'
 import {balance} from './modules/balance/reducer/balanceReducer'
@@ -81,6 +80,4 @@ export default () => {
     let persistor = persistStore(store )
     return {store, persistor}
 }
-
-export const history = createHistory()
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import {Label, Item, Button, Icon} from 'semantic-ui-react'
 import Blockies from 'react-blockies'

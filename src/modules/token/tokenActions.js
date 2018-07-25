@@ -110,6 +110,50 @@ export function setTokenLoadingPromise(tokenID, loadingPromise) {
     }
 }
 
+export const CHANGE_TOKEN_SELECTOR_FILTER_PROPS = 'CHANGE_TOKEN_SELECTOR_FILTER_PROPS'
+export function changeTokenSelectorFilterProps(filter, matchedTokenIds) {
+    return {
+        type: CHANGE_TOKEN_SELECTOR_FILTER_PROPS,
+        payload: {
+            filter,
+            matchedTokenIds,
+        }
+    }
+}
+
+export function setTokenSelectorFilter(filter) {
+    return (dispatch, getState) => {
+        // whenever the filter changes, reset the selected token
+        dispatch(changeSelectorTokenId(undefined))
+
+        // get all tokens that are being tracked
+        let matchedTokenIds = getState().tokens.trackedIds
+
+        // filter by search string
+        if (filter.length) {
+            matchedTokenIds = matchedTokenIds.filter(tokenId => {
+                const token = getState().tokens.byId[tokenId]
+                return (
+                    token.name.toLowerCase().includes(filter.toLowerCase()) ||
+                    token.symbol.toLowerCase().includes(filter.toLowerCase()) ||
+                    token.address.toLowerCase().includes(filter.toLowerCase())
+                )
+            })
+        }
+        dispatch(changeTokenSelectorFilterProps(filter, matchedTokenIds))
+    }
+}
+
+export const CHANGE_SELECTOR_TOKENID = 'CHANGE_SELECTOR_TOKENID'
+export function changeSelectorTokenId(selectedTokenId) {
+    return {
+        type: CHANGE_SELECTOR_TOKENID,
+        payload: {
+            selectedTokenId,
+        }
+    }
+}
+
 export const CLEAR_TOKEN_LIST = 'CLEAR_TOKEN_LIST'
 export function clearTokenList() {
     return {
@@ -377,15 +421,15 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
 
 export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) {
     return async (dispatch, getState) => {
-        dispatch(aceEntriesLoadingChangeWrapper(addresses, tokenID, true))
-        await verifyContractInstance(tokenID, dispatch, getState)
-        const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
-
         // if no from/toblock are provided, use default values
         if (fromBlock === 0)
             fromBlock = getState().web3Instance.block.number - 10000
         if (toBlock === 0)
             toBlock = getState().web3Instance.block.number
+
+        dispatch(aceEntriesLoadingChangeWrapper(addresses, tokenID, true, fromBlock, toBlock, fromBlock))
+        await verifyContractInstance(tokenID, dispatch, getState)
+        const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
 
         const transferEventsFrom = contractInstance.Transfer(
             {
@@ -413,12 +457,11 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
         // Wrap this into promise and await it, otherwise loading:false action will be dispatched too early!
         let eventPromises = []
         eventPromises.push(new Promise((resolve, reject) => {
-            transferEventsFrom.get(function(error, events) {
+            transferEventsFrom.get(function (error, events) {
                 if (error) {
                     console.error("Error getting events for token " + tokenID + ": " + error)
                     reject("Error getting events for token " + tokenID + ": " + error)
                 } else {
-                    console.log("Got " + events.length + " events.")
                     if (events.length) {
                         dispatch(addEventsThunk(events, tokenID))
                     }
@@ -427,12 +470,11 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
             })
         }))
         eventPromises.push(new Promise((resolve, reject) => {
-            transferEventsTo.get(function(error, events) {
+            transferEventsTo.get(function (error, events) {
                 if (error) {
                     console.error("Error getting events for token " + tokenID + ": " + error)
                     reject("Error getting events for token " + tokenID + ": " + error)
                 } else {
-                    console.log("Got " + events.length + " events.")
                     if (events.length) {
                         dispatch(addEventsThunk(events, tokenID))
                     }
@@ -441,8 +483,9 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
             })
         }))
         await Promise.all(eventPromises)
+
         dispatch(aceEntriesBlockRangeChange(addresses, tokenID, fromBlock, toBlock))
-        dispatch(aceEntriesLoadingChange(addresses, tokenID, false))
+        dispatch(aceEntriesLoadingChange(addresses, tokenID, false, 0, 0, 0))
     }
 }
 

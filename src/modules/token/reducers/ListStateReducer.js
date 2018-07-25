@@ -26,6 +26,7 @@ function clearTokenList(state) {
         matchedTokenIds: LISTSTATE_INITIAL.matchedTokenIds,
         activePage: LISTSTATE_INITIAL.activePage,
         total: LISTSTATE_INITIAL.total,
+        listState: LISTSTATE_INITIAL.listState,
     }
 }
 

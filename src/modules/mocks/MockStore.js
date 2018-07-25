@@ -47,12 +47,25 @@ const addresses = {
             balanceState: BALANCE_STATES.INITIALIZED,
             type: ADDRESS_TYPE_EXTERNAL,
         }
+    },
+    selector: {
+        filter: '0x',
+        matchedAddressIds: [
+            '0xAccountAddress1',
+            '0xAccountAddress2',
+            '0xAccountAddress3',
+            '0xAccountAddress4',
+            '0xAccountAddress5',
+            '0xAccountAddress6'
+
+        ],
+        selectedAddressId: '',
     }
 }
 
 const tokens_initialized = {
     allIds: [1, 2, 3],
-    trackedIds: [2],
+    trackedIds: [1,3],
     byId: {
         1: {
             address: '0x1ContractAddress',
@@ -108,6 +121,10 @@ const tokens_initialized = {
         filterIsActive: false,
         showOnlyTracked: false,
         activePage: 1,
+    },
+    selector: {
+        filter: 'searchstring',
+        matchedTokenIds: [1,2]
     }
 }
 

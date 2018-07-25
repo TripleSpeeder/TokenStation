@@ -1,14 +1,11 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
-import {action} from '@storybook/addon-actions'
+import StoryRouter from 'storybook-react-router';
 import Sidebar from './Sidebar'
 import {Grid} from 'semantic-ui-react'
 
-export const sidebarActions = {
-    clickSidebar: action('clickSidebar')
-}
-
-storiesOf('Segments/Sidebar', module)
+storiesOf('Segments', module)
+    .addDecorator(StoryRouter())
     .addDecorator(story => <Grid padded>
         <Grid.Column width={4}>
             {story()}
@@ -16,7 +13,5 @@ storiesOf('Segments/Sidebar', module)
         <Grid.Column>screen content here</Grid.Column>
     </Grid>)
 
-    .add('overview', () => <Sidebar activeItem={'overview'} clickItem={sidebarActions.clickSidebar}/>)
-    .add('accounts', () => <Sidebar activeItem={'accounts'} clickItem={sidebarActions.clickSidebar}/>)
-    .add('token', () => <Sidebar activeItem={'tokenContracts'} clickItem={sidebarActions.clickSidebar}/>)
+    .add('Sidebar', () => <Sidebar/>)
 
