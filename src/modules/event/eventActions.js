@@ -12,6 +12,17 @@ export function addEvents(events, tokenId, fromBlock, toBlock) {
     }
 }
 
+export const CHANGE_TRANSFEREVENTLIST_PAGE = 'CHANGE_TRANSFEREVENTLIST_PAGE'
+export function changeTransferEventListPage(activePage) {
+    return {
+        type: CHANGE_TRANSFEREVENTLIST_PAGE,
+        payload: {
+            activePage
+        }
+    }
+}
+
+
 export const CREATE_ACE_ENTRY = 'CREATE_ACE_ENTRY'
 export function createAceEntry(addressId, tokenId) {
     return {

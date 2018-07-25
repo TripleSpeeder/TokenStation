@@ -272,6 +272,12 @@ const web3Instance = {
     }
 }
 
+const events = {
+    listState:{
+        activePage: 1
+    }
+}
+
 const mockStore = {
     getState: () => {
         return {
@@ -279,6 +285,7 @@ const mockStore = {
             tokens: tokens_initialized,
             addresses: addresses,
             web3Instance: web3Instance,
+            events: events,
         };
     },
     subscribe: () => 0,
@@ -292,6 +299,7 @@ const mockStore_filtered = {
             tokens: tokens_filtered,
             addresses: addresses,
             web3Instance: web3Instance,
+            events: events,
         };
     },
     subscribe: () => 0,
@@ -305,6 +313,7 @@ const mockStore_nomatch = {
             tokens: tokens_filtered_nomatch,
             addresses: addresses,
             web3Instance: web3Instance,
+            events: events,
         };
     },
     subscribe: () => 0,
@@ -318,6 +327,7 @@ const mockStore_virgin = {
             tokens: tokens_virgin,
             addresses: addresses,
             web3Instance: web3Instance,
+            events: events,
         };
     },
     subscribe: () => 0,
@@ -331,6 +341,7 @@ const mockStore_loading = {
             tokens: tokens_loading,
             addresses: addresses,
             web3Instance: web3Instance,
+            events: events,
         };
     },
     subscribe: () => 0,
