@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
 import AddressSelector from '../address/AddressSelector'
-import {Container, Grid} from 'semantic-ui-react'
-import TokenSelector from '../token/TokenSelector'
-import {
-    changeSelectorTokenId,
-    setTokenSelectorFilter
-} from '../token/tokenActions'
+import {Container, Dropdown, Form, Grid} from 'semantic-ui-react'
+import {changeSelectorTokenId} from '../token/tokenActions'
 import {connect} from 'react-redux'
 import {changeSelectorAddressId, setAddressSelectorFilter} from '../address/addressActions'
 
@@ -13,8 +9,9 @@ class EventFilterContainer extends Component {
 
     render() {
         const {
-            onTokenSearchChange, onTokenSelect, tokenResults, tokenValue,
+            onTokenSelect,
             onAddressSearchChange, onAddressSelect, addressResults, addressValue,
+            tokenOptions, selectedTokenId,
         } = this.props
 
         return (
@@ -23,11 +20,16 @@ class EventFilterContainer extends Component {
             <Grid>
                 <Grid.Row>
                     <Grid.Column width={8}>
-                        <TokenSelector onSearchChange={onTokenSearchChange}
-                                       onTokenSelect={onTokenSelect}
-                                       results={tokenResults}
-                                       value={tokenValue}
-                        />
+                        <Form>
+                            <Form.Field inline>
+                                <label>Show Transfers of token:</label>
+                                <Dropdown fluid search selection
+                                          options={tokenOptions}
+                                          onChange={onTokenSelect}
+                                          value={selectedTokenId}
+                                />
+                            </Form.Field>
+                        </Form>
                     </Grid.Column>
                     <Grid.Column width={8}>
                         <AddressSelector onSearchChange={onAddressSearchChange}
@@ -52,22 +54,15 @@ EventFilterContainer.defaultProps = {
 }
 
 const mapStateToProps = (state) => {
-    // value of token selector should either be the searchstring or the last selected token
-    let tokenValue = state.tokens.selector.filter
-    if (state.tokens.selector.selectedTokenId) {
-        const selectedToken = state.tokens.byId[state.tokens.selector.selectedTokenId]
-        tokenValue = selectedToken.name
-    }
 
-    // build up token selector results. State just contains matched tokenIDs, but in order
-    // for the Search component to work correctly, results need to have "key" property.
-    let tokenResults = state.tokens.selector.matchedTokenIds.map(id =>
-        ({
-            token: state.tokens.byId[id],
-            key: id
-        })
-    )
-
+    const selectedTokenId = state.tokens.selector.selectedTokenId
+    const tokenOptions = state.tokens.trackedIds.map(id => (
+        {
+            key: id,
+            value: id,
+            text: state.tokens.byId[id].name + " (" + state.tokens.byId[id].symbol + ")"
+        }
+    ))
 
     // value of address selector should either be the searchstring or the last selected address
     let addressValue = state.addresses.selector.filter
@@ -85,20 +80,17 @@ const mapStateToProps = (state) => {
     )
 
     return {
-        tokenValue: tokenValue,
-        tokenResults,
         addressValue: addressValue,
         addressResults,
+        tokenOptions,
+        selectedTokenId
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onTokenSearchChange: (e, data) => {
-            dispatch(setTokenSelectorFilter(data.value))
-        },
-        onTokenSelect: (e, data) => {
-            dispatch(changeSelectorTokenId(data.result.token.id))
+        onTokenSelect: (e, {value}) => {
+            dispatch(changeSelectorTokenId(value))
         },
         onAddressSearchChange: (e, data) => {
             dispatch(setAddressSelectorFilter(data.value))

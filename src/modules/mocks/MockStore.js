@@ -128,6 +128,11 @@ const tokens_initialized = {
     }
 }
 
+const tokens_initialized_notracked = {
+    ...tokens_initialized,
+    trackedIds: []
+}
+
 const tokens_filtered = {
     ...tokens_initialized,
     listState: {
@@ -292,6 +297,20 @@ const mockStore = {
     dispatch: action('dispatch'),
 };
 
+const mockStore_noTrackedTokens = {
+    getState: () => {
+        return {
+            balance: balance,
+            tokens: tokens_initialized_notracked,
+            addresses: addresses,
+            web3Instance: web3Instance,
+            events: events,
+        };
+    },
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+};
+
 const mockStore_filtered = {
     getState: () => {
         return {
@@ -349,6 +368,7 @@ const mockStore_loading = {
 };
 
 export default mockStore
+export { mockStore_noTrackedTokens }
 export { mockStore_filtered }
 export { mockStore_nomatch }
 export { mockStore_loading }

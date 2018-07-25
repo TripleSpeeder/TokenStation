@@ -1,7 +1,7 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
 import {Provider} from 'react-redux';
-import mockStore, {mockStore_virgin, mockStore_loading, mockStore_nomatch, mockStore_filtered} from '../mocks/MockStore'
+import mockStore, {mockStore_virgin, mockStore_loading, mockStore_nomatch, mockStore_filtered, mockStore_noTrackedTokens} from '../mocks/MockStore'
 import Events from './Events'
 
 
@@ -18,5 +18,5 @@ storiesOf('Segments/Events', module)
     .add('no addresses', () => <Events/>)
 
 storiesOf('Segments/Events', module)
-    .addDecorator(story => <Provider store={mockStore_virgin}>{story()}</Provider>)
-    .add('no contracts', () => <Events/>)
+    .addDecorator(story => <Provider store={mockStore_noTrackedTokens}>{story()}</Provider>)
+    .add('no tracked tokens', () => <Events/>)
