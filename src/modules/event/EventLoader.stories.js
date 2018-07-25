@@ -1,7 +1,5 @@
 import React from 'react'
 import {storiesOf, action} from '@storybook/react'
-import BigNumber from 'bignumber.js'
-import mockStore from '../mocks/MockStore'
 import EventLoader from './EventLoader'
 
 export const eventLoaderProps = {
