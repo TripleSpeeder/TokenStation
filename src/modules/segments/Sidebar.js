@@ -6,7 +6,7 @@ import {NavLink} from 'react-router-dom'
 const Sidebar = () => {
     return (
         <Menu icon='labeled' fluid inverted vertical pointing size={'large'}>
-            <Menu.Item header>TokenStation</Menu.Item>
+            <Menu.Item header>TokenStation.io</Menu.Item>
             <Menu.Item as={NavLink} to='/overview' name='overview'>
                 <Icon name='home' />
                 Overview
