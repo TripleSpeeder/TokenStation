@@ -1,42 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Button, Grid, Progress, Segment} from 'semantic-ui-react'
+import {Button, Grid, Icon, Message, } from 'semantic-ui-react'
 
 const EventLoader = (props) => {
     const {loading, loadingCurrentBlock, loadingFromBlock,
         loadingToBlock, resultCount, resultFromBlock,
         resultFromBlockDate, resultToBlock, onLoadMore} = props
 
-    const button = <Button loading={loading} onClick={onLoadMore}>Load more</Button>
-
-    let progressRow = null
+    let button = <Button icon onClick={onLoadMore} labelPosition={'left'}><Icon name={'search plus'}/>Load more</Button>
     if (loading) {
         const range = loadingToBlock - loadingFromBlock
         const current = loadingCurrentBlock - loadingFromBlock
-        progressRow = <Grid.Row>
-            <Segment>
-                <Progress total={range} value={current} progress='percent' active>
-                Scanning block {loadingFromBlock} to {loadingToBlock}
-                </Progress>
-            </Segment>
-        </Grid.Row>
+        button = <Message warning icon>
+                    <Icon loading name={'circle notched'}/>
+            <Message.Content>
+                <Message.Header>Loading events</Message.Header>
+                Scanning block {loadingFromBlock} - {loadingToBlock}
+            </Message.Content>
+        </Message>
     }
 
     return (
-        <Grid verticalAlign='middle' columns={2} centered>
-            <Grid.Row stretched>
-                <Grid.Column width={12}>
-                    <Segment>
-                        {resultCount} transfer events since {resultFromBlockDate} (Block {resultFromBlock} to {resultToBlock}).
-                    </Segment>
-                </Grid.Column>
-                <Grid.Column width={4}>
-                    {button}
-                </Grid.Column>
-            </Grid.Row>
+        <Grid verticalAlign='middle' columns={2}>
             <Grid.Row>
-                <Grid.Column width={16}>
-                    {progressRow}
+                <Grid.Column >
+                    <Message info icon>
+                        <Icon name={'exchange'}/>
+                        <Message.Content>
+                            <Message.Header>Showing {resultCount} transfer events</Message.Header>
+                             since {resultFromBlockDate} (Block {resultFromBlock} to {resultToBlock}).
+                        </Message.Content>
+                    </Message>
+                </Grid.Column>
+                <Grid.Column>
+                    {button}
                 </Grid.Column>
             </Grid.Row>
         </Grid>
