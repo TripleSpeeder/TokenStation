@@ -1,4 +1,5 @@
 import {ADD_EVENTS, buildEventId} from '../eventActions'
+import {CLEAR_TOKEN_LIST} from '../../token/tokenActions'
 
 const ALL_EVENTS_INITIAL = []
 
@@ -19,10 +20,16 @@ function addEventIds(state, action) {
     return newState
 }
 
+function clearEvents() {
+    return ALL_EVENTS_INITIAL
+}
+
 export const allEventIdsReducer = (state=ALL_EVENTS_INITIAL, action) => {
     switch (action.type) {
         case ADD_EVENTS:
             return addEventIds(state, action)
+        case CLEAR_TOKEN_LIST:
+            return clearEvents()
         default:
     }
     return state;

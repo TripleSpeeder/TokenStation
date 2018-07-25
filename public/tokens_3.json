@@ -1,0 +1,27 @@
+[
+  {
+    "symbol": "ILSC",
+    "name": "IsraCoin",
+    "address": "0x6f95a3B682F8e9aacC86D057A6DF88A0E68145A8",
+    "decimals": 2,
+    "logo": {
+      "src": "https://i.imgur.com/I1qkFfm.png"
+    },
+    "support": {
+      "email": "6333236@gmail.com"
+    },
+    "website": ""
+  },
+  {
+    "symbol": "NONE",
+    "name": "None",
+    "address": "0xFD5a69A1309595FF5121553F52C8A5B2B1B31031",
+    "decimals": 0,
+    "support": {
+      "email": "ligi@ethereum.org"
+    },
+    "social": {
+      "github": "https://github.com/walleth/contracts/tree/master/NoneToken"
+    }
+  }
+]

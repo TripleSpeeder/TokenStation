@@ -1,4 +1,4 @@
-import {loadTokenBalance, resetDisplayCount} from '../token/tokenActions'
+import {loadTokenBalance} from '../token/tokenActions'
 
 export const BALANCE_STATES = {
     VIRGIN: 'virgin',

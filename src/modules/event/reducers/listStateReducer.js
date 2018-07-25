@@ -1,6 +1,6 @@
 import {CHANGE_TRANSFEREVENTLIST_PAGE} from '../eventActions'
 import {CHANGE_SELECTOR_ADDRESSID} from '../../address/addressActions'
-import {CHANGE_SELECTOR_TOKENID} from '../../token/tokenActions'
+import {CHANGE_SELECTOR_TOKENID, CLEAR_TOKEN_LIST} from '../../token/tokenActions'
 
 const LISTSTATE_INITIAL = {
     activePage: 1,
@@ -28,6 +28,7 @@ export const transferEventListStateReducer = (state=LISTSTATE_INITIAL, action) =
             return transferEventListPageChanged(state, action)
         case CHANGE_SELECTOR_ADDRESSID:
         case CHANGE_SELECTOR_TOKENID:
+        case CLEAR_TOKEN_LIST:
             return resetPager()
         default:
             return state

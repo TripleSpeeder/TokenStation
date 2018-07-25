@@ -8,6 +8,7 @@ import Sidebar from '../segments/Sidebar'
 import Accounts from '../segments/Accounts'
 import TokenContracts from '../segments/TokenContracts'
 import EventsContainer from '../segments/EventsContainer'
+import NetworkWarningController from '../web3/NetworkWarningController'
 
 class LayoutContainer extends Component {
     constructor(props, context) {
@@ -21,8 +22,15 @@ class LayoutContainer extends Component {
             </div>
         )
 
+        const networkWarning = <NetworkWarningController/>
+        let networkWarningRow = null
+        if (networkWarning) {
+            networkWarningRow = <Grid.Row>{networkWarning}</Grid.Row>
+        }
+
         return (
             <Grid padded={'vertically'}>
+                {networkWarning}
                 <Grid.Row>
                     <Grid.Column width={4} /*style={{ backgroundColor: 'rgb(27, 28, 29)' }}*/>
                         <Sidebar/>
@@ -44,7 +52,11 @@ class LayoutContainer extends Component {
                         </Switch>
                     </Grid.Column>
                 </Grid.Row>
-                <Web3Container />
+                <Grid.Row>
+                    <Grid.Column width={16}>
+                        <Web3Container/>
+                    </Grid.Column>
+                </Grid.Row>
             </Grid>
         )
     }

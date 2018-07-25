@@ -1,4 +1,7 @@
 import getWeb3 from '../../utils/getWeb3'
+import {clearTokenBalances} from '../balance/balanceActions'
+import {clearTokenList} from '../token/tokenActions'
+import {clearAddresses} from '../address/addressActions'
 const PromisifyWeb3 = require("../../utils/promisifyWeb3.js")
 
 export const SET_WEB3INSTANCE = 'SET_WEB3INSTANCE'
@@ -85,36 +88,8 @@ export function initialize() {
 
         // set network info
         const networkIdString = await web3.version.getNetworkPromise()
-        let network = 'unknown'
         let networkID = parseInt(networkIdString, 10)
-        switch (networkID) {
-            case 4447:
-                network = 'truffle test'
-                break
-            case 1:
-                network = 'mainnet'
-                break
-            case 2:
-                network = 'Morden (deprecated!)'
-                break
-            case 3:
-                network = 'Ropsten'
-                break
-            case 4:
-                network = 'Rinkeby'
-                break
-            case 42:
-                network = 'Kovan'
-                break
-            case 61:
-                network = 'ETC'
-                break
-            case 62:
-                network = 'ETC Testnet'
-                break
-            default:
-                network = 'Unknown'
-        }
+        const network = getNetworkName(networkID)
         dispatch(setNetwork(networkID, network))
 
         // set current block
@@ -139,7 +114,52 @@ export function initialize() {
         })
         dispatch(setBlockFilter(filter))
 
+        // start watching for network change events
+        setInterval(async function () {
+            const networkIdString = await web3.version.getNetworkPromise()
+            let networkID = parseInt(networkIdString, 10)
+            const oldNetworkId = getState().web3Instance.id
+            if (oldNetworkId !== networkID) {
+                const network = getNetworkName(networkID)
+                dispatch(setNetwork(networkID, network))
+                dispatch(clearTokenList())
+            }
+        }, 1000)
+
         // stop loading
         dispatch(loadingChanged(false))
     }
+}
+
+function getNetworkName(networkId) {
+    let network = 'unknown'
+    switch (networkId) {
+        case 4447:
+            network = 'truffle test'
+            break
+        case 1:
+            network = 'mainnet'
+            break
+        case 2:
+            network = 'Morden (deprecated!)'
+            break
+        case 3:
+            network = 'Ropsten'
+            break
+        case 4:
+            network = 'Rinkeby'
+            break
+        case 42:
+            network = 'Kovan'
+            break
+        case 61:
+            network = 'ETC'
+            break
+        case 62:
+            network = 'ETC Testnet'
+            break
+        default:
+            network = 'Unknown'
+    }
+    return network
 }

@@ -12,13 +12,20 @@ class TokenLoaderGate extends Component {
 
     componentDidMount() {
         if (this.props.listState === TOKEN_LIST_STATES.VIRGIN) {
-            this.props.loadTokenList(this.tokenListUrl)
+            this.loadTokenList(this.props)
         }
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.listState === TOKEN_LIST_STATES.VIRGIN) {
-            newProps.loadTokenList(this.tokenListUrl)
+            this.loadTokenList(newProps)
+        }
+    }
+
+    loadTokenList(props) {
+        if (props.networkId >=1 ) {
+            const url = "/tokens_" + props.networkId + ".json"
+            props.loadTokenList(url)
         }
     }
 
@@ -46,7 +53,8 @@ TokenLoaderGate.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    listState: state.tokens.listState.listState
+    listState: state.tokens.listState.listState,
+    networkId: state.web3Instance.id,
 })
 
 const mapDispatchToProps = dispatch => ({

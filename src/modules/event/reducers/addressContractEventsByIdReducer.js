@@ -2,6 +2,7 @@ import {
     ACE_ENTRIES_BLOCK_RANGE_CHANGE, ACE_ENTRIES_LOADING_CHANGE, ADD_EVENTS, buildEventId,
     CREATE_ACE_ENTRY, SET_ACE_ENTRY_EVENT_IDS
 } from '../eventActions'
+import {CLEAR_TOKEN_LIST} from '../../token/tokenActions'
 
 /*
 Purpose: Store list of transfer events involving certain address
@@ -26,6 +27,10 @@ const ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL = {
     },
 }
 */
+
+function clearAceEntries() {
+    return ADDRESS_CONTRACT_EVENTS_BY_ID_INITIAL
+}
 
 function createAceEntry(state, action) {
     const {payload} = action
@@ -148,6 +153,8 @@ export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_B
             return aceEntriesBlockRangeChange(state, action)
         case SET_ACE_ENTRY_EVENT_IDS:
             return setAceEntryEventIds(state, action)
+        case CLEAR_TOKEN_LIST:
+            return clearAceEntries()
         default:
     }
     return state;

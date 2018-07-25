@@ -21,6 +21,13 @@ export function addressBalancesStateChanged(addressId, addressBalancesState) {
     }
 }
 
+export const CLEAR_ADDRESSES = 'CLEAR_ADDRESSES'
+export function clearAddresses() {
+    return {
+        type: CLEAR_ADDRESSES,
+    }
+}
+
 export const ADD_ADDRESS = 'ADD_ADDRESS'
 export function addAddress(address, type) {
     return {

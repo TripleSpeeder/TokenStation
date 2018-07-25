@@ -1,4 +1,4 @@
-import {CHANGE_ADDRESS_SELECTOR_FILTER_PROPS, CHANGE_SELECTOR_ADDRESSID} from '../addressActions'
+import {CHANGE_ADDRESS_SELECTOR_FILTER_PROPS, CHANGE_SELECTOR_ADDRESSID, CLEAR_ADDRESSES} from '../addressActions'
 
 const SELECTOR_INITIAL = {
     filter: '',
@@ -33,6 +33,8 @@ export const addressSelectorReducer = (state=SELECTOR_INITIAL, action) => {
             return changeFilterProps(state, action)
         case CHANGE_SELECTOR_ADDRESSID:
             return changeSelectorAddressId(state, action)
+        case CLEAR_ADDRESSES:
+            return SELECTOR_INITIAL
         default:
             return state
     }
