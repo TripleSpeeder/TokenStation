@@ -1,42 +1,33 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Icon, Menu} from 'semantic-ui-react'
+import {NavLink} from 'react-router-dom'
 
 
-const Sidebar = (props) => {
-    const {activeItem, clickItem} = props
-
-    const handleItemClick = (e, { name }) => clickItem(name)
-
+const Sidebar = () => {
     return (
         <Menu icon='labeled' fluid inverted vertical pointing size={'large'}>
             <Menu.Item header>TokenStation</Menu.Item>
-            <Menu.Item name='overview' active={activeItem === 'overview'} onClick={handleItemClick}>
+            <Menu.Item as={NavLink} to='/overview' name='overview'>
                 <Icon name='home' />
                 Overview
             </Menu.Item>
 
-            <Menu.Item name='accounts' active={activeItem === 'accounts'} onClick={handleItemClick}>
+            <Menu.Item as={NavLink} to='/accounts' name='accounts'>
                 <Icon name='users' />
                 Manage Accounts
             </Menu.Item>
 
-            <Menu.Item name='events' active={activeItem === 'events'} onClick={handleItemClick}>
+            <Menu.Item as={NavLink} to='/events' name='events' >
                 <Icon name='exchange' />
                 View Transfer Events
             </Menu.Item>
 
-            <Menu.Item name='tokenContracts' active={activeItem === 'tokenContracts'} onClick={handleItemClick}>
+            <Menu.Item as={NavLink} to='/tokenContracts' name='tokenContracts'>
                 <Icon name='cube' />
                 Manage Contracts
             </Menu.Item>
         </Menu>
     )
-}
-
-Sidebar.propTypes = {
-    activeItem: PropTypes.string.isRequired,
-    clickItem: PropTypes.func.isRequired
 }
 
 export default Sidebar

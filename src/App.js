@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {Provider} from 'react-redux'
-import {Router} from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
 import configureStore from './store'
-import { history } from './store'
 import Web3Gate from './modules/web3/web3Gate'
 import {Container} from 'semantic-ui-react'
 import { PersistGate } from 'redux-persist/lib/integration/react'
@@ -19,12 +18,12 @@ class App extends Component {
                 <PersistGate persistor={persistor}>
                     <Web3Gate>
                         <TokenLoaderGate>
-                            <Router history={history}>
+                            <BrowserRouter>
                                 <Container>
                                     <ModalRoot/>
                                     <LayoutContainer/>
                                 </Container>
-                            </Router>
+                            </BrowserRouter>
                         </TokenLoaderGate>
                     </Web3Gate>
                 </PersistGate>

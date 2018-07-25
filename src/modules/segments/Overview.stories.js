@@ -1,6 +1,5 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
-import {action} from '@storybook/addon-actions'
 import StoryRouter from 'storybook-react-router'
 import {Provider} from 'react-redux';
 import mockStore from '../mocks/MockStore'
@@ -17,10 +16,6 @@ export const overviewProps = {
             mockStore.getState().balance.byId['b6']]
     },
     emptyObject: {}
-}
-
-const actions = {
-    clickSidebar: action('clickSidebar')
 }
 
 storiesOf('Segments/Overview', module)
