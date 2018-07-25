@@ -266,12 +266,19 @@ const balance = {
     }
 }
 
+const web3Instance = {
+    block: {
+        number: 6000000
+    }
+}
+
 const mockStore = {
     getState: () => {
         return {
             balance: balance,
             tokens: tokens_initialized,
             addresses: addresses,
+            web3Instance: web3Instance,
         };
     },
     subscribe: () => 0,
@@ -284,6 +291,7 @@ const mockStore_filtered = {
             balance: balance,
             tokens: tokens_filtered,
             addresses: addresses,
+            web3Instance: web3Instance,
         };
     },
     subscribe: () => 0,
@@ -296,6 +304,7 @@ const mockStore_nomatch = {
             balance: balance,
             tokens: tokens_filtered_nomatch,
             addresses: addresses,
+            web3Instance: web3Instance,
         };
     },
     subscribe: () => 0,
@@ -308,6 +317,7 @@ const mockStore_virgin = {
             balance: balance,
             tokens: tokens_virgin,
             addresses: addresses,
+            web3Instance: web3Instance,
         };
     },
     subscribe: () => 0,
@@ -320,6 +330,7 @@ const mockStore_loading = {
             balance: balance,
             tokens: tokens_loading,
             addresses: addresses,
+            web3Instance: web3Instance,
         };
     },
     subscribe: () => 0,
