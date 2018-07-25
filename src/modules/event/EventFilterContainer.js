@@ -1,17 +1,15 @@
 import React, {Component} from 'react'
-import AddressSelector from '../address/AddressSelector'
 import {Container, Dropdown, Form, Grid} from 'semantic-ui-react'
 import {changeSelectorTokenId} from '../token/tokenActions'
 import {connect} from 'react-redux'
-import {changeSelectorAddressId, setAddressSelectorFilter} from '../address/addressActions'
+import {changeSelectorAddressId} from '../address/addressActions'
 
 class EventFilterContainer extends Component {
 
     render() {
         const {
-            onTokenSelect,
-            onAddressSearchChange, onAddressSelect, addressResults, addressValue,
-            tokenOptions, selectedTokenId,
+            tokenOptions, selectedTokenId, onTokenSelect,
+            addressOptions, selectedAddressId, onAddressSelect,
         } = this.props
 
         return (
@@ -32,11 +30,16 @@ class EventFilterContainer extends Component {
                         </Form>
                     </Grid.Column>
                     <Grid.Column width={8}>
-                        <AddressSelector onSearchChange={onAddressSearchChange}
-                                         onAddressSelect={onAddressSelect}
-                                         results={addressResults}
-                                         value={addressValue}
-                        />
+                        <Form>
+                            <Form.Field inline>
+                                <label>To/From Account:</label>
+                                <Dropdown fluid search selection
+                                          options={addressOptions}
+                                          onChange={'asdf'}
+                                          value={selectedAddressId}
+                                />
+                            </Form.Field>
+                        </Form>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -63,27 +66,29 @@ const mapStateToProps = (state) => {
             text: state.tokens.byId[id].name + " (" + state.tokens.byId[id].symbol + ")"
         }
     ))
+    tokenOptions.sort((a, b) => (a.text > b.text))
 
-    // value of address selector should either be the searchstring or the last selected address
-    let addressValue = state.addresses.selector.filter
-    if (state.addresses.selector.selectedAddressId) {
-        addressValue = state.addresses.selector.selectedAddressId
-    }
-
-    // build up address selector results. State just contains matched addresses, but in order
-    // for the Search component to work correctly, addresses need to have "key" property.
-    let addressResults = state.addresses.selector.matchedAddressIds.map(id =>
+    const selectedAddressId = state.addresses.selector.selectedAddressId
+    const addressOptions = state.addresses.allIds.map(id =>
         ({
-            address: state.addresses.byId[id],
             key: id,
+            value: id,
+            text: id,
         })
     )
+    /*
+    addressOptions.push({
+        key: -1,
+        value: -1,
+        text: 'All Accounts'
+    })*/
+    addressOptions.sort((a, b) => (a.key > b.key))
 
     return {
-        addressValue: addressValue,
-        addressResults,
         tokenOptions,
-        selectedTokenId
+        selectedTokenId,
+        addressOptions,
+        selectedAddressId
     }
 }
 
@@ -92,11 +97,8 @@ const mapDispatchToProps = (dispatch) => {
         onTokenSelect: (e, {value}) => {
             dispatch(changeSelectorTokenId(value))
         },
-        onAddressSearchChange: (e, data) => {
-            dispatch(setAddressSelectorFilter(data.value))
-        },
-        onAddressSelect: (e, data) => {
-            dispatch(changeSelectorAddressId(data.result.address.address))
+        onAddressSelect: (e, {value}) => {
+            dispatch(changeSelectorAddressId(value))
         },
     }
 }
