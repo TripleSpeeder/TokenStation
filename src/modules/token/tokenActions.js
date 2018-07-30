@@ -270,8 +270,12 @@ export function loadTokenList(url) {
         const response = await fetch(url)
         // parse json
         const jsonTokens = await response.json()
+        // sort token list alphabetically
+        jsonTokens.sort((a, b) => ( (a.name.toUpperCase() < b.name.toUpperCase()) ? -1 : 1))
+
         // set total number of tokens (for loading progress)
         dispatch(changeValidTokenCount(jsonTokens.length))
+
         // Check if there is currently a filter set
         const filterIsActive = (getState().tokens.listState.filterIsActive)
         // add tokens
