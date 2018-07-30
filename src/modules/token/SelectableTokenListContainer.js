@@ -39,7 +39,6 @@ class SelectableTokenListContainer extends Component {
         }
         return (
             <React.Fragment>
-                <TokenLoaderContainer/>
                 <Grid verticalAlign='middle' columns={2} divided>
                     <Grid.Row>
                         <Grid.Column width={6}>
