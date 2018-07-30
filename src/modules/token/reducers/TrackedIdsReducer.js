@@ -12,9 +12,9 @@ function changeTokenTracking(state, action) {
         return state.concat(tokenId)
     }
     if (!doTrack && (trackedIndex > -1)) {
-        // remove existing tracked entry
-        state.splice(trackedIndex, 1)
-        return state
+        // remove existing tracked entry. Use "filter" instead of splice, as it returns a new array, while "splice"
+        // mutates the existing one.
+        return state.filter(id => (id !== tokenId))
     }
     // No need to change anything
     return state
