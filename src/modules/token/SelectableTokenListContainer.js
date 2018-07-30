@@ -50,7 +50,7 @@ class SelectableTokenListContainer extends Component {
                         <Grid.Column width={1}>
                             <Dropdown icon={'setting'}>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item text='Reload tokens' onClick={this.handleLoadTokens} />
+                                    <Dropdown.Item text='Reload token list' onClick={this.handleLoadTokens} />
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Grid.Column>
