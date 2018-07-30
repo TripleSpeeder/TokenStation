@@ -10,6 +10,7 @@ import SelectableToken from "./SelectableToken"
 export const SelectableTokenItemProps = {
     id: 45,
     address: '0xaTokenContractAddress',
+    ensName: 'contract.atn.eth',
     name: 'a token name',
     symbol: 'ATN',
     description: 'A random test token. With a description.',
@@ -34,4 +35,12 @@ storiesOf('Modules/SelectableTokenListItem', module)
                                              symbol={SelectableTokenItemProps.symbol}
                                              checked={false}
                                              onChange={SelectableTokenItemActions.toggleToken}
+    />)
+    .add('withENS', () => <SelectableToken id={SelectableTokenItemProps.id}
+                                           address={SelectableTokenItemProps.address}
+                                           ensName={SelectableTokenItemProps.ensName}
+                                           name={SelectableTokenItemProps.name}
+                                           symbol={SelectableTokenItemProps.symbol}
+                                           checked={true}
+                                           onChange={SelectableTokenItemActions.toggleToken}
     />)

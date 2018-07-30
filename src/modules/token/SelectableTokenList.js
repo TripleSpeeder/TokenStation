@@ -21,9 +21,9 @@ const SelectableTokenList = (props) => {
     } else {
         return (
             <Message negative>
-                <Message.Header>No token contracts available.</Message.Header>
+                <Message.Header>No token contracts to display.</Message.Header>
                 <Message.Content>Things you can try:</Message.Content>
-                <Message.List items={['change/clear the filterstring', 'wait until all tokens are loaded']}>
+                <Message.List items={['change/clear the filterstring', 'check if you are connected to the correct network']}>
                 </Message.List>
             </Message>
         )
