@@ -26,7 +26,7 @@ const EventLoader = (props) => {
                         <Icon name={'exchange'}/>
                         <Message.Content>
                             <Message.Header>Showing {resultCount} transfer events</Message.Header>
-                             since {resultFromBlockDate} (Block {resultFromBlock} to {resultToBlock}).
+                             Block {resultFromBlock} to {resultToBlock}
                         </Message.Content>
                     </Message>
                 </Grid.Column>
