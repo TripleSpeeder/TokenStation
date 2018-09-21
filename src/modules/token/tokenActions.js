@@ -393,9 +393,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
     return async (dispatch, getState) => {
         const chunkSize = 100
         const maxChunks = 100
-        // const chunkSize = 1000
-        // const maxChunks = 1
-        const maxEvents = 100
+        const maxEvents = 50
 
         let currentChunk = 1
         let numEvents = 0
@@ -467,7 +465,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
                         if (events.length) {
                             dispatch(addEventsThunk(events, tokenID))
                         }
-                        resolve()
+                        resolve(events.length)
                     }
                 })
             }))
@@ -481,17 +479,19 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
                         if (events.length) {
                             dispatch(addEventsThunk(events, tokenID))
                         }
-                        resolve()
+                        resolve(events.length)
                     }
                 })
             }))
-            await Promise.all(eventPromises)
+            // Wait till both promises are resolved and add up the found number of events.
+            const loggedEvents = await Promise.all(eventPromises)
+            const foundEvents = loggedEvents.reduce((a, b) => a + b, 0)
 
             dispatch(aceEntriesBlockRangeChange(addresses, tokenID, currentFromBlock, currentToBlock))
             // increment currentChunk
             currentChunk++
             // update numEvents with number of found events
-            // numEvents += foundEvents
+            numEvents += foundEvents
         }
 
         dispatch(aceEntriesLoadingChange(addresses, tokenID, false, 0, 0, 0))
