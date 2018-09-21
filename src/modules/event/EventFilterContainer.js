@@ -35,7 +35,7 @@ class EventFilterContainer extends Component {
                                 <label>To/From Account:</label>
                                 <Dropdown fluid search selection
                                           options={addressOptions}
-                                          onChange={'asdf'}
+                                          onChange={onAddressSelect}
                                           value={selectedAddressId}
                                 />
                             </Form.Field>

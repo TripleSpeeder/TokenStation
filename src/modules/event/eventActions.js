@@ -72,6 +72,16 @@ export function setAceEntryEventIds(aceId, eventIds) {
     }
 }
 
+export const CHANGE_EVENT_SCAN_PROPS = 'CHANGE_EVENT_SCAN_PROPS'
+export function changeEventScanProps(props) {
+    return {
+        type: CHANGE_EVENT_SCAN_PROPS,
+        payload: {
+            props,
+        }
+    }
+}
+
 export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock, loadingCurrentBlock) {
     return async (dispatch, getState) => {
         addressIds.forEach(addressId => {

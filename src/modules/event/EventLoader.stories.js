@@ -33,6 +33,8 @@ storiesOf('Modules/EventLoader', module)
         resultFromBlock= {5999905}
         resultFromBlockDate={"2018-05-25"}
         resultToBlock=   {6001425}
+        currentChunk={6}
+        maxChunks={10}
     />)
     .add('loading with no results', () => <EventLoader
         loading={true}
@@ -43,4 +45,6 @@ storiesOf('Modules/EventLoader', module)
         resultFromBlock= {5999905}
         resultFromBlockDate={"2018-05-25"}
         resultToBlock=   {6001425}
+        currentChunk={6}
+        maxChunks={10}
     />)

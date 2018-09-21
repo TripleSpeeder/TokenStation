@@ -23,12 +23,12 @@ class EventLoaderContainer extends Component {
     checkEventsLoaded(props) {
         if (props.currentBlock && props.aceId && (props.hasAceEntry === false)) {
             // I have an aceID, but no according entry. Better start loading...
-            const rangeEnd = props.currentBlock
-            const rangeStart = rangeEnd - 10000
-            console.log("Loading events " + rangeStart + "-" + rangeEnd)
+            //const rangeEnd = props.currentBlock
+            //const rangeStart = rangeEnd - 10000
+            console.log("Loading events "/* + rangeStart + "-" + rangeEnd*/)
             props.loadTokenTransferEvents(
-                rangeStart,
-                rangeEnd,
+                0,
+                0,
                 props.tokenId,
                 props.addressId
             )
@@ -51,7 +51,7 @@ class EventLoaderContainer extends Component {
     render() {
         const {
             loading, resultCount, resultFromBlock, resultFromBlockDate, resultToBlock,
-            loadingFromBlock, loadingToBlock, loadingCurrentBlock } = this.props
+            loadingFromBlock, loadingToBlock, loadingCurrentBlock, currentChunk, maxChunks } = this.props
         return (
             <EventLoader
                 loading={loading}
@@ -63,6 +63,8 @@ class EventLoaderContainer extends Component {
                 loadingFromBlock={loadingFromBlock}
                 loadingToBlock={loadingToBlock}
                 loadingCurrentBlock={loadingCurrentBlock}
+                currentChunk={currentChunk}
+                maxChunks={maxChunks}
             />
         )
     }
@@ -90,6 +92,8 @@ const mapStateToProps = (state) => {
     const tokenId = state.tokens.selector.selectedTokenId
     const addressId = state.addresses.selector.selectedAddressId
     const currentBlock = state.web3Instance.block.number
+    const currentChunk = state.events.listState.currentChunk
+    const maxChunks = state.events.listState.maxChunks
     if (tokenId && addressId) {
         aceId = buildAdressContractEventId(addressId, tokenId)
         aceEntry = state.events.aceById[aceId]
@@ -120,6 +124,8 @@ const mapStateToProps = (state) => {
         loadingToBlock,
         loadingFromBlock,
         loadingCurrentBlock,
+        currentChunk,
+        maxChunks,
     }
 }
 

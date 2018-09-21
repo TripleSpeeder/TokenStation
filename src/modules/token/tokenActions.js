@@ -8,7 +8,7 @@ import {
 } from '../balance/balanceActions'
 import {
     aceEntriesBlockRangeChange, aceEntriesLoadingChange, aceEntriesLoadingChangeWrapper,
-    addEventsThunk
+    addEventsThunk, changeEventScanProps
 } from '../event/eventActions'
 
 export const TOKEN_LIST_STATES = {
@@ -391,9 +391,18 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
 
 export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) {
     return async (dispatch, getState) => {
+        const chunkSize = 100
+        const maxChunks = 100
+        // const chunkSize = 1000
+        // const maxChunks = 1
+        const maxEvents = 100
+
+        let currentChunk = 1
+        let numEvents = 0
+
         // if no from/toblock are provided, use default values
         if (fromBlock === 0)
-            fromBlock = getState().web3Instance.block.number - 10000
+            fromBlock = getState().web3Instance.block.number - (chunkSize * maxChunks)
         if (toBlock === 0)
             toBlock = getState().web3Instance.block.number
 
@@ -401,60 +410,90 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
         await verifyContractInstance(tokenID, dispatch, getState)
         const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
 
-        const transferEventsFrom = contractInstance.Transfer(
-            {
-                // These are the standard ERC20 Transfer event fields
-                _from: addresses,    // addresses sending token
-                _to: null,      // addresses receiving token
-            },
-            {
-                fromBlock,
-                toBlock
-            }
-        )
-        const transferEventsTo = contractInstance.Transfer(
-            {
-                // These are the standard ERC20 Transfer event fields
-                _from: null,    // addresses sending token
-                _to: addresses,      // addresses receiving token
-            },
-            {
-                fromBlock,
-                toBlock
-            }
-        )
+        while ((currentChunk <= maxChunks) && (numEvents <= maxEvents)) {
+            // calculate fromBlock for current chunk
+            let currentFromBlock = fromBlock + ((currentChunk-1) * chunkSize)
+            // calculate toBlock for current chunk
+            let currentToBlock = currentFromBlock + chunkSize
 
-        // Wrap this into promise and await it, otherwise loading:false action will be dispatched too early!
-        let eventPromises = []
-        eventPromises.push(new Promise((resolve, reject) => {
-            transferEventsFrom.get(function (error, events) {
-                if (error) {
-                    console.error("Error getting events for token " + tokenID + ": " + error)
-                    reject("Error getting events for token " + tokenID + ": " + error)
-                } else {
-                    if (events.length) {
-                        dispatch(addEventsThunk(events, tokenID))
-                    }
-                    resolve()
-                }
-            })
-        }))
-        eventPromises.push(new Promise((resolve, reject) => {
-            transferEventsTo.get(function (error, events) {
-                if (error) {
-                    console.error("Error getting events for token " + tokenID + ": " + error)
-                    reject("Error getting events for token " + tokenID + ": " + error)
-                } else {
-                    if (events.length) {
-                        dispatch(addEventsThunk(events, tokenID))
-                    }
-                    resolve()
-                }
-            })
-        }))
-        await Promise.all(eventPromises)
+            // update progress info
+            dispatch(changeEventScanProps({
+                tokenID,
+                addresses,
+                numEvents,
+                currentChunk,
+                maxEvents,
+                maxChunks,
+                fromBlock,
+                toBlock,
+                state: 'scanning'
+            }))
 
-        dispatch(aceEntriesBlockRangeChange(addresses, tokenID, fromBlock, toBlock))
+            // obtain events for this chunk
+            console.log("Calling 'Transfer' from " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
+            const transferEventsFrom = contractInstance.Transfer(
+                {
+                    // These are the standard ERC20 Transfer event fields
+                    _from: addresses,    // addresses sending token
+                    _to: null,      // addresses receiving token
+                },
+                {
+                    fromBlock: currentFromBlock,
+                    toBlock: currentToBlock,
+                }
+            )
+            console.log("Calling 'Transfer' to " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
+            const transferEventsTo = contractInstance.Transfer(
+                {
+                    // These are the standard ERC20 Transfer event fields
+                    _from: null,    // addresses sending token
+                    _to: addresses,      // addresses receiving token
+                },
+                {
+                    fromBlock: currentFromBlock,
+                    toBlock: currentToBlock,
+                }
+            )
+
+            // Wrap this into promise and await it, otherwise loading:false action will be dispatched too early!
+            let eventPromises = []
+            eventPromises.push(new Promise((resolve, reject) => {
+                transferEventsFrom.get(function (error, events) {
+                    if (error) {
+                        console.error("Error getting events for token " + tokenID + ": " + error)
+                        reject("Error getting events for token " + tokenID + ": " + error)
+                    } else {
+                        console.log("Found " + events.length + " 'from' Events: " + events)
+                        if (events.length) {
+                            dispatch(addEventsThunk(events, tokenID))
+                        }
+                        resolve()
+                    }
+                })
+            }))
+            eventPromises.push(new Promise((resolve, reject) => {
+                transferEventsTo.get(function (error, events) {
+                    if (error) {
+                        console.error("Error getting events for token " + tokenID + ": " + error)
+                        reject("Error getting events for token " + tokenID + ": " + error)
+                    } else {
+                        console.log("Found " + events.length + " 'to' Events: " + events)
+                        if (events.length) {
+                            dispatch(addEventsThunk(events, tokenID))
+                        }
+                        resolve()
+                    }
+                })
+            }))
+            await Promise.all(eventPromises)
+
+            dispatch(aceEntriesBlockRangeChange(addresses, tokenID, currentFromBlock, currentToBlock))
+            // increment currentChunk
+            currentChunk++
+            // update numEvents with number of found events
+            // numEvents += foundEvents
+        }
+
         dispatch(aceEntriesLoadingChange(addresses, tokenID, false, 0, 0, 0))
     }
 }
