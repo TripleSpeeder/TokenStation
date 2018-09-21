@@ -41,8 +41,8 @@ const tokensConfig = {
     key: 'tokens',
     storage: storage,
     transforms: [],
-    // Only persist tracked tokens
-    whitelist: ['trackedIds']
+    // Only persist tracked tokens and last selected token
+    whitelist: ['trackedIds', 'selector']
 }
 
 const reducer = combineReducers({
