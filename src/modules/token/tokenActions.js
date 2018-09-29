@@ -428,7 +428,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
             }))
 
             // obtain events for this chunk
-            console.log("Calling 'Transfer' from " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
+            // console.log("Calling 'Transfer' from " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
             const transferEventsFrom = contractInstance.Transfer(
                 {
                     // These are the standard ERC20 Transfer event fields
@@ -440,7 +440,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
                     toBlock: currentToBlock,
                 }
             )
-            console.log("Calling 'Transfer' to " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
+            //console.log("Calling 'Transfer' to " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
             const transferEventsTo = contractInstance.Transfer(
                 {
                     // These are the standard ERC20 Transfer event fields
@@ -461,7 +461,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
                         console.error("Error getting events for token " + tokenID + ": " + error)
                         reject("Error getting events for token " + tokenID + ": " + error)
                     } else {
-                        console.log("Found " + events.length + " 'from' Events: " + events)
+                        // console.log("Found " + events.length + " 'from' Events: " + events)
                         if (events.length) {
                             dispatch(addEventsThunk(events, tokenID))
                         }
@@ -475,7 +475,7 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
                         console.error("Error getting events for token " + tokenID + ": " + error)
                         reject("Error getting events for token " + tokenID + ": " + error)
                     } else {
-                        console.log("Found " + events.length + " 'to' Events: " + events)
+                        //console.log("Found " + events.length + " 'to' Events: " + events)
                         if (events.length) {
                             dispatch(addEventsThunk(events, tokenID))
                         }
@@ -512,7 +512,7 @@ async function verifyContractInstance(tokenId, dispatch, getState) {
     }
     else {
         const token = getState().tokens.byId[tokenId]
-        console.log("Start lazyloading contract instance for " + token.id + " (" + token.name +")")
+        // console.log("Start lazyloading contract instance for " + token.id + " (" + token.name +")")
         dispatch(instantiateTokenContract(token.id))
         // refresh token, as the loadingPromise has just been added to state
         volatileToken = getState().tokens.volatileById[tokenId]
