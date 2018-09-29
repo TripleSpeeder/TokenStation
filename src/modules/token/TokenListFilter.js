@@ -6,7 +6,7 @@ const TokenListFilter = (props) => {
     const {filterString, handleChange, filterIsActive, clearFilter, displayed, total} = props
     let icon, message, label = null
     if (filterIsActive) {
-        icon = <Icon name='eraser' iconPosition='right' circular link onClick={clearFilter} />
+        icon = <Icon name='eraser' circular link onClick={clearFilter} />
     }
     return (
         <Input label='Filter'
