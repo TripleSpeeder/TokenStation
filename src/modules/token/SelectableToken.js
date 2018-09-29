@@ -26,7 +26,7 @@ const SelectableToken = (props) => {
 }
 
 SelectableToken.propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     checked: PropTypes.bool,
     address: PropTypes.string.isRequired,
     ensName: PropTypes.string,

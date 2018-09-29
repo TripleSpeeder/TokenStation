@@ -28,7 +28,7 @@ class SelectableTokenContainer extends Component {
 }
 
 SelectableTokenContainer.propTypes = {
-    tokenId: PropTypes.number.isRequired,
+    tokenId: PropTypes.string.isRequired,
     tokenAddress: PropTypes.string.isRequired,
     tokenName: PropTypes.string.isRequired,
     tokenSymbol: PropTypes.string.isRequired,
