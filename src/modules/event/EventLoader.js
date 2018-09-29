@@ -6,7 +6,7 @@ const EventLoader = (props) => {
     const {loading, loadingFromBlock, loadingToBlock, resultCount, resultFromBlock, currentChunk, maxChunks,
         resultFromBlockDate, resultToBlock, onLoadMore} = props
 
-    let button = <Button icon onClick={onLoadMore} labelPosition={'left'}><Icon name={'search plus'}/>Load more</Button>
+    let button = <Button icon onClick={onLoadMore} labelPosition={'left'}><Icon name={'search'}/>Load more</Button>
     if (loading) {
         const range = loadingToBlock - loadingFromBlock
         button = <Message warning icon>
