@@ -23,8 +23,8 @@ const Overview = (props) => {
                 </Message.Content>
                 <Message.List>
                     <Message.Item>Change the filterstring</Message.Item>
-                    <Message.Item>Open the <Link to={'/todo'}>Account Manager</Link> to add additional accounts</Message.Item>
-                    <Message.Item>Open the <Link to={'/todo'}>Token Manager</Link> to tracked additional tokens</Message.Item>
+                    <Message.Item>Open the <Link to={ {pathname: '/accounts/',} }>Account Manager</Link> to add additional accounts</Message.Item>
+                    <Message.Item>Open the <Link to={ {pathname: '/tokenContracts/'} }>Token Manager</Link> to tracked additional tokens</Message.Item>
                 </Message.List>
             </Message>
         }
@@ -33,7 +33,7 @@ const Overview = (props) => {
             <Message.Header>
                 No accounts
             </Message.Header>
-            <p>You have no watched or unlocked accounts. Open the <Link to={'/todo'}>Account Manager</Link> to setup accounts.</p>
+            <p>You have no watched or unlocked accounts. Open the <Link to={ {pathname: '/accounts/',} }>Account Manager</Link> to setup accounts.</p>
         </Message>
     }
 
