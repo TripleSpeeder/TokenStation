@@ -11,8 +11,8 @@ export const TRANSFER_EVENT_TYPES = {
 }
 
 const TransferEvent = (props) => {
-    const {txHash, blockNumber, from, fromENS, to, toENS, type, quantity} = props
-
+    const {txHash, blockNumber, from, fromENS, to, toENS, type} = props
+    const quantity = props.quantity.toFixed(6)
     let icon = null
     let positive = false
     let negative = false
@@ -31,14 +31,22 @@ const TransferEvent = (props) => {
     }
 
     return (
-        <Table.Row>
-            <Table.Cell><TxHashDisplay txHash={txHash}/></Table.Cell>
-            <Table.Cell>{blockNumber}</Table.Cell>
-            <Table.Cell><AddressDisplay address={from} ensName={fromENS}/></Table.Cell>
-            <Table.Cell><AddressDisplay address={to} ensName={toENS}/></Table.Cell>
-            <Table.Cell>{icon}</Table.Cell>
-            <Table.Cell positive={positive} negative={negative} textAlign={'right'}>{quantity.toFixed(6)}</Table.Cell>
-        </Table.Row>
+        <React.Fragment>
+            <Table.Row>
+                <Table.Cell textAlign={'right'}>#: </Table.Cell>
+                <Table.Cell><strong>{blockNumber}</strong></Table.Cell>
+                <Table.Cell textAlign={'right'}>From: </Table.Cell>
+                <Table.Cell><AddressDisplay address={from} ensName={fromENS}/></Table.Cell>
+                <Table.Cell rowSpan='2' textAlign={'right'}>{icon}</Table.Cell>
+                <Table.Cell rowSpan='2' positive={positive} negative={negative} textAlign={'right'}>{quantity}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+                <Table.Cell textAlign={'right'}>Tx: </Table.Cell>
+                <Table.Cell><strong><TxHashDisplay txHash={txHash}/></strong></Table.Cell>
+                <Table.Cell textAlign={'right'}>To: </Table.Cell>
+                <Table.Cell><AddressDisplay address={to} ensName={toENS}/></Table.Cell>
+            </Table.Row>
+        </React.Fragment>
     )
 }
 

@@ -5,15 +5,12 @@ import TransferEventContainer from './TransferEventContainer'
 
 const TransferEventsList = (props) => {
     return (
-        <Table striped compact>
+        <Table compact>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>TxHash</Table.HeaderCell>
-                    <Table.HeaderCell>Block</Table.HeaderCell>
-                    <Table.HeaderCell>From</Table.HeaderCell>
-                    <Table.HeaderCell>To</Table.HeaderCell>
-                    <Table.HeaderCell></Table.HeaderCell>
-                    <Table.HeaderCell textAlign={'right'}>Quantity</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='2' textAlign={'center'}>Block#/TransactionHash</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='2' textAlign={'center'}>From/To</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='2' textAlign={'right'}>Quantity</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
 
