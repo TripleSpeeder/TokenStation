@@ -24,17 +24,20 @@
     "truffle-contract": "^3.0.5",
     "web3": "^0.19.1"
   },
+  "homepage": "https://triplespeeder.github.io/TokenStation/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@storybook/addon-storyshots": "^3.4.5",
     "@storybook/react": "^3.4.5",
     "babel-core": "^6.26.3",
+    "gh-pages": "^2.0.1",
     "human-standard-token-abi": "^1.0.2",
     "react-test-renderer": "^16.3.2",
     "storybook-react-router": "^1.0.1"
