@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Divider, Header, Message} from 'semantic-ui-react'
+import {Divider, Message} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import BalancesList from '../balance/BalancesList'
 import TokenListFilterContainer from '../token/TokenListFilterContainer'
+import ScreenHeader from '../screens/ScreenHeader'
 
 const Overview = (props) => {
     const {hasAccounts, balancesByToken} = props
@@ -39,7 +40,7 @@ const Overview = (props) => {
 
     return (
         <React.Fragment>
-            <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Overview</Header>
+            <ScreenHeader title={'Overview'}/>
             {hasAccounts && <TokenListFilterContainer target={'balancelist'} />}
             <Divider/>
             {body}

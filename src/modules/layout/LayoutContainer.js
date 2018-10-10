@@ -23,8 +23,8 @@ class LayoutContainer extends Component {
             </div>
         )
 
-        const networkWarning = <NetworkWarningController/>
         let networkWarningRow = null
+        const networkWarning = <NetworkWarningController/>
         if (networkWarning) {
             networkWarningRow = <Grid.Row>{networkWarning}</Grid.Row>
         }
@@ -45,9 +45,6 @@ class LayoutContainer extends Component {
                             <Route path='/events/:tokenId/' component={EventsContainer}/>
                             <Route path='/events/' component={EventsContainer}/>
                             <Route path='/tokenContracts/' component={TokenContracts}/>
-
-                            /* old routes below */
-                            <Route path='/transfer/' component={TransferFormContainer}/>
 
                             <Route component={NoMatch} />
                         </Switch>

@@ -1,11 +1,11 @@
 import React from 'react'
-import {Header} from 'semantic-ui-react'
 import AddressListContainer from '../address/AddressListContainer'
+import ScreenHeader from '../screens/ScreenHeader'
 
 const Accounts = (props) => {
     return (
         <React.Fragment>
-            <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Manage Accounts</Header>
+            <ScreenHeader title={'Manage Accounts'}/>
             <AddressListContainer />
         </React.Fragment>
     )

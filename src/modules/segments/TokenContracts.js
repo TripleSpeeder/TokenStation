@@ -1,11 +1,12 @@
 import React from 'react'
-import {Header, Icon, Message} from 'semantic-ui-react'
+import {Icon, Message} from 'semantic-ui-react'
 import SelectableTokenListContainer from "../token/SelectableTokenListContainer"
+import ScreenHeader from '../screens/ScreenHeader'
 
 const TokenContracts = (props) => {
     return (
         <React.Fragment>
-            <Header as={'h1'} block inverted color={'green'} textAlign={'center'}>Manage Token Contracts</Header>
+            <ScreenHeader title={'Manage Token Contracts'}/>
             <Message info icon>
                 <Icon name={'info'}/>
                 <Message.Header>Select which tokens to track</Message.Header>
