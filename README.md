@@ -5,7 +5,7 @@ a plain website. Any data is either retrieved directly from the Ethereum blockch
 provided by the user (watched addresses). Watched addresses and tracked tokens are stored in browser local
 storage, so you only need to set this up once per browser.
 
-Site is live at [https://tokenstation.io].
+Site is live at https://tokenstation.io.
 
 ## Current functionality
  * **Overview page:** Show a summary of token balances for all watched addresses, grouped by Token (maybe 
