@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Dimmer, Loader, Segment} from 'semantic-ui-react'
 import {loadTokenList, TOKEN_LIST_STATES} from './tokenActions'
+import ModalLoader from '../common/ModalLoader'
 
 class TokenLoaderGate extends Component {
     constructor(props, context) {
@@ -38,13 +39,7 @@ class TokenLoaderGate extends Component {
 
         return(
             // Display a loading indicator.
-            <div>
-                <Segment>
-                    <Dimmer active>
-                        <Loader indeterminate>Loading token contracts</Loader>
-                    </Dimmer>
-                </Segment>
-            </div>
+            <ModalLoader content={"Loading token contracts"}/>
         )
     }}
 

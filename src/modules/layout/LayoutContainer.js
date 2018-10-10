@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import TransferFormContainer from '../forms/transferForm/TransferFormContainer'
 import OverviewContainer from '../segments/OverviewContainer'
 import Web3Container from '../web3/web3Container'
 import {Grid, Segment} from 'semantic-ui-react'
@@ -23,15 +22,9 @@ class LayoutContainer extends Component {
             </div>
         )
 
-        let networkWarningRow = null
-        const networkWarning = <NetworkWarningController/>
-        if (networkWarning) {
-            networkWarningRow = <Grid.Row>{networkWarning}</Grid.Row>
-        }
-
         return (
             <Grid padded={'vertically'}>
-                {networkWarning}
+                <NetworkWarningController/>
                 <Grid.Row>
                     <Grid.Column width={4} /*style={{ backgroundColor: 'rgb(27, 28, 29)' }}*/>
                         <Sidebar/>

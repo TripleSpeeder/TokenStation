@@ -2,7 +2,7 @@ import React, {Component, Children} from 'react'
 import PropTypes from 'prop-types'
 import {initialize, stopBlockFilter} from './web3Actions'
 import {connect} from 'react-redux'
-import {Dimmer, Loader, Segment} from 'semantic-ui-react'
+import ModalLoader from '../common/ModalLoader'
 
 class Web3Gate extends Component {
 
@@ -22,15 +22,8 @@ class Web3Gate extends Component {
             return Children.only(this.props.children)
         }
 
-        return(
-            // Display a loading indicator.
-            <div>
-                <Segment>
-                    <Dimmer active>
-                        <Loader indeterminate>Waiting for Web3</Loader>
-                    </Dimmer>
-                </Segment>
-            </div>
+        return (
+            <ModalLoader content={"Waiting on web3 initialization"}/>
         )
     }}
 

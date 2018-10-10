@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import connect from 'react-redux/es/connect/connect'
 import NetworkWarning from './NetworkWarning'
+import Grid from 'semantic-ui-react/dist/es/collections/Grid/Grid'
 
 class NetworkWarningController extends Component {
     constructor(props, context) {
@@ -10,8 +11,15 @@ class NetworkWarningController extends Component {
 
     render() {
         const {networkId, networkName} = this.props
+        if (networkId === 1) {
+            // mainnet. No need for a warning!
+            return null
+        }
+
         return (
-            <NetworkWarning networkId={networkId} networkName={networkName}/>
+            <Grid.Row>
+                <NetworkWarning networkId={networkId} networkName={networkName}/>
+            </Grid.Row>
         )
     }
 }

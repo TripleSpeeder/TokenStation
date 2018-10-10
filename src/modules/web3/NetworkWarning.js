@@ -5,11 +5,6 @@ import {Icon, Message} from 'semantic-ui-react'
 const NetworkWarning = (props) => {
     const {networkId, networkName} = props
 
-    if (networkId === 1) {
-        // mainnet. No need for a warning!
-        return null
-    }
-
     return(
         <Message size={'small'} icon warning>
             <Icon name='warning' />
