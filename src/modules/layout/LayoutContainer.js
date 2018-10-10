@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import OverviewContainer from '../segments/OverviewContainer'
 import Web3Container from '../web3/web3Container'
-import {Grid, Segment} from 'semantic-ui-react'
+import {Grid} from 'semantic-ui-react'
 import {Route, Switch} from 'react-router-dom'
 import Sidebar from '../segments/Sidebar'
 import Accounts from '../segments/Accounts'
 import TokenContracts from '../segments/TokenContracts'
 import EventsContainer from '../segments/EventsContainer'
 import NetworkWarningController from '../web3/NetworkWarningController'
-import TokenCredits from '../token/TokenCredits'
 
 class LayoutContainer extends Component {
     constructor(props, context) {
@@ -45,10 +44,7 @@ class LayoutContainer extends Component {
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={16}>
-                        <Segment.Group>
-                            <TokenCredits srcUrl={'https://github.com/ethereum-lists/tokens'}/>
-                            <Web3Container/>
-                        </Segment.Group>
+                        <Web3Container/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

@@ -9,6 +9,18 @@ import AddressDisplay from '../common/AddressDisplay'
 const BalanceItemDetail = (props) => {
     const {address, ensName, addressType, balance, loading, reloadBalance, url, openTransferModal} = props
     const external = (addressType !== ADDRESS_TYPE_OWNED)
+
+    /*
+        transfer button removed until functionality gets implemented...
+
+                <Button icon='external share'
+                    size='mini'
+                    circular
+                    onClick={openTransferModal}
+                    disabled={external}
+                />
+     */
+
     return (
         <Table.Row>
             <Table.Cell>
@@ -23,12 +35,6 @@ const BalanceItemDetail = (props) => {
                         icon='refresh'
                         loading={loading}
                         onClick={reloadBalance} />
-                <Button icon='external share'
-                        size='mini'
-                        circular
-                        onClick={openTransferModal}
-                        disabled={external}
-                />
             </Table.Cell>
         </Table.Row>
     )
