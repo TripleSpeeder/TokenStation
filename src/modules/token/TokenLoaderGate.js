@@ -8,7 +8,7 @@ import ModalLoader from '../common/ModalLoader'
 class TokenLoaderGate extends Component {
     constructor(props, context) {
         super(props, context)
-        this.tokenListUrl = "tokens_1.json"
+        this.tokenListUrl = "/tokens_1.json"
     }
 
     componentDidMount() {
@@ -25,7 +25,7 @@ class TokenLoaderGate extends Component {
 
     loadTokenList(props) {
         if (props.networkId >=1 ) {
-            const url = "tokens_" + props.networkId + ".json"
+            const url = "/tokens_" + props.networkId + ".json"
             props.loadTokenList(url)
         }
     }
