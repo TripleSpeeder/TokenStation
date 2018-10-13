@@ -1,48 +1,43 @@
-import React, {Component, Children} from 'react'
+import React, {Children} from 'react'
 import PropTypes from 'prop-types'
-import {initialize, stopBlockFilter} from './web3Actions'
-import {connect} from 'react-redux'
+import {WEB3_STATES} from './web3Actions'
 import ModalLoader from '../common/ModalLoader'
+import {Button, Header, Icon, Modal} from 'semantic-ui-react'
 
-class Web3Gate extends Component {
+const Web3Gate = (props) => {
+    const {state, onRetry, children} = props
 
-    componentDidMount() {
-        this.props.initialize()
-    }
-
-    componentWillUnmount() {
-        // Stop listening to new block events
-        this.props.stopBlockFilter()
-    }
-
-    render() {
-        if (this.props.web3)
-        {
-            // Load the dapp.
-            return Children.only(this.props.children)
+    switch (state) {
+        case WEB3_STATES.INITIALIZED: {
+            // Gateway passed, render actual content.
+            return Children.only(children)
         }
+        case WEB3_STATES.ERROR:
+            return (
+                <Modal centered={true} open={true}>
+                    <Modal.Header>
+                        <Icon name='exclamation'/> No web3 found
+                    </Modal.Header>
+                    <Modal.Content>
+                        <p>Failed to initialize web3. Please enable web3 in your browser, e.g by using the Metamask extension.</p>
+                        <p><Button onClick={onRetry}>Retry</Button></p>
+                    </Modal.Content>
+                </Modal>
 
-        return (
-            <ModalLoader content={"Waiting on web3 initialization"}/>
-        )
-    }}
-
-Web3Gate.propTypes = {
-    web3: PropTypes.object
+            )
+        case WEB3_STATES.LOADING:
+        default: {
+            return (
+                <ModalLoader content={'Waiting on web3 initialization'}/>
+            )
+        }
+    }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    isLoading: state.web3Instance.isLoading,
-    web3: state.web3Instance.web3,
-})
+Web3Gate.propTypes = {
+    state: PropTypes.string.isRequired,
+    onRetry: PropTypes.func.isRequired,
+    children: PropTypes.object.isRequired,
+}
 
-const mapDispatchToProps = dispatch => ({
-    initialize: () => {
-        dispatch(initialize())
-    },
-    stopBlockFilter: () => {
-    dispatch(stopBlockFilter())
-    }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Web3Gate)
+export default Web3Gate

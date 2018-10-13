@@ -1,8 +1,21 @@
 import getWeb3 from '../../utils/getWeb3'
-import {clearTokenBalances} from '../balance/balanceActions'
 import {clearTokenList} from '../token/tokenActions'
-import {clearAddresses} from '../address/addressActions'
 const PromisifyWeb3 = require("../../utils/promisifyWeb3.js")
+
+export const WEB3_STATES = {
+    UNINITIALIZED: 'uninitialized',
+    LOADING: 'loading',
+    INITIALIZED: 'initialized',
+    ERROR: 'error'
+}
+
+export const SET_WEB3_STATE = 'SET_WEB3_STATE'
+export function setWeb3State(state) {
+    return {
+        type: SET_WEB3_STATE,
+        state
+    }
+}
 
 export const SET_WEB3INSTANCE = 'SET_WEB3INSTANCE'
 export function setWeb3Instance(web3) {
@@ -75,9 +88,22 @@ export function initialize() {
 
         // signal that web3 is being initialized
         dispatch(loadingChanged(true))
+        dispatch(setWeb3State(WEB3_STATES.LOADING))
 
         // set web3 instance
-        const {web3} = await getWeb3
+        try {
+            var {web3} = await getWeb3
+            // stop loading
+            dispatch(loadingChanged(false))
+            dispatch(setWeb3State(WEB3_STATES.INITIALIZED))
+        }
+        catch(e) {
+            console.log("Error getting web3: " + e)
+            dispatch(loadingChanged(false))
+            dispatch(setWeb3State(WEB3_STATES.ERROR))
+            return;
+        }
+
         // FIXME - Promisify can be removed once web3.js 1.0 is released
         PromisifyWeb3.promisify(web3)
         dispatch(setWeb3Instance(web3))
@@ -125,9 +151,6 @@ export function initialize() {
                 dispatch(clearTokenList())
             }
         }, 1000)
-
-        // stop loading
-        dispatch(loadingChanged(false))
     }
 }
 
