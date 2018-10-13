@@ -2,7 +2,7 @@ import React, {Children} from 'react'
 import PropTypes from 'prop-types'
 import {WEB3_STATES} from './web3Actions'
 import ModalLoader from '../common/ModalLoader'
-import {Button, Header, Icon, Modal} from 'semantic-ui-react'
+import {Button, Icon, Modal} from 'semantic-ui-react'
 
 const Web3Gate = (props) => {
     const {state, onRetry, children} = props

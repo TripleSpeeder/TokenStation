@@ -24,7 +24,6 @@ class Web3Container extends Component {
 }
 
 Web3Container.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
     web3: PropTypes.object,
     name: PropTypes.string,
     id: PropTypes.number,
@@ -33,7 +32,6 @@ Web3Container.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    isLoading: state.web3Instance.isLoading,
     web3: state.web3Instance.web3,
     name: state.web3Instance.name,
     id: state.web3Instance.id,

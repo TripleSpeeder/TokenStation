@@ -3,7 +3,7 @@ import {
     SET_CURRENT_BLOCK,
     SET_WEB3INSTANCE,
     SET_NETWORK,
-    SET_NODE_VERSION, IS_LOADING, SET_BLOCK_FILTER, WEB3_STATES, SET_WEB3_STATE,
+    SET_NODE_VERSION, SET_BLOCK_FILTER, WEB3_STATES, SET_WEB3_STATE,
 } from './web3Actions'
 
 const WEB3_INITIAL = {
@@ -15,8 +15,6 @@ const WEB3_INITIAL = {
     },
     id: -1,
     name: 'unknown',
-    // TODO: Remove isLoading and use 'state' above instead
-    isLoading: true,
     blockFilter: null,
 }
 
@@ -32,8 +30,6 @@ export const web3Instance = (state=WEB3_INITIAL, action) => {
             return updateObject(state, {id: action.id, name: action.name})
         case SET_NODE_VERSION:
             return updateObject(state, {nodeVersion: action.nodeVersion})
-        case IS_LOADING:
-            return updateObject(state, {isLoading: action.isLoading})
         case SET_BLOCK_FILTER:
             return updateObject(state, {blockFilter: action.blockFilter})
         default:

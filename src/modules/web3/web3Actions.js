@@ -50,14 +50,6 @@ export function setNodeVersion(nodeVersion) {
     }
 }
 
-export const IS_LOADING = 'IS_LOADING'
-export function loadingChanged(isLoading) {
-    return {
-        type: IS_LOADING,
-        isLoading
-    }
-}
-
 export const SET_BLOCK_FILTER = 'SET_BLOCK_FILTER'
 export function setBlockFilter(blockFilter) {
     return {
@@ -87,19 +79,16 @@ export function initialize() {
         dispatch(stopBlockFilter())
 
         // signal that web3 is being initialized
-        dispatch(loadingChanged(true))
         dispatch(setWeb3State(WEB3_STATES.LOADING))
 
         // set web3 instance
         try {
             var {web3} = await getWeb3
             // stop loading
-            dispatch(loadingChanged(false))
             dispatch(setWeb3State(WEB3_STATES.INITIALIZED))
         }
         catch(e) {
             console.log("Error getting web3: " + e)
-            dispatch(loadingChanged(false))
             dispatch(setWeb3State(WEB3_STATES.ERROR))
             return;
         }
