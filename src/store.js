@@ -4,7 +4,7 @@ import {web3Instance} from "./modules/web3/web3Reducer"
 import thunk from 'redux-thunk'
 import {addresses} from './modules/address/reducers/addressReducer'
 import {balance} from './modules/balance/reducer/balanceReducer'
-import logger from 'redux-logger'
+import {createLogger} from 'redux-logger'
 import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import {BALANCE_STATES} from './modules/balance/balanceActions'
@@ -64,6 +64,13 @@ const rootConfig = {
     blacklist: ['web3Instance', 'tokens', 'balance', 'events', 'modal'],
 }
 const persistedReducer = persistReducer(rootConfig, reducer)
+
+const logger = createLogger({
+    // Would love to log state diffs, but apparently logger tries to call all web3 instance methods
+    // which will make metamask throw an error due to trying to call methods synchronous.
+    // There may be a workaround somewhere, but disabling state diff for now...
+    diff: false
+});
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
