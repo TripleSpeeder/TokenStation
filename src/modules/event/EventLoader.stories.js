@@ -18,6 +18,11 @@ storiesOf('Modules/EventLoader', module)
         resultToBlock=   {6001425}
         onLoadMore={eventLoaderActions.onLoadMoreResults}
         canLoadMore={true}
+        currentChunk={10}
+        maxChunks={100}
+        loadingCurrentBlock={65000}
+        loadingFromBlock={64950}
+        loadingToBlock={65050}
     />)
     .add('idle load more disabled', () => <EventLoader
         loading={false}
@@ -27,6 +32,9 @@ storiesOf('Modules/EventLoader', module)
         resultToBlock=   {6001425}
         onLoadMore={eventLoaderActions.onLoadMoreResults}
         canLoadMore={false}
+        loadingCurrentBlock={65000}
+        loadingFromBlock={64950}
+        loadingToBlock={65050}
     />)
     .add('idle no results', () => <EventLoader
         loading={false}
@@ -36,6 +44,9 @@ storiesOf('Modules/EventLoader', module)
         resultToBlock=   {6001425}
         onLoadMore={eventLoaderActions.onLoadMoreResults}
         canLoadMore={true}
+        loadingCurrentBlock={65000}
+        loadingFromBlock={64950}
+        loadingToBlock={65050}
     />)
     .add('loading with results', () => <EventLoader
         loading={true}

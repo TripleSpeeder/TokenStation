@@ -11,7 +11,7 @@ import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActio
 export const props = {
     address: '0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0',
     balance: new BigNumber('234.12345678901'),
-    url: 'https://some.link',
+    url: '/events/0xTokenContractAddress/0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0',
     ensName: 'gimme.eth'
 }
 
