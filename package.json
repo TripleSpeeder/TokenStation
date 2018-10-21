@@ -14,16 +14,16 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
-    "redux": "^3.7.2",
+    "react-scripts": "2.0.5",
+    "redux": "^4.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.3.1",
-    "semantic-ui-react": "^0.77.2",
+    "semantic-ui-react": "^0.83",
     "truffle-contract": "^3.0.5",
     "web3": "^0.19.1",
-    "lodash": "latest"
+    "lodash": "^4.17"
   },
   "homepage": "https://tokenstation.io",
   "scripts": {
@@ -41,8 +41,14 @@
     "babel-core": "^6.26.3",
     "gh-pages": "^2.0.1",
     "human-standard-token-abi": "^1.0.2",
-    "prop-types": "latest",
+    "prop-types": "^15.6",
     "react-test-renderer": "^16.3.2",
     "storybook-react-router": "^1.0.1"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
