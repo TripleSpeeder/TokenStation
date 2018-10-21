@@ -1,5 +1,5 @@
 import {
-    CHANGE_SELECTOR_TOKENID,
+    CHANGE_SELECTOR_TOKENID, CLEAR_TOKEN_LIST,
 } from '../tokenActions'
 
 const SELECTOR_INITIAL = {
@@ -16,11 +16,16 @@ function changeSelectorTokenId(state, action) {
     }
 }
 
+function clearSelectorTokenId() {
+    return SELECTOR_INITIAL
+}
 
 export const selectorReducer = (state=SELECTOR_INITIAL, action) => {
     switch (action.type) {
         case CHANGE_SELECTOR_TOKENID:
             return changeSelectorTokenId(state, action)
+        case CLEAR_TOKEN_LIST:
+            return clearSelectorTokenId()
         default:
             return state
     }

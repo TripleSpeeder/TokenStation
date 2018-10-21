@@ -16,6 +16,7 @@ export const TOKEN_LIST_STATES = {
     LOADING: 'loading',
     INITIALIZED: 'initialized'
 }
+
 export const CHANGE_TOKEN_LIST_STATE = 'IS_LOADING_TOKEN_LIST'
 export function tokenListStateChanged(tokenListState) {
     return {
