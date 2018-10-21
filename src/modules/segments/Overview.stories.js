@@ -8,11 +8,11 @@ import Overview from './Overview'
 export const overviewProps = {
     // keys: tokenID, values: Arrays of balance entries
     balancesByToken: {
-        1: [mockStore.getState().balance.byId['b1'],
+        '0x1ContractAddress': [mockStore.getState().balance.byId['b1'],
             mockStore.getState().balance.byId['b2'],
             mockStore.getState().balance.byId['b3']],
-        2: [mockStore.getState().balance.byId['b4']],
-        3: [mockStore.getState().balance.byId['b5'],
+        '0x2ContractAddress': [mockStore.getState().balance.byId['b4']],
+        '0x3ContractAddress': [mockStore.getState().balance.byId['b5'],
             mockStore.getState().balance.byId['b6']]
     },
     emptyObject: {}

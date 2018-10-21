@@ -8,7 +8,7 @@ import StoryRouter from "storybook-react-router"
 import SelectableToken from "./SelectableToken"
 
 export const SelectableTokenItemProps = {
-    id: 45,
+    id: '0xaTokenContractAddress',
     address: '0xaTokenContractAddress',
     ensName: 'contract.atn.eth',
     name: 'a token name',

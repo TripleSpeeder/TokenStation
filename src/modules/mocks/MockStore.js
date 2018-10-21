@@ -279,7 +279,9 @@ const web3Instance = {
 
 const events = {
     listState:{
-        activePage: 1
+        activePage: 1,
+        currentChunk: 15,
+        maxChunks: 100,
     }
 }
 

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import {changeSelectorTokenId} from '../token/tokenActions'
 import Events from './Events'
 import {changeSelectorAddressId} from '../address/addressActions'

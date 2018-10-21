@@ -14,7 +14,7 @@ const Web3Gate = (props) => {
         }
         case WEB3_STATES.ERROR:
             return (
-                <Modal centered={true} open={true}>
+                <Modal centered open={true}>
                     <Modal.Header>
                         <Icon name='exclamation'/> No web3 found
                     </Modal.Header>

@@ -1408,7 +1408,7 @@ exports[`Storyshots Modules/BalanceItem expanded 1`] = `
         className=""
       >
         <a
-          href="/0xAccountAddress1/transfers/1"
+          href="/events/0x1ContractAddress/0xAccountAddress1"
           onClick={[Function]}
         >
           <div>
@@ -1453,18 +1453,6 @@ exports[`Storyshots Modules/BalanceItem expanded 1`] = `
             className="refresh icon"
           />
         </button>
-        <button
-          className="ui mini circular icon button"
-          disabled={undefined}
-          onClick={[Function]}
-          role="button"
-          tabIndex={undefined}
-        >
-          <i
-            aria-hidden="true"
-            className="external share icon"
-          />
-        </button>
       </td>
     </tr>
     <tr
@@ -1477,7 +1465,7 @@ exports[`Storyshots Modules/BalanceItem expanded 1`] = `
         className=""
       >
         <a
-          href="/0xAccountAddress2/transfers/1"
+          href="/events/0x1ContractAddress/0xAccountAddress2"
           onClick={[Function]}
         >
           <div>
@@ -1515,18 +1503,6 @@ exports[`Storyshots Modules/BalanceItem expanded 1`] = `
             className="refresh icon"
           />
         </button>
-        <button
-          className="ui mini circular icon button"
-          disabled={undefined}
-          onClick={[Function]}
-          role="button"
-          tabIndex={undefined}
-        >
-          <i
-            aria-hidden="true"
-            className="external share icon"
-          />
-        </button>
       </td>
     </tr>
     <tr
@@ -1539,7 +1515,7 @@ exports[`Storyshots Modules/BalanceItem expanded 1`] = `
         className=""
       >
         <a
-          href="/0xAccountAddress3/transfers/1"
+          href="/events/0x1ContractAddress/0xAccountAddress3"
           onClick={[Function]}
         >
           <div>
@@ -1575,18 +1551,6 @@ exports[`Storyshots Modules/BalanceItem expanded 1`] = `
           <i
             aria-hidden="true"
             className="refresh icon"
-          />
-        </button>
-        <button
-          className="ui mini circular icon disabled button"
-          disabled={true}
-          onClick={[Function]}
-          role="button"
-          tabIndex={-1}
-        >
-          <i
-            aria-hidden="true"
-            className="external share icon"
           />
         </button>
       </td>
@@ -1686,7 +1650,7 @@ exports[`Storyshots Modules/BalanceItem expanded.loading 1`] = `
         className=""
       >
         <a
-          href="/0xAccountAddress1/transfers/1"
+          href="/events/0x1ContractAddress/0xAccountAddress1"
           onClick={[Function]}
         >
           <div>
@@ -1731,18 +1695,6 @@ exports[`Storyshots Modules/BalanceItem expanded.loading 1`] = `
             className="refresh icon"
           />
         </button>
-        <button
-          className="ui mini circular icon button"
-          disabled={undefined}
-          onClick={[Function]}
-          role="button"
-          tabIndex={undefined}
-        >
-          <i
-            aria-hidden="true"
-            className="external share icon"
-          />
-        </button>
       </td>
     </tr>
     <tr
@@ -1755,7 +1707,7 @@ exports[`Storyshots Modules/BalanceItem expanded.loading 1`] = `
         className=""
       >
         <a
-          href="/0xAccountAddress2/transfers/1"
+          href="/events/0x1ContractAddress/0xAccountAddress2"
           onClick={[Function]}
         >
           <div>
@@ -1793,18 +1745,6 @@ exports[`Storyshots Modules/BalanceItem expanded.loading 1`] = `
             className="refresh icon"
           />
         </button>
-        <button
-          className="ui mini circular icon button"
-          disabled={undefined}
-          onClick={[Function]}
-          role="button"
-          tabIndex={undefined}
-        >
-          <i
-            aria-hidden="true"
-            className="external share icon"
-          />
-        </button>
       </td>
     </tr>
     <tr
@@ -1817,7 +1757,7 @@ exports[`Storyshots Modules/BalanceItem expanded.loading 1`] = `
         className=""
       >
         <a
-          href="/0xAccountAddress3/transfers/1"
+          href="/events/0x1ContractAddress/0xAccountAddress3"
           onClick={[Function]}
         >
           <div>
@@ -1855,18 +1795,6 @@ exports[`Storyshots Modules/BalanceItem expanded.loading 1`] = `
             className="refresh icon"
           />
         </button>
-        <button
-          className="ui mini circular icon disabled button"
-          disabled={true}
-          onClick={[Function]}
-          role="button"
-          tabIndex={-1}
-        >
-          <i
-            aria-hidden="true"
-            className="external share icon"
-          />
-        </button>
       </td>
     </tr>
   </tbody>
@@ -1887,7 +1815,7 @@ exports[`Storyshots Modules/BalanceItemDetail external 1`] = `
       className=""
     >
       <a
-        href="https://some.link"
+        href="/events/0xTokenContractAddress/0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0"
         onClick={[Function]}
       >
         <div>
@@ -1923,18 +1851,6 @@ exports[`Storyshots Modules/BalanceItemDetail external 1`] = `
         <i
           aria-hidden="true"
           className="refresh icon"
-        />
-      </button>
-      <button
-        className="ui mini circular icon disabled button"
-        disabled={true}
-        onClick={[Function]}
-        role="button"
-        tabIndex={-1}
-      >
-        <i
-          aria-hidden="true"
-          className="external share icon"
         />
       </button>
     </td>
@@ -1956,7 +1872,7 @@ exports[`Storyshots Modules/BalanceItemDetail external+ens 1`] = `
       className=""
     >
       <a
-        href="https://some.link"
+        href="/events/0xTokenContractAddress/0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0"
         onClick={[Function]}
       >
         <div>
@@ -1999,18 +1915,6 @@ exports[`Storyshots Modules/BalanceItemDetail external+ens 1`] = `
         <i
           aria-hidden="true"
           className="refresh icon"
-        />
-      </button>
-      <button
-        className="ui mini circular icon disabled button"
-        disabled={true}
-        onClick={[Function]}
-        role="button"
-        tabIndex={-1}
-      >
-        <i
-          aria-hidden="true"
-          className="external share icon"
         />
       </button>
     </td>
@@ -2032,7 +1936,7 @@ exports[`Storyshots Modules/BalanceItemDetail extloading 1`] = `
       className=""
     >
       <a
-        href="https://some.link"
+        href="/events/0xTokenContractAddress/0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0"
         onClick={[Function]}
       >
         <div>
@@ -2070,18 +1974,6 @@ exports[`Storyshots Modules/BalanceItemDetail extloading 1`] = `
           className="refresh icon"
         />
       </button>
-      <button
-        className="ui mini circular icon disabled button"
-        disabled={true}
-        onClick={[Function]}
-        role="button"
-        tabIndex={-1}
-      >
-        <i
-          aria-hidden="true"
-          className="external share icon"
-        />
-      </button>
     </td>
   </tr>
 </table>
@@ -2101,7 +1993,7 @@ exports[`Storyshots Modules/BalanceItemDetail own 1`] = `
       className=""
     >
       <a
-        href="https://some.link"
+        href="/events/0xTokenContractAddress/0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0"
         onClick={[Function]}
       >
         <div>
@@ -2139,18 +2031,6 @@ exports[`Storyshots Modules/BalanceItemDetail own 1`] = `
           className="refresh icon"
         />
       </button>
-      <button
-        className="ui mini circular icon button"
-        disabled={undefined}
-        onClick={[Function]}
-        role="button"
-        tabIndex={undefined}
-      >
-        <i
-          aria-hidden="true"
-          className="external share icon"
-        />
-      </button>
     </td>
   </tr>
 </table>
@@ -2170,7 +2050,7 @@ exports[`Storyshots Modules/BalanceItemDetail own+ens 1`] = `
       className=""
     >
       <a
-        href="https://some.link"
+        href="/events/0xTokenContractAddress/0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0"
         onClick={[Function]}
       >
         <div>
@@ -2215,18 +2095,6 @@ exports[`Storyshots Modules/BalanceItemDetail own+ens 1`] = `
           className="refresh icon"
         />
       </button>
-      <button
-        className="ui mini circular icon button"
-        disabled={undefined}
-        onClick={[Function]}
-        role="button"
-        tabIndex={undefined}
-      >
-        <i
-          aria-hidden="true"
-          className="external share icon"
-        />
-      </button>
     </td>
   </tr>
 </table>
@@ -2246,7 +2114,7 @@ exports[`Storyshots Modules/BalanceItemDetail ownloading 1`] = `
       className=""
     >
       <a
-        href="https://some.link"
+        href="/events/0xTokenContractAddress/0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0"
         onClick={[Function]}
       >
         <div>
@@ -2284,8 +2152,105 @@ exports[`Storyshots Modules/BalanceItemDetail ownloading 1`] = `
           className="refresh icon"
         />
       </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`Storyshots Modules/EventLoader idle load more disabled 1`] = `
+<div
+  className="ui middle aligned two column grid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="ui icon info message"
+      >
+        <i
+          aria-hidden="true"
+          className="exchange icon"
+        />
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            Showing 
+            123
+             transfer events
+          </div>
+          Block 
+          5999905
+           to 
+          6001425
+        </div>
+      </div>
+    </div>
+    <div
+      className="column"
+    >
       <button
-        className="ui mini circular icon button"
+        className="ui icon disabled left labeled button"
+        disabled={true}
+        onClick={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <i
+          aria-hidden="true"
+          className="search icon"
+        />
+        Load more
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/EventLoader idle no results 1`] = `
+<div
+  className="ui middle aligned two column grid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="ui icon info message"
+      >
+        <i
+          aria-hidden="true"
+          className="exchange icon"
+        />
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            Showing 
+            0
+             transfer events
+          </div>
+          Block 
+          5999905
+           to 
+          6001425
+        </div>
+      </div>
+    </div>
+    <div
+      className="column"
+    >
+      <button
+        className="ui icon left labeled button"
         disabled={undefined}
         onClick={[Function]}
         role="button"
@@ -2293,12 +2258,277 @@ exports[`Storyshots Modules/BalanceItemDetail ownloading 1`] = `
       >
         <i
           aria-hidden="true"
-          className="external share icon"
+          className="search icon"
         />
+        Load more
       </button>
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/EventLoader idle with results 1`] = `
+<div
+  className="ui middle aligned two column grid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="ui icon info message"
+      >
+        <i
+          aria-hidden="true"
+          className="exchange icon"
+        />
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            Showing 
+            123
+             transfer events
+          </div>
+          Block 
+          5999905
+           to 
+          6001425
+        </div>
+      </div>
+    </div>
+    <div
+      className="column"
+    >
+      <button
+        className="ui icon left labeled button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="search icon"
+        />
+        Load more
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/EventLoader loading with no results 1`] = `
+<div
+  className="ui middle aligned two column grid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="ui icon info message"
+      >
+        <i
+          aria-hidden="true"
+          className="exchange icon"
+        />
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            Showing 
+            0
+             transfer events
+          </div>
+          Block 
+          5999905
+           to 
+          6001425
+        </div>
+      </div>
+    </div>
+    <div
+      className="column"
+    >
+      <div
+        className="ui icon warning message"
+      >
+        <i
+          aria-hidden="true"
+          className="circle notched loading icon"
+        />
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            Loading events
+          </div>
+          Scanning 
+          5999905
+           - 
+          6000005
+           - Chunk 
+          6
+          /
+          10
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/EventLoader loading with results 1`] = `
+<div
+  className="ui middle aligned two column grid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="ui icon info message"
+      >
+        <i
+          aria-hidden="true"
+          className="exchange icon"
+        />
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            Showing 
+            123
+             transfer events
+          </div>
+          Block 
+          5999905
+           to 
+          6001425
+        </div>
+      </div>
+    </div>
+    <div
+      className="column"
+    >
+      <div
+        className="ui icon warning message"
+      >
+        <i
+          aria-hidden="true"
+          className="circle notched loading icon"
+        />
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            Loading events
+          </div>
+          Scanning 
+          5999905
+           - 
+          6000005
+           - Chunk 
+          6
+          /
+          10
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/NetworkWarning Ropsten 1`] = `
+<div
+  className="ui small icon warning message"
+>
+  <i
+    aria-hidden="true"
+    className="warning icon"
+  />
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      You are not connected to mainnet!
+    </div>
+    Your current network: 
+    Ropsten
+     (ID: 
+    3
+    )
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/NetworkWarning Unknown 1`] = `
+<div
+  className="ui small icon warning message"
+>
+  <i
+    aria-hidden="true"
+    className="warning icon"
+  />
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      You are not connected to mainnet!
+    </div>
+    Your current network: 
+    unknown
+     (ID: 
+    1234
+    )
+  </div>
+</div>
+`;
+
+exports[`Storyshots Modules/NetworkWarning mainNet 1`] = `
+<div
+  className="ui small icon warning message"
+>
+  <i
+    aria-hidden="true"
+    className="warning icon"
+  />
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      You are not connected to mainnet!
+    </div>
+    Your current network: 
+    mainNet
+     (ID: 
+    1
+    )
+  </div>
+</div>
 `;
 
 exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
@@ -2474,6 +2704,64 @@ exports[`Storyshots Modules/SelectableTokenList default 1`] = `
           className="field"
         >
           <div
+            className="ui checked fitted checkbox"
+            content={undefined}
+            onChange={[Function]}
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          >
+            <input
+              checked={true}
+              className="hidden"
+              id={undefined}
+              name={undefined}
+              onClick={[Function]}
+              readOnly={true}
+              required={undefined}
+              tabIndex={0}
+              type="checkbox"
+              value={undefined}
+            />
+            <label
+              htmlFor={undefined}
+            />
+          </div>
+        </div>
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          Arcade Network Token
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          ANT
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <strong>
+            0x1ContractAddress
+          </strong>
+        </div>
+      </td>
+    </tr>
+    <tr
+      className=""
+    >
+      <td
+        className="collapsing"
+      >
+        <div
+          className="field"
+        >
+          <div
             className="ui fitted checkbox"
             content={undefined}
             onChange={[Function]}
@@ -2501,10 +2789,25 @@ exports[`Storyshots Modules/SelectableTokenList default 1`] = `
       <td
         className=""
       >
-        Arcade Network Token
-         (
-        ANT
-        )
+        <strong>
+          District0x Network Token
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          DNT
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <strong>
+            0x2ContractAddress
+          </strong>
+        </div>
       </td>
     </tr>
     <tr
@@ -2544,53 +2847,25 @@ exports[`Storyshots Modules/SelectableTokenList default 1`] = `
       <td
         className=""
       >
-        District0x Network Token
-         (
-        DNT
-        )
-      </td>
-    </tr>
-    <tr
-      className=""
-    >
-      <td
-        className="collapsing"
-      >
-        <div
-          className="field"
-        >
-          <div
-            className="ui fitted checkbox"
-            content={undefined}
-            onChange={[Function]}
-            onClick={[Function]}
-            onMouseDown={[Function]}
-          >
-            <input
-              checked={false}
-              className="hidden"
-              id={undefined}
-              name={undefined}
-              onClick={[Function]}
-              readOnly={true}
-              required={undefined}
-              tabIndex={0}
-              type="checkbox"
-              value={undefined}
-            />
-            <label
-              htmlFor={undefined}
-            />
-          </div>
-        </div>
+        <strong>
+          OmiseGo
+        </strong>
       </td>
       <td
         className=""
       >
-        OmiseGo
-         (
-        OMG
-        )
+        <strong>
+          OMG
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <strong>
+            0x3ContractAddress
+          </strong>
+        </div>
       </td>
     </tr>
   </tbody>
@@ -2604,7 +2879,7 @@ exports[`Storyshots Modules/SelectableTokenList empty 1`] = `
   <div
     className="header"
   >
-    No token contracts available.
+    No token contracts to display.
   </div>
   <div
     className="content"
@@ -2622,7 +2897,7 @@ exports[`Storyshots Modules/SelectableTokenList empty 1`] = `
     <li
       className="content"
     >
-      wait until all tokens are loaded
+      check if you are connected to the correct network
     </li>
   </ul>
 </div>
@@ -2672,10 +2947,25 @@ exports[`Storyshots Modules/SelectableTokenListItem checked 1`] = `
       <td
         className=""
       >
-        a token name
-         (
-        ATN
-        )
+        <strong>
+          a token name
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          ATN
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <strong>
+            0xaTokenContractAddress
+          </strong>
+        </div>
       </td>
     </tr>
   </tbody>
@@ -2726,14 +3016,123 @@ exports[`Storyshots Modules/SelectableTokenListItem unchecked 1`] = `
       <td
         className=""
       >
-        a token name
-         (
-        ATN
-        )
+        <strong>
+          a token name
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          ATN
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <strong>
+            0xaTokenContractAddress
+          </strong>
+        </div>
       </td>
     </tr>
   </tbody>
 </table>
+`;
+
+exports[`Storyshots Modules/SelectableTokenListItem withENS 1`] = `
+<table
+  className="ui celled table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="collapsing"
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui checked fitted checkbox"
+            content={undefined}
+            onChange={[Function]}
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          >
+            <input
+              checked={true}
+              className="hidden"
+              id={undefined}
+              name={undefined}
+              onClick={[Function]}
+              readOnly={true}
+              required={undefined}
+              tabIndex={0}
+              type="checkbox"
+              value={undefined}
+            />
+            <label
+              htmlFor={undefined}
+            />
+          </div>
+        </div>
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          a token name
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          ATN
+        </strong>
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <div>
+            <strong>
+              contract.atn.eth
+            </strong>
+          </div>
+          <div>
+            <small>
+              0xaTokenContractAddress
+            </small>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/TokenCredits default 1`] = `
+<div
+  className="ui mini center aligned segment"
+>
+  <div>
+    ERC20 contract data origin: 
+    <strong>
+      <a
+        href="https://github.com/ethereum-lists/tokens"
+        target="_blank"
+      >
+        https://github.com/ethereum-lists/tokens
+      </a>
+    </strong>
+  </div>
+</div>
 `;
 
 exports[`Storyshots Modules/TokenListFilter empty 1`] = `
@@ -2780,7 +3179,6 @@ exports[`Storyshots Modules/TokenListFilter withFilterString 1`] = `
   <i
     aria-hidden="true"
     className="eraser circular link icon"
-    iconPosition="right"
     onClick={[Function]}
   />
 </div>
@@ -2863,6 +3261,316 @@ exports[`Storyshots Modules/TokenLoader thirtyPercent 1`] = `
 </div>
 `;
 
+exports[`Storyshots Modules/TransferEvent negative 1`] = `
+<table
+  className="ui table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="right aligned"
+      >
+        #: 
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          5969172
+        </strong>
+      </td>
+      <td
+        className="right aligned"
+      >
+        From: 
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <div>
+            <strong>
+              super.duper.eth
+            </strong>
+          </div>
+          <div>
+            <small>
+              0x290907c4d97db09f8c9c69a60120855597187afe
+            </small>
+          </div>
+        </div>
+      </td>
+      <td
+        className="right aligned"
+        rowSpan="2"
+      >
+        <i
+          aria-hidden="true"
+          className="red minus circular icon"
+        />
+      </td>
+      <td
+        className="negative right aligned"
+        rowSpan="2"
+      >
+        150.000000
+      </td>
+    </tr>
+    <tr
+      className=""
+    >
+      <td
+        className="right aligned"
+      >
+        Tx: 
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          <span
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            0x9e1534c7...
+          </span>
+        </strong>
+      </td>
+      <td
+        className="right aligned"
+      >
+        To: 
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <strong>
+            0x963cffd781053dc6351a325e4fcf4f3a228da3d1
+          </strong>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/TransferEvent neutral 1`] = `
+<table
+  className="ui table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="right aligned"
+      >
+        #: 
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          5969172
+        </strong>
+      </td>
+      <td
+        className="right aligned"
+      >
+        From: 
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <div>
+            <strong>
+              super.duper.eth
+            </strong>
+          </div>
+          <div>
+            <small>
+              0x290907c4d97db09f8c9c69a60120855597187afe
+            </small>
+          </div>
+        </div>
+      </td>
+      <td
+        className="right aligned"
+        rowSpan="2"
+      />
+      <td
+        className="right aligned"
+        rowSpan="2"
+      >
+        150.000000
+      </td>
+    </tr>
+    <tr
+      className=""
+    >
+      <td
+        className="right aligned"
+      >
+        Tx: 
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          <span
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            0x9e1534c7...
+          </span>
+        </strong>
+      </td>
+      <td
+        className="right aligned"
+      >
+        To: 
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <strong>
+            0x963cffd781053dc6351a325e4fcf4f3a228da3d1
+          </strong>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/TransferEvent positive 1`] = `
+<table
+  className="ui table"
+>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className="right aligned"
+      >
+        #: 
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          5969172
+        </strong>
+      </td>
+      <td
+        className="right aligned"
+      >
+        From: 
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <div>
+            <strong>
+              super.duper.eth
+            </strong>
+          </div>
+          <div>
+            <small>
+              0x290907c4d97db09f8c9c69a60120855597187afe
+            </small>
+          </div>
+        </div>
+      </td>
+      <td
+        className="right aligned"
+        rowSpan="2"
+      >
+        <i
+          aria-hidden="true"
+          className="green plus circular icon"
+        />
+      </td>
+      <td
+        className="positive right aligned"
+        rowSpan="2"
+      >
+        150.000000
+      </td>
+    </tr>
+    <tr
+      className=""
+    >
+      <td
+        className="right aligned"
+      >
+        Tx: 
+      </td>
+      <td
+        className=""
+      >
+        <strong>
+          <span
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            0x9e1534c7...
+          </span>
+        </strong>
+      </td>
+      <td
+        className="right aligned"
+      >
+        To: 
+      </td>
+      <td
+        className=""
+      >
+        <div>
+          <strong>
+            0x963cffd781053dc6351a325e4fcf4f3a228da3d1
+          </strong>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Modules/web3Gate error 1`] = `null`;
+
+exports[`Storyshots Modules/web3Gate initalized 1`] = `
+<p>
+  gatewayed content
+</p>
+`;
+
+exports[`Storyshots Modules/web3Gate loading 1`] = `null`;
+
+exports[`Storyshots Modules/web3Gate uninitialized 1`] = `null`;
+
 exports[`Storyshots Screens/Accounts default 1`] = `
 <div
   className="ui vertically padded grid"
@@ -2880,11 +3588,14 @@ exports[`Storyshots Screens/Accounts default 1`] = `
           className="header item"
           onClick={[Function]}
         >
-          TokenStation
+          TokenStation.io
         </div>
         <a
+          aria-current={null}
           className="item"
+          href="/overview"
           onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -2893,8 +3604,11 @@ exports[`Storyshots Screens/Accounts default 1`] = `
           Overview
         </a>
         <a
-          className="active item"
+          aria-current={null}
+          className="item"
+          href="/accounts"
           onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -2903,8 +3617,24 @@ exports[`Storyshots Screens/Accounts default 1`] = `
           Manage Accounts
         </a>
         <a
+          aria-current={null}
           className="item"
+          href="/events"
           onClick={[Function]}
+          style={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="exchange icon"
+          />
+          View Transfer Events
+        </a>
+        <a
+          aria-current={null}
+          className="item"
+          href="/tokenContracts"
+          onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -2919,6 +3649,11 @@ exports[`Storyshots Screens/Accounts default 1`] = `
     >
       <h1
         className="ui green block inverted center aligned header"
+        style={
+          Object {
+            "marginTop": 0,
+          }
+        }
       >
         Manage Accounts
       </h1>
@@ -3270,11 +4005,14 @@ exports[`Storyshots Screens/Overview default 1`] = `
           className="header item"
           onClick={[Function]}
         >
-          TokenStation
+          TokenStation.io
         </div>
         <a
-          className="active item"
+          aria-current={null}
+          className="item"
+          href="/overview"
           onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -3283,8 +4021,11 @@ exports[`Storyshots Screens/Overview default 1`] = `
           Overview
         </a>
         <a
+          aria-current={null}
           className="item"
+          href="/accounts"
           onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -3293,8 +4034,24 @@ exports[`Storyshots Screens/Overview default 1`] = `
           Manage Accounts
         </a>
         <a
+          aria-current={null}
           className="item"
+          href="/events"
           onClick={[Function]}
+          style={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="exchange icon"
+          />
+          View Transfer Events
+        </a>
+        <a
+          aria-current={null}
+          className="item"
+          href="/tokenContracts"
+          onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -3309,6 +4066,11 @@ exports[`Storyshots Screens/Overview default 1`] = `
     >
       <h1
         className="ui green block inverted center aligned header"
+        style={
+          Object {
+            "marginTop": 0,
+          }
+        }
       >
         Overview
       </h1>
@@ -3364,7 +4126,7 @@ exports[`Storyshots Screens/Overview default 1`] = `
                 className="eight wide"
               >
                 <a
-                  href="/token/1"
+                  href="/events/0x1ContractAddress"
                   onClick={[Function]}
                 >
                   Arcade Network Token
@@ -3442,7 +4204,7 @@ exports[`Storyshots Screens/Overview default 1`] = `
                 className="eight wide"
               >
                 <a
-                  href="/token/2"
+                  href="/events/0x2ContractAddress"
                   onClick={[Function]}
                 >
                   District0x Network Token
@@ -3520,7 +4282,7 @@ exports[`Storyshots Screens/Overview default 1`] = `
                 className="eight wide"
               >
                 <a
-                  href="/token/3"
+                  href="/events/0x3ContractAddress"
                   onClick={[Function]}
                 >
                   OmiseGo
@@ -3592,11 +4354,14 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
           className="header item"
           onClick={[Function]}
         >
-          TokenStation
+          TokenStation.io
         </div>
         <a
+          aria-current={null}
           className="item"
+          href="/overview"
           onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -3605,8 +4370,11 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
           Overview
         </a>
         <a
+          aria-current={null}
           className="item"
+          href="/accounts"
           onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -3615,8 +4383,24 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
           Manage Accounts
         </a>
         <a
-          className="active item"
+          aria-current={null}
+          className="item"
+          href="/events"
           onClick={[Function]}
+          style={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="exchange icon"
+          />
+          View Transfer Events
+        </a>
+        <a
+          aria-current={null}
+          className="item"
+          href="/tokenContracts"
+          onClick={[Function]}
+          style={undefined}
         >
           <i
             aria-hidden="true"
@@ -3631,9 +4415,32 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
     >
       <h1
         className="ui green block inverted center aligned header"
+        style={
+          Object {
+            "marginTop": 0,
+          }
+        }
       >
         Manage Token Contracts
       </h1>
+      <div
+        className="ui icon info message"
+      >
+        <i
+          aria-hidden="true"
+          className="info icon"
+        />
+        <div
+          className="header"
+        >
+          Select which tokens to track
+        </div>
+        <div
+          className="content"
+        >
+          In the list below, check the tokens you want to keep track of. Use the filter to quickly find specific tokens. You can filter by token name, symbol or contract address.
+        </div>
+      </div>
       <div
         className="ui divided middle aligned two column grid"
       >
@@ -3731,21 +4538,7 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
                   <span
                     className="text"
                   >
-                    Clear tokens
-                  </span>
-                </div>
-                <div
-                  aria-checked={undefined}
-                  aria-disabled={undefined}
-                  aria-selected={undefined}
-                  className="item"
-                  onClick={[Function]}
-                  role="option"
-                >
-                  <span
-                    className="text"
-                  >
-                    Reload tokens
+                    Reload token list
                   </span>
                 </div>
               </div>
@@ -3762,6 +4555,64 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
         <tbody
           className=""
         >
+          <tr
+            className=""
+          >
+            <td
+              className="collapsing"
+            >
+              <div
+                className="field"
+              >
+                <div
+                  className="ui checked fitted checkbox"
+                  content={undefined}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <input
+                    checked={true}
+                    className="hidden"
+                    id={undefined}
+                    name={undefined}
+                    onClick={[Function]}
+                    readOnly={true}
+                    required={undefined}
+                    tabIndex={0}
+                    type="checkbox"
+                    value={undefined}
+                  />
+                  <label
+                    htmlFor={undefined}
+                  />
+                </div>
+              </div>
+            </td>
+            <td
+              className=""
+            >
+              <strong>
+                Arcade Network Token
+              </strong>
+            </td>
+            <td
+              className=""
+            >
+              <strong>
+                ANT
+              </strong>
+            </td>
+            <td
+              className=""
+            >
+              <div>
+                <strong>
+                  0x1ContractAddress
+                </strong>
+              </div>
+            </td>
+          </tr>
           <tr
             className=""
           >
@@ -3799,10 +4650,25 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
             <td
               className=""
             >
-              Arcade Network Token
-               (
-              ANT
-              )
+              <strong>
+                District0x Network Token
+              </strong>
+            </td>
+            <td
+              className=""
+            >
+              <strong>
+                DNT
+              </strong>
+            </td>
+            <td
+              className=""
+            >
+              <div>
+                <strong>
+                  0x2ContractAddress
+                </strong>
+              </div>
             </td>
           </tr>
           <tr
@@ -3842,53 +4708,25 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
             <td
               className=""
             >
-              District0x Network Token
-               (
-              DNT
-              )
-            </td>
-          </tr>
-          <tr
-            className=""
-          >
-            <td
-              className="collapsing"
-            >
-              <div
-                className="field"
-              >
-                <div
-                  className="ui fitted checkbox"
-                  content={undefined}
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  onMouseDown={[Function]}
-                >
-                  <input
-                    checked={false}
-                    className="hidden"
-                    id={undefined}
-                    name={undefined}
-                    onClick={[Function]}
-                    readOnly={true}
-                    required={undefined}
-                    tabIndex={0}
-                    type="checkbox"
-                    value={undefined}
-                  />
-                  <label
-                    htmlFor={undefined}
-                  />
-                </div>
-              </div>
+              <strong>
+                OmiseGo
+              </strong>
             </td>
             <td
               className=""
             >
-              OmiseGo
-               (
-              OMG
-              )
+              <strong>
+                OMG
+              </strong>
+            </td>
+            <td
+              className=""
+            >
+              <div>
+                <strong>
+                  0x3ContractAddress
+                </strong>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -3898,10 +4736,93 @@ exports[`Storyshots Screens/TokenContracts default 1`] = `
 </div>
 `;
 
+exports[`Storyshots Segments Sidebar 1`] = `
+<div
+  className="ui padded grid"
+>
+  <div
+    className="four wide column"
+  >
+    <div
+      className="ui large fluid inverted pointing vertical labeled icon menu"
+    >
+      <div
+        className="header item"
+        onClick={[Function]}
+      >
+        TokenStation.io
+      </div>
+      <a
+        aria-current={null}
+        className="item"
+        href="/overview"
+        onClick={[Function]}
+        style={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="home icon"
+        />
+        Overview
+      </a>
+      <a
+        aria-current={null}
+        className="item"
+        href="/accounts"
+        onClick={[Function]}
+        style={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="users icon"
+        />
+        Manage Accounts
+      </a>
+      <a
+        aria-current={null}
+        className="item"
+        href="/events"
+        onClick={[Function]}
+        style={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="exchange icon"
+        />
+        View Transfer Events
+      </a>
+      <a
+        aria-current={null}
+        className="item"
+        href="/tokenContracts"
+        onClick={[Function]}
+        style={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="cube icon"
+        />
+        Manage Contracts
+      </a>
+    </div>
+  </div>
+  <div
+    className="column"
+  >
+    screen content here
+  </div>
+</div>
+`;
+
 exports[`Storyshots Segments/Accounts default 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Manage Accounts
 </h1>,
@@ -4234,10 +5155,1526 @@ Array [
 ]
 `;
 
+exports[`Storyshots Segments/Events having events 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
+>
+    Transfer Events
+</h1>,
+  <div
+    className="ui container"
+>
+    <div
+        className="ui grid"
+    >
+        <div
+            className="row"
+        >
+            <div
+                className="eight wide column"
+            >
+                <form
+                    action={undefined}
+                    className="ui form"
+                    onSubmit={[Function]}
+                >
+                    <div
+                        className="inline field"
+                    >
+                        <label>
+                            Show Transfers of token:
+                        </label>
+                        <div
+                            aria-busy={undefined}
+                            aria-disabled={undefined}
+                            aria-expanded={false}
+                            className="ui fluid search selection dropdown"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            role="combobox"
+                            tabIndex={undefined}
+                        >
+                            <input
+                                aria-autocomplete="list"
+                                autoComplete="off"
+                                className="search"
+                                onChange={[Function]}
+                                style={
+                                    Object {
+                                        "width": undefined,
+                                      }
+                                }
+                                tabIndex={0}
+                                type="text"
+                                value=""
+                            />
+                            <div
+                                aria-live="polite"
+                                className="text"
+                                role="alert"
+                            />
+                            <i
+                                aria-hidden="true"
+                                className="dropdown icon"
+                                onClick={[Function]}
+                            />
+                            <div
+                                aria-multiselectable={undefined}
+                                className="menu transition"
+                                role="listbox"
+                            >
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={true}
+                                    className="selected item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        Arcade Network Token (ANT)
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        OmiseGo (OMG)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div
+                className="eight wide column"
+            >
+                <form
+                    action={undefined}
+                    className="ui form"
+                    onSubmit={[Function]}
+                >
+                    <div
+                        className="inline field"
+                    >
+                        <label>
+                            To/From Account:
+                        </label>
+                        <div
+                            aria-busy={undefined}
+                            aria-disabled={undefined}
+                            aria-expanded={false}
+                            className="ui fluid search selection dropdown"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            role="combobox"
+                            tabIndex={undefined}
+                        >
+                            <input
+                                aria-autocomplete="list"
+                                autoComplete="off"
+                                className="search"
+                                onChange={[Function]}
+                                style={
+                                    Object {
+                                        "width": undefined,
+                                      }
+                                }
+                                tabIndex={0}
+                                type="text"
+                                value=""
+                            />
+                            <div
+                                aria-live="polite"
+                                className="text"
+                                role="alert"
+                            />
+                            <i
+                                aria-hidden="true"
+                                className="dropdown icon"
+                                onClick={[Function]}
+                            />
+                            <div
+                                aria-multiselectable={undefined}
+                                className="menu transition"
+                                role="listbox"
+                            >
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={true}
+                                    className="selected item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress1
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress2
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress3
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress4
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress5
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress6
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>,
+  <div
+    className="ui middle aligned two column grid"
+>
+    <div
+        className="row"
+    >
+        <div
+            className="column"
+        >
+            <div
+                className="ui icon info message"
+            >
+                <i
+                    aria-hidden="true"
+                    className="exchange icon"
+                />
+                <div
+                    className="content"
+                >
+                    <div
+                        className="header"
+                    >
+                        Showing 
+                        0
+                         transfer events
+                    </div>
+                    Block 
+                    0
+                     to 
+                    0
+                </div>
+            </div>
+        </div>
+        <div
+            className="column"
+        >
+            <button
+                className="ui icon disabled left labeled button"
+                disabled={true}
+                onClick={[Function]}
+                role="button"
+                tabIndex={-1}
+            >
+                <i
+                    aria-hidden="true"
+                    className="search icon"
+                />
+                Load more
+            </button>
+        </div>
+    </div>
+</div>,
+  <table
+    className="ui compact table"
+>
+    <thead
+        className=""
+    >
+        <tr
+            className=""
+        >
+            <th
+                className="center aligned"
+                colSpan="2"
+            >
+                Block#/TransactionHash
+            </th>
+            <th
+                className="center aligned"
+                colSpan="2"
+            >
+                From/To
+            </th>
+            <th
+                className="right aligned"
+                colSpan="2"
+            >
+                Quantity
+            </th>
+        </tr>
+    </thead>
+    <tbody
+        className=""
+    />
+</table>,
+]
+`;
+
+exports[`Storyshots Segments/Events no addresses 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
+>
+    Transfer Events
+</h1>,
+  <div
+    className="ui container"
+>
+    <div
+        className="ui grid"
+    >
+        <div
+            className="row"
+        >
+            <div
+                className="eight wide column"
+            >
+                <form
+                    action={undefined}
+                    className="ui form"
+                    onSubmit={[Function]}
+                >
+                    <div
+                        className="inline field"
+                    >
+                        <label>
+                            Show Transfers of token:
+                        </label>
+                        <div
+                            aria-busy={undefined}
+                            aria-disabled={undefined}
+                            aria-expanded={false}
+                            className="ui fluid search selection dropdown"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            role="combobox"
+                            tabIndex={undefined}
+                        >
+                            <input
+                                aria-autocomplete="list"
+                                autoComplete="off"
+                                className="search"
+                                onChange={[Function]}
+                                style={
+                                    Object {
+                                        "width": undefined,
+                                      }
+                                }
+                                tabIndex={0}
+                                type="text"
+                                value=""
+                            />
+                            <div
+                                aria-live="polite"
+                                className="text"
+                                role="alert"
+                            />
+                            <i
+                                aria-hidden="true"
+                                className="dropdown icon"
+                                onClick={[Function]}
+                            />
+                            <div
+                                aria-multiselectable={undefined}
+                                className="menu transition"
+                                role="listbox"
+                            >
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={true}
+                                    className="selected item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        Arcade Network Token (ANT)
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        OmiseGo (OMG)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div
+                className="eight wide column"
+            >
+                <form
+                    action={undefined}
+                    className="ui form"
+                    onSubmit={[Function]}
+                >
+                    <div
+                        className="inline field"
+                    >
+                        <label>
+                            To/From Account:
+                        </label>
+                        <div
+                            aria-busy={undefined}
+                            aria-disabled={undefined}
+                            aria-expanded={false}
+                            className="ui fluid search selection dropdown"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            role="combobox"
+                            tabIndex={undefined}
+                        >
+                            <input
+                                aria-autocomplete="list"
+                                autoComplete="off"
+                                className="search"
+                                onChange={[Function]}
+                                style={
+                                    Object {
+                                        "width": undefined,
+                                      }
+                                }
+                                tabIndex={0}
+                                type="text"
+                                value=""
+                            />
+                            <div
+                                aria-live="polite"
+                                className="text"
+                                role="alert"
+                            />
+                            <i
+                                aria-hidden="true"
+                                className="dropdown icon"
+                                onClick={[Function]}
+                            />
+                            <div
+                                aria-multiselectable={undefined}
+                                className="menu transition"
+                                role="listbox"
+                            >
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={true}
+                                    className="selected item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress1
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress2
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress3
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress4
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress5
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress6
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>,
+  <div
+    className="ui middle aligned two column grid"
+>
+    <div
+        className="row"
+    >
+        <div
+            className="column"
+        >
+            <div
+                className="ui icon info message"
+            >
+                <i
+                    aria-hidden="true"
+                    className="exchange icon"
+                />
+                <div
+                    className="content"
+                >
+                    <div
+                        className="header"
+                    >
+                        Showing 
+                        0
+                         transfer events
+                    </div>
+                    Block 
+                    0
+                     to 
+                    0
+                </div>
+            </div>
+        </div>
+        <div
+            className="column"
+        >
+            <button
+                className="ui icon disabled left labeled button"
+                disabled={true}
+                onClick={[Function]}
+                role="button"
+                tabIndex={-1}
+            >
+                <i
+                    aria-hidden="true"
+                    className="search icon"
+                />
+                Load more
+            </button>
+        </div>
+    </div>
+</div>,
+  <table
+    className="ui compact table"
+>
+    <thead
+        className=""
+    >
+        <tr
+            className=""
+        >
+            <th
+                className="center aligned"
+                colSpan="2"
+            >
+                Block#/TransactionHash
+            </th>
+            <th
+                className="center aligned"
+                colSpan="2"
+            >
+                From/To
+            </th>
+            <th
+                className="right aligned"
+                colSpan="2"
+            >
+                Quantity
+            </th>
+        </tr>
+    </thead>
+    <tbody
+        className=""
+    />
+</table>,
+]
+`;
+
+exports[`Storyshots Segments/Events no events 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
+>
+    Transfer Events
+</h1>,
+  <div
+    className="ui container"
+>
+    <div
+        className="ui grid"
+    >
+        <div
+            className="row"
+        >
+            <div
+                className="eight wide column"
+            >
+                <form
+                    action={undefined}
+                    className="ui form"
+                    onSubmit={[Function]}
+                >
+                    <div
+                        className="inline field"
+                    >
+                        <label>
+                            Show Transfers of token:
+                        </label>
+                        <div
+                            aria-busy={undefined}
+                            aria-disabled={undefined}
+                            aria-expanded={false}
+                            className="ui fluid search selection dropdown"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            role="combobox"
+                            tabIndex={undefined}
+                        >
+                            <input
+                                aria-autocomplete="list"
+                                autoComplete="off"
+                                className="search"
+                                onChange={[Function]}
+                                style={
+                                    Object {
+                                        "width": undefined,
+                                      }
+                                }
+                                tabIndex={0}
+                                type="text"
+                                value=""
+                            />
+                            <div
+                                aria-live="polite"
+                                className="text"
+                                role="alert"
+                            />
+                            <i
+                                aria-hidden="true"
+                                className="dropdown icon"
+                                onClick={[Function]}
+                            />
+                            <div
+                                aria-multiselectable={undefined}
+                                className="menu transition"
+                                role="listbox"
+                            >
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={true}
+                                    className="selected item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        Arcade Network Token (ANT)
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        OmiseGo (OMG)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div
+                className="eight wide column"
+            >
+                <form
+                    action={undefined}
+                    className="ui form"
+                    onSubmit={[Function]}
+                >
+                    <div
+                        className="inline field"
+                    >
+                        <label>
+                            To/From Account:
+                        </label>
+                        <div
+                            aria-busy={undefined}
+                            aria-disabled={undefined}
+                            aria-expanded={false}
+                            className="ui fluid search selection dropdown"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            role="combobox"
+                            tabIndex={undefined}
+                        >
+                            <input
+                                aria-autocomplete="list"
+                                autoComplete="off"
+                                className="search"
+                                onChange={[Function]}
+                                style={
+                                    Object {
+                                        "width": undefined,
+                                      }
+                                }
+                                tabIndex={0}
+                                type="text"
+                                value=""
+                            />
+                            <div
+                                aria-live="polite"
+                                className="text"
+                                role="alert"
+                            />
+                            <i
+                                aria-hidden="true"
+                                className="dropdown icon"
+                                onClick={[Function]}
+                            />
+                            <div
+                                aria-multiselectable={undefined}
+                                className="menu transition"
+                                role="listbox"
+                            >
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={true}
+                                    className="selected item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress1
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress2
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress3
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress4
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress5
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress6
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>,
+  <div
+    className="ui middle aligned two column grid"
+>
+    <div
+        className="row"
+    >
+        <div
+            className="column"
+        >
+            <div
+                className="ui icon info message"
+            >
+                <i
+                    aria-hidden="true"
+                    className="exchange icon"
+                />
+                <div
+                    className="content"
+                >
+                    <div
+                        className="header"
+                    >
+                        Showing 
+                        0
+                         transfer events
+                    </div>
+                    Block 
+                    0
+                     to 
+                    0
+                </div>
+            </div>
+        </div>
+        <div
+            className="column"
+        >
+            <button
+                className="ui icon disabled left labeled button"
+                disabled={true}
+                onClick={[Function]}
+                role="button"
+                tabIndex={-1}
+            >
+                <i
+                    aria-hidden="true"
+                    className="search icon"
+                />
+                Load more
+            </button>
+        </div>
+    </div>
+</div>,
+  <table
+    className="ui compact table"
+>
+    <thead
+        className=""
+    >
+        <tr
+            className=""
+        >
+            <th
+                className="center aligned"
+                colSpan="2"
+            >
+                Block#/TransactionHash
+            </th>
+            <th
+                className="center aligned"
+                colSpan="2"
+            >
+                From/To
+            </th>
+            <th
+                className="right aligned"
+                colSpan="2"
+            >
+                Quantity
+            </th>
+        </tr>
+    </thead>
+    <tbody
+        className=""
+    />
+</table>,
+]
+`;
+
+exports[`Storyshots Segments/Events no tracked tokens 1`] = `
+Array [
+  <h1
+    className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
+>
+    Transfer Events
+</h1>,
+  <div
+    className="ui container"
+>
+    <div
+        className="ui grid"
+    >
+        <div
+            className="row"
+        >
+            <div
+                className="eight wide column"
+            >
+                <form
+                    action={undefined}
+                    className="ui form"
+                    onSubmit={[Function]}
+                >
+                    <div
+                        className="inline field"
+                    >
+                        <label>
+                            Show Transfers of token:
+                        </label>
+                        <div
+                            aria-busy={undefined}
+                            aria-disabled={undefined}
+                            aria-expanded={false}
+                            className="ui fluid search selection dropdown"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            role="combobox"
+                            tabIndex={undefined}
+                        >
+                            <input
+                                aria-autocomplete="list"
+                                autoComplete="off"
+                                className="search"
+                                onChange={[Function]}
+                                style={
+                                    Object {
+                                        "width": undefined,
+                                      }
+                                }
+                                tabIndex={0}
+                                type="text"
+                                value=""
+                            />
+                            <div
+                                aria-live="polite"
+                                className="text"
+                                role="alert"
+                            />
+                            <i
+                                aria-hidden="true"
+                                className="dropdown icon"
+                                onClick={[Function]}
+                            />
+                            <div
+                                aria-multiselectable={undefined}
+                                className="menu transition"
+                                role="listbox"
+                            >
+                                <div
+                                    className="message"
+                                >
+                                    No results found.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div
+                className="eight wide column"
+            >
+                <form
+                    action={undefined}
+                    className="ui form"
+                    onSubmit={[Function]}
+                >
+                    <div
+                        className="inline field"
+                    >
+                        <label>
+                            To/From Account:
+                        </label>
+                        <div
+                            aria-busy={undefined}
+                            aria-disabled={undefined}
+                            aria-expanded={false}
+                            className="ui fluid search selection dropdown"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseDown={[Function]}
+                            role="combobox"
+                            tabIndex={undefined}
+                        >
+                            <input
+                                aria-autocomplete="list"
+                                autoComplete="off"
+                                className="search"
+                                onChange={[Function]}
+                                style={
+                                    Object {
+                                        "width": undefined,
+                                      }
+                                }
+                                tabIndex={0}
+                                type="text"
+                                value=""
+                            />
+                            <div
+                                aria-live="polite"
+                                className="text"
+                                role="alert"
+                            />
+                            <i
+                                aria-hidden="true"
+                                className="dropdown icon"
+                                onClick={[Function]}
+                            />
+                            <div
+                                aria-multiselectable={undefined}
+                                className="menu transition"
+                                role="listbox"
+                            >
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={true}
+                                    className="selected item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress1
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress2
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress3
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress4
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress5
+                                    </span>
+                                </div>
+                                <div
+                                    aria-checked={false}
+                                    aria-disabled={undefined}
+                                    aria-selected={false}
+                                    className="item"
+                                    onClick={[Function]}
+                                    role="option"
+                                    style={
+                                        Object {
+                                            "pointerEvents": "all",
+                                          }
+                                    }
+                                >
+                                    <span
+                                        className="text"
+                                    >
+                                        0xAccountAddress6
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>,
+  <div
+    className="ui middle aligned two column grid"
+>
+    <div
+        className="row"
+    >
+        <div
+            className="column"
+        >
+            <div
+                className="ui icon info message"
+            >
+                <i
+                    aria-hidden="true"
+                    className="exchange icon"
+                />
+                <div
+                    className="content"
+                >
+                    <div
+                        className="header"
+                    >
+                        Showing 
+                        0
+                         transfer events
+                    </div>
+                    Block 
+                    0
+                     to 
+                    0
+                </div>
+            </div>
+        </div>
+        <div
+            className="column"
+        >
+            <button
+                className="ui icon disabled left labeled button"
+                disabled={true}
+                onClick={[Function]}
+                role="button"
+                tabIndex={-1}
+            >
+                <i
+                    aria-hidden="true"
+                    className="search icon"
+                />
+                Load more
+            </button>
+        </div>
+    </div>
+</div>,
+  <table
+    className="ui compact table"
+>
+    <thead
+        className=""
+    >
+        <tr
+            className=""
+        >
+            <th
+                className="center aligned"
+                colSpan="2"
+            >
+                Block#/TransactionHash
+            </th>
+            <th
+                className="center aligned"
+                colSpan="2"
+            >
+                From/To
+            </th>
+            <th
+                className="right aligned"
+                colSpan="2"
+            >
+                Quantity
+            </th>
+        </tr>
+    </thead>
+    <tbody
+        className=""
+    />
+</table>,
+]
+`;
+
 exports[`Storyshots Segments/Overview default 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Overview
 </h1>,
@@ -4293,7 +6730,7 @@ Array [
                     className="eight wide"
                 >
                     <a
-                        href="/token/1"
+                        href="/events/0x1ContractAddress"
                         onClick={[Function]}
                     >
                         Arcade Network Token
@@ -4371,7 +6808,7 @@ Array [
                     className="eight wide"
                 >
                     <a
-                        href="/token/2"
+                        href="/events/0x2ContractAddress"
                         onClick={[Function]}
                     >
                         District0x Network Token
@@ -4449,7 +6886,7 @@ Array [
                     className="eight wide"
                 >
                     <a
-                        href="/token/3"
+                        href="/events/0x3ContractAddress"
                         onClick={[Function]}
                     >
                         OmiseGo
@@ -4506,6 +6943,11 @@ exports[`Storyshots Segments/Overview no accounts 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Overview
 </h1>,
@@ -4523,7 +6965,7 @@ Array [
     <p>
         You have no watched or unlocked accounts. Open the 
         <a
-            href="/todo"
+            href="/accounts/"
             onClick={[Function]}
         >
             Account Manager
@@ -4538,6 +6980,11 @@ exports[`Storyshots Segments/Overview no balances 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Overview
 </h1>,
@@ -4589,7 +7036,7 @@ Array [
         >
             Open the 
             <a
-                href="/todo"
+                href="/accounts/"
                 onClick={[Function]}
             >
                 Account Manager
@@ -4601,7 +7048,7 @@ Array [
         >
             Open the 
             <a
-                href="/todo"
+                href="/tokenContracts/"
                 onClick={[Function]}
             >
                 Token Manager
@@ -4613,181 +7060,36 @@ Array [
 ]
 `;
 
-exports[`Storyshots Segments/Sidebar accounts 1`] = `
-<div
-  className="ui padded grid"
->
-  <div
-    className="four wide column"
-  >
-    <div
-      className="ui large fluid inverted pointing vertical labeled icon menu"
-    >
-      <div
-        className="header item"
-        onClick={[Function]}
-      >
-        TokenStation
-      </div>
-      <a
-        className="item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="home icon"
-        />
-        Overview
-      </a>
-      <a
-        className="active item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="users icon"
-        />
-        Manage Accounts
-      </a>
-      <a
-        className="item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="cube icon"
-        />
-        Manage Contracts
-      </a>
-    </div>
-  </div>
-  <div
-    className="column"
-  >
-    screen content here
-  </div>
-</div>
-`;
-
-exports[`Storyshots Segments/Sidebar overview 1`] = `
-<div
-  className="ui padded grid"
->
-  <div
-    className="four wide column"
-  >
-    <div
-      className="ui large fluid inverted pointing vertical labeled icon menu"
-    >
-      <div
-        className="header item"
-        onClick={[Function]}
-      >
-        TokenStation
-      </div>
-      <a
-        className="active item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="home icon"
-        />
-        Overview
-      </a>
-      <a
-        className="item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="users icon"
-        />
-        Manage Accounts
-      </a>
-      <a
-        className="item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="cube icon"
-        />
-        Manage Contracts
-      </a>
-    </div>
-  </div>
-  <div
-    className="column"
-  >
-    screen content here
-  </div>
-</div>
-`;
-
-exports[`Storyshots Segments/Sidebar token 1`] = `
-<div
-  className="ui padded grid"
->
-  <div
-    className="four wide column"
-  >
-    <div
-      className="ui large fluid inverted pointing vertical labeled icon menu"
-    >
-      <div
-        className="header item"
-        onClick={[Function]}
-      >
-        TokenStation
-      </div>
-      <a
-        className="item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="home icon"
-        />
-        Overview
-      </a>
-      <a
-        className="item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="users icon"
-        />
-        Manage Accounts
-      </a>
-      <a
-        className="active item"
-        onClick={[Function]}
-      >
-        <i
-          aria-hidden="true"
-          className="cube icon"
-        />
-        Manage Contracts
-      </a>
-    </div>
-  </div>
-  <div
-    className="column"
-  >
-    screen content here
-  </div>
-</div>
-`;
-
 exports[`Storyshots Segments/TokenContracts contracts loaded 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Manage Token Contracts
 </h1>,
+  <div
+    className="ui icon info message"
+>
+    <i
+        aria-hidden="true"
+        className="info icon"
+    />
+    <div
+        className="header"
+    >
+        Select which tokens to track
+    </div>
+    <div
+        className="content"
+    >
+        In the list below, check the tokens you want to keep track of. Use the filter to quickly find specific tokens. You can filter by token name, symbol or contract address.
+    </div>
+</div>,
   <div
     className="ui divided middle aligned two column grid"
 >
@@ -4885,21 +7187,7 @@ Array [
                         <span
                             className="text"
                         >
-                            Clear tokens
-                        </span>
-                    </div>
-                    <div
-                        aria-checked={undefined}
-                        aria-disabled={undefined}
-                        aria-selected={undefined}
-                        className="item"
-                        onClick={[Function]}
-                        role="option"
-                    >
-                        <span
-                            className="text"
-                        >
-                            Reload tokens
+                            Reload token list
                         </span>
                     </div>
                 </div>
@@ -4916,6 +7204,64 @@ Array [
     <tbody
         className=""
     >
+        <tr
+            className=""
+        >
+            <td
+                className="collapsing"
+            >
+                <div
+                    className="field"
+                >
+                    <div
+                        className="ui checked fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={true}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
+                </div>
+            </td>
+            <td
+                className=""
+            >
+                <strong>
+                    Arcade Network Token
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <strong>
+                    ANT
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <div>
+                    <strong>
+                        0x1ContractAddress
+                    </strong>
+                </div>
+            </td>
+        </tr>
         <tr
             className=""
         >
@@ -4953,10 +7299,25 @@ Array [
             <td
                 className=""
             >
-                Arcade Network Token
-                 (
-                ANT
-                )
+                <strong>
+                    District0x Network Token
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <strong>
+                    DNT
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <div>
+                    <strong>
+                        0x2ContractAddress
+                    </strong>
+                </div>
             </td>
         </tr>
         <tr
@@ -4996,53 +7357,25 @@ Array [
             <td
                 className=""
             >
-                District0x Network Token
-                 (
-                DNT
-                )
-            </td>
-        </tr>
-        <tr
-            className=""
-        >
-            <td
-                className="collapsing"
-            >
-                <div
-                    className="field"
-                >
-                    <div
-                        className="ui fitted checkbox"
-                        content={undefined}
-                        onChange={[Function]}
-                        onClick={[Function]}
-                        onMouseDown={[Function]}
-                    >
-                        <input
-                            checked={false}
-                            className="hidden"
-                            id={undefined}
-                            name={undefined}
-                            onClick={[Function]}
-                            readOnly={true}
-                            required={undefined}
-                            tabIndex={0}
-                            type="checkbox"
-                            value={undefined}
-                        />
-                        <label
-                            htmlFor={undefined}
-                        />
-                    </div>
-                </div>
+                <strong>
+                    OmiseGo
+                </strong>
             </td>
             <td
                 className=""
             >
-                OmiseGo
-                 (
-                OMG
-                )
+                <strong>
+                    OMG
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <div>
+                    <strong>
+                        0x3ContractAddress
+                    </strong>
+                </div>
             </td>
         </tr>
     </tbody>
@@ -5054,29 +7387,30 @@ exports[`Storyshots Segments/TokenContracts contracts loading 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Manage Token Contracts
 </h1>,
   <div
-    className="ui basic segment"
+    className="ui icon info message"
 >
+    <i
+        aria-hidden="true"
+        className="info icon"
+    />
     <div
-        className="ui green small progress"
-        data-percent={66}
+        className="header"
     >
-        <div
-            className="bar"
-            style={
-                Object {
-                    "width": "66.66666666666666%",
-                  }
-            }
-        />
-        <div
-            className="label"
-        >
-            Loading District0x Network Token (2/3)
-        </div>
+        Select which tokens to track
+    </div>
+    <div
+        className="content"
+    >
+        In the list below, check the tokens you want to keep track of. Use the filter to quickly find specific tokens. You can filter by token name, symbol or contract address.
     </div>
 </div>,
   <div
@@ -5176,21 +7510,7 @@ Array [
                         <span
                             className="text"
                         >
-                            Clear tokens
-                        </span>
-                    </div>
-                    <div
-                        aria-checked={undefined}
-                        aria-disabled={undefined}
-                        aria-selected={undefined}
-                        className="item"
-                        onClick={[Function]}
-                        role="option"
-                    >
-                        <span
-                            className="text"
-                        >
-                            Reload tokens
+                            Reload token list
                         </span>
                     </div>
                 </div>
@@ -5244,10 +7564,25 @@ Array [
             <td
                 className=""
             >
-                Arcade Network Token
-                 (
-                ANT
-                )
+                <strong>
+                    Arcade Network Token
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <strong>
+                    ANT
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <div>
+                    <strong>
+                        0x1ContractAddress
+                    </strong>
+                </div>
             </td>
         </tr>
         <tr
@@ -5287,10 +7622,25 @@ Array [
             <td
                 className=""
             >
-                District0x Network Token
-                 (
-                DNT
-                )
+                <strong>
+                    District0x Network Token
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <strong>
+                    DNT
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <div>
+                    <strong>
+                        0x2ContractAddress
+                    </strong>
+                </div>
             </td>
         </tr>
     </tbody>
@@ -5302,9 +7652,32 @@ exports[`Storyshots Segments/TokenContracts filtered 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Manage Token Contracts
 </h1>,
+  <div
+    className="ui icon info message"
+>
+    <i
+        aria-hidden="true"
+        className="info icon"
+    />
+    <div
+        className="header"
+    >
+        Select which tokens to track
+    </div>
+    <div
+        className="content"
+    >
+        In the list below, check the tokens you want to keep track of. Use the filter to quickly find specific tokens. You can filter by token name, symbol or contract address.
+    </div>
+</div>,
   <div
     className="ui divided middle aligned two column grid"
 >
@@ -5362,7 +7735,6 @@ Array [
                 <i
                     aria-hidden="true"
                     className="eraser circular link icon"
-                    iconPosition="right"
                     onClick={[Function]}
                 />
             </div>
@@ -5408,21 +7780,7 @@ Array [
                         <span
                             className="text"
                         >
-                            Clear tokens
-                        </span>
-                    </div>
-                    <div
-                        aria-checked={undefined}
-                        aria-disabled={undefined}
-                        aria-selected={undefined}
-                        className="item"
-                        onClick={[Function]}
-                        role="option"
-                    >
-                        <span
-                            className="text"
-                        >
-                            Reload tokens
+                            Reload token list
                         </span>
                     </div>
                 </div>
@@ -5439,49 +7797,6 @@ Array [
     <tbody
         className=""
     >
-        <tr
-            className=""
-        >
-            <td
-                className="collapsing"
-            >
-                <div
-                    className="field"
-                >
-                    <div
-                        className="ui fitted checkbox"
-                        content={undefined}
-                        onChange={[Function]}
-                        onClick={[Function]}
-                        onMouseDown={[Function]}
-                    >
-                        <input
-                            checked={false}
-                            className="hidden"
-                            id={undefined}
-                            name={undefined}
-                            onClick={[Function]}
-                            readOnly={true}
-                            required={undefined}
-                            tabIndex={0}
-                            type="checkbox"
-                            value={undefined}
-                        />
-                        <label
-                            htmlFor={undefined}
-                        />
-                    </div>
-                </div>
-            </td>
-            <td
-                className=""
-            >
-                Arcade Network Token
-                 (
-                ANT
-                )
-            </td>
-        </tr>
         <tr
             className=""
         >
@@ -5519,10 +7834,83 @@ Array [
             <td
                 className=""
             >
-                District0x Network Token
-                 (
-                DNT
-                )
+                <strong>
+                    Arcade Network Token
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <strong>
+                    ANT
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <div>
+                    <strong>
+                        0x1ContractAddress
+                    </strong>
+                </div>
+            </td>
+        </tr>
+        <tr
+            className=""
+        >
+            <td
+                className="collapsing"
+            >
+                <div
+                    className="field"
+                >
+                    <div
+                        className="ui fitted checkbox"
+                        content={undefined}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onMouseDown={[Function]}
+                    >
+                        <input
+                            checked={false}
+                            className="hidden"
+                            id={undefined}
+                            name={undefined}
+                            onClick={[Function]}
+                            readOnly={true}
+                            required={undefined}
+                            tabIndex={0}
+                            type="checkbox"
+                            value={undefined}
+                        />
+                        <label
+                            htmlFor={undefined}
+                        />
+                    </div>
+                </div>
+            </td>
+            <td
+                className=""
+            >
+                <strong>
+                    District0x Network Token
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <strong>
+                    DNT
+                </strong>
+            </td>
+            <td
+                className=""
+            >
+                <div>
+                    <strong>
+                        0x2ContractAddress
+                    </strong>
+                </div>
             </td>
         </tr>
     </tbody>
@@ -5534,9 +7922,32 @@ exports[`Storyshots Segments/TokenContracts no match 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Manage Token Contracts
 </h1>,
+  <div
+    className="ui icon info message"
+>
+    <i
+        aria-hidden="true"
+        className="info icon"
+    />
+    <div
+        className="header"
+    >
+        Select which tokens to track
+    </div>
+    <div
+        className="content"
+    >
+        In the list below, check the tokens you want to keep track of. Use the filter to quickly find specific tokens. You can filter by token name, symbol or contract address.
+    </div>
+</div>,
   <div
     className="ui divided middle aligned two column grid"
 >
@@ -5594,7 +8005,6 @@ Array [
                 <i
                     aria-hidden="true"
                     className="eraser circular link icon"
-                    iconPosition="right"
                     onClick={[Function]}
                 />
             </div>
@@ -5640,21 +8050,7 @@ Array [
                         <span
                             className="text"
                         >
-                            Clear tokens
-                        </span>
-                    </div>
-                    <div
-                        aria-checked={undefined}
-                        aria-disabled={undefined}
-                        aria-selected={undefined}
-                        className="item"
-                        onClick={[Function]}
-                        role="option"
-                    >
-                        <span
-                            className="text"
-                        >
-                            Reload tokens
+                            Reload token list
                         </span>
                     </div>
                 </div>
@@ -5671,7 +8067,7 @@ Array [
     <div
         className="header"
     >
-        No token contracts available.
+        No token contracts to display.
     </div>
     <div
         className="content"
@@ -5689,7 +8085,7 @@ Array [
         <li
             className="content"
         >
-            wait until all tokens are loaded
+            check if you are connected to the correct network
         </li>
     </ul>
 </div>,
@@ -5700,9 +8096,32 @@ exports[`Storyshots Segments/TokenContracts virgin 1`] = `
 Array [
   <h1
     className="ui green block inverted center aligned header"
+    style={
+        Object {
+            "marginTop": 0,
+          }
+    }
 >
     Manage Token Contracts
 </h1>,
+  <div
+    className="ui icon info message"
+>
+    <i
+        aria-hidden="true"
+        className="info icon"
+    />
+    <div
+        className="header"
+    >
+        Select which tokens to track
+    </div>
+    <div
+        className="content"
+    >
+        In the list below, check the tokens you want to keep track of. Use the filter to quickly find specific tokens. You can filter by token name, symbol or contract address.
+    </div>
+</div>,
   <div
     className="ui divided middle aligned two column grid"
 >
@@ -5800,21 +8219,7 @@ Array [
                         <span
                             className="text"
                         >
-                            Clear tokens
-                        </span>
-                    </div>
-                    <div
-                        aria-checked={undefined}
-                        aria-disabled={undefined}
-                        aria-selected={undefined}
-                        className="item"
-                        onClick={[Function]}
-                        role="option"
-                    >
-                        <span
-                            className="text"
-                        >
-                            Reload tokens
+                            Reload token list
                         </span>
                     </div>
                 </div>
@@ -5831,7 +8236,7 @@ Array [
     <div
         className="header"
     >
-        No token contracts available.
+        No token contracts to display.
     </div>
     <div
         className="content"
@@ -5849,7 +8254,7 @@ Array [
         <li
             className="content"
         >
-            wait until all tokens are loaded
+            check if you are connected to the correct network
         </li>
     </ul>
 </div>,
