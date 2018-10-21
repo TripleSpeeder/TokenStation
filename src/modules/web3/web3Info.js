@@ -12,10 +12,10 @@ const Web3Info = (props) => {
                 Network: {name} ({id}) | Block: {block ? block.number : '?'} | Node version: {nodeVersion}
             </p>
             <p>
-                ERC20 contract data origin: <strong><a href={srcUrl} target='_blank'>{srcUrl}</a></strong>
+                ERC20 contract data origin: <strong><a href={srcUrl} target='_blank' rel='noopener noreferrer'>{srcUrl}</a></strong>
             </p>
             <p>
-                GitHub: <strong><a target='_blank' href={gitHub}>{gitHub}</a></strong> | contact: <strong><a href={'mailto:' + contact}>{contact}</a></strong>
+                GitHub: <strong><a target='_blank' rel='noopener noreferrer' href={gitHub}>{gitHub}</a></strong> | contact: <strong><a href={'mailto:' + contact}>{contact}</a></strong>
             </p>
         </React.Fragment>
     )
