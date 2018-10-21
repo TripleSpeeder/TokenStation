@@ -532,7 +532,11 @@ export const TRANSACTION_STATES = {
 
 export function transferToken(tokenID, tokenAmount, fromAddress, toAddress) {
     return async (dispatch, getState) => {
+        /*
+            Commented out until doing implementation
+
         dispatch(changeTransactionState(TRANSACTION_STATES.INITIALIZING))
+
         // obtain token contract instance
         await verifyContractInstance(tokenID, dispatch, getState)
         const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
@@ -546,6 +550,8 @@ export function transferToken(tokenID, tokenAmount, fromAddress, toAddress) {
 
         // finalize transfer
         dispatch(changeTransactionState(TRANSACTION_STATES.CONFIRMED))
+
+         */
     }
 }
 

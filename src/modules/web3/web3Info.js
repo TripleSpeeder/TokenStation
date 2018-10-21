@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Web3Info = (props) => {
-    const {name, id, apiVersion, nodeVersion, block} = props
+    const {name, id, nodeVersion, block} = props
     const gitHub = 'https://github.com/TripleSpeeder/TokenStation'
     const contact = 'michael@m-bauer.org'
     const srcUrl = 'https://github.com/ethereum-lists/tokens'

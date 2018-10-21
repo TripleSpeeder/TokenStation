@@ -11,10 +11,6 @@ export const MODAL_COMPONENTS = {
 }
 
 class ModalRoot extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     render() {
         const {modalType, modalProps, closeModal} = this.props
 

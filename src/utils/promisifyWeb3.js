@@ -34,7 +34,7 @@ const promisify = (web3) => {
                 // Skip
             } else if (typeof web3[group][method] === "function") {
                 web3[group][method + "Promise"] = function () {
-                    var args = arguments;
+                    let args = arguments;
                     return new Promise(function (resolve, reject) {
                         args[args.length] = callbackToResolve(resolve, reject);
                         args.length++;

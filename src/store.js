@@ -72,7 +72,8 @@ const logger = createLogger({
     diff: false
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// REDUX Dev Tools don't play well at all with web3 from Metamask extension...
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
     let store = createStore(

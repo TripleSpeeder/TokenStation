@@ -10,10 +10,6 @@ import EventsContainer from '../segments/EventsContainer'
 import NetworkWarningController from '../web3/NetworkWarningController'
 
 class LayoutContainer extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     render() {
         const NoMatch = ({ location }) => (
             <div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Icon, Message, Progress, Segment} from 'semantic-ui-react'
+import {Segment} from 'semantic-ui-react'
 
 const TokenCredits = (props) => {
     const {srcUrl} = props

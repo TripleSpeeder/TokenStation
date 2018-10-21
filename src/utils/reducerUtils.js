@@ -5,8 +5,8 @@ export function updateObject(oldObject, newValues) {
 }
 
 export function updateItemInArray(array, itemId, updateItemCallback) {
-    const updatedItems = array.map(item => {
-        if(item.id !== itemId) {
+    return array.map(item => {
+        if (item.id !== itemId) {
             // Since we only want to update one item, preserve all others as they are now
             return item;
         }
@@ -14,5 +14,4 @@ export function updateItemInArray(array, itemId, updateItemCallback) {
         // Use the provided callback to create an updated item
         return updateItemCallback(item);
     });
-    return updatedItems;
 }

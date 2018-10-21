@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Button, Icon, Statistic, Table} from 'semantic-ui-react'
+import {Button, Statistic, Table} from 'semantic-ui-react'
 import BalanceItemDetailContainer from './BalanceItemDetailContainer'
 import {Link} from 'react-router-dom'
 import Balance from './Balance'

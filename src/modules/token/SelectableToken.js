@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import {Table, Form} from 'semantic-ui-react'
 import AddressDisplay from '../common/AddressDisplay'
 
 const SelectableToken = (props) => {
 
-    const {id, address, ensName, name, symbol, checked, onChange} = props
+    const {address, ensName, name, symbol, checked, onChange} = props
 
     return (
         <Table.Row>

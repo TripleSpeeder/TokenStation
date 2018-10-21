@@ -3,8 +3,7 @@ import {connect} from "react-redux"
 import {Grid, Divider, Checkbox, Pagination, Container, Dropdown} from 'semantic-ui-react'
 import TokenListFilterContainer from './TokenListFilterContainer'
 import SelectableTokenList from "./SelectableTokenList"
-import TokenLoaderContainer from './TokenLoaderContainer'
-import {changeTokenListPage, clearTokenList, loadTokenList, setFilterProps, TOKEN_LIST_STATES} from './tokenActions'
+import {changeTokenListPage, clearTokenList, setFilterProps} from './tokenActions'
 
 class SelectableTokenListContainer extends Component {
     constructor(props, context) {

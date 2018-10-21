@@ -1,7 +1,7 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
 import {Provider} from 'react-redux';
-import mockStore, {mockStore_virgin, mockStore_loading, mockStore_nomatch, mockStore_filtered, mockStore_noTrackedTokens} from '../mocks/MockStore'
+import mockStore, {mockStore_noTrackedTokens} from '../mocks/MockStore'
 import Events from './Events'
 
 

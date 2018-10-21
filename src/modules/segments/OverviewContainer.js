@@ -5,10 +5,6 @@ import {connect} from 'react-redux'
 import groupBy from 'lodash/groupBy';
 
 class OverviewContainer extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     render() {
         const {hasAccounts, balancesByToken} = this.props
         return (

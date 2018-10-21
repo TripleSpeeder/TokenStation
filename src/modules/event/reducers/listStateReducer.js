@@ -27,14 +27,8 @@ function resetPager(state) {
 function changeEventScanProps(state, action) {
     const {payload} = action
     const {
-        tokenID,
-        addresses,
-        numEvents,
         currentChunk,
-        maxEvents,
         maxChunks,
-        fromBlock,
-        toBlock,
     } = payload.props
 
     return {

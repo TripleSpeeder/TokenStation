@@ -1,7 +1,6 @@
 import React from 'react'
 import {storiesOf, action} from '@storybook/react'
 import BigNumber from 'bignumber.js'
-import mockStore from '../mocks/MockStore'
 import TransferEvent, {TRANSFER_EVENT_TYPES} from './TransferEvent'
 import {Table} from 'semantic-ui-react'
 

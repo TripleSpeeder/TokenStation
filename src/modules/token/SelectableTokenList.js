@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
-import {Table, Form, Message} from 'semantic-ui-react'
+import {Table, Message} from 'semantic-ui-react'
 import SelectableTokenContainer from "./SelectableTokenContainer"
 
 const SelectableTokenList = (props) => {

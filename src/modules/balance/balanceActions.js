@@ -80,7 +80,7 @@ export function setBalanceFilterString(filterString) {
 
         // If a searchstring is provided, filter balanceIds
         if (searchString.length) {
-            const matchedIds = balanceIds.filter(balanceId => {
+            balanceIds = balanceIds.filter(balanceId => {
                 const balanceEntry = getState().balance.byId[balanceId]
                 const token = getState().tokens.byId[balanceEntry.tokenId]
                 return (
@@ -89,7 +89,6 @@ export function setBalanceFilterString(filterString) {
                     token.address.toLowerCase().includes(searchString)
                 )
             })
-            balanceIds = matchedIds
         }
         dispatch(changeBalanceFilterProps(searchString, balanceIds))
     }

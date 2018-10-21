@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Input, Icon, Divider} from 'semantic-ui-react'
+import {Input, Icon} from 'semantic-ui-react'
 
 const TokenListFilter = (props) => {
-    const {filterString, handleChange, filterIsActive, clearFilter, displayed, total} = props
-    let icon, message, label = null
+    const {filterString, handleChange, filterIsActive, clearFilter} = props
+    let icon = null
     if (filterIsActive) {
         icon = <Icon name='eraser' circular link onClick={clearFilter} />
     }

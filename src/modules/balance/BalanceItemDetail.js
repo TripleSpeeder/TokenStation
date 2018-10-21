@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Table, Icon, Button} from 'semantic-ui-react'
+import {Table, Button} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import Balance from './Balance'
 import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActions'
 import AddressDisplay from '../common/AddressDisplay'
 
 const BalanceItemDetail = (props) => {
-    const {address, ensName, addressType, balance, loading, reloadBalance, url, openTransferModal} = props
-    const external = (addressType !== ADDRESS_TYPE_OWNED)
+    const {address, ensName, balance, loading, reloadBalance, url/*, addressType, openTransferModal*/} = props
+    /*const external = (addressType !== ADDRESS_TYPE_OWNED)*/
 
     /*
         transfer button removed until functionality gets implemented...

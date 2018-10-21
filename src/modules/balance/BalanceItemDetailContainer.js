@@ -6,10 +6,6 @@ import {BALANCE_STATES, reloadBalance} from './balanceActions'
 import {showModal} from '../modal/modalActions'
 
 class BalanceItemDetailContainer extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     render() {
         return (
             <BalanceItemDetail address={this.props.address}

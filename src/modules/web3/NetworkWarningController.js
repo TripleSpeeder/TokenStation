@@ -5,10 +5,6 @@ import NetworkWarning from './NetworkWarning'
 import Grid from 'semantic-ui-react/dist/es/collections/Grid/Grid'
 
 class NetworkWarningController extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-
     render() {
         const {networkId, networkName} = this.props
         if (networkId === 1) {

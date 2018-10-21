@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import EventLoader from './EventLoader'
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
 import {loadTokenTransferEvents} from '../token/tokenActions'

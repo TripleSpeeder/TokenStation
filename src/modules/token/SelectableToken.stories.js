@@ -1,10 +1,7 @@
 import React from 'react'
-import {Item, Table} from 'semantic-ui-react'
+import {Table} from 'semantic-ui-react'
 import {storiesOf} from '@storybook/react'
 import {action} from '@storybook/addon-actions'
-import {BigNumber} from 'bignumber.js'
-import Token from "./Token"
-import StoryRouter from "storybook-react-router"
 import SelectableToken from "./SelectableToken"
 
 export const SelectableTokenItemProps = {

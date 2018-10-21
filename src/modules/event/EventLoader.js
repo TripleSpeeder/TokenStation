@@ -4,12 +4,11 @@ import {Button, Grid, Icon, Message, } from 'semantic-ui-react'
 
 const EventLoader = (props) => {
     const {loading, loadingFromBlock, loadingToBlock, resultCount, resultFromBlock, currentChunk, maxChunks,
-        resultFromBlockDate, resultToBlock, onLoadMore, canLoadMore} = props
+        resultToBlock, onLoadMore, canLoadMore} = props
 
     let button = <Button icon disabled={!canLoadMore} onClick={onLoadMore} labelPosition={'left'}><Icon name={'search'}/>Load more</Button>
 
     if (loading) {
-        const range = loadingToBlock - loadingFromBlock
         button = <Message warning icon>
                     <Icon loading name={'circle notched'}/>
             <Message.Content>

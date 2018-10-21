@@ -1,5 +1,5 @@
-import React, {Component, Children} from 'react'
-import {initialize, stopBlockFilter, WEB3_STATES} from './web3Actions'
+import React, {Component} from 'react'
+import {initialize, stopBlockFilter} from './web3Actions'
 import {connect} from 'react-redux'
 import Web3Gate from './web3Gate'
 

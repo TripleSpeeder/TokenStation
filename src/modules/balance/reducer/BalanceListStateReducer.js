@@ -23,14 +23,6 @@ function changeBalanceFilterProps(state, action){
     }
 }
 
-function resetBalanceDisplayCount(state) {
-    return {
-        ...state,
-        displayCount: BALANCE_LISTSTATE_INITIAL.displayCount
-    }
-}
-
-
 export const listStateReducer = (state=BALANCE_LISTSTATE_INITIAL, action) => {
     switch (action.type) {
         case CHANGE_BALANCE_FILTER_PROPS:
