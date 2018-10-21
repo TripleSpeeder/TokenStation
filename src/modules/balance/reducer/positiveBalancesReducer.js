@@ -15,8 +15,7 @@ function setBalance(state, action) {
         // this balance entry is currently marked as having a balance...
         if (balance.isZero()) {
             // no more balance. Remove from array
-            // TODO: FIX THIS
-            const newState = state.filter(entry => entry !== 5) // 5 ???!??!?!?
+            const newState = state.filter(entry => entry !== balanceId)
             return newState
         } else {
             // all set, no need for action
