@@ -46,4 +46,11 @@ This will create a new build in the "build" directory. To publish this build to 
 This will push the contents of the "build" folder to the gh-pages branch, which is being hosted by github pages.
 
 ## Update list of token contracts
-TODO
+Token contracts information is taken from https://github.com/ethereum-lists/tokens. Updating to the latest
+list currently is a manual process. From the projects documentation:
+
+>Just go to [the commit-list](https://github.com/ethereum-lists/tokens/commits/master) and click on the green checkmark behind the last commit. There you see kontinuum/run - and the details link there brings to the assembled files on IPFS.
+
+Download the file matching to the desired network (currently supported: Mainnet (1), Ropsten (3), Rinkeby(4) and Kovan
+(42)) and place it in the public folder, following the name schema `tokens_<networkID>.json`. 
+
