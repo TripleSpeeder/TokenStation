@@ -44,3 +44,6 @@ This will create a new build in the "build" directory. To publish this build to 
 `npm run deploy`
 
 This will push the contents of the "build" folder to the gh-pages branch, which is being hosted by github pages.
+
+## Update list of token contracts
+TODO
