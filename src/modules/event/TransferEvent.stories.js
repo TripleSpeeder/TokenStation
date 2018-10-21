@@ -1,6 +1,5 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
-import {action} from "@storybook/addon-actions"
 import BigNumber from 'bignumber.js'
 import TransferEvent, {TRANSFER_EVENT_TYPES} from './TransferEvent'
 import {Table} from 'semantic-ui-react'
@@ -12,10 +11,6 @@ export const transferEventProps = {
     fromENS: 'super.duper.eth',
     to: '0x963cffd781053dc6351a325e4fcf4f3a228da3d1',
     quantity: new BigNumber(150),
-}
-
-export const transferEventActions = {
-    onDummy: action('dummy'),
 }
 
 storiesOf('Modules/TransferEvent', module)

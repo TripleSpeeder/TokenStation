@@ -21,13 +21,6 @@ export function addressBalancesStateChanged(addressId, addressBalancesState) {
     }
 }
 
-export const CLEAR_ADDRESSES = 'CLEAR_ADDRESSES'
-export function clearAddresses() {
-    return {
-        type: CLEAR_ADDRESSES,
-    }
-}
-
 export const ADD_ADDRESS = 'ADD_ADDRESS'
 export function addAddress(address, type) {
     return {
@@ -158,10 +151,4 @@ export function changeSelectorAddressId(selectedAddressId) {
             selectedAddressId,
         }
     }
-}
-
-export function findAddressId(address) {
-    // Quick implementation as I know that the ID is the same as the actual address...
-    // TODO: Real implementation: Search through addresses and return ID of found address entry
-    return address
 }

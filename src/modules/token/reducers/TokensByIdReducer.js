@@ -6,7 +6,7 @@ import {ADD_EVENTS, buildEventId} from '../../event/eventActions'
 
 const TOKENS_BY_ID_INITIAL = {}
 
-function clearTokensById(state, action) {
+function clearTokensById() {
     return TOKENS_BY_ID_INITIAL
 }
 

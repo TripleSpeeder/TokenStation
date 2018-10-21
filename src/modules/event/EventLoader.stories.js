@@ -3,9 +3,6 @@ import {storiesOf} from '@storybook/react'
 import {action} from "@storybook/addon-actions"
 import EventLoader from './EventLoader'
 
-export const eventLoaderProps = {
-}
-
 export const eventLoaderActions = {
     onLoadMoreResults: action('loadMoreResults'),
 }

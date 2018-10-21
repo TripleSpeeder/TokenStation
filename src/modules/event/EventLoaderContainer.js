@@ -12,14 +12,14 @@ class EventLoaderContainer extends Component {
     }
 
     componentDidMount() {
-        this.checkEventsLoaded(this.props)
+        EventLoaderContainer.checkEventsLoaded(this.props)
     }
 
     componentWillReceiveProps(newProps) {
-        this.checkEventsLoaded(newProps)
+        EventLoaderContainer.checkEventsLoaded(newProps)
     }
 
-    checkEventsLoaded(props) {
+    static checkEventsLoaded(props) {
         if (props.currentBlock && props.aceId && (props.hasAceEntry === false)) {
             // I have an aceID, but no according entry. Better start loading...
             //const rangeEnd = props.currentBlock

@@ -14,7 +14,7 @@ class Web3GateContainer extends Component {
         this.props.stopBlockFilter()
     }
 
-    onRetry = (event, data) => {
+    onRetry = () => {
         this.props.initialize()
     }
 

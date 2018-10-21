@@ -27,13 +27,6 @@ export function tokenListStateChanged(tokenListState) {
     }
 }
 
-export const SHOW_MORE_ITEMS = 'SHOW_MORE_ITEMS'
-export function showMoreItems() {
-    return {
-        type: SHOW_MORE_ITEMS
-    }
-}
-
 export const ADD_TOKEN = 'ADD_TOKEN'
 export function addToken(tokenID, token) {
     return {
@@ -245,22 +238,6 @@ export function setFilterProps(filterProps) {
     }
 }
 
-/* check if a new token matches current filter */
-export function filterNewToken(tokenId) {
-    return (dispatch, getState) => {
-        const token = getState().tokens.byId[tokenId]
-        const searchString = getState().tokens.listState.filter.toLowerCase()
-        const match = (
-            token.name.toLowerCase().includes(searchString) ||
-            token.symbol.toLowerCase().includes(searchString) ||
-            token.address.toLowerCase().includes(searchString)
-        )
-        if (match) {
-            const newMatchedIds = getState().tokens.listState.matchedTokenIds.concat(tokenId)
-            dispatch(changeFilterProps(searchString, newMatchedIds))
-        }
-    }
-}
 
 export function loadTokenList(url) {
     return async (dispatch, getState) => {

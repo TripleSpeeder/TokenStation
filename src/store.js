@@ -17,11 +17,11 @@ Mark all address entries that have been hydrated while being in state "loading" 
  */
 const addressesTransform = createTransform(
     // transform state on its way to being serialized and persisted.
-    (inboundState, key) => {
+    (inboundState) => {
         return inboundState
     },
     // transform state being rehydrated
-    (outboundState, key) => {
+    (outboundState) => {
         const newState = {...outboundState}
         Object.keys(newState.byId).forEach(addressId => {
             const addressEntry = newState.byId[addressId]

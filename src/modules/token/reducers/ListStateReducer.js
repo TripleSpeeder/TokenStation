@@ -4,7 +4,6 @@ import {
     CHANGE_TOKEN_LIST_STATE,
     CHANGE_VALID_TOKEN_COUNT, CLEAR_TOKEN_LIST,
     RESET_DISPLAY_COUNT,
-    SHOW_MORE_ITEMS,
     TOKEN_LIST_STATES
 } from '../tokenActions'
 
@@ -68,35 +67,6 @@ function changeFilterProps(state, action){
     }
 }
 
-function showMoreItems(state) {
-    const stepSize = 3
-    if (state.filterIsActive)
-    {
-        // check filtered numbers
-        if (state.displayCount >= state.matchedTokenIds.length) {
-            // already displaying all tokens.
-            return state
-        }
-    } else {
-        // check total numbers
-        if (state.displayCount >= state.total) {
-            // already displaying all tokens.
-            return state
-        }
-    }
-    let requestedCount = state.displayCount+=stepSize
-
-    // don't try to display more tokens than available
-    if (requestedCount > state.total) {
-        requestedCount = state.total
-    }
-
-    return {
-        ...state,
-        displayCount: requestedCount
-    }
-}
-
 function tokenListPageChanged(state, action)  {
     const {payload} = action
     const {activePage} = payload
@@ -114,8 +84,6 @@ export const listStateReducer = (state=LISTSTATE_INITIAL, action) => {
             return changeValidTokenCount(state, action)
         case CHANGE_FILTER_PROPS:
             return changeFilterProps(state, action)
-        case SHOW_MORE_ITEMS:
-            return showMoreItems(state)
         case RESET_DISPLAY_COUNT:
             return resetDisplayCount(state)
         case CHANGE_TOKEN_LIST_PAGE:

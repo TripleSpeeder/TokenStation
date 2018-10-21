@@ -52,12 +52,10 @@ const BalanceItem = (props) => {
         tableBody = null
     }
 
-    const table=<Table compact>
+    return <Table compact>
         {tableHeader}
         {tableBody}
     </Table>
-
-    return table
 }
 
 BalanceItem.propTypes = {

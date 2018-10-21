@@ -83,7 +83,7 @@ export function initialize() {
 
         // set web3 instance
         try {
-            let {web3} = await getWeb3
+            var {web3} = await getWeb3
             // stop loading
             dispatch(setWeb3State(WEB3_STATES.INITIALIZED))
         }

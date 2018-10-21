@@ -62,14 +62,6 @@ export function changeBalanceFilterProps(filter, matchedBalanceIds) {
     }
 }
 
-export const RESET_BALANCE_DISPLAY_COUNT = 'RESET_BALANCE_DISPLAY_COUNT'
-export function resetBalanceDisplayCount() {
-    return {
-        type: RESET_BALANCE_DISPLAY_COUNT,
-    }
-}
-
-
 export function setBalanceFilterString(filterString) {
     return (dispatch, getState) => {
         // Filter balance list based on filterstring. Look at

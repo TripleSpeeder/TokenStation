@@ -31,7 +31,7 @@ Web3Container.propTypes = {
     nodeVersion: PropTypes.string,
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     web3: state.web3Instance.web3,
     name: state.web3Instance.name,
     id: state.web3Instance.id,

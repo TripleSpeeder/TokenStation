@@ -16,7 +16,7 @@ function addTokenId(state, action) {
     }
 }
 
-function clearAllTokens(state, action) {
+function clearAllTokens() {
     return ALL_TOKENS_INITIAL
 }
 

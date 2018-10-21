@@ -1,4 +1,4 @@
-import {ADD_ADDRESS, CLEAR_ADDRESSES, REMOVE_ADDRESS} from '../addressActions'
+import {ADD_ADDRESS, REMOVE_ADDRESS} from '../addressActions'
 
 const ALL_ADDRESSES_INITIAL = []
 /*const ALL_ADDRESSES_INITIAL = [
@@ -31,8 +31,6 @@ export const allAddressIdsReducer = (state=ALL_ADDRESSES_INITIAL, action) => {
             return addAddressId(state, action)
         case REMOVE_ADDRESS:
             return removeAddressId(state, action)
-        case CLEAR_ADDRESSES:
-            return ALL_ADDRESSES_INITIAL
         default:
     }
     return state;

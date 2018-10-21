@@ -3,7 +3,7 @@ import {Icon, Message} from 'semantic-ui-react'
 import SelectableTokenListContainer from "../token/SelectableTokenListContainer"
 import ScreenHeader from '../screens/ScreenHeader'
 
-const TokenContracts = (props) => {
+const TokenContracts = () => {
     return (
         <React.Fragment>
             <ScreenHeader title={'Manage Token Contracts'}/>

@@ -1,7 +1,7 @@
 import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
 
 export const ADD_EVENTS = 'ADD_EVENTS'
-export function addEvents(events, tokenId, fromBlock, toBlock) {
+export function addEvents(events, tokenId) {
     return {
         type: ADD_EVENTS,
         payload: {

@@ -1,5 +1,5 @@
 import {
-    ADD_ADDRESS, ADDRESS_BALANCES_STATES, CHANGE_ADDRESS_BALANCES_STATE, CHANGE_ADDRESS_TYPE, CLEAR_ADDRESSES,
+    ADD_ADDRESS, ADDRESS_BALANCES_STATES, CHANGE_ADDRESS_BALANCES_STATE, CHANGE_ADDRESS_TYPE,
     REMOVE_ADDRESS
 } from '../addressActions'
 
@@ -84,8 +84,6 @@ export const addressByIdReducer = (state=ADDRESS_BY_ID_INITIAL, action) => {
             return changeAddressType(state, action)
         case CHANGE_ADDRESS_BALANCES_STATE:
             return changeAddressBalancesState(state, action)
-        case CLEAR_ADDRESSES:
-            return ADDRESS_BY_ID_INITIAL
         default:
     }
     return state;

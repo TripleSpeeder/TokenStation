@@ -7,11 +7,11 @@ import {changeSelectorAddressId} from '../address/addressActions'
 class EventsContainer extends Component {
     constructor(props, context) {
         super(props, context)
-        this.mapRouteParamsToState(props)
+        EventsContainer.mapRouteParamsToState(props)
     }
 
     /* If route params contain tokenId and/or address trigger according actions to have them in store */
-    mapRouteParamsToState(props) {
+    static mapRouteParamsToState(props) {
         if (props.match.params.tokenId) {
             props.setSelectedToken(props.match.params.tokenId)
             if (props.match.params.address) {
@@ -24,7 +24,7 @@ class EventsContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.mapRouteParamsToState(newProps)
+        EventsContainer.mapRouteParamsToState(newProps)
     }
 
     render() {

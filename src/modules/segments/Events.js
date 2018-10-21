@@ -4,7 +4,7 @@ import EventLoaderContainer from '../event/EventLoaderContainer'
 import TransferEventsListContainer from '../event/TransferEventsListContainer'
 import ScreenHeader from '../screens/ScreenHeader'
 
-const Events = (props) => {
+const Events = () => {
     return (
         <React.Fragment>
             <ScreenHeader title={'Transfer Events'}/>
