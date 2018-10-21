@@ -50,7 +50,7 @@ class EventLoaderContainer extends Component {
 
     render() {
         const {
-            loading, resultCount, resultFromBlock, resultFromBlockDate, resultToBlock,
+            loading, resultCount, resultFromBlock, resultFromBlockDate, resultToBlock, canLoadMore,
             loadingFromBlock, loadingToBlock, loadingCurrentBlock, currentChunk, maxChunks } = this.props
         return (
             <EventLoader
@@ -65,6 +65,7 @@ class EventLoaderContainer extends Component {
                 loadingCurrentBlock={loadingCurrentBlock}
                 currentChunk={currentChunk}
                 maxChunks={maxChunks}
+                canLoadMore={canLoadMore}
             />
         )
     }
@@ -94,6 +95,7 @@ const mapStateToProps = (state) => {
     const currentBlock = state.web3Instance.block.number
     const currentChunk = state.events.listState.currentChunk
     const maxChunks = state.events.listState.maxChunks
+    const canLoadMore = Boolean(tokenId && addressId)
     if (tokenId && addressId) {
         aceId = buildAdressContractEventId(addressId, tokenId)
         aceEntry = state.events.aceById[aceId]
@@ -126,6 +128,7 @@ const mapStateToProps = (state) => {
         loadingCurrentBlock,
         currentChunk,
         maxChunks,
+        canLoadMore
     }
 }
 

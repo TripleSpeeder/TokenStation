@@ -16,6 +16,17 @@ storiesOf('Modules/EventLoader', module)
         resultFromBlock= {5999905}
         resultFromBlockDate={"2018-05-25"}
         resultToBlock=   {6001425}
+        onLoadMore={eventLoaderActions.onLoadMoreResults}
+        canLoadMore={true}
+    />)
+    .add('idle load more disabled', () => <EventLoader
+        loading={false}
+        resultCount={123}
+        resultFromBlock= {5999905}
+        resultFromBlockDate={"2018-05-25"}
+        resultToBlock=   {6001425}
+        onLoadMore={eventLoaderActions.onLoadMoreResults}
+        canLoadMore={false}
     />)
     .add('idle no results', () => <EventLoader
         loading={false}
@@ -23,6 +34,8 @@ storiesOf('Modules/EventLoader', module)
         resultFromBlock= {5999905}
         resultFromBlockDate={"2018-05-25"}
         resultToBlock=   {6001425}
+        onLoadMore={eventLoaderActions.onLoadMoreResults}
+        canLoadMore={true}
     />)
     .add('loading with results', () => <EventLoader
         loading={true}
@@ -35,6 +48,8 @@ storiesOf('Modules/EventLoader', module)
         resultToBlock=   {6001425}
         currentChunk={6}
         maxChunks={10}
+        onLoadMore={eventLoaderActions.onLoadMoreResults}
+        canLoadMore={false}
     />)
     .add('loading with no results', () => <EventLoader
         loading={true}
@@ -47,4 +62,6 @@ storiesOf('Modules/EventLoader', module)
         resultToBlock=   {6001425}
         currentChunk={6}
         maxChunks={10}
+        onLoadMore={eventLoaderActions.onLoadMoreResults}
+        canLoadMore={false}
     />)
