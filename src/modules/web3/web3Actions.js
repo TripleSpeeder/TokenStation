@@ -1,6 +1,6 @@
 import getWeb3 from '../../utils/getWeb3'
 import {clearTokenList} from '../token/tokenActions'
-const PromisifyWeb3 = require("../../utils/promisifyWeb3.js")
+import promisify from '../../utils/promisifyWeb3'
 
 export const WEB3_STATES = {
     UNINITIALIZED: 'uninitialized',
@@ -94,7 +94,7 @@ export function initialize() {
         }
 
         // FIXME - Promisify can be removed once web3.js 1.0 is released
-        PromisifyWeb3.promisify(web3)
+        promisify(web3)
         dispatch(setWeb3Instance(web3))
 
         // set node info
