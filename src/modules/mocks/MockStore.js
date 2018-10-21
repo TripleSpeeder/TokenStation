@@ -64,14 +64,14 @@ const addresses = {
 }
 
 const tokens_initialized = {
-    allIds: [1, 2, 3],
-    trackedIds: [1,3],
+    allIds: ['0x1ContractAddress', '0x2ContractAddress', '0x3ContractAddress'],
+    trackedIds: ['0x1ContractAddress', '0x3ContractAddress'],
     byId: {
-        1: {
+        '0x1ContractAddress': {
             address: '0x1ContractAddress',
             decimals: new BigNumber(18),
             eventIds: [],
-            id: 1,
+            id: '0x1ContractAddress',
             imageUrl: null,
             loading: false,
             name: 'Arcade Network Token',
@@ -82,11 +82,11 @@ const tokens_initialized = {
             symbol: 'ANT',
             website: null,
         },
-        2: {
+        '0x2ContractAddress': {
             address: '0x2ContractAddress',
             decimals: new BigNumber(18),
             eventIds: [],
-            id: 1,
+            id: '0x2ContractAddress',
             imageUrl: null,
             loading: false,
             name: 'District0x Network Token',
@@ -97,11 +97,11 @@ const tokens_initialized = {
             symbol: 'DNT',
             website: null,
         },
-        3: {
+        '0x3ContractAddress': {
             address: '0x3ContractAddress',
             decimals: new BigNumber(18),
             eventIds: [],
-            id: 1,
+            id: '0x3ContractAddress',
             imageUrl: null,
             loading: false,
             name: 'OmiseGo',
@@ -124,7 +124,7 @@ const tokens_initialized = {
     },
     selector: {
         filter: 'searchstring',
-        matchedTokenIds: [1,2]
+        matchedTokenIds: ['0x1ContractAddress', '0x2ContractAddress']
     }
 }
 
@@ -137,7 +137,7 @@ const tokens_filtered = {
     ...tokens_initialized,
     listState: {
         ...tokens_initialized.listState,
-        matchedTokenIds: [1, 2],
+        matchedTokenIds: ['0x1ContractAddress', '0x2ContractAddress'],
         filter: 'Network',
         filterIsActive: true,
         showOnlyTracked: false,
@@ -172,14 +172,14 @@ const tokens_virgin = {
 }
 
 const tokens_loading = {
-    allIds: [1,2],
+    allIds: ['0x1ContractAddress','0x2ContractAddress'],
     trackedIds: [],
     byId: {
-        1: {
+        '0x1ContractAddress': {
             address: '0x1ContractAddress',
             decimals: new BigNumber(18),
             eventIds: [],
-            id: 1,
+            id: '0x1ContractAddress',
             imageUrl: null,
             loading: false,
             name: 'Arcade Network Token',
@@ -190,11 +190,11 @@ const tokens_loading = {
             symbol: 'ANT',
             website: null,
         },
-        2: {
+        '0x2ContractAddress': {
             address: '0x2ContractAddress',
             decimals: new BigNumber(18),
             eventIds: [],
-            id: 1,
+            id: '0x2ContractAddress',
             imageUrl: null,
             loading: false,
             name: 'District0x Network Token',
@@ -223,42 +223,42 @@ const balance = {
         b1: {
             balanceId: "b1",
             addressId: "0xAccountAddress1",
-            tokenId: "1",
+            tokenId: "0x1ContractAddress",
             balance: new BigNumber('100'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b2: {
             balanceId: "b2",
             addressId: "0xAccountAddress2",
-            tokenId: "1",
+            tokenId: "0x1ContractAddress",
             balance: new BigNumber('200'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b3: {
             balanceId: "b3",
             addressId: "0xAccountAddress3",
-            tokenId: "1",
+            tokenId: "0x1ContractAddress",
             balance: new BigNumber('300'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b4: {
             balanceId: "b4",
             addressId: "0xAccountAddress1",
-            tokenId: "2",
+            tokenId: "0x2ContractAddress",
             balance: new BigNumber('400'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b5: {
             balanceId: "b5",
             addressId: "0xAccountAddress2",
-            tokenId: "3",
+            tokenId: "0x3ContractAddress",
             balance: new BigNumber('200'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b6: {
             balanceId: "b6",
             addressId: "0xAccountAddress3",
-            tokenId: "3",
+            tokenId: "0x3ContractAddress",
             balance: new BigNumber('300'),
             balanceState: BALANCE_STATES.INITIALIZED
         }
