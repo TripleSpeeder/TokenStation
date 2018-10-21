@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import EventLoader from './EventLoader'
-import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
+import {buildAddressContractEventId} from './reducers/addressContractEventsByIdReducer'
 import {loadTokenTransferEvents} from '../token/tokenActions'
 
 
@@ -96,7 +96,7 @@ const mapStateToProps = (state) => {
     const maxChunks = state.events.listState.maxChunks
     const canLoadMore = Boolean(tokenId && addressId)
     if (tokenId && addressId) {
-        aceId = buildAdressContractEventId(addressId, tokenId)
+        aceId = buildAddressContractEventId(addressId, tokenId)
         aceEntry = state.events.aceById[aceId]
         if (aceEntry) {
             // okay, entry existing. Now look at checked block range

@@ -22,7 +22,8 @@
     "semantic-ui-css": "^2.3.1",
     "semantic-ui-react": "^0.77.2",
     "truffle-contract": "^3.0.5",
-    "web3": "^0.19.1"
+    "web3": "^0.19.1",
+    "lodash": "latest"
   },
   "homepage": "https://tokenstation.io",
   "scripts": {

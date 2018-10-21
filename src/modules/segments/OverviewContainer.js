@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Overview from './Overview'
 import {connect} from 'react-redux'
-import groupBy from 'lodash/groupBy';
+import {groupBy} from 'lodash'
 
 class OverviewContainer extends Component {
     render() {

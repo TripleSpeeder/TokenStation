@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
+import {buildAddressContractEventId} from './reducers/addressContractEventsByIdReducer'
 import TransferEventsList from './TransferEventsList'
 import {Container, Pagination} from 'semantic-ui-react'
 import {changeTransferEventListPage} from './eventActions'
@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
 
     // first try to get aceEntry
     if (tokenId && addressId) {
-        const aceId = buildAdressContractEventId(addressId, tokenId)
+        const aceId = buildAddressContractEventId(addressId, tokenId)
         aceEntry = state.events.aceById[aceId]
     }
 

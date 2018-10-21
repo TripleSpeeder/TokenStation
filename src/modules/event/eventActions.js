@@ -1,4 +1,4 @@
-import {buildAdressContractEventId} from './reducers/addressContractEventsByIdReducer'
+import {buildAddressContractEventId} from './reducers/addressContractEventsByIdReducer'
 
 export const ADD_EVENTS = 'ADD_EVENTS'
 export function addEvents(events, tokenId) {
@@ -35,7 +35,7 @@ export function createAceEntry(addressId, tokenId) {
 
 export const ACE_ENTRIES_LOADING_CHANGE = 'ACE_ENTRIES_LOADING_CHANGE'
 export function aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock, loadingCurrentBlock) {
-    const aceIds = addressIds.map(addressId => (buildAdressContractEventId(addressId, tokenId)))
+    const aceIds = addressIds.map(addressId => (buildAddressContractEventId(addressId, tokenId)))
     return {
         type: ACE_ENTRIES_LOADING_CHANGE,
         payload: {
@@ -50,7 +50,7 @@ export function aceEntriesLoadingChange(addressIds, tokenId, isLoading, loadingF
 
 export const ACE_ENTRIES_BLOCK_RANGE_CHANGE = 'ACE_ENTRIES_BLOCK_RANGE_CHANGE'
 export function aceEntriesBlockRangeChange(addressIds, tokenId, fromBlock, toBlock) {
-    const aceIds = addressIds.map(addressId => (buildAdressContractEventId(addressId, tokenId)))
+    const aceIds = addressIds.map(addressId => (buildAddressContractEventId(addressId, tokenId)))
     return {
         type: ACE_ENTRIES_BLOCK_RANGE_CHANGE,
         payload: {
@@ -85,7 +85,7 @@ export function changeEventScanProps(props) {
 export function aceEntriesLoadingChangeWrapper(addressIds, tokenId, isLoading, loadingFromBlock, loadingToBlock, loadingCurrentBlock) {
     return async (dispatch, getState) => {
         addressIds.forEach(addressId => {
-            const aceId = buildAdressContractEventId(addressId, tokenId)
+            const aceId = buildAddressContractEventId(addressId, tokenId)
             if (getState().events.aceById[aceId] === undefined) {
                 // create a new entry for this token and address
                 dispatch(createAceEntry(addressId, tokenId))
@@ -105,7 +105,7 @@ export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
             const {_from, _to} = transferEvent.args
             // TODO: Collect all new entries and just dispatch one batch event
             if (watchedAddressIds.includes(_from.toLowerCase())) {
-                const aceFromId = buildAdressContractEventId(_from, tokenId)
+                const aceFromId = buildAddressContractEventId(_from, tokenId)
                 aceIdsToSort.push(aceFromId)
                 if (getState().events.aceById[aceFromId] === undefined) {
                     // create a new entry for this token and address
@@ -113,7 +113,7 @@ export function addEventsThunk(events, tokenId, fromBlock, toBlock) {
                 }
             }
             if (watchedAddressIds.includes(_to.toLowerCase())) {
-                const aceToId = buildAdressContractEventId(_to, tokenId)
+                const aceToId = buildAddressContractEventId(_to, tokenId)
                 aceIdsToSort.push(aceToId)
                 if (getState().events.aceById[aceToId] === undefined) {
                     // create a new entry for this token and address

@@ -35,7 +35,7 @@ function clearAceEntries() {
 function createAceEntry(state, action) {
     const {payload} = action
     const {addressId, tokenId} = payload
-    const acesId = buildAdressContractEventId(addressId, tokenId)
+    const acesId = buildAddressContractEventId(addressId, tokenId)
     return {
         ...state,
         [acesId] : {
@@ -63,8 +63,8 @@ function addTransferEvents(state, action) {
     events.forEach(transferEvent => {
         const transferEventId = buildEventId(transferEvent)
         const {_from, _to} = transferEvent.args
-        const aceFromId = buildAdressContractEventId(_from, tokenId)
-        const aceToId = buildAdressContractEventId(_to, tokenId)
+        const aceFromId = buildAddressContractEventId(_from, tokenId)
+        const aceToId = buildAddressContractEventId(_to, tokenId)
         const aceIds = [aceToId, aceFromId]
         aceIds.forEach(aceId => {
             // only add event if an according aceEntry is existing!
@@ -161,6 +161,6 @@ export const addressContractEventsByIdReducer = (state=ADDRESS_CONTRACT_EVENTS_B
 }
 
 
-export function buildAdressContractEventId(addressId, tokenId) {
+export function buildAddressContractEventId(addressId, tokenId) {
     return ''+addressId.toLowerCase()+'-'+tokenId
 }
