@@ -89,7 +89,13 @@ const mapStateToProps = (state) => {
     let loadingFromBlock = 0
     let loadingToBlock = 0
     let loadingCurrentBlock = 0
-    const tokenId = state.tokens.selector.selectedTokenId
+    let tokenId = state.tokens.selector.selectedTokenId
+    // make sure selected token is actually existing. Might be an old token from browser localstorage or even from
+    // another network
+    if (state.tokens.allIds.indexOf(tokenId) === -1)
+    {
+        tokenId = undefined
+    }
     const addressId = state.addresses.selector.selectedAddressId
     const currentBlock = state.web3Instance.block.number
     const currentChunk = state.events.listState.currentChunk
