@@ -489,9 +489,7 @@ async function verifyContractInstance(tokenId, dispatch, getState) {
         return volatileToken.loadingPromise
     }
     else {
-        const token = getState().tokens.byId[tokenId]
-        // console.log("Start lazyloading contract instance for " + token.id + " (" + token.name +")")
-        dispatch(instantiateTokenContract(token.id))
+        dispatch(instantiateTokenContract(tokenId))
         // refresh token, as the loadingPromise has just been added to state
         volatileToken = getState().tokens.volatileById[tokenId]
         return volatileToken.loadingPromise
