@@ -90,9 +90,9 @@ const mapStateToProps = (state) => {
     let loadingToBlock = 0
     let loadingCurrentBlock = 0
     let tokenId = state.tokens.selector.selectedTokenId
-    // make sure selected token is actually existing. Might be an old token from browser localstorage or even from
-    // another network
-    if (state.tokens.allIds.indexOf(tokenId) === -1)
+    // make sure selected token is actually existing and being tracked. Might be an old token from
+    // browser localstorage or from another network
+    if ((state.tokens.allIds.indexOf(tokenId) === -1) || (state.tokens.trackedIds.indexOf(tokenId) ===-1))
     {
         tokenId = undefined
     }
