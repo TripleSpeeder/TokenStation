@@ -23,6 +23,8 @@ export function addressBalancesStateChanged(addressId, addressBalancesState) {
 
 export const ADD_ADDRESS = 'ADD_ADDRESS'
 export function addAddress(address, type) {
+    // make sure that all addresses are stored in lowercase
+    address = address.toLowerCase()
     return {
         type: ADD_ADDRESS,
         payload: {
