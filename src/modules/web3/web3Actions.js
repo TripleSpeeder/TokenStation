@@ -34,11 +34,12 @@ export function setCurrentBlock(block) {
 }
 
 export const SET_NETWORK = 'SET_NETWORK'
-export function setNetwork(id, name) {
+export function setNetwork(id, name, previousId) {
     return {
         type: SET_NETWORK,
         id,
-        name
+        name,
+        previousId,
     }
 }
 
@@ -105,7 +106,7 @@ export function initialize() {
         const networkIdString = await web3.version.getNetworkPromise()
         let networkID = parseInt(networkIdString, 10)
         const network = getNetworkName(networkID)
-        dispatch(setNetwork(networkID, network))
+        dispatch(setNetwork(networkID, network, undefined))
 
         // set current block
         const block = await web3.eth.getBlockPromise('latest')
@@ -136,7 +137,7 @@ export function initialize() {
             const oldNetworkId = getState().web3Instance.id
             if (oldNetworkId !== networkID) {
                 const network = getNetworkName(networkID)
-                dispatch(setNetwork(networkID, network))
+                dispatch(setNetwork(networkID, network, oldNetworkId))
                 dispatch(clearTokenList())
             }
         }, 1000)
