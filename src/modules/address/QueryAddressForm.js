@@ -11,7 +11,7 @@ const QueryAddressForm = (props) => {
             <Form.Group inline>
                 <Form.Input width={10}
                             name='address'
-                            placeholder='Address or ENS name'
+                            placeholder='Address'
                             error={!valid}
                             onChange={handleChange}
                             value={address}
