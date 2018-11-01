@@ -3,17 +3,22 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED, changeOwnAddresses} from './addressActions'
 import AddressList from './AddressList'
+import {ETH_ENABLE_STATES, requestEthEnable} from '../web3/web3Actions'
 
 class AddressListContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.updateWeb3Accounts = this.updateWeb3Accounts.bind(this)
+        this.requestEthEnable = this.requestEthEnable.bind(this)
         this.checkAccountTimer = 0
     }
 
     render() {
+        const ethEnableState = this.props.web3Instance ? this.props.web3Instance.ethEnableState : ETH_ENABLE_STATES.REJECTED
         return <AddressList watchAddressIds={this.props.watchAddressIds}
                             ownAddressIds={this.props.ownAddressIds}
+                            ethEnableState={ethEnableState}
+                            ethEnable={this.requestEthEnable}
         />
     }
 
@@ -55,6 +60,10 @@ class AddressListContainer extends Component {
             }
         })
     }
+
+    requestEthEnable() {
+        this.props.ethEnable()
+    }
 }
 
 AddressListContainer.propTypes = {
@@ -73,13 +82,17 @@ const mapStateToProps = state => {
     return {
         ownAddressIds,
         watchAddressIds,
-        web3: state.web3Instance ? state.web3Instance.web3 : null
+        web3Instance: state.web3Instance ? state.web3Instance : null,
+        web3: state.web3Instance ? state.web3Instance.web3 : null,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     changeOwnAddresses: (accounts) => {
         dispatch(changeOwnAddresses(accounts))
+    },
+    ethEnable: () => {
+        dispatch(requestEthEnable())
     }
 })
 

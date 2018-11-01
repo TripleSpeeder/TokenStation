@@ -666,10 +666,19 @@ Array [
       <div
         className="header"
       >
-        No personal accounts
+        No access to personal accounts
       </div>
       <p>
-        You need to share your accounts so they are visible here. Log in to Metamask or share accounts in Mist .
+        You can grant access to your personal accounts. This will automatically put the accounts to the watch list.
+      </p>
+      <p>
+        <button
+          className="ui primary button"
+          onClick={[Function]}
+          role="button"
+        >
+          Grant access
+        </button>
       </p>
     </div>
   </div>,
@@ -856,6 +865,107 @@ Array [
         </tr>
       </tbody>
     </table>
+    <div
+      className="ui divider"
+    />
+    <form
+      className="ui form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="inline fields"
+      >
+        <div
+          className="error ten wide field"
+        >
+          <label>
+            Add account
+          </label>
+          <div
+            className="ui input"
+          >
+            <input
+              name="address"
+              onChange={[Function]}
+              placeholder="Address"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="disabled six wide field"
+        >
+          <button
+            className="ui disabled button"
+            disabled={true}
+            onClick={[Function]}
+            role="button"
+            tabIndex={-1}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>,
+]
+`;
+
+exports[`Storyshots Modules/AddressList wait for grant 1`] = `
+Array [
+  <div
+    className="ui segment"
+  >
+    <h2
+      className="ui dividing header"
+    >
+      Personal Accounts
+    </h2>
+    <div
+      className="ui message"
+    >
+      <div
+        className="header"
+      >
+        No access to personal accounts
+      </div>
+      <p>
+        You can grant access to your personal accounts. This will automatically put the accounts to the watch list.
+      </p>
+      <p>
+        <button
+          className="ui loading primary disabled button"
+          disabled={true}
+          onClick={[Function]}
+          role="button"
+          tabIndex={-1}
+        >
+          Grant access
+        </button>
+      </p>
+    </div>
+  </div>,
+  <div
+    className="ui segment"
+  >
+    <h2
+      className="ui dividing header"
+    >
+      Watched Accounts
+    </h2>
+    <div
+      className="ui message"
+    >
+      <div
+        className="header"
+      >
+        No watched accounts
+      </div>
+      <p>
+        You don't have any watched accounts.
+      </p>
+    </div>
     <div
       className="ui divider"
     />

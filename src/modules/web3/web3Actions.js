@@ -9,11 +9,25 @@ export const WEB3_STATES = {
     ERROR: 'error'
 }
 
+export const ETH_ENABLE_STATES = {
+    REJECTED: 'rejected', // no access to eth.accounts
+    WAITING: 'waiting', // waiting for user confirmation in UI (e.g. metamask)
+    GRANTED: 'granted', // user has granted access to eth.accounts
+}
+
 export const SET_WEB3_STATE = 'SET_WEB3_STATE'
 export function setWeb3State(state) {
     return {
         type: SET_WEB3_STATE,
         state
+    }
+}
+
+export const SET_ETH_ENABLE_STATE = 'SET_ETH_ENABLE_STATE'
+export function setEthEnableState(ethEnableState) {
+    return {
+        type: SET_ETH_ENABLE_STATE,
+        ethEnableState
     }
 }
 
@@ -141,6 +155,28 @@ export function initialize() {
                 dispatch(clearTokenList())
             }
         }, 1000)
+    }
+}
+
+export function requestEthEnable() {
+    return async (dispatch, getState) => {
+        if (window.ethereum) {
+            // request access to user accounts as described in EIP-1102
+            try {
+                // signal that app is waiting for user action
+                dispatch(setEthEnableState(ETH_ENABLE_STATES.WAITING))
+                // request access
+                await window.ethereum.enable()
+                // signal success
+                dispatch(setEthEnableState(ETH_ENABLE_STATES.GRANTED))
+            } catch(error) {
+                // user rejected access
+                dispatch(setEthEnableState(ETH_ENABLE_STATES.REJECTED))
+            }
+        } else {
+            // must be a legacy browser, which should grant access by default.
+            dispatch(setEthEnableState(ETH_ENABLE_STATES.GRANTED))
+        }
     }
 }
 
