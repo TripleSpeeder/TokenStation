@@ -384,7 +384,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address or ENS name"
+              placeholder="Address"
               type="text"
               value=""
             />
@@ -474,7 +474,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address or ENS name"
+              placeholder="Address"
               type="text"
               value=""
             />
@@ -625,7 +625,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address or ENS name"
+              placeholder="Address"
               type="text"
               value=""
             />
@@ -878,7 +878,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address or ENS name"
+              placeholder="Address"
               type="text"
               value=""
             />
@@ -2426,7 +2426,7 @@ exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
         <input
           name="address"
           onChange={[Function]}
-          placeholder="Address or ENS name"
+          placeholder="Address"
           type="text"
           value=""
         />
@@ -2469,7 +2469,7 @@ exports[`Storyshots Modules/QueryAddressForm invalid 1`] = `
         <input
           name="address"
           onChange={[Function]}
-          placeholder="Address or ENS name"
+          placeholder="Address"
           type="text"
           value="0x111222333"
         />
@@ -2512,7 +2512,7 @@ exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
         <input
           name="address"
           onChange={[Function]}
-          placeholder="Address or ENS name"
+          placeholder="Address"
           type="text"
           value="0xAccountAddress1"
         />
@@ -3740,7 +3740,7 @@ exports[`Storyshots Screens/Accounts default 1`] = `
                 <input
                   name="address"
                   onChange={[Function]}
-                  placeholder="Address or ENS name"
+                  placeholder="Address"
                   type="text"
                   value=""
                 />
@@ -4832,7 +4832,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address or ENS name"
+              placeholder="Address"
               type="text"
               value=""
             />
