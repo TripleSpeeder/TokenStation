@@ -5,26 +5,52 @@ import {addNewAddress, ADDRESS_TYPE_EXTERNAL} from './addressActions'
 import QueryAddressForm from './QueryAddressForm'
 
 
-class QueryAddressFormContainer extends Component {
+export const addressStates = {
+    ADDRESS_RESOLVING: 'address_resolving', // valid ENS name entered, waiting for resolving
+    ADDRESS_VALID: 'address_valid', // got a valid address
+    ADDRESS_INVALID: 'address_invalid',
+}
+
+export class QueryAddressFormContainer extends Component {
     constructor(props, context) {
         super(props, context)
 
         this.state = {
-            valid: false,
-            address: ''
+            addressState: addressStates.ADDRESS_INVALID,
+            address: '',
+            ensName: '',
+            input: '',
         }
         // kraken4='0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0'
-        this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange(e) {
-        const address=e.target.value
-        // check for valid address
-        const valid = (/^(0x)?[0-9a-f]{40}$/i.test(address))
+    handleChange = (e) => {
+        const input=e.target.value
+        let addressState = addressStates.ADDRESS_INVALID
+        let address = ''
+        let ensName = ''
+        // check for valid input (raw address and ENS name)
+        const validAddress = (/^(0x)?[0-9a-f]{40}$/i.test(input))
+        const validENSName = (/.*\.eth$/i.test(input))
+        if (validENSName) {
+            // TODO: start resolving process
+            addressState = addressStates.ADDRESS_RESOLVING
+            ensName = input
+            address = ''
+        }
+        else if(validAddress) {
+            // TODO: Lookup reverse ENS entry
+            addressState = addressStates.ADDRESS_VALID
+            ensName = ''
+            address = input
+        }
+
         this.setState(
             {
-                valid: valid,
-                address: address,
+                addressState,
+                address,
+                ensName,
+                input,
             }
         )
     }
@@ -33,17 +59,26 @@ class QueryAddressFormContainer extends Component {
         const { address } = this.state
         this.props.addNewAddress(address, ADDRESS_TYPE_EXTERNAL)
         this.setState({
-            valid: false,
-            address: ''
+            addressState: addressStates.ADDRESS_INVALID,
+            address: '',
+            ensName: '',
+            input: '',
         })
     }
 
     render() {
+        const error = (this.state.addressState === addressStates.ADDRESS_INVALID)
+        const loading = (this.state.addressState === addressStates.ADDRESS_RESOLVING)
+        const disabled = (error || loading)
         return (
             <QueryAddressForm handleChange={this.handleChange}
                               handleSubmit={this.handleSubmit}
-                              valid={this.state.valid}
+                              error = {error}
+                              loading={loading}
+                              disabled={disabled}
                               address={this.state.address}
+                              ensName={this.state.ensName}
+                              value={this.state.input}
             />
         )
     }
