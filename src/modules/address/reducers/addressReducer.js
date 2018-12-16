@@ -10,7 +10,9 @@ State tree:
         byId: {
             '0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0': {
                 address: '0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0',
-                type: ADDRESS_TYPE_EXTERNAL
+                type: ADDRESS_TYPE_EXTERNAL,
+                balancesState: 'virgin',
+                eventIds: []
             },
             ...
         }

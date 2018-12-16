@@ -4,22 +4,6 @@ import {
 } from '../addressActions'
 
 const ADDRESS_BY_ID_INITIAL = {}
-/*
-const ADDRESS_BY_ID_INITIAL = {
-    '0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0': {
-        address: '0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0',
-        type: ADDRESS_TYPE_EXTERNAL
-    },
-    '0xa38da4974b594204b73581ac5fbc1ebee54ca4e0': {
-        address: '0xa38da4974b594204b73581ac5fbc1ebee54ca4e0',
-        type: ADDRESS_TYPE_EXTERNAL
-    },
-    '0xc44e4c49ffa5db98ca52770dff3e371ecb01f2d9': {
-        address: '0xc44e4c49ffa5db98ca52770dff3e371ecb01f2d9',
-        type: ADDRESS_TYPE_OWNED
-    }
-}
-*/
 
 function addAddressEntry(state, action) {
     const {payload} = action
