@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bignumber.js": "^2.0.7",
+    "ethjs-ens": "^2.0.1",
     "formsy-react": "^1.1.4",
     "formsy-semantic-ui-react": "^0.3.3",
     "history": "^4.7.2",

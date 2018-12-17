@@ -3,7 +3,7 @@ import {
     SET_CURRENT_BLOCK,
     SET_WEB3INSTANCE,
     SET_NETWORK,
-    SET_NODE_VERSION, SET_BLOCK_FILTER, WEB3_STATES, SET_WEB3_STATE, ETH_ENABLE_STATES, SET_ETH_ENABLE_STATE,
+    SET_NODE_VERSION, SET_BLOCK_FILTER, WEB3_STATES, SET_WEB3_STATE, ETH_ENABLE_STATES, SET_ETH_ENABLE_STATE, SET_ENS,
 } from './web3Actions'
 
 const WEB3_INITIAL = {
@@ -17,6 +17,7 @@ const WEB3_INITIAL = {
     name: 'unknown',
     blockFilter: null,
     ethEnableState: ETH_ENABLE_STATES.REJECTED,
+    ens: undefined,
 }
 
 export const web3Instance = (state=WEB3_INITIAL, action) => {
@@ -27,6 +28,8 @@ export const web3Instance = (state=WEB3_INITIAL, action) => {
             return updateObject(state, {ethEnableState: action.ethEnableState})
         case SET_WEB3INSTANCE:
             return updateObject(state, {web3: action.web3})
+        case SET_ENS:
+            return updateObject(state, {ens: action.ens})
         case SET_CURRENT_BLOCK:
             return updateObject(state, {block: action.block})
         case SET_NETWORK:

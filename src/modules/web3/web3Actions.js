@@ -1,3 +1,4 @@
+import Ens from 'ethjs-ens'
 import getWeb3 from '../../utils/getWeb3'
 import {clearTokenList} from '../token/tokenActions'
 import promisify from '../../utils/promisifyWeb3'
@@ -36,6 +37,14 @@ export function setWeb3Instance(web3) {
     return {
         type: SET_WEB3INSTANCE,
         web3
+    }
+}
+
+export const SET_ENS = 'SET_ENS'
+export function setENS(ens) {
+    return {
+        type: SET_ENS,
+        ens
     }
 }
 
@@ -121,6 +130,13 @@ export function initialize() {
         let networkID = parseInt(networkIdString, 10)
         const network = getNetworkName(networkID)
         dispatch(setNetwork(networkID, network, undefined))
+
+        // setup ens system
+        const ens = new Ens({
+            provider: web3.currentProvider,
+            network: networkID
+        })
+        dispatch(setENS(ens))
 
         // set current block
         const block = await web3.eth.getBlockPromise('latest')
