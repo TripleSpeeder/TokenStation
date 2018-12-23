@@ -30,6 +30,7 @@ const QueryAddressForm = (props) => {
 QueryAddressForm.propTypes = {
     address: PropTypes.string,
     ensName: PropTypes.string,
+    value: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
     disabled: PropTypes.bool.isRequired,
     error: PropTypes.bool.isRequired,
