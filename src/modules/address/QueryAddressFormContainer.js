@@ -90,8 +90,8 @@ export class QueryAddressFormContainer extends Component {
     }
 
     handleSubmit = () => {
-        const { address } = this.state
-        this.props.addNewAddress(address, ADDRESS_TYPE_EXTERNAL)
+        const { address, ensName } = this.state
+        this.props.addNewAddress(address, ensName, ADDRESS_TYPE_EXTERNAL)
         this.setState({
             addressState: addressStates.ADDRESS_INVALID,
             address: '',
@@ -126,8 +126,8 @@ const mapStateToProps = state => {
 }
 
 let mapDispatchToProps = dispatch => ({
-    addNewAddress: (address, type) => {
-        dispatch(addNewAddress(address, type))
+    addNewAddress: (address, ensName, type) => {
+        dispatch(addNewAddress(address, ensName, type))
     }
 })
 

@@ -359,6 +359,7 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
             dispatch(balanceStateChanged(tokenId, addressId, BALANCE_STATES.LOADING))
             await verifyContractInstance(tokenId, dispatch, getState)
             const volatileToken = getState().tokens.volatileById[tokenId]
+            console.log("ID: " + addressId)
             const address = getState().addresses.byId[addressId].address
             const balance = await volatileToken.contractInstance.balanceOf(address)
             dispatch(setBalanceByAddressAndToken(addressId, tokenId, balance))

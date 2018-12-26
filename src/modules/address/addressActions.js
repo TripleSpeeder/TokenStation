@@ -22,14 +22,13 @@ export function addressBalancesStateChanged(addressId, addressBalancesState) {
 }
 
 export const ADD_ADDRESS = 'ADD_ADDRESS'
-export function addAddress(address, type) {
-    // make sure that all addresses are stored in lowercase
-    address = address.toLowerCase()
+export function addAddress(address, ensName, type) {
     return {
         type: ADD_ADDRESS,
         payload: {
             addressId: address,
             address,
+            ensName,
             type
         }
     }
@@ -81,10 +80,12 @@ function batchGetBalances(timestamp, startIndex, addressId, dispatch, getState, 
     }
 }
 
-export function addNewAddress(address, type) {
+export function addNewAddress(address, ensName, type) {
     return (dispatch, getState) => {
         // a new address is added.
-        dispatch(addAddress(address, type))
+        // make sure that all addresses are stored in lowercase
+        address = address.toLowerCase()
+        dispatch(addAddress(address, ensName, type))
         // If i'm tracking tokens start getting balance right away
         const trackedIds = getState().tokens.trackedIds
         if (trackedIds.length) {
@@ -140,7 +141,7 @@ export function changeOwnAddresses(accounts) {
 
         // add all new addresses
         newAccounts.forEach(account => {
-            dispatch(addNewAddress(account, ADDRESS_TYPE_OWNED))
+            dispatch(addNewAddress(account, '', ADDRESS_TYPE_OWNED))
         })
     }
 }
