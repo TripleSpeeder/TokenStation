@@ -384,7 +384,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address"
+              placeholder="Address or ENS Name"
               type="text"
               value=""
             />
@@ -474,7 +474,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address"
+              placeholder="Address or ENS Name"
               type="text"
               value=""
             />
@@ -625,7 +625,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address"
+              placeholder="Address or ENS Name"
               type="text"
               value=""
             />
@@ -887,7 +887,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address"
+              placeholder="Address or ENS Name"
               type="text"
               value=""
             />
@@ -988,7 +988,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address"
+              placeholder="Address or ENS Name"
               type="text"
               value=""
             />
@@ -2525,7 +2525,7 @@ exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
     className="inline fields"
   >
     <div
-      className="error ten wide field"
+      className="ten wide field"
     >
       <label>
         Add account
@@ -2536,7 +2536,7 @@ exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
         <input
           name="address"
           onChange={[Function]}
-          placeholder="Address"
+          placeholder="Address or ENS Name"
           type="text"
           value=""
         />
@@ -2559,7 +2559,7 @@ exports[`Storyshots Modules/QueryAddressForm empty 1`] = `
 </form>
 `;
 
-exports[`Storyshots Modules/QueryAddressForm invalid 1`] = `
+exports[`Storyshots Modules/QueryAddressForm invalid address 1`] = `
 <form
   className="ui form"
   onSubmit={[Function]}
@@ -2579,7 +2579,7 @@ exports[`Storyshots Modules/QueryAddressForm invalid 1`] = `
         <input
           name="address"
           onChange={[Function]}
-          placeholder="Address"
+          placeholder="Address or ENS Name"
           type="text"
           value="0x111222333"
         />
@@ -2602,7 +2602,50 @@ exports[`Storyshots Modules/QueryAddressForm invalid 1`] = `
 </form>
 `;
 
-exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
+exports[`Storyshots Modules/QueryAddressForm non-resolved ENS 1`] = `
+<form
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="inline fields"
+  >
+    <div
+      className="error ten wide field"
+    >
+      <label>
+        Add account
+      </label>
+      <div
+        className="ui input"
+      >
+        <input
+          name="address"
+          onChange={[Function]}
+          placeholder="Address or ENS Name"
+          type="text"
+          value="not.resolving.eth"
+        />
+      </div>
+    </div>
+    <div
+      className="disabled six wide field"
+    >
+      <button
+        className="ui disabled button"
+        disabled={true}
+        onClick={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Modules/QueryAddressForm resolved ENS 1`] = `
 <form
   className="ui form"
   onSubmit={[Function]}
@@ -2622,7 +2665,95 @@ exports[`Storyshots Modules/QueryAddressForm valid 1`] = `
         <input
           name="address"
           onChange={[Function]}
-          placeholder="Address"
+          placeholder="Address or ENS Name"
+          type="text"
+          value="michael.eth"
+        />
+      </div>
+    </div>
+    <div
+      className="six wide field"
+    >
+      <button
+        className="ui button"
+        onClick={[Function]}
+        role="button"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Modules/QueryAddressForm resolving ENS 1`] = `
+<form
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="inline fields"
+  >
+    <div
+      className="ten wide field"
+    >
+      <label>
+        Add account
+      </label>
+      <div
+        className="ui loading icon input"
+      >
+        <input
+          name="address"
+          onChange={[Function]}
+          placeholder="Address or ENS Name"
+          type="text"
+          value="michael.eth"
+        />
+        <i
+          aria-hidden="true"
+          className="spinner icon"
+        />
+      </div>
+    </div>
+    <div
+      className="disabled six wide field"
+    >
+      <button
+        className="ui disabled button"
+        disabled={true}
+        onClick={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Modules/QueryAddressForm valid address 1`] = `
+<form
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="inline fields"
+  >
+    <div
+      className="ten wide field"
+    >
+      <label>
+        Add account
+      </label>
+      <div
+        className="ui input"
+      >
+        <input
+          name="address"
+          onChange={[Function]}
+          placeholder="Address or ENS Name"
           type="text"
           value="0xAccountAddress1"
         />
@@ -3850,7 +3981,7 @@ exports[`Storyshots Screens/Accounts default 1`] = `
                 <input
                   name="address"
                   onChange={[Function]}
-                  placeholder="Address"
+                  placeholder="Address or ENS Name"
                   type="text"
                   value=""
                 />
@@ -4942,7 +5073,7 @@ Array [
             <input
               name="address"
               onChange={[Function]}
-              placeholder="Address"
+              placeholder="Address or ENS Name"
               type="text"
               value=""
             />
@@ -5146,7 +5277,7 @@ Array [
                     <span
                       className="text"
                     >
-                      0xAccountAddress1
+                      cool.stuff.eth
                     </span>
                   </div>
                   <div
@@ -5200,7 +5331,7 @@ Array [
                     <span
                       className="text"
                     >
-                      0xAccountAddress4
+                      joe.doe.eth
                     </span>
                   </div>
                   <div
@@ -5514,7 +5645,7 @@ Array [
                     <span
                       className="text"
                     >
-                      0xAccountAddress1
+                      cool.stuff.eth
                     </span>
                   </div>
                   <div
@@ -5568,7 +5699,7 @@ Array [
                     <span
                       className="text"
                     >
-                      0xAccountAddress4
+                      joe.doe.eth
                     </span>
                   </div>
                   <div
@@ -5882,7 +6013,7 @@ Array [
                     <span
                       className="text"
                     >
-                      0xAccountAddress1
+                      cool.stuff.eth
                     </span>
                   </div>
                   <div
@@ -5936,7 +6067,7 @@ Array [
                     <span
                       className="text"
                     >
-                      0xAccountAddress4
+                      joe.doe.eth
                     </span>
                   </div>
                   <div
@@ -6219,7 +6350,7 @@ Array [
                     <span
                       className="text"
                     >
-                      0xAccountAddress1
+                      cool.stuff.eth
                     </span>
                   </div>
                   <div
@@ -6273,7 +6404,7 @@ Array [
                     <span
                       className="text"
                     >
-                      0xAccountAddress4
+                      joe.doe.eth
                     </span>
                   </div>
                   <div
