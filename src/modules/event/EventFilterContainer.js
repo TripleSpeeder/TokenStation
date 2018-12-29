@@ -73,16 +73,10 @@ const mapStateToProps = (state) => {
         ({
             key: id,
             value: id,
-            text: id,
+            text: state.addresses.byId[id].ensName ? state.addresses.byId[id].ensName : id
         })
     )
-    /*
-    addressOptions.push({
-        key: -1,
-        value: -1,
-        text: 'All Accounts'
-    })*/
-    addressOptions.sort((a, b) => (a.key > b.key))
+    addressOptions.sort((a, b) => (a.text > b.text))
 
     return {
         tokenOptions,
