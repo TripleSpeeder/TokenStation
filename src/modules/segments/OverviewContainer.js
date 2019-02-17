@@ -27,7 +27,7 @@ const mapStateToProps = state => {
     const filterIsActive = (state.balance.listState.filter.length > 0)
 
     // get balanceIds to display
-    const balanceIds = filterIsActive ? state.balance.listState.matchedBalanceIds : state.balance.positiveIds
+    const balanceIds = filterIsActive ? state.balance.listState.matchedBalanceIds : state.balance.allIds
     // map IDs to Entries
     const balanceEntries = balanceIds.map(id => state.balance.byId[id])
     // now group the balances by token
