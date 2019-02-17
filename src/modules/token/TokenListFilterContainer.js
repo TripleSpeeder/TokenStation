@@ -48,7 +48,7 @@ const mapStateToProps = (state, ownProps) => {
     }
     if (target === 'balancelist') {
         return {
-            total: state.balance.positiveIds.length,
+            total: state.balance.allIds.length,
             displayed: state.balance.listState.matchedBalanceIds.length,
             filterIsActive: state.balance.listState.filter.length > 0,
             filterString: state.balance.listState.filter,
