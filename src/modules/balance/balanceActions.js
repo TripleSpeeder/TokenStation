@@ -64,11 +64,11 @@ export function changeBalanceFilterProps(filter, matchedBalanceIds) {
 
 export function setBalanceFilterString(filterString) {
     return (dispatch, getState) => {
-        // Filter balance list based on filterstring. Look at
+        // Filter balance list based on filterstring.
         const searchString = filterString.toLowerCase()
 
-        // Default: Show all positive balances
-        let balanceIds = getState().balance.positiveIds
+        // Default: Show all balances
+        let balanceIds = getState().balance.allIds
 
         // If a searchstring is provided, filter balanceIds
         if (searchString.length) {
