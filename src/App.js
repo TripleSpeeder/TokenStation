@@ -3,30 +3,30 @@ import {Provider} from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from './store'
 import {Container} from 'semantic-ui-react'
-import { PersistGate } from 'redux-persist/lib/integration/react'
 import ModalRoot from './modules/modal/ModalRoot'
 import LayoutContainer from './modules/layout/LayoutContainer'
 import TokenLoaderGate from './modules/token/TokenLoaderGate'
 import Web3GateContainer from './modules/web3/web3GateContainer'
+import LocalStorageGate from "./utils/LocalStorageGate"
 
-let {store, persistor} = configureStore()
+let {store} = configureStore()
 
 class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <PersistGate persistor={persistor}>
-                    <Web3GateContainer>
-                        <TokenLoaderGate>
+                <Web3GateContainer>
+                    <TokenLoaderGate>
+                        <LocalStorageGate>
                             <BrowserRouter>
                                 <Container>
                                     <ModalRoot/>
                                     <LayoutContainer/>
                                 </Container>
                             </BrowserRouter>
-                        </TokenLoaderGate>
-                    </Web3GateContainer>
-                </PersistGate>
+                        </LocalStorageGate>
+                    </TokenLoaderGate>
+                </Web3GateContainer>
             </Provider>
         )
     }

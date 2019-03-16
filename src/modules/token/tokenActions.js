@@ -10,6 +10,11 @@ import {
     aceEntriesBlockRangeChange, aceEntriesLoadingChange, aceEntriesLoadingChangeWrapper,
     addEventsThunk, changeEventScanProps
 } from '../event/eventActions'
+import {
+    storeLocalData,
+    SELECTED_TOKEN_KEY,
+    TRACKED_TOKEN_KEYS,
+} from "../../utils/localStorageWrapper"
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -47,7 +52,6 @@ export function addVolatileToken(tokenID) {
         }
     }
 }
-
 
 export const IS_LOADING_TOKEN = 'IS_LOADING_TOKEN'
 export function loadingTokenChanged(tokenID, isLoading) {
@@ -101,6 +105,15 @@ export function setTokenLoadingPromise(tokenID, loadingPromise) {
             tokenID,
             loadingPromise
         }
+    }
+}
+
+export function changeSelectorTokenIdThunk(selectedTokenId) {
+    return (dispatch, getState) => {
+        // update state
+        dispatch(changeSelectorTokenId(selectedTokenId))
+        // update localstorage
+        storeLocalData(SELECTED_TOKEN_KEY, getState().tokens.selector.selectedTokenId)
     }
 }
 
@@ -174,7 +187,10 @@ export function changeTokenListPage(activePage) {
 
 export function changeTokenTrackingThunk(tokenId, doTrack) {
     return (dispatch, getState) => {
+        // update state
         dispatch(changeTokenTracking(tokenId, doTrack))
+        // update localstorage
+        storeLocalData(TRACKED_TOKEN_KEYS, getState().tokens.trackedIds)
         // if I start tracking a token, start getting balances right away
         if (doTrack) {
             getState().addresses.allIds.forEach(addressId => {
@@ -261,6 +277,7 @@ export function loadTokenList(url) {
             const token = mapListToken(listToken)
             dispatch(addToken(token.address, token))
         })
+
         // if there is already a filter set, re-evaluate the filter results
         if (filterIsActive) {
             dispatch(setFilterProps({}))
@@ -278,6 +295,7 @@ export function loadTokenList(url) {
                 }
             )
         }
+
         // stop tracking non-existing tokens
         const trackedTokensToRemove = getState().tokens.trackedIds.filter(tokenId => {
             return (existingTrackedTokens.indexOf(tokenId) === -1)
@@ -479,7 +497,6 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
 async function verifyContractInstance(tokenId, dispatch, getState) {
     let volatileToken = getState().tokens.volatileById[tokenId]
     if (volatileToken === undefined) {
-        // volatileToken is undefined if we rehydrated state from localstorage.
         // Create an entry to continue
         dispatch(addVolatileToken(tokenId))
         volatileToken = getState().tokens.volatileById[tokenId]

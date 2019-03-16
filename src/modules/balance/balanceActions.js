@@ -4,7 +4,6 @@ export const BALANCE_STATES = {
     VIRGIN: 'virgin',
     LOADING: 'loading',
     INITIALIZED: 'initialized',
-    HYDRATED_WHILE_LOADING: 'hydrated_while_loading'
 }
 
 export const SET_BALANCE = 'SET_BALANCE'
@@ -123,6 +122,17 @@ export function clearTokenBalances(tokenId) {
     return (dispatch, getState) => {
         const balancesToClear = Object.values(getState().balance.byId).filter(balanceEntry => {
             return (balanceEntry.tokenId === tokenId)
+        })
+        balancesToClear.forEach(balanceEntry => {
+            dispatch(deleteBalanceEntry(balanceEntry.balanceId))
+        })
+    }
+}
+
+export function clearAddressBalances(addressId) {
+    return (dispatch, getState) => {
+        const balancesToClear = Object.values(getState().balance.byId).filter(balanceEntry => {
+            return (balanceEntry.addressId === addressId)
         })
         balancesToClear.forEach(balanceEntry => {
             dispatch(deleteBalanceEntry(balanceEntry.balanceId))

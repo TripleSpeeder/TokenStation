@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Container, Dropdown, Form, Grid} from 'semantic-ui-react'
-import {changeSelectorTokenId} from '../token/tokenActions'
+import {changeSelectorTokenIdThunk} from '../token/tokenActions'
 import {connect} from 'react-redux'
 import {changeSelectorAddressId} from '../address/addressActions'
 
@@ -89,7 +89,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onTokenSelect: (e, {value}) => {
-            dispatch(changeSelectorTokenId(value))
+            dispatch(changeSelectorTokenIdThunk(value))
         },
         onAddressSelect: (e, {value}) => {
             dispatch(changeSelectorAddressId(value))
