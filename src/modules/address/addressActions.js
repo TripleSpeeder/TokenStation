@@ -1,5 +1,5 @@
-import {loadMultiTokenBalances, loadTokenBalance} from '../token/tokenActions'
-import {buildBalanceId, clearAddressBalances} from '../balance/balanceActions'
+import {loadMultiTokenBalances} from '../token/tokenActions'
+import {clearAddressBalances} from '../balance/balanceActions'
 import {storeLocalData, WATCHED_ADDRESSES} from "../../utils/localStorageWrapper"
 
 export const ADDRESS_TYPE_EXTERNAL='ADDRESS_TYPE_EXTERNAL'
@@ -8,7 +8,6 @@ export const ADDRESS_BALANCES_STATES = {
     VIRGIN: 'virgin',
     LOADING: 'loading',
     INITIALIZED: 'initialized',
-    HYDRATED_WHILE_LOADING: 'hydrated_while_loading'
 }
 
 export const CHANGE_ADDRESS_BALANCES_STATE = 'CHANGE_ADDRESS_BALANCES_STATE'
@@ -74,31 +73,6 @@ export function changeAddressType(addressId, newType) {
     }
 }
 
-function batchGetBalances(timestamp, startIndex, addressId, dispatch, getState, recursionCount) {
-    const allIds = getState().tokens.allIds
-    let diff = 0
-    let index = startIndex
-    while ((diff < 10) && (index < allIds.length)) {
-        const tokenId = allIds[index]
-        const balanceId = buildBalanceId(addressId, tokenId)
-        if (getState().balance.byId[balanceId] === undefined) {
-            dispatch(loadTokenBalance(tokenId, addressId))
-        }
-        index++
-        diff = performance.now()-timestamp
-    }
-    // 10 ms have passed
-    if (index < allIds.length) {
-        console.log("Batch update with index " + index)
-        requestAnimationFrame((timestamp) => {
-            batchGetBalances(timestamp, index, addressId, dispatch, getState, recursionCount+1)
-        })
-    } else {
-        // indicate loading finished when last balance loading request was dispatched
-        dispatch(addressBalancesStateChanged(addressId, ADDRESS_BALANCES_STATES.INITIALIZED))
-    }
-}
-
 export function addNewAddress(address, ensName, type) {
     return (dispatch, getState) => {
         // a new address is added.
@@ -120,13 +94,6 @@ export function addNewAddress(address, ensName, type) {
             // load balance for all tracked tokens
             dispatch(loadMultiTokenBalances(trackedIds, address))
         }
-    }
-}
-
-export function resumeGetBalances(addressId, startIndex) {
-    return (dispatch, getState) => {
-        // start getting balances
-        batchGetBalances(performance.now(), startIndex, addressId, dispatch, getState, 0)
     }
 }
 

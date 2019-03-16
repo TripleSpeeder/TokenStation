@@ -53,7 +53,6 @@ export function addVolatileToken(tokenID) {
     }
 }
 
-
 export const IS_LOADING_TOKEN = 'IS_LOADING_TOKEN'
 export function loadingTokenChanged(tokenID, isLoading) {
     return {
@@ -108,7 +107,6 @@ export function setTokenLoadingPromise(tokenID, loadingPromise) {
         }
     }
 }
-
 
 export function changeSelectorTokenIdThunk(selectedTokenId) {
     return (dispatch, getState) => {
@@ -499,7 +497,6 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
 async function verifyContractInstance(tokenId, dispatch, getState) {
     let volatileToken = getState().tokens.volatileById[tokenId]
     if (volatileToken === undefined) {
-        // volatileToken is undefined if we rehydrated state from localstorage.
         // Create an entry to continue
         dispatch(addVolatileToken(tokenId))
         volatileToken = getState().tokens.volatileById[tokenId]
