@@ -10,6 +10,12 @@ import {
     aceEntriesBlockRangeChange, aceEntriesLoadingChange, aceEntriesLoadingChangeWrapper,
     addEventsThunk, changeEventScanProps
 } from '../event/eventActions'
+import {
+    getLocalData,
+    storeLocalData,
+    SELECTED_TOKEN_KEY,
+    TRACKED_TOKEN_KEYS,
+} from "../../utils/localStorageWrapper"
 
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
@@ -104,6 +110,16 @@ export function setTokenLoadingPromise(tokenID, loadingPromise) {
     }
 }
 
+
+export function changeSelectorTokenIdThunk(selectedTokenId) {
+    return (dispatch, getState) => {
+        // update state
+        dispatch(changeSelectorTokenId(selectedTokenId))
+        // update localstorage
+        storeLocalData(SELECTED_TOKEN_KEY, getState().tokens.selector.selectedTokenId)
+    }
+}
+
 export const CHANGE_SELECTOR_TOKENID = 'CHANGE_SELECTOR_TOKENID'
 export function changeSelectorTokenId(selectedTokenId) {
     return {
@@ -174,7 +190,10 @@ export function changeTokenListPage(activePage) {
 
 export function changeTokenTrackingThunk(tokenId, doTrack) {
     return (dispatch, getState) => {
+        // update state
         dispatch(changeTokenTracking(tokenId, doTrack))
+        // update localstorage
+        storeLocalData(TRACKED_TOKEN_KEYS, getState().tokens.trackedIds)
         // if I start tracking a token, start getting balances right away
         if (doTrack) {
             getState().addresses.allIds.forEach(addressId => {
@@ -261,6 +280,13 @@ export function loadTokenList(url) {
             const token = mapListToken(listToken)
             dispatch(addToken(token.address, token))
         })
+
+        // restore tracked tokens from localstorage
+        const trackedTokens = getLocalData(TRACKED_TOKEN_KEYS, []);
+        trackedTokens.forEach((tokenId) => {
+            dispatch(changeTokenTracking(tokenId, true))
+        })
+
         // if there is already a filter set, re-evaluate the filter results
         if (filterIsActive) {
             dispatch(setFilterProps({}))
@@ -278,6 +304,7 @@ export function loadTokenList(url) {
                 }
             )
         }
+
         // stop tracking non-existing tokens
         const trackedTokensToRemove = getState().tokens.trackedIds.filter(tokenId => {
             return (existingTrackedTokens.indexOf(tokenId) === -1)
@@ -285,6 +312,12 @@ export function loadTokenList(url) {
         trackedTokensToRemove.forEach(tokenId => {
             dispatch(changeTokenTracking(tokenId, false))
         })
+
+        // restore selected token from localstorage
+        const selectedTokendId = getLocalData(SELECTED_TOKEN_KEY, null)
+        if (selectedTokendId) {
+            dispatch(changeSelectorTokenId(selectedTokendId))
+        }
 
         // Finished loading
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.INITIALIZED))

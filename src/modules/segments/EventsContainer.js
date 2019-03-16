@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {changeSelectorTokenId} from '../token/tokenActions'
+import {changeSelectorTokenIdThunk} from '../token/tokenActions'
 import Events from './Events'
 import {changeSelectorAddressId} from '../address/addressActions'
 
@@ -44,7 +44,7 @@ const mapStateToProps = state => ({})
 
 const mapDispatchToProps = dispatch => ({
     setSelectedToken: (tokenId) => {
-        dispatch(changeSelectorTokenId(tokenId))
+        dispatch(changeSelectorTokenIdThunk(tokenId))
     },
     setSelectedAddress: (address) => {
         dispatch(changeSelectorAddressId(address))
