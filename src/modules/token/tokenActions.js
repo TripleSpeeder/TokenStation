@@ -11,7 +11,6 @@ import {
     addEventsThunk, changeEventScanProps
 } from '../event/eventActions'
 import {
-    getLocalData,
     storeLocalData,
     SELECTED_TOKEN_KEY,
     TRACKED_TOKEN_KEYS,
@@ -281,12 +280,6 @@ export function loadTokenList(url) {
             dispatch(addToken(token.address, token))
         })
 
-        // restore tracked tokens from localstorage
-        const trackedTokens = getLocalData(TRACKED_TOKEN_KEYS, []);
-        trackedTokens.forEach((tokenId) => {
-            dispatch(changeTokenTracking(tokenId, true))
-        })
-
         // if there is already a filter set, re-evaluate the filter results
         if (filterIsActive) {
             dispatch(setFilterProps({}))
@@ -312,12 +305,6 @@ export function loadTokenList(url) {
         trackedTokensToRemove.forEach(tokenId => {
             dispatch(changeTokenTracking(tokenId, false))
         })
-
-        // restore selected token from localstorage
-        const selectedTokendId = getLocalData(SELECTED_TOKEN_KEY, null)
-        if (selectedTokendId) {
-            dispatch(changeSelectorTokenId(selectedTokendId))
-        }
 
         // Finished loading
         dispatch(tokenListStateChanged(TOKEN_LIST_STATES.INITIALIZED))

@@ -1,6 +1,7 @@
 
 export const TRACKED_TOKEN_KEYS = 'TRACKED_TOKEN_KEYS'
 export const SELECTED_TOKEN_KEY = 'SELECTED_TOKEN_KEY'
+export const WATCHED_ADDRESSES = 'WATCHED_ADDRESSES'
 
 export function storeLocalData(key, data) {
     // console.log("Storing " + key + " -> " + data)

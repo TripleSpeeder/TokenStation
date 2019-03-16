@@ -130,6 +130,17 @@ export function clearTokenBalances(tokenId) {
     }
 }
 
+export function clearAddressBalances(addressId) {
+    return (dispatch, getState) => {
+        const balancesToClear = Object.values(getState().balance.byId).filter(balanceEntry => {
+            return (balanceEntry.addressId === addressId)
+        })
+        balancesToClear.forEach(balanceEntry => {
+            dispatch(deleteBalanceEntry(balanceEntry.balanceId))
+        })
+    }
+}
+
 export function buildBalanceId(addressId, tokenId) {
     return (addressId + '-' + tokenId)
 }

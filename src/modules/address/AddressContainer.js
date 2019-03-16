@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {
-    ADDRESS_BALANCES_STATES, removeAddress, resumeGetBalances
+    ADDRESS_BALANCES_STATES, removeAddressThunk, resumeGetBalances,
 } from './addressActions'
 import {BALANCE_STATES} from '../balance/balanceActions'
 import AddressRow from './AddressRow'
@@ -83,7 +83,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     removeAddress: (addressId) => {
-        dispatch(removeAddress(addressId))
+        dispatch(removeAddressThunk(addressId))
     },
     resumeGetBalances: (addressId, startIndex) => {
         dispatch(resumeGetBalances(addressId, startIndex))

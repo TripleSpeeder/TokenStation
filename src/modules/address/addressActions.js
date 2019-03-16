@@ -1,5 +1,6 @@
 import {loadMultiTokenBalances, loadTokenBalance} from '../token/tokenActions'
-import {buildBalanceId} from '../balance/balanceActions'
+import {buildBalanceId, clearAddressBalances} from '../balance/balanceActions'
+import {storeLocalData, WATCHED_ADDRESSES} from "../../utils/localStorageWrapper"
 
 export const ADDRESS_TYPE_EXTERNAL='ADDRESS_TYPE_EXTERNAL'
 export const ADDRESS_TYPE_OWNED='ADDRESS_TYPE_OWNED'
@@ -31,6 +32,24 @@ export function addAddress(address, ensName, type) {
             ensName,
             type
         }
+    }
+}
+
+
+export function removeAddressThunk(addressId) {
+    return (dispatch, getState) => {
+        // remove from state
+        dispatch(removeAddress(addressId))
+        // remove all balance entries
+        dispatch(clearAddressBalances(addressId))
+        // update localStorage
+        const addressesToStore = Object.values(getState().addresses.byId).map(o => (
+            {
+                address: o.address,
+                ensName: o.ensName
+            })
+        )
+        storeLocalData(WATCHED_ADDRESSES, addressesToStore)
     }
 }
 
@@ -85,7 +104,16 @@ export function addNewAddress(address, ensName, type) {
         // a new address is added.
         // make sure that all addresses are stored in lowercase
         address = address.toLowerCase()
+        // add address to store
         dispatch(addAddress(address, ensName, type))
+        // save address in localStorage
+        const addressesToStore = Object.values(getState().addresses.byId).map(o => (
+            {
+                address: o.address,
+                ensName: o.ensName
+            })
+        )
+        storeLocalData(WATCHED_ADDRESSES, addressesToStore)
         // If i'm tracking tokens start getting balance right away
         const trackedIds = getState().tokens.trackedIds
         if (trackedIds.length) {
