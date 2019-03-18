@@ -16,6 +16,14 @@ import {
     TRACKED_TOKEN_KEYS,
 } from "../../utils/localStorageWrapper"
 
+export const ETH_TOKEN_MAGIC_ADDRESS = "0x1000000000000000000000000000000000000001"
+export const ETH_TOKEN_DUMMY = {
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "address": ETH_TOKEN_MAGIC_ADDRESS,
+    "decimals": 18
+}
+
 export const TOKEN_LIST_STATES = {
     VIRGIN: 'virgin',
     LOADING: 'loading',
@@ -264,14 +272,16 @@ export function loadTokenList(url) {
         const response = await fetch(url)
         // parse json
         const jsonTokens = await response.json()
+
+        // inject ETH dummy token
+        jsonTokens.push(ETH_TOKEN_DUMMY)
+
         // sort token list alphabetically
         jsonTokens.sort((a, b) => ( (a.name.toUpperCase() < b.name.toUpperCase()) ? -1 : 1))
 
         // set total number of tokens (for loading progress)
         dispatch(changeValidTokenCount(jsonTokens.length))
 
-        // Check if there is currently a filter set
-        const filterIsActive = (getState().tokens.listState.filterIsActive)
         // add tokens
         jsonTokens.forEach((listToken) => {
             const token = mapListToken(listToken)
@@ -279,7 +289,7 @@ export function loadTokenList(url) {
         })
 
         // if there is already a filter set, re-evaluate the filter results
-        if (filterIsActive) {
+        if (getState().tokens.listState.filterIsActive) {
             dispatch(setFilterProps({}))
         }
 
@@ -335,35 +345,30 @@ export function instantiateTokenContract(tokenID) {
         // create promise that resolves as soon as the contract is instantiated.
         const loadingPromise = new Promise(
             async function(resolve, reject) {
-                // indicate we are loading the token
-                dispatch(loadingTokenChanged(tokenID, true))
-                // create token contract instance and store it for later use in state
-                const token = getState().tokens.byId[tokenID]
-                const {web3} = getState().web3Instance
-                const ERC20Contract = contract({abi: erc20ABI})
-                ERC20Contract.setProvider(web3.currentProvider)
-                const contractInstance = await ERC20Contract.at(token.address)
-                dispatch(setTokenContractInstance(tokenID, contractInstance))
-                // indicate we finished loading the token
-                dispatch(loadingTokenChanged(tokenID, false))
-                // finally resolve loading promise
-                resolve()
+                if (tokenID === ETH_TOKEN_MAGIC_ADDRESS) {
+                    // This is the dummy token entry for plain ether
+                    // indicate we finished loading the token
+                    dispatch(loadingTokenChanged(tokenID, false))
+                    // finally resolve loading promise
+                    resolve()
+                } else {
+                    // indicate we are loading the token
+                    dispatch(loadingTokenChanged(tokenID, true))
+                    // create token contract instance and store it for later use in state
+                    const token = getState().tokens.byId[tokenID]
+                    const {web3} = getState().web3Instance
+                    const ERC20Contract = contract({abi: erc20ABI})
+                    ERC20Contract.setProvider(web3.currentProvider)
+                    const contractInstance = await ERC20Contract.at(token.address)
+                    dispatch(setTokenContractInstance(tokenID, contractInstance))
+                    // indicate we finished loading the token
+                    dispatch(loadingTokenChanged(tokenID, false))
+                    // finally resolve loading promise
+                    resolve()
+                }
             }
         )
         dispatch(setTokenLoadingPromise(tokenID, loadingPromise))
-    }
-}
-
-export function loadTokenSupply(tokenID) {
-    return async (dispatch, getState) => {
-        dispatch(loadingSupplyChanged(tokenID, true))
-        await verifyContractInstance(tokenID, dispatch, getState)
-        const volatileToken = getState().tokens.volatileById[tokenID]
-        // obtain token contract instance from state
-        const contractInstance = volatileToken.contractInstance
-        const supply = await contractInstance.totalSupply()
-        dispatch(setTokenSupply(tokenID, supply))
-        dispatch(loadingSupplyChanged(tokenID, false))
     }
 }
 
@@ -375,10 +380,15 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
     return async (dispatch, getState) => {
         tokenIDs.forEach(async tokenId => {
             dispatch(balanceStateChanged(tokenId, addressId, BALANCE_STATES.LOADING))
-            await verifyContractInstance(tokenId, dispatch, getState)
-            const volatileToken = getState().tokens.volatileById[tokenId]
             const address = getState().addresses.byId[addressId].address
-            const balance = await volatileToken.contractInstance.balanceOf(address)
+            let balance
+            if (tokenId === ETH_TOKEN_MAGIC_ADDRESS) {
+                balance = await getState().web3Instance.web3.eth.getBalancePromise(address)
+            } else {
+                await verifyContractInstance(tokenId, dispatch, getState)
+                const volatileToken = getState().tokens.volatileById[tokenId]
+                balance = await volatileToken.contractInstance.balanceOf(address)
+            }
             dispatch(setBalanceByAddressAndToken(addressId, tokenId, balance))
             dispatch(balanceStateChanged(tokenId, addressId, BALANCE_STATES.INITIALIZED))
         })
@@ -387,6 +397,13 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
 
 export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) {
     return async (dispatch, getState) => {
+        if(tokenID === ETH_TOKEN_MAGIC_ADDRESS) {
+            // FIXME - Implement this.
+            //  See https://ethereum.stackexchange.com/questions/2531/common-useful-javascript-snippets-for-geth/3478#3478
+            //  for sample code to get started
+            return
+        }
+
         const chunkSize = 100
         const maxChunks = 100
         const maxEvents = 50
