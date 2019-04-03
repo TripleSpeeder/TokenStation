@@ -5,7 +5,7 @@ import Sidebar from '../segments/Sidebar'
 import Overview from '../segments/Overview'
 
 const OverviewScreen = (props) => {
-    const {hasAccounts, balancesByToken} = props
+    const {hasAccounts} = props
     return (
             <Grid padded={'vertically'}>
                 <Grid.Row>
@@ -13,7 +13,7 @@ const OverviewScreen = (props) => {
                         <Sidebar/>
                     </Grid.Column>
                     <Grid.Column width={12}>
-                        <Overview hasAccounts={hasAccounts} balancesByToken={balancesByToken}/>
+                        <Overview hasAccounts={hasAccounts}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -22,7 +22,6 @@ const OverviewScreen = (props) => {
 
 OverviewScreen.propTypes = {
     hasAccounts: PropTypes.bool.isRequired,
-    balancesByToken: PropTypes.object.isRequired,
 }
 
 export default OverviewScreen

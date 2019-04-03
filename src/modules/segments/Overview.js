@@ -1,34 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
-import {Divider, Message} from 'semantic-ui-react'
+import {Checkbox, Divider, Grid, Message} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
-import BalancesList from '../balance/BalancesList'
 import TokenListFilterContainer from '../token/TokenListFilterContainer'
 import ScreenHeader from '../screens/ScreenHeader'
+import OverviewBodyContainer from "./OverviewBodyContainer"
 
 const Overview = (props) => {
-    const {hasAccounts, balancesByToken} = props
+    const {hasAccounts} = props
+    const [hideEmpty, setHideEmpty] = useState(false)
+    const toggleHideEmpty = () => setHideEmpty(!hideEmpty)
 
     let body
     if (hasAccounts) {
-        if (Object.keys(balancesByToken).length) {
-            body = <BalancesList balancesByToken={balancesByToken}/>
-        }
-        else {
-            body = <Message>
-                <Message.Header>
-                    No balances
-                </Message.Header>
-                <Message.Content>
-                    There are no token balances to display. Things you can try:
-                </Message.Content>
-                <Message.List>
-                    <Message.Item>Change the filterstring</Message.Item>
-                    <Message.Item>Open the <Link to={ {pathname: '/accounts/',} }>Account Manager</Link> to add additional accounts</Message.Item>
-                    <Message.Item>Open the <Link to={ {pathname: '/tokenContracts/'} }>Token Manager</Link> to tracked additional tokens</Message.Item>
-                </Message.List>
-            </Message>
-        }
+        body = <OverviewBodyContainer hideEmpty={hideEmpty}/>
     } else {
         body = <Message>
             <Message.Header>
@@ -41,7 +26,16 @@ const Overview = (props) => {
     return (
         <React.Fragment>
             <ScreenHeader title={'Overview'}/>
-            {hasAccounts && <TokenListFilterContainer target={'balancelist'} />}
+            <Grid verticalAlign='middle' columns={2} divided>
+                <Grid.Row>
+                    <Grid.Column width={6}>
+                        <Checkbox toggle label='Hide empty balances' checked={hideEmpty} onChange={toggleHideEmpty} />
+                    </Grid.Column>
+                    <Grid.Column width={10}>
+                        <TokenListFilterContainer target={'balancelist'} />
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
             <Divider/>
             {body}
         </React.Fragment>
@@ -50,7 +44,6 @@ const Overview = (props) => {
 
 Overview.propTypes = {
     hasAccounts: PropTypes.bool.isRequired,
-    balancesByToken: PropTypes.object.isRequired,
 }
 
 Overview.defaultProps = {

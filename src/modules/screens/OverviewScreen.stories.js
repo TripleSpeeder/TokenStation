@@ -3,7 +3,6 @@ import {storiesOf} from '@storybook/react'
 import {Provider} from 'react-redux';
 import mockStore from '../mocks/MockStore'
 import OverviewScreen from './OverviewScreen'
-import {overviewProps} from '../segments/Overview.stories'
 import StoryRouter from 'storybook-react-router'
 
 
@@ -12,5 +11,4 @@ storiesOf('Screens/Overview', module)
     .addDecorator(StoryRouter())
     .add('default', () => <OverviewScreen
         hasAccounts={true}
-        balancesByToken={overviewProps.balancesByToken}
     />)
