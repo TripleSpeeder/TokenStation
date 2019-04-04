@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import ScreenHeader from "../layout/ScreenHeader"
-import OverviewBodyContainer from "./OverviewBodyContainer"
-import OverviewOptions from "./OverviewOptions"
-import {Divider} from "semantic-ui-react"
+import ScreenHeader from '../layout/ScreenHeader'
+import OverviewBodyContainer from './OverviewBodyContainer'
+import OverviewOptions from './OverviewOptions'
+import {Divider} from 'semantic-ui-react'
 
 class OverviewContainer extends Component {
     constructor(props, context) {
@@ -33,14 +31,4 @@ class OverviewContainer extends Component {
     }
 }
 
-OverviewContainer.propTypes = {
-}
-
-OverviewContainer.defaultProps = {
-    //myProp: <defaultValue>
-}
-
-const mapStateToProps = state => {
-}
-
-export default connect(mapStateToProps)(OverviewContainer)
+export default OverviewContainer
