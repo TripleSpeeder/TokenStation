@@ -1,27 +1,27 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import BalanceItemDetail from './BalanceItemDetail'
+import TokenBalanceItemDetail from './TokenBalanceItemDetail'
 import {connect} from 'react-redux'
 import {BALANCE_STATES, reloadBalance} from './balanceActions'
 import {showModal} from '../modal/modalActions'
 
-class BalanceItemDetailContainer extends Component {
+class TokenBalanceItemDetailContainer extends Component {
     render() {
         return (
-            <BalanceItemDetail address={this.props.address}
-                               addressType={this.props.addressType}
-                               balance={this.props.balance}
-                               reloadBalance={this.props.reloadBalance}
-                               loading={this.props.loading}
-                               url={this.props.url}
-                               openTransferModal={this.props.openTransferModal}
-                               ensName={this.props.ensName}
+            <TokenBalanceItemDetail address={this.props.address}
+                                    addressType={this.props.addressType}
+                                    balance={this.props.balance}
+                                    reloadBalance={this.props.reloadBalance}
+                                    loading={this.props.loading}
+                                    url={this.props.url}
+                                    openTransferModal={this.props.openTransferModal}
+                                    ensName={this.props.ensName}
             />
         )
     }
 }
 
-BalanceItemDetailContainer.propTypes = {
+TokenBalanceItemDetailContainer.propTypes = {
     address: PropTypes.string.isRequired,
     balance: PropTypes.object.isRequired,
     tokenBalanceId: PropTypes.string.isRequired,
@@ -30,7 +30,7 @@ BalanceItemDetailContainer.propTypes = {
     openTransferModal: PropTypes.func.isRequired,
 }
 
-BalanceItemDetailContainer.defaultProps = {
+TokenBalanceItemDetailContainer.defaultProps = {
     //myProp: <defaultValue>
 }
 
@@ -62,5 +62,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BalanceItemDetailContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(TokenBalanceItemDetailContainer)
 

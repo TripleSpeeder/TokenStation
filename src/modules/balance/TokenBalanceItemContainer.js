@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import BigNumber from 'bignumber.js'
 import {BALANCE_STATES, reloadBalance} from './balanceActions'
-import BalanceItem from './BalanceItem'
+import TokenBalanceItem from './TokenBalanceItem'
 import _ from 'lodash'
 
 
-class BalanceItemContainer extends Component {
+class TokenBalanceItemContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.reloadBalance = this.reloadBalance.bind(this)
@@ -28,24 +28,24 @@ class BalanceItemContainer extends Component {
 
     render() {
         return (
-            <BalanceItem tokenName={this.props.token.name}
-                         tokenSymbol={this.props.token.symbol}
-                         tokenBalances={this.props.tokenBalances}
-                         total={this.props.total}
-                         reloadBalance={this.reloadBalance}
-                         loading={this.props.loading}
-                         tokenEventsLinkOptions={this.props.tokenEventsLinkOptions}
-                         expanded={this.state.expanded}
-                         toggleCollapse={this.toggleCollapse}
+            <TokenBalanceItem tokenName={this.props.token.name}
+                              tokenSymbol={this.props.token.symbol}
+                              tokenBalances={this.props.tokenBalances}
+                              total={this.props.total}
+                              reloadBalance={this.reloadBalance}
+                              loading={this.props.loading}
+                              tokenEventsLinkOptions={this.props.tokenEventsLinkOptions}
+                              expanded={this.state.expanded}
+                              toggleCollapse={this.toggleCollapse}
             />
         )
     }
 }
 
-BalanceItemContainer.propTypes = {
+TokenBalanceItemContainer.propTypes = {
 }
 
-BalanceItemContainer.defaultProps = {
+TokenBalanceItemContainer.defaultProps = {
    //myProp: <defaultValue>
 }
 
@@ -82,4 +82,4 @@ const mapDispatchToProps = dispatch => ({
     },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BalanceItemContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(TokenBalanceItemContainer)

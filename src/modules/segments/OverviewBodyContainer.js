@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import {connect} from "react-redux"
 import React, {Component} from "react"
 import {default as _} from 'lodash'
-import BalancesList from "../balance/BalancesList"
+import TokenBalancesList from "../balance/TokenBalancesList"
 import {Message} from "semantic-ui-react"
 import {Link} from "react-router-dom"
 import AddressBalancesList from '../balance/AddressBalancesList'
@@ -42,7 +42,7 @@ class OverviewBodyContainer extends Component {
 
         switch (groupBy) {
             case 'tokenId':
-                return <BalancesList balancesByToken={groupedBalances}/>
+                return <TokenBalancesList balancesByToken={groupedBalances}/>
             case 'addressId':
                 return <AddressBalancesList balancesByAddress={groupedBalances}/>
             default:

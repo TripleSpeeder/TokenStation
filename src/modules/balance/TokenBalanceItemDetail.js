@@ -6,7 +6,7 @@ import Balance from './Balance'
 import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActions'
 import AddressDisplay from '../common/AddressDisplay'
 
-const BalanceItemDetail = (props) => {
+const TokenBalanceItemDetail = (props) => {
     const {address, ensName, balance, loading, reloadBalance, url/*, addressType, openTransferModal*/} = props
     /*const external = (addressType !== ADDRESS_TYPE_OWNED)*/
 
@@ -40,7 +40,7 @@ const BalanceItemDetail = (props) => {
     )
 }
 
-BalanceItemDetail.propTypes = {
+TokenBalanceItemDetail.propTypes = {
     address: PropTypes.string.isRequired,
     addressType: PropTypes.oneOf([ADDRESS_TYPE_OWNED, ADDRESS_TYPE_EXTERNAL]).isRequired,
     ensName: PropTypes.string,
@@ -51,8 +51,8 @@ BalanceItemDetail.propTypes = {
     reloadBalance: PropTypes.func.isRequired,
 }
 
-BalanceItemDetail.defaultProps = {
+TokenBalanceItemDetail.defaultProps = {
     //myProp: <defaultValue>
 }
 
-export default BalanceItemDetail
+export default TokenBalanceItemDetail

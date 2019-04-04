@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Table, Button} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
 import Balance from './Balance'
-import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActions'
-import AddressDisplay from '../common/AddressDisplay'
 
 const AddressBalanceItemDetail = (props) => {
     const {tokenName, tokenSymbol, tokenBalance, loading, reloadBalance} = props

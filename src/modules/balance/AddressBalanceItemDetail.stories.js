@@ -5,8 +5,6 @@ import StoryRouter from 'storybook-react-router';
 import {Table} from 'semantic-ui-react'
 
 import BigNumber from 'bignumber.js';
-import BalanceItemDetail from "./BalanceItemDetail"
-import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActions'
 import AddressBalanceItemDetail from './AddressBalanceItemDetail'
 
 export const props = {

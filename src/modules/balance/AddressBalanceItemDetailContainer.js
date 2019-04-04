@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import BalanceItemDetail from './BalanceItemDetail'
 import {connect} from 'react-redux'
 import {BALANCE_STATES, reloadBalance} from './balanceActions'
-import {showModal} from '../modal/modalActions'
 import AddressBalanceItemDetail from './AddressBalanceItemDetail'
 
 class AddressBalanceItemDetailContainer extends Component {

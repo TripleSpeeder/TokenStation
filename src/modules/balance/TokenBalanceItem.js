@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Button, Statistic, Table} from 'semantic-ui-react'
-import BalanceItemDetailContainer from './BalanceItemDetailContainer'
+import BalanceItemDetailContainer from './TokenBalanceItemDetailContainer'
 import {Link} from 'react-router-dom'
 import Balance from './Balance'
 
-const BalanceItem = (props) => {
+const TokenBalanceItem = (props) => {
     const {expanded, tokenName, tokenSymbol, tokenBalances, total, reloadBalance, loading, tokenEventsLinkOptions, toggleCollapse} = props
     let eventLink = <Link to={tokenEventsLinkOptions}>{tokenName} ({tokenSymbol})</Link>
 
@@ -56,7 +56,7 @@ const BalanceItem = (props) => {
     </Table>
 }
 
-BalanceItem.propTypes = {
+TokenBalanceItem.propTypes = {
     tokenName: PropTypes.string.isRequired,
     tokenSymbol: PropTypes.string.isRequired,
     tokenBalances: PropTypes.array.isRequired,
@@ -68,8 +68,8 @@ BalanceItem.propTypes = {
     expanded: PropTypes.bool.isRequired,
 }
 
-BalanceItem.defaultProps = {
+TokenBalanceItem.defaultProps = {
     //myProp: <defaultValue>
 }
 
-export default BalanceItem
+export default TokenBalanceItem

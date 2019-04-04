@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BalanceItemContainer from './BalanceItemContainer'
+import BalanceItemContainer from './TokenBalanceItemContainer'
 
-const BalancesList = (props) => {
+const TokenBalancesList = (props) => {
     const {balancesByToken} = props
     return (
         <div>
@@ -13,12 +13,12 @@ const BalancesList = (props) => {
     )
 }
 
-BalancesList.propTypes = {
+TokenBalancesList.propTypes = {
     balancesByToken: PropTypes.object.isRequired
 }
 
-BalancesList.defaultProps = {
+TokenBalancesList.defaultProps = {
     //myProp: <defaultValue>
 }
 
-export default BalancesList
+export default TokenBalancesList

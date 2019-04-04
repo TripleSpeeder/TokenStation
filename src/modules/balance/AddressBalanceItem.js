@@ -55,7 +55,7 @@ const AddressBalanceItem = (props) => {
 }
 
 AddressBalanceItem.propTypes = {
-    ensName: PropTypes.string.isRequired,
+    ensName: PropTypes.string,
     address: PropTypes.string.isRequired,
     tokenBalances: PropTypes.array.isRequired,
     numTokens: PropTypes.number.isRequired,
