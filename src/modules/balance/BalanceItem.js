@@ -37,7 +37,7 @@ const BalanceItem = (props) => {
         </Table.Header>
     )
 
-    let tableBody
+    let tableBody = null
     if (expanded) {
         tableBody = (
             <Table.Body>
@@ -48,8 +48,6 @@ const BalanceItem = (props) => {
                 )}
             </Table.Body>
         )
-    } else {
-        tableBody = null
     }
 
     return <Table compact>
