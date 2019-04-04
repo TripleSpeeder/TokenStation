@@ -2,7 +2,7 @@ import React from 'react'
 import EventFilterContainer from '../event/EventFilterContainer'
 import EventLoaderContainer from '../event/EventLoaderContainer'
 import TransferEventsListContainer from '../event/TransferEventsListContainer'
-import ScreenHeader from '../screens/ScreenHeader'
+import ScreenHeader from '../layout/ScreenHeader'
 
 const Events = () => {
     return (

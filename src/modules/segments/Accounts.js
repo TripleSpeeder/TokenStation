@@ -1,6 +1,6 @@
 import React from 'react'
 import AddressListContainer from '../address/AddressListContainer'
-import ScreenHeader from '../screens/ScreenHeader'
+import ScreenHeader from '../layout/ScreenHeader'
 
 const Accounts = () => {
     return (

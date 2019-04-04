@@ -1,7 +1,7 @@
 import React from 'react'
 import {Icon, Message} from 'semantic-ui-react'
 import SelectableTokenListContainer from "../token/SelectableTokenListContainer"
-import ScreenHeader from '../screens/ScreenHeader'
+import ScreenHeader from '../layout/ScreenHeader'
 
 const TokenContracts = () => {
     return (
