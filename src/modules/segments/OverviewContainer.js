@@ -10,6 +10,7 @@ class OverviewContainer extends Component {
 
         this.state = {
             showEmpty: true,
+            groupBy: 'tokenId',
         }
     }
 
@@ -17,15 +18,23 @@ class OverviewContainer extends Component {
         this.setState({showEmpty: !this.state.showEmpty})
     }
 
+    setGroupBy = (e, { value}) => {
+        this.setState({groupBy: value})
+    }
+
     render() {
-        const {showEmpty} = this.state
+        const {showEmpty, groupBy} = this.state
 
         return (
             <React.Fragment>
                 <ScreenHeader title={'Overview'}/>
-                <OverviewOptions toggleShowEmpty={this.toggleShowEmpty} showEmpty={showEmpty}/>
+                <OverviewOptions toggleShowEmpty={this.toggleShowEmpty}
+                                 showEmpty={showEmpty}
+                                 setGroupBy={this.setGroupBy}
+                                 groupBy={groupBy}
+                />
                 <Divider/>
-                <OverviewBodyContainer showEmpty={showEmpty}/>
+                <OverviewBodyContainer showEmpty={showEmpty} groupBy={groupBy}/>
             </React.Fragment>
         )
     }

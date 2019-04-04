@@ -2,14 +2,15 @@
 import PropTypes from "prop-types"
 import {connect} from "react-redux"
 import React, {Component} from "react"
-import {groupBy} from "lodash"
+import {default as _} from 'lodash'
 import BalancesList from "../balance/BalancesList"
 import {Message} from "semantic-ui-react"
 import {Link} from "react-router-dom"
+import AddressBalancesList from '../balance/AddressBalancesList'
 
 class OverviewBodyContainer extends Component {
     render() {
-        const {balancesByToken, showEmpty, hasAccounts} = this.props
+        const {groupedBalances, showEmpty, hasAccounts, groupBy} = this.props
 
         // Do i have accounts at all?
         if (!hasAccounts) {
@@ -22,7 +23,7 @@ class OverviewBodyContainer extends Component {
         }
 
         // Do i have any balances to display?
-        else if (Object.keys(balancesByToken).length === 0) {
+        else if (Object.keys(groupedBalances).length === 0) {
             return <Message>
                 <Message.Header>
                     No balances
@@ -39,14 +40,22 @@ class OverviewBodyContainer extends Component {
             </Message>
         }
 
-        return <BalancesList balancesByToken={balancesByToken}/>
+        switch (groupBy) {
+            case 'tokenId':
+                return <BalancesList balancesByToken={groupedBalances}/>
+            case 'addressId':
+                return <AddressBalancesList balancesByAddress={groupedBalances}/>
+            default:
+                return "Unhandled groupBy!"
+        }
     }
 }
 
 OverviewBodyContainer.propTypes = {
-    balancesByToken: PropTypes.object.isRequired,
+    groupedBalances: PropTypes.array.isRequired,
     showEmpty: PropTypes.bool.isRequired,
     hasAccounts: PropTypes.bool.isRequired,
+    groupBy: PropTypes.string.isRequired,
 }
 
 OverviewBodyContainer.defaultProps = {
@@ -54,7 +63,7 @@ OverviewBodyContainer.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const {showEmpty} = ownProps
+    const {showEmpty, groupBy} = ownProps
     const hasAccounts = (state.addresses.allIds.length > 0)
     const filterIsActive = (state.balance.listState.filter.length > 0)
 
@@ -70,11 +79,11 @@ const mapStateToProps = (state, ownProps) => {
     }
 
     // now group the balances by token
-    const balancesByToken = groupBy(balanceEntries, 'tokenId')
+    const groupedBalances = _.groupBy(balanceEntries, groupBy)
 
     return {
         hasAccounts,
-        balancesByToken,
+        groupedBalances,
     }
 }
 
