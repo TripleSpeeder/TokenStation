@@ -40,18 +40,6 @@ class BalanceItemContainer extends Component {
             />
         )
     }
-
-    /*
-    shouldComponentUpdate(nextProps) {
-        // Render() should only ever be necessary when loading state, token itself or
-        // it's total balance changes, i.e. an address was added/removed to
-        // the watch list or the balance of an address changed.
-        return (
-            (!nextProps.total.equals(this.props.total)) ||
-            (nextProps.tokenId !== this.props.tokenId) ||
-            (nextProps.loading !== this.props.loading)
-        )
-    }*/
 }
 
 BalanceItemContainer.propTypes = {
