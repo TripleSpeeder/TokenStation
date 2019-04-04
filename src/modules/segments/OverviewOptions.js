@@ -31,7 +31,7 @@ function OverviewOptions(props) {
                     />
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    <Checkbox toggle label='Show zero balances' checked={showEmpty} onChange={toggleShowEmpty}/>
+                    <Checkbox toggle label='Show null balances' checked={showEmpty} onChange={toggleShowEmpty}/>
                 </Grid.Column>
                 <Grid.Column width={9}>
                     <TokenListFilterContainer target={'balancelist'}/>

@@ -78,9 +78,27 @@ const mapStateToProps = (state, ownProps) => {
         balanceEntries = balanceEntries.filter(entry => (entry.balance.greaterThan(0)))
     }
 
-    // now group the balances by token
-    const groupedBalances = _.groupBy(balanceEntries, groupBy)
+    // now group the balances by token or address
+    const groupedBalancesObject = _.groupBy(balanceEntries, groupBy)
 
+    // convert to array and sort it
+    let groupedBalances
+    if (groupBy === 'tokenId') {
+        groupedBalances = Object.entries(groupedBalancesObject).sort((a, b) => {
+            // entry[0] contains the tokenID. Look up the tokenName for comparison
+            return (state.tokens.byId[a[0]].name.toUpperCase() < state.tokens.byId[b[0]].name.toUpperCase() ? -1 : 1)
+        })
+    } else if (groupBy === 'addressId') {
+        // Sort addresses by ENS
+        groupedBalances = Object.entries(groupedBalancesObject).sort((a,b) => {
+            // entry[0] contains the addressID. Look up the address for comparison
+            const addressA = state.addresses.byId[a[0]]
+            const addressB = state.addresses.byId[b[0]]
+            const stringA = addressA.ensName ? addressA.ensName : addressA.address
+            const stringB = addressB.ensName ? addressB.ensName : addressB.address
+            return (stringA.toUpperCase() < stringB.toUpperCase() ? -1 : 1 )
+        })
+    }
     return {
         hasAccounts,
         groupedBalances,

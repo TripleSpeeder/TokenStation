@@ -6,7 +6,7 @@ const TokenBalancesList = (props) => {
     const {balancesByToken} = props
     return (
         <div>
-            {Object.entries(balancesByToken).map(entry =>
+            {balancesByToken.map(entry =>
                 <BalanceItemContainer key={entry[0]} tokenId={entry[0]} tokenBalances={entry[1]}/>
             )}
         </div>
@@ -14,7 +14,7 @@ const TokenBalancesList = (props) => {
 }
 
 TokenBalancesList.propTypes = {
-    balancesByToken: PropTypes.object.isRequired
+    balancesByToken: PropTypes.array.isRequired
 }
 
 TokenBalancesList.defaultProps = {

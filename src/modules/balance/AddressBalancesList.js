@@ -6,7 +6,7 @@ const AddressBalancesList = (props) => {
     const {balancesByAddress} = props
     return (
         <div>
-            {Object.entries(balancesByAddress).map(entry =>
+            {balancesByAddress.map(entry =>
                 <AddressBalanceItemContainer key={entry[0]} addressId={entry[0]} tokenBalances={entry[1]}/>
             )}
         </div>
@@ -14,7 +14,7 @@ const AddressBalancesList = (props) => {
 }
 
 AddressBalancesList.propTypes = {
-    balancesByAddress: PropTypes.object.isRequired
+    balancesByAddress: PropTypes.array.isRequired
 }
 
 AddressBalancesList.defaultProps = {
