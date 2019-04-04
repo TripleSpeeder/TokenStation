@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Grid} from 'semantic-ui-react'
 import Sidebar from '../segments/Sidebar'
-import Overview from '../segments/Overview'
+import OverviewContainer from "../segments/OverviewContainer"
 
 const OverviewScreen = (props) => {
     const {hasAccounts} = props
@@ -13,7 +13,7 @@ const OverviewScreen = (props) => {
                         <Sidebar/>
                     </Grid.Column>
                     <Grid.Column width={12}>
-                        <Overview hasAccounts={hasAccounts}/>
+                        <OverviewContainer/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -21,7 +21,7 @@ const OverviewScreen = (props) => {
 }
 
 OverviewScreen.propTypes = {
-    hasAccounts: PropTypes.bool.isRequired,
+    // hasAccounts: PropTypes.bool.isRequired,
 }
 
 export default OverviewScreen

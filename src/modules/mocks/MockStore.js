@@ -63,6 +63,16 @@ const addresses = {
     }
 }
 
+const addresses_empty = {
+    allIds: [],
+    byId: {},
+    selector: {
+        filter: '',
+        matchedAddressIds: [],
+        selectedAddressId: '',
+    }
+}
+
 const tokens_initialized = {
     allIds: ['0x1ContractAddress', '0x2ContractAddress', '0x3ContractAddress'],
     trackedIds: ['0x1ContractAddress', '0x3ContractAddress'],
@@ -299,6 +309,20 @@ const mockStore = {
     dispatch: action('dispatch'),
 };
 
+const mockStore_noAccounts = {
+    getState: () => {
+        return {
+            balance: balance,
+            tokens: tokens_virgin,
+            addresses: addresses_empty,
+            web3Instance: web3Instance,
+            events: events,
+        };
+    },
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+}
+
 const mockStore_noTrackedTokens = {
     getState: () => {
         return {
@@ -370,6 +394,7 @@ const mockStore_loading = {
 };
 
 export default mockStore
+export { mockStore_noAccounts }
 export { mockStore_noTrackedTokens }
 export { mockStore_filtered }
 export { mockStore_nomatch }

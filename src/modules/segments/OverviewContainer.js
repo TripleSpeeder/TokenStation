@@ -1,19 +1,39 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import Overview from './Overview'
 import {connect} from 'react-redux'
+import ScreenHeader from "../screens/ScreenHeader"
+import OverviewBodyContainer from "./OverviewBodyContainer"
+import OverviewOptions from "./OverviewOptions"
+import {Divider} from "semantic-ui-react"
 
 class OverviewContainer extends Component {
+    constructor(props, context) {
+        super(props, context)
+
+        this.state = {
+            showEmpty: true,
+        }
+    }
+
+    toggleShowEmpty = () => {
+        this.setState({showEmpty: !this.state.showEmpty})
+    }
+
     render() {
-        const {hasAccounts} = this.props
+        const {showEmpty} = this.state
+
         return (
-            <Overview hasAccounts={hasAccounts}/>
+            <React.Fragment>
+                <ScreenHeader title={'Overview'}/>
+                <OverviewOptions toggleShowEmpty={this.toggleShowEmpty} showEmpty={showEmpty}/>
+                <Divider/>
+                <OverviewBodyContainer showEmpty={showEmpty}/>
+            </React.Fragment>
         )
     }
 }
 
 OverviewContainer.propTypes = {
-    hasAccounts: PropTypes.bool.isRequired,
 }
 
 OverviewContainer.defaultProps = {
@@ -21,11 +41,6 @@ OverviewContainer.defaultProps = {
 }
 
 const mapStateToProps = state => {
-    const hasAccounts = (state.addresses.allIds.length > 0)
-
-    return {
-        hasAccounts,
-    }
 }
 
 export default connect(mapStateToProps)(OverviewContainer)
