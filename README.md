@@ -54,5 +54,5 @@ list currently is a manual process. From the projects documentation:
 Download the file matching to the desired network (currently supported: Mainnet (1), Ropsten (3), Rinkeby(4) and Kovan
 (42)) and place it in the public folder, following the name schema `tokens_<networkID>.json`. 
 
-Alternatively (if the ipfs download link times out as usual...) check out the ethereum-lists project and run `./gradlew build` to compile the token contract
+Alternatively (if the ipfs download link times out as usual...) check out the ethereum-lists project and run `./gradlew run` to compile the token contract
 lists on your own. Then copy over the resulting files from the `build/output` directory.
