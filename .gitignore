@@ -8,3 +8,4 @@
 
 # node modules
 node_modules
+/build/
