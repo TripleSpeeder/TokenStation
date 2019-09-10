@@ -86,11 +86,19 @@ export function stopBlockFilter() {
         // Clean up any blockfilter that might be active
         const {blockFilter} = getState().web3Instance
         if (blockFilter) {
+            blockFilter.unsubscribe((error, success) => {
+                if (error) {
+                    console.log("Error stopping blockfilter: " + error)
+                } else {
+                    console.log("Success stopping blockfilter: " + success)
+                }
+            })
+            /*
             blockFilter.stopWatching((error, result) => {
                 if (error) {
                     console.log("Error stopping blockfilter: " + error)
                 }
-            })
+            })*/
             dispatch(setBlockFilter(null))
         }
     }
@@ -139,27 +147,18 @@ export function initialize() {
         dispatch(setCurrentBlock(block))
 
         // start listening for new block events
-        const filter = web3.eth.filter('latest')
-        filter.watch(async (error, blockHash) => {
-            if (error) {
-                console.log("Error watching for block events: " + error)
-            } else {
-                const block = await web3.eth.getBlock(blockHash)
-                if (block) {
-                    dispatch(setCurrentBlock(block))
-                }
-                else {
-                    console.log("Ignoring null-block!")
-                    console.log(block)
-                }
-            }
+        const filter = web3.eth.subscribe('newBlockHeaders')
+        .on("data", function (blockHeader) {
+            dispatch(setCurrentBlock(blockHeader))
+        })
+        .on("error", function (error) {
+            console.log(error)
         })
         dispatch(setBlockFilter(filter))
 
         // start watching for network change events
         setInterval(async function () {
-            const networkIdString = await web3.version.getNetwork()
-            let networkID = parseInt(networkIdString, 10)
+            const networkID = await web3.eth.net.getId()
             const oldNetworkId = getState().web3Instance.id
             if (oldNetworkId !== networkID) {
                 const network = getNetworkName(networkID)
