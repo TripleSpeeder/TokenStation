@@ -65,7 +65,7 @@ const mapStateToProps = (state, ownProps) => {
         if (tokenBalance.balanceState === BALANCE_STATES.LOADING)
             loading = true
         // count entries with balance > 0
-        if (tokenBalance.balance.greaterThan(0))
+        if (tokenBalance.balance.gtn(0))
             numTokens++
     })
 

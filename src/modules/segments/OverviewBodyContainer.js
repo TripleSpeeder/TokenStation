@@ -75,7 +75,7 @@ const mapStateToProps = (state, ownProps) => {
 
     // remove empty balances if necessary
     if (!showEmpty) {
-        balanceEntries = balanceEntries.filter(entry => (entry.balance.greaterThan(0)))
+        balanceEntries = balanceEntries.filter(entry => (entry.balance.gtn(0)))
     }
 
     // now group the balances by token or address

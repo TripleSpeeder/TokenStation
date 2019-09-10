@@ -31,6 +31,7 @@ class TokenBalanceItemContainer extends Component {
             <TokenBalanceItem tokenName={this.props.token.name}
                               tokenSymbol={this.props.token.symbol}
                               tokenBalances={this.props.tokenBalances}
+                              tokenDecimals={this.props.token.decimals}
                               total={this.props.total}
                               reloadBalance={this.reloadBalance}
                               loading={this.props.loading}
@@ -56,11 +57,6 @@ const mapStateToProps = (state, ownProps) => {
     let total = _.reduce(ownProps.tokenBalances, (sum, tokenBalance) => {
         return sum.add(tokenBalance.balance)
     }, new BN(0) )
-    /*
-    if (token.decimals > 0) {
-        total = total.div(new BN(token.decimals))
-    }
-     */
 
     // if any of the tokenBalances is loading, the whole container is loading
     let loading = false

@@ -1,5 +1,6 @@
 import contract from '@truffle/contract'
 import erc20ABI from 'human-standard-token-abi'
+import BN from 'bn.js'
 import {
     BALANCE_STATES,
     balanceStateChanged,
@@ -324,8 +325,7 @@ function mapListToken(listToken) {
         id: listToken['address'],
         address: listToken['address'],
         symbol: listToken['symbol'],
-        // TODO: use BN for decimals for consistency?
-        decimals: Math.pow(10, listToken['decimals']),
+        decimals: new BN(listToken['decimals']),
         name: listToken['name'],
         description: null,
         website: listToken['website'],
@@ -379,12 +379,13 @@ export function loadTokenBalance(tokenID, addressId) {
 
 export function loadMultiTokenBalances(tokenIDs, addressId) {
     return async (dispatch, getState) => {
-        tokenIDs.forEach(async tokenId => {
+        for (const tokenId of tokenIDs) {
             dispatch(balanceStateChanged(tokenId, addressId, BALANCE_STATES.LOADING))
             const address = getState().addresses.byId[addressId].address
             let balance
             if (tokenId === ETH_TOKEN_MAGIC_ADDRESS) {
                 balance = await getState().web3Instance.web3.eth.getBalance(address)
+                balance = new BN(balance) // getBalance returns balance in wei as string
             } else {
                 await verifyContractInstance(tokenId, dispatch, getState)
                 const volatileToken = getState().tokens.volatileById[tokenId]
@@ -392,7 +393,7 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
             }
             dispatch(setBalanceByAddressAndToken(addressId, tokenId, balance))
             dispatch(balanceStateChanged(tokenId, addressId, BALANCE_STATES.INITIALIZED))
-        })
+        }
     }
 }
 
