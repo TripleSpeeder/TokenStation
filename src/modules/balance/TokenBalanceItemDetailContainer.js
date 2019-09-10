@@ -10,7 +10,8 @@ class TokenBalanceItemDetailContainer extends Component {
         return (
             <TokenBalanceItemDetail address={this.props.address}
                                     addressType={this.props.addressType}
-                                    balance={this.props.balance}
+                                    amount={this.props.amount}
+                                    decimals={this.props.decimals}
                                     reloadBalance={this.props.reloadBalance}
                                     loading={this.props.loading}
                                     url={this.props.url}
@@ -23,7 +24,8 @@ class TokenBalanceItemDetailContainer extends Component {
 
 TokenBalanceItemDetailContainer.propTypes = {
     address: PropTypes.string.isRequired,
-    balance: PropTypes.object.isRequired,
+    amount: PropTypes.object.isRequired,
+    decimals: PropTypes.object.isRequired,
     tokenBalanceId: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
     reloadBalance: PropTypes.func.isRequired,
@@ -38,9 +40,11 @@ const mapStateToProps = (state, ownProps) => {
     const balanceEntry = state.balance.byId[ownProps.tokenBalanceId]
     const token = state.tokens.byId[balanceEntry.tokenId]
     const addressEntry = state.addresses.byId[balanceEntry.addressId]
-    const balance = balanceEntry.balance.dividedBy(token.decimals)
+    const amount = balanceEntry.balance
+    const decimals = token.decimals
     return {
-        balance,
+        amount,
+        decimals,
         address: addressEntry.address,
         addressType: addressEntry.type,
         ensName: addressEntry.ensName,

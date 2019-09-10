@@ -3,8 +3,7 @@ import {storiesOf} from '@storybook/react'
 import {action} from '@storybook/addon-actions'
 import StoryRouter from 'storybook-react-router'
 import {Provider} from 'react-redux'
-
-import BigNumber from 'bignumber.js'
+import BN from 'bn.js'
 import TokenBalanceItem from './TokenBalanceItem'
 import mockStore from '../mocks/MockStore'
 
@@ -16,7 +15,8 @@ const props = {
         mockStore.getState().balance.byId['b2'],
         mockStore.getState().balance.byId['b3']
     ],
-    total: new BigNumber('2588.50288453'),
+    total: new BN('2588502884530000000000'),
+    tokenDecimals: new BN(18),
     tokenEventsLinkOptions: {},
 }
 
@@ -33,6 +33,7 @@ storiesOf('Modules/TokenBalanceItem', module)
                                               reloadBalance={actions.reloadBalance}
                                               toggleCollapse={actions.toggleCollapse}
                                               tokenBalances={props.tokenBalances}
+                                              tokenDecimals={props.tokenDecimals}
                                               tokenEventsLinkOptions={props.tokenEventsLinkOptions}
                                               tokenName={props.tokenName}
                                               tokenSymbol={props.tokenSymbol}
@@ -43,6 +44,7 @@ storiesOf('Modules/TokenBalanceItem', module)
                                              reloadBalance={actions.reloadBalance}
                                              toggleCollapse={actions.toggleCollapse}
                                              tokenBalances={props.tokenBalances}
+                                             tokenDecimals={props.tokenDecimals}
                                              tokenEventsLinkOptions={props.tokenEventsLinkOptions}
                                              tokenName={props.tokenName}
                                              tokenSymbol={props.tokenSymbol}
@@ -53,6 +55,7 @@ storiesOf('Modules/TokenBalanceItem', module)
                                                       reloadBalance={actions.reloadBalance}
                                                       toggleCollapse={actions.toggleCollapse}
                                                       tokenBalances={props.tokenBalances}
+                                                      tokenDecimals={props.tokenDecimals}
                                                       tokenEventsLinkOptions={props.tokenEventsLinkOptions}
                                                       tokenName={props.tokenName}
                                                       tokenSymbol={props.tokenSymbol}
@@ -63,6 +66,7 @@ storiesOf('Modules/TokenBalanceItem', module)
                                                      reloadBalance={actions.reloadBalance}
                                                      toggleCollapse={actions.toggleCollapse}
                                                      tokenBalances={props.tokenBalances}
+                                                     tokenDecimals={props.tokenDecimals}
                                                      tokenEventsLinkOptions={props.tokenEventsLinkOptions}
                                                      tokenName={props.tokenName}
                                                      tokenSymbol={props.tokenSymbol}

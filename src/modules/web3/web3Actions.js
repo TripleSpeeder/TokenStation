@@ -1,7 +1,6 @@
 import Ens from 'ethjs-ens'
 import getWeb3 from '../../utils/getWeb3'
 import {clearTokenList} from '../token/tokenActions'
-import promisify from '../../utils/promisifyWeb3'
 
 export const WEB3_STATES = {
     UNINITIALIZED: 'uninitialized',
@@ -117,17 +116,14 @@ export function initialize() {
             return;
         }
 
-        // FIXME - Promisify can be removed once web3.js 1.0 is released
-        promisify(web3)
         dispatch(setWeb3Instance(web3))
 
         // set node info
-        const nodeVersion = await web3.version.getNodePromise()
+        const nodeVersion = await web3.eth.getNodeInfo()
         dispatch(setNodeVersion(nodeVersion))
 
         // set network info
-        const networkIdString = await web3.version.getNetworkPromise()
-        let networkID = parseInt(networkIdString, 10)
+        const networkID = await web3.eth.net.getId()
         const network = getNetworkName(networkID)
         dispatch(setNetwork(networkID, network, undefined))
 
@@ -139,7 +135,7 @@ export function initialize() {
         dispatch(setENS(ens))
 
         // set current block
-        const block = await web3.eth.getBlockPromise('latest')
+        const block = await web3.eth.getBlock('latest')
         dispatch(setCurrentBlock(block))
 
         // start listening for new block events
@@ -148,7 +144,7 @@ export function initialize() {
             if (error) {
                 console.log("Error watching for block events: " + error)
             } else {
-                const block = await web3.eth.getBlockPromise(blockHash)
+                const block = await web3.eth.getBlock(blockHash)
                 if (block) {
                     dispatch(setCurrentBlock(block))
                 }
@@ -162,7 +158,7 @@ export function initialize() {
 
         // start watching for network change events
         setInterval(async function () {
-            const networkIdString = await web3.version.getNetworkPromise()
+            const networkIdString = await web3.version.getNetwork()
             let networkID = parseInt(networkIdString, 10)
             const oldNetworkId = getState().web3Instance.id
             if (oldNetworkId !== networkID) {

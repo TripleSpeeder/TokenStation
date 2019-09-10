@@ -1,7 +1,7 @@
 // A super-simple mock of a redux store
 import {action} from '@storybook/addon-actions'
 import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActions'
-import {BigNumber} from 'bignumber.js'
+import BN from 'bn.js'
 import {BALANCE_STATES} from '../balance/balanceActions'
 import {TOKEN_LIST_STATES} from '../token/tokenActions'
 
@@ -79,7 +79,7 @@ const tokens_initialized = {
     byId: {
         '0x1ContractAddress': {
             address: '0x1ContractAddress',
-            decimals: new BigNumber(18),
+            decimals: new BN(18),
             eventIds: [],
             id: '0x1ContractAddress',
             imageUrl: null,
@@ -87,14 +87,14 @@ const tokens_initialized = {
             name: 'Arcade Network Token',
             supply: {
                 loading: false,
-                supply: new BigNumber(20000000)
+                supply: new BN(20000000,10)
             },
             symbol: 'ANT',
             website: null,
         },
         '0x2ContractAddress': {
             address: '0x2ContractAddress',
-            decimals: new BigNumber(18),
+            decimals: new BN(18),
             eventIds: [],
             id: '0x2ContractAddress',
             imageUrl: null,
@@ -102,14 +102,14 @@ const tokens_initialized = {
             name: 'District0x Network Token',
             supply: {
                 loading: false,
-                supply: new BigNumber(1000000000000000000000000000)
+                supply: new BN(1000000000)
             },
             symbol: 'DNT',
             website: null,
         },
         '0x3ContractAddress': {
             address: '0x3ContractAddress',
-            decimals: new BigNumber(18),
+            decimals: new BN(18),
             eventIds: [],
             id: '0x3ContractAddress',
             imageUrl: null,
@@ -117,7 +117,7 @@ const tokens_initialized = {
             name: 'OmiseGo',
             supply: {
                 loading: false,
-                supply: new BigNumber(1000000000000000000000000000)
+                supply: new BN(1000000000)
             },
             symbol: 'OMG',
             website: null,
@@ -187,7 +187,7 @@ const tokens_loading = {
     byId: {
         '0x1ContractAddress': {
             address: '0x1ContractAddress',
-            decimals: new BigNumber(18),
+            decimals: new BN(18),
             eventIds: [],
             id: '0x1ContractAddress',
             imageUrl: null,
@@ -195,14 +195,14 @@ const tokens_loading = {
             name: 'Arcade Network Token',
             supply: {
                 loading: false,
-                supply: new BigNumber(20000000)
+                supply: new BN(20000000)
             },
             symbol: 'ANT',
             website: null,
         },
         '0x2ContractAddress': {
             address: '0x2ContractAddress',
-            decimals: new BigNumber(18),
+            decimals: new BN(18),
             eventIds: [],
             id: '0x2ContractAddress',
             imageUrl: null,
@@ -210,7 +210,7 @@ const tokens_loading = {
             name: 'District0x Network Token',
             supply: {
                 loading: false,
-                supply: new BigNumber(1000000000000000000000000000)
+                supply: new BN(1000000000)
             },
             symbol: 'DNT',
             website: null,
@@ -234,42 +234,42 @@ const balance = {
             balanceId: "b1",
             addressId: "0xAccountAddress1",
             tokenId: "0x1ContractAddress",
-            balance: new BigNumber('100'),
+            balance: new BN('100000000000000000000'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b2: {
             balanceId: "b2",
             addressId: "0xAccountAddress2",
             tokenId: "0x1ContractAddress",
-            balance: new BigNumber('200'),
+            balance: new BN('200000000000000000000'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b3: {
             balanceId: "b3",
             addressId: "0xAccountAddress3",
             tokenId: "0x1ContractAddress",
-            balance: new BigNumber('300'),
+            balance: new BN('300000000000000000000'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b4: {
             balanceId: "b4",
             addressId: "0xAccountAddress1",
             tokenId: "0x2ContractAddress",
-            balance: new BigNumber('400'),
+            balance: new BN('400780000000000000000'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b5: {
             balanceId: "b5",
             addressId: "0xAccountAddress2",
             tokenId: "0x3ContractAddress",
-            balance: new BigNumber('200'),
+            balance: new BN('200050000000000000000'),
             balanceState: BALANCE_STATES.INITIALIZED
         },
         b6: {
             balanceId: "b6",
             addressId: "0xAccountAddress3",
             tokenId: "0x3ContractAddress",
-            balance: new BigNumber('300'),
+            balance: new BN('300500000000000000000'),
             balanceState: BALANCE_STATES.INITIALIZED
         }
     },

@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Web3Info = (props) => {
-    const {name, id, nodeVersion, block} = props
+    const {name, id, nodeVersion, block, web3Version} = props
     const gitHub = 'https://github.com/TripleSpeeder/TokenStation'
     const contact = 'michael@m-bauer.org'
     const srcUrl = 'https://github.com/ethereum-lists/tokens'
     return (
         <React.Fragment>
             <p>
-                Network: {name} ({id}) | Block: {block ? block.number : '?'} | Node version: {nodeVersion}
+                Network: {name} ({id}) | Block: {block ? block.number : '?'} | Node version: {nodeVersion} | Web3 version: {web3Version}
             </p>
             <p>
                 ERC20 contract data origin: <strong><a href={srcUrl} target='_blank' rel='noopener noreferrer'>{srcUrl}</a></strong>
@@ -29,7 +29,7 @@ Web3Info.propTypes = {
             number: PropTypes.number,
             timestamp: PropTypes.number
         }),
-    apiVersion: PropTypes.string,
+    web3Version: PropTypes.string,
     nodeVersion: PropTypes.string,
 }
 

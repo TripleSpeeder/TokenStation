@@ -12,11 +12,6 @@ let getWeb3 = new Promise(function (resolve, reject) {
         if (window.ethereum) {
             myWeb3 = new Web3(window.ethereum)
         }
-        // Legacy dapp browser
-        else if (window.web3) {
-            // Use Mist/MetaMask's provider.
-            myWeb3 = new Web3(window.web3.currentProvider);
-        }
 
         if (myWeb3) {
             console.log('Injected web3 detected.')

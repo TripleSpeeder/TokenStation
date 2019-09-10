@@ -7,7 +7,7 @@ import {ADDRESS_TYPE_EXTERNAL, ADDRESS_TYPE_OWNED} from '../address/addressActio
 import AddressDisplay from '../common/AddressDisplay'
 
 const TokenBalanceItemDetail = (props) => {
-    const {address, ensName, balance, loading, reloadBalance, url/*, addressType, openTransferModal*/} = props
+    const {address, ensName, amount, decimals, loading, reloadBalance, url/*, addressType, openTransferModal*/} = props
     /*const external = (addressType !== ADDRESS_TYPE_OWNED)*/
 
     /*
@@ -28,7 +28,7 @@ const TokenBalanceItemDetail = (props) => {
             <Table.Cell>
                 <Link to={url}><AddressDisplay address={address} ensName={ensName}/></Link>
             </Table.Cell>
-            <Table.Cell><Balance balance={balance}/></Table.Cell>
+            <Table.Cell><Balance amount={amount} numDecimals={decimals}/></Table.Cell>
             <Table.Cell>
                 <Button size='mini'
                         circular
@@ -44,7 +44,8 @@ TokenBalanceItemDetail.propTypes = {
     address: PropTypes.string.isRequired,
     addressType: PropTypes.oneOf([ADDRESS_TYPE_OWNED, ADDRESS_TYPE_EXTERNAL]).isRequired,
     ensName: PropTypes.string,
-    balance: PropTypes.object.isRequired,
+    amount: PropTypes.object.isRequired,
+    decimals: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
     url: PropTypes.string.isRequired,
     openTransferModal: PropTypes.func.isRequired,

@@ -11,9 +11,8 @@ class Web3Container extends Component {
     }
 
     render() {
-        const apiVersion = this.props.web3.version.api
         return <Segment textAlign='center'>
-            <Web3Info apiVersion={apiVersion}
+            <Web3Info web3Version={this.props.web3.version}
                          name={this.props.name}
                          block={this.props.block}
                          id={this.props.id}

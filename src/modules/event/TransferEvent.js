@@ -12,7 +12,8 @@ export const TRANSFER_EVENT_TYPES = {
 
 const TransferEvent = (props) => {
     const {txHash, blockNumber, from, fromENS, to, toENS, type} = props
-    const quantity = props.quantity.toFixed(6)
+    // TODO: Rounding
+    const quantity = props.quantity.toString()
     let icon = null
     let positive = false
     let negative = false

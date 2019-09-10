@@ -23,7 +23,7 @@ function setBalance(state, action) {
         }
     } else {
         // this balance entry is currently marked as having NO balance...
-        if (balance.greaterThan(0)) {
+        if (balance.gt(0)) {
             // ... but it has a balance now! Add it to list.
             return state.concat(balanceId)
         } else {

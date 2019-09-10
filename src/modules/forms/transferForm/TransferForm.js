@@ -17,9 +17,9 @@ const TransferForm = (props) => {
     addValidationRule('isEthereumAddress', (values, value) => (web3.isAddress(value)))
     addValidationRule('isLessThanOrEqual', (values, value, max) => {
         try {
-            const bnValue = web3.toBigNumber(value)
-            const bnMax = web3.toBigNumber(max)
-            return bnValue.lessThanOrEqualTo(bnMax)
+            const bnValue = web3.utils.toBN(value)
+            const bnMax = web3.toBN(max)
+            return bnValue.lte(bnMax)
         }
         catch (err) {
             // if anything goes wrong with BigNumber, just fail validation

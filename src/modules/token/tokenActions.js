@@ -1,4 +1,4 @@
-import contract from 'truffle-contract'
+import contract from '@truffle/contract'
 import erc20ABI from 'human-standard-token-abi'
 import {
     BALANCE_STATES,
@@ -324,6 +324,7 @@ function mapListToken(listToken) {
         id: listToken['address'],
         address: listToken['address'],
         symbol: listToken['symbol'],
+        // TODO: use BN for decimals for consistency?
         decimals: Math.pow(10, listToken['decimals']),
         name: listToken['name'],
         description: null,
@@ -383,7 +384,7 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
             const address = getState().addresses.byId[addressId].address
             let balance
             if (tokenId === ETH_TOKEN_MAGIC_ADDRESS) {
-                balance = await getState().web3Instance.web3.eth.getBalancePromise(address)
+                balance = await getState().web3Instance.web3.eth.getBalance(address)
             } else {
                 await verifyContractInstance(tokenId, dispatch, getState)
                 const volatileToken = getState().tokens.volatileById[tokenId]

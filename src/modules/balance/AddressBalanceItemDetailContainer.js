@@ -6,9 +6,10 @@ import AddressBalanceItemDetail from './AddressBalanceItemDetail'
 
 class AddressBalanceItemDetailContainer extends Component {
     render() {
-        const {tokenBalance, tokenName, tokenSymbol, reloadBalance, loading} = this.props
+        const {tokenAmount, tokenDecimals, tokenName, tokenSymbol, reloadBalance, loading} = this.props
         return (
-            <AddressBalanceItemDetail tokenBalance={tokenBalance}
+            <AddressBalanceItemDetail tokenAmount={tokenAmount}
+                                      tokenDecimals={tokenDecimals}
                                       tokenSymbol={tokenSymbol}
                                       tokenName={tokenName}
                                       reloadBalance={reloadBalance}
@@ -20,7 +21,8 @@ class AddressBalanceItemDetailContainer extends Component {
 
 AddressBalanceItemDetailContainer.propTypes = {
     tokenBalanceId: PropTypes.string.isRequired,
-    tokenBalance: PropTypes.object.isRequired,
+    tokenAmount: PropTypes.object.isRequired,
+    tokenDecimals: PropTypes.object.isRequired,
     tokenName: PropTypes.string.isRequired,
     tokenSymbol: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
@@ -34,9 +36,11 @@ AddressBalanceItemDetailContainer.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
     const balanceEntry = state.balance.byId[ownProps.tokenBalanceId]
     const token = state.tokens.byId[balanceEntry.tokenId]
-    const tokenBalance = balanceEntry.balance.dividedBy(token.decimals)
+    // const tokenBalance = balanceEntry.balance.dividedBy(token.decimals)
+    const tokenAmount = balanceEntry.balance
     return {
-        tokenBalance,
+        tokenAmount,
+        tokenDecimals: token.decimals,
         tokenName: token.name,
         tokenSymbol: token.symbol,
         loading: balanceEntry.balanceState===BALANCE_STATES.LOADING,
