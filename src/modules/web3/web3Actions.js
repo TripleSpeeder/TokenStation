@@ -1,4 +1,3 @@
-import Ens from 'ethjs-ens'
 import getWeb3 from '../../utils/getWeb3'
 import {clearTokenList} from '../token/tokenActions'
 
@@ -36,14 +35,6 @@ export function setWeb3Instance(web3) {
     return {
         type: SET_WEB3INSTANCE,
         web3
-    }
-}
-
-export const SET_ENS = 'SET_ENS'
-export function setENS(ens) {
-    return {
-        type: SET_ENS,
-        ens
     }
 }
 
@@ -93,12 +84,6 @@ export function stopBlockFilter() {
                     console.log("Success stopping blockfilter: " + success)
                 }
             })
-            /*
-            blockFilter.stopWatching((error, result) => {
-                if (error) {
-                    console.log("Error stopping blockfilter: " + error)
-                }
-            })*/
             dispatch(setBlockFilter(null))
         }
     }
@@ -134,13 +119,6 @@ export function initialize() {
         const networkID = await web3.eth.net.getId()
         const network = getNetworkName(networkID)
         dispatch(setNetwork(networkID, network, undefined))
-
-        // setup ens system
-        const ens = new Ens({
-            provider: web3.currentProvider,
-            network: networkID
-        })
-        dispatch(setENS(ens))
 
         // set current block
         const block = await web3.eth.getBlock('latest')
