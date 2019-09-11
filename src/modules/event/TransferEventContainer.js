@@ -36,8 +36,8 @@ const mapStateToProps = (state, ownProps) => {
     const rawEvent = transferEvent.transferEvent
     const token = state.tokens.byId[transferEvent.tokenId]
     const quantity = rawEvent.args._value
-    const from = rawEvent.args._from
-    const to = rawEvent.args._to
+    const from = rawEvent.args._from.toLowerCase()
+    const to = rawEvent.args._to.toLowerCase()
     // events that are not to/from one of the watched accounts are neutral
     let type = TRANSFER_EVENT_TYPES.NEUTRAL
     if (addressId) {
