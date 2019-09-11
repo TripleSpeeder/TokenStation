@@ -5,7 +5,7 @@ import TransferEvent, {TRANSFER_EVENT_TYPES} from './TransferEvent'
 
 class TransferEventContainer extends PureComponent {
     render() {
-        const {txHash, blockNumber, from, to, type, quantity, positive, negative} = this.props
+        const {txHash, blockNumber, from, to, type, quantity, positive, negative, decimals} = this.props
         return (
             <TransferEvent blockNumber={blockNumber}
                            from={from}
@@ -15,6 +15,7 @@ class TransferEventContainer extends PureComponent {
                            type={type}
                            positive={positive}
                            negative={negative}
+                           decimals={decimals}
             />
         )
     }
@@ -34,7 +35,7 @@ const mapStateToProps = (state, ownProps) => {
     const addressId = state.addresses.selector.selectedAddressId
     const rawEvent = transferEvent.transferEvent
     const token = state.tokens.byId[transferEvent.tokenId]
-    const quantity = rawEvent.args._value.dividedBy(token.decimals)
+    const quantity = rawEvent.args._value
     const from = rawEvent.args._from
     const to = rawEvent.args._to
     // events that are not to/from one of the watched accounts are neutral
@@ -50,6 +51,7 @@ const mapStateToProps = (state, ownProps) => {
         to,
         type,
         quantity,
+        decimals: token.decimals,
     }
 }
 

@@ -144,6 +144,3 @@ export function sortEventsThunk(aceIds) {
     }
 }
 
-export function buildEventId(event) {
-    return '' + event.transactionHash + '-' + event.logIndex
-}

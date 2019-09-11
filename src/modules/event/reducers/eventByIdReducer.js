@@ -1,4 +1,4 @@
-import {ADD_EVENTS, buildEventId} from '../eventActions'
+import {ADD_EVENTS} from '../eventActions'
 import {CLEAR_TOKEN_LIST} from '../../token/tokenActions'
 
 const EVENT_BY_ID_INITIAL = {}
@@ -7,7 +7,7 @@ function addEvents(state, action) {
     const {payload} = action
     const {events, tokenId} = payload
     events.forEach(transferEvent => {
-        const transferEventId = buildEventId(transferEvent)
+        const transferEventId = transferEvent.id
         // prevent duplicate entries
         if (Object.keys(state).includes(transferEventId ))
         {
