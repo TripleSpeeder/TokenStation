@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {addNewAddress, ADDRESS_TYPE_EXTERNAL} from './addressActions'
 import QueryAddressForm from './QueryAddressForm'
 
-
 export const addressStates = {
     ADDRESS_RESOLVING: 'address_resolving', // valid ENS name entered, waiting for resolving
     ADDRESS_VALID: 'address_valid', // got a valid address
@@ -42,7 +41,7 @@ export class QueryAddressFormContainer extends Component {
                 }
             )
             try {
-                const resolvedAddress = await this.props.ens.lookup(input)
+                const resolvedAddress = await this.props.ens.getAddress(input)
                 this.setState(
                     {
                         addressState: addressStates.ADDRESS_VALID,
@@ -119,7 +118,7 @@ export class QueryAddressFormContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    const ens = state.web3Instance.ens
+    const ens = state.web3Instance.web3.eth.ens
     return {
         ens
     }

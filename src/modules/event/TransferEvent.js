@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {Icon, Table} from 'semantic-ui-react'
 import TxHashDisplay from '../common/TxHashDisplay'
 import AddressDisplay from '../common/AddressDisplay'
+import Balance from '../balance/Balance'
 
 export const TRANSFER_EVENT_TYPES = {
     NEUTRAL: 'neutral',
@@ -11,8 +12,7 @@ export const TRANSFER_EVENT_TYPES = {
 }
 
 const TransferEvent = (props) => {
-    const {txHash, blockNumber, from, fromENS, to, toENS, type} = props
-    const quantity = props.quantity.toFixed(6)
+    const {txHash, blockNumber, from, fromENS, to, toENS, type, decimals, quantity} = props
     let icon = null
     let positive = false
     let negative = false
@@ -38,7 +38,9 @@ const TransferEvent = (props) => {
                 <Table.Cell textAlign={'right'}>From: </Table.Cell>
                 <Table.Cell><AddressDisplay address={from} ensName={fromENS}/></Table.Cell>
                 <Table.Cell rowSpan='2' textAlign={'right'}>{icon}</Table.Cell>
-                <Table.Cell rowSpan='2' positive={positive} negative={negative} textAlign={'right'}>{quantity}</Table.Cell>
+                <Table.Cell rowSpan='2' positive={positive} negative={negative} textAlign={'right'}>
+                    <Balance amount={quantity} numDecimals={decimals}/>
+                </Table.Cell>
             </Table.Row>
             <Table.Row>
                 <Table.Cell textAlign={'right'}>Tx: </Table.Cell>

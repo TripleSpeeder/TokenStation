@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import BigNumber from 'bignumber.js'
+import BN from 'bn.js'
 import {BALANCE_STATES, reloadBalance} from './balanceActions'
 import TokenBalanceItem from './TokenBalanceItem'
 import _ from 'lodash'
@@ -31,6 +31,7 @@ class TokenBalanceItemContainer extends Component {
             <TokenBalanceItem tokenName={this.props.token.name}
                               tokenSymbol={this.props.token.symbol}
                               tokenBalances={this.props.tokenBalances}
+                              tokenDecimals={this.props.token.decimals}
                               total={this.props.total}
                               reloadBalance={this.reloadBalance}
                               loading={this.props.loading}
@@ -53,9 +54,9 @@ const mapStateToProps = (state, ownProps) => {
     const token = state.tokens.byId[ownProps.tokenId]
 
     // calculate total balance of all addresses
-    const total = _.reduce(ownProps.tokenBalances, (sum, tokenBalance) => {
-        return sum.plus(tokenBalance.balance)
-    }, new BigNumber(0) ).dividedBy(token.decimals)
+    let total = _.reduce(ownProps.tokenBalances, (sum, tokenBalance) => {
+        return sum.add(tokenBalance.balance)
+    }, new BN(0) )
 
     // if any of the tokenBalances is loading, the whole container is loading
     let loading = false

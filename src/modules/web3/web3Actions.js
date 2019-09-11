@@ -1,7 +1,5 @@
-import Ens from 'ethjs-ens'
 import getWeb3 from '../../utils/getWeb3'
 import {clearTokenList} from '../token/tokenActions'
-import promisify from '../../utils/promisifyWeb3'
 
 export const WEB3_STATES = {
     UNINITIALIZED: 'uninitialized',
@@ -37,14 +35,6 @@ export function setWeb3Instance(web3) {
     return {
         type: SET_WEB3INSTANCE,
         web3
-    }
-}
-
-export const SET_ENS = 'SET_ENS'
-export function setENS(ens) {
-    return {
-        type: SET_ENS,
-        ens
     }
 }
 
@@ -87,9 +77,11 @@ export function stopBlockFilter() {
         // Clean up any blockfilter that might be active
         const {blockFilter} = getState().web3Instance
         if (blockFilter) {
-            blockFilter.stopWatching((error, result) => {
+            blockFilter.unsubscribe((error, success) => {
                 if (error) {
                     console.log("Error stopping blockfilter: " + error)
+                } else {
+                    console.log("Success stopping blockfilter: " + success)
                 }
             })
             dispatch(setBlockFilter(null))
@@ -117,53 +109,34 @@ export function initialize() {
             return;
         }
 
-        // FIXME - Promisify can be removed once web3.js 1.0 is released
-        promisify(web3)
         dispatch(setWeb3Instance(web3))
 
         // set node info
-        const nodeVersion = await web3.version.getNodePromise()
+        const nodeVersion = await web3.eth.getNodeInfo()
         dispatch(setNodeVersion(nodeVersion))
 
         // set network info
-        const networkIdString = await web3.version.getNetworkPromise()
-        let networkID = parseInt(networkIdString, 10)
+        const networkID = await web3.eth.net.getId()
         const network = getNetworkName(networkID)
         dispatch(setNetwork(networkID, network, undefined))
 
-        // setup ens system
-        const ens = new Ens({
-            provider: web3.currentProvider,
-            network: networkID
-        })
-        dispatch(setENS(ens))
-
         // set current block
-        const block = await web3.eth.getBlockPromise('latest')
+        const block = await web3.eth.getBlock('latest')
         dispatch(setCurrentBlock(block))
 
         // start listening for new block events
-        const filter = web3.eth.filter('latest')
-        filter.watch(async (error, blockHash) => {
-            if (error) {
-                console.log("Error watching for block events: " + error)
-            } else {
-                const block = await web3.eth.getBlockPromise(blockHash)
-                if (block) {
-                    dispatch(setCurrentBlock(block))
-                }
-                else {
-                    console.log("Ignoring null-block!")
-                    console.log(block)
-                }
-            }
+        const filter = web3.eth.subscribe('newBlockHeaders')
+        .on("data", function (blockHeader) {
+            dispatch(setCurrentBlock(blockHeader))
+        })
+        .on("error", function (error) {
+            console.log(error)
         })
         dispatch(setBlockFilter(filter))
 
         // start watching for network change events
         setInterval(async function () {
-            const networkIdString = await web3.version.getNetworkPromise()
-            let networkID = parseInt(networkIdString, 10)
+            const networkID = await web3.eth.net.getId()
             const oldNetworkId = getState().web3Instance.id
             if (oldNetworkId !== networkID) {
                 const network = getNetworkName(networkID)

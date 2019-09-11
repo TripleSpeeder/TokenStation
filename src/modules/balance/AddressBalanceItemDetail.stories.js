@@ -3,14 +3,13 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import {Table} from 'semantic-ui-react'
-
-import BigNumber from 'bignumber.js';
+import BN from 'bn.js';
 import AddressBalanceItemDetail from './AddressBalanceItemDetail'
 
 export const props = {
     tokenName: 'District0x network token',
     tokenSymbol: 'DNT',
-    balance: new BigNumber('234.12345678901'),
+    balance: new BN(234.12345678901),
 }
 
 export const actions = {

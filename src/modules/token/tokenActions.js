@@ -1,5 +1,6 @@
-import contract from 'truffle-contract'
+import contract from '@truffle/contract'
 import erc20ABI from 'human-standard-token-abi'
+import BN from 'bn.js'
 import {
     BALANCE_STATES,
     balanceStateChanged,
@@ -324,7 +325,7 @@ function mapListToken(listToken) {
         id: listToken['address'],
         address: listToken['address'],
         symbol: listToken['symbol'],
-        decimals: Math.pow(10, listToken['decimals']),
+        decimals: new BN(listToken['decimals']),
         name: listToken['name'],
         description: null,
         website: listToken['website'],
@@ -378,12 +379,13 @@ export function loadTokenBalance(tokenID, addressId) {
 
 export function loadMultiTokenBalances(tokenIDs, addressId) {
     return async (dispatch, getState) => {
-        tokenIDs.forEach(async tokenId => {
+        for (const tokenId of tokenIDs) {
             dispatch(balanceStateChanged(tokenId, addressId, BALANCE_STATES.LOADING))
             const address = getState().addresses.byId[addressId].address
             let balance
             if (tokenId === ETH_TOKEN_MAGIC_ADDRESS) {
-                balance = await getState().web3Instance.web3.eth.getBalancePromise(address)
+                balance = await getState().web3Instance.web3.eth.getBalance(address)
+                balance = new BN(balance) // getBalance returns balance in wei as string
             } else {
                 await verifyContractInstance(tokenId, dispatch, getState)
                 const volatileToken = getState().tokens.volatileById[tokenId]
@@ -391,7 +393,7 @@ export function loadMultiTokenBalances(tokenIDs, addressId) {
             }
             dispatch(setBalanceByAddressAndToken(addressId, tokenId, balance))
             dispatch(balanceStateChanged(tokenId, addressId, BALANCE_STATES.INITIALIZED))
-        })
+        }
     }
 }
 
@@ -442,68 +444,44 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
 
             // obtain events for this chunk
             // console.log("Calling 'Transfer' from " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
-            const transferEventsFrom = contractInstance.Transfer(
+            const transferEventsFrom = await contractInstance.getPastEvents(
+                // event name
+                "Transfer",
                 {
-                    // These are the standard ERC20 Transfer event fields
-                    _from: addresses,    // addresses sending token
-                    _to: null,      // addresses receiving token
-                },
-                {
+                    filter: {
+                        // Event field "_from" is defined in ERC20
+                        _from: addresses,    // addresses sending token
+                    },
+                    // block range to get events from
                     fromBlock: currentFromBlock,
                     toBlock: currentToBlock,
                 }
             )
             //console.log("Calling 'Transfer' to " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
-            const transferEventsTo = contractInstance.Transfer(
+            const transferEventsTo = await contractInstance.getPastEvents(
+                // event name
+                "Transfer",
                 {
-                    // These are the standard ERC20 Transfer event fields
-                    _from: null,    // addresses sending token
-                    _to: addresses,      // addresses receiving token
-                },
-                {
+                    filter: {
+                        // Event field "_to" is defined in ERC20
+                        _to: addresses, // addresses receiving token
+                    },
+                    // block range to get events from
                     fromBlock: currentFromBlock,
                     toBlock: currentToBlock,
                 }
             )
 
-            // Wrap this into promise and await it, otherwise loading:false action will be dispatched too early!
-            let eventPromises = []
-            eventPromises.push(new Promise((resolve, reject) => {
-                transferEventsFrom.get(function (error, events) {
-                    if (error) {
-                        console.error("Error getting events for token " + tokenID + ": " + error)
-                        reject("Error getting events for token " + tokenID + ": " + error)
-                    } else {
-                        // console.log("Found " + events.length + " 'from' Events: " + events)
-                        if (events.length) {
-                            dispatch(addEventsThunk(events, tokenID))
-                        }
-                        resolve(events.length)
-                    }
-                })
-            }))
-            eventPromises.push(new Promise((resolve, reject) => {
-                transferEventsTo.get(function (error, events) {
-                    if (error) {
-                        console.error("Error getting events for token " + tokenID + ": " + error)
-                        reject("Error getting events for token " + tokenID + ": " + error)
-                    } else {
-                        //console.log("Found " + events.length + " 'to' Events: " + events)
-                        if (events.length) {
-                            dispatch(addEventsThunk(events, tokenID))
-                        }
-                        resolve(events.length)
-                    }
-                })
-            }))
-            // Wait till both promises are resolved and add up the found number of events.
-            const loggedEvents = await Promise.all(eventPromises)
-            const foundEvents = loggedEvents.reduce((a, b) => a + b, 0)
-
+            if (transferEventsFrom.length) {
+                dispatch(addEventsThunk(transferEventsFrom, tokenID))
+            }
+            if (transferEventsTo.length) {
+                dispatch(addEventsThunk(transferEventsTo, tokenID))
+            }
+            const foundEvents = transferEventsFrom.length + transferEventsTo.length
             dispatch(aceEntriesBlockRangeChange(addresses, tokenID, currentFromBlock, currentToBlock))
-            // increment currentChunk
+
             currentChunk++
-            // update numEvents with number of found events
             numEvents += foundEvents
         }
 

@@ -1,5 +1,5 @@
 import {
-    ACE_ENTRIES_BLOCK_RANGE_CHANGE, ACE_ENTRIES_LOADING_CHANGE, ADD_EVENTS, buildEventId,
+    ACE_ENTRIES_BLOCK_RANGE_CHANGE, ACE_ENTRIES_LOADING_CHANGE, ADD_EVENTS,
     CREATE_ACE_ENTRY, SET_ACE_ENTRY_EVENT_IDS
 } from '../eventActions'
 import {CLEAR_TOKEN_LIST} from '../../token/tokenActions'
@@ -61,7 +61,7 @@ function addTransferEvents(state, action) {
     const newState = {...state}
 
     events.forEach(transferEvent => {
-        const transferEventId = buildEventId(transferEvent)
+        const transferEventId = transferEvent.id
         const {_from, _to} = transferEvent.args
         const aceFromId = buildAddressContractEventId(_from, tokenId)
         const aceToId = buildAddressContractEventId(_to, tokenId)

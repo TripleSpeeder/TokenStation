@@ -1,4 +1,4 @@
-import {ADD_EVENTS, buildEventId} from '../eventActions'
+import {ADD_EVENTS} from '../eventActions'
 import {CLEAR_TOKEN_LIST} from '../../token/tokenActions'
 
 const ALL_EVENTS_INITIAL = []
@@ -8,7 +8,7 @@ function addEventIds(state, action) {
     const {events} = payload
     let newState = state
     events.forEach(transferEvent => {
-        const transferEventId = buildEventId(transferEvent)
+        const transferEventId = transferEvent.id
         // prevent duplicate entries
         const existingIndex = state.indexOf(transferEventId)
         if (existingIndex > -1) {

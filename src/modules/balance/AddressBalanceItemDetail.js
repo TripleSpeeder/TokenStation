@@ -4,7 +4,7 @@ import {Table, Button} from 'semantic-ui-react'
 import Balance from './Balance'
 
 const AddressBalanceItemDetail = (props) => {
-    const {tokenName, tokenSymbol, tokenBalance, loading, reloadBalance} = props
+    const {tokenName, tokenSymbol, tokenAmount, tokenDecimals, loading, reloadBalance} = props
 
     return (
         <Table.Row>
@@ -13,7 +13,7 @@ const AddressBalanceItemDetail = (props) => {
             <Table.Cell>
                 {tokenName} ({tokenSymbol})
             </Table.Cell>
-            <Table.Cell><Balance balance={tokenBalance}/></Table.Cell>
+            <Table.Cell><Balance amount={tokenAmount} numDecimals={tokenDecimals}/></Table.Cell>
             <Table.Cell>
                 <Button size='mini'
                         circular
@@ -28,7 +28,8 @@ const AddressBalanceItemDetail = (props) => {
 AddressBalanceItemDetail.propTypes = {
     tokenName: PropTypes.string.isRequired,
     tokenSymbol: PropTypes.string.isRequired,
-    tokenBalance: PropTypes.object.isRequired,
+    tokenAmount: PropTypes.object.isRequired,
+    tokenDecimals: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
     reloadBalance: PropTypes.func.isRequired,
 }

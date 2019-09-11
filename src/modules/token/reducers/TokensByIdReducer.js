@@ -2,7 +2,7 @@ import {
     ADD_TOKEN, CLEAR_TOKEN_LIST, IS_LOADING_SUPPLY, IS_LOADING_TOKEN,
     SET_TOKEN_SUPPLY
 } from '../tokenActions'
-import {ADD_EVENTS, buildEventId} from '../../event/eventActions'
+import {ADD_EVENTS} from '../../event/eventActions'
 
 const TOKENS_BY_ID_INITIAL = {}
 
@@ -89,7 +89,7 @@ function addTransferEvents(state, action) {
     let newEventIds = token.eventIds
 
     events.forEach(transferEvent => {
-        const transferEventId = buildEventId(transferEvent)
+        const transferEventId = transferEvent.id
 
         if (newEventIds.includes(transferEventId)) {
             console.warn("Ignoring duplicate event " + transferEventId)

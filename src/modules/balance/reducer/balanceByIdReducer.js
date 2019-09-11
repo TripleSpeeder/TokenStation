@@ -6,7 +6,7 @@ import {
     SET_BALANCE_STATE
 } from '../balanceActions'
 import {CLEAR_TOKEN_LIST} from '../../token/tokenActions'
-import {BigNumber} from 'bignumber.js'
+import BN from 'bn.js'
 
 const BALANCE_BY_ID_INITIAL = {}
 
@@ -36,7 +36,7 @@ function createBalanceEntry(state, action) {
             balanceId,
             addressId,
             tokenId,
-            balance: new BigNumber(0),
+            balance: new BN(0),
             balanceState: BALANCE_STATES.VIRGIN,
         }
     }

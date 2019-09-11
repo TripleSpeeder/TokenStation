@@ -102,6 +102,9 @@ export function changeOwnAddresses(accounts) {
     // -> if it is not in addresses, add it
     // -> if it is in addresses, but marked as "external", change type to "owned"
     return (dispatch, getState) => {
+        // since web3 1.x the accounts are checksummed. Convert all entries to lowercase for easier comparison
+        accounts = accounts.map(entry => entry.toLowerCase())
+
         const addressesById = getState().addresses.byId
 
         const newAccounts = accounts.filter(account => {

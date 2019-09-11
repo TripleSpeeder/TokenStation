@@ -8,7 +8,7 @@ class TransferFormContainer extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            amount: this.props.web3.toBigNumber('0'),
+            amount: this.props.web3.utils.toBN('0'),
             toAddressValid: false,
             amountValid: false,
             rateValid: false
@@ -21,9 +21,9 @@ class TransferFormContainer extends Component {
         const {fromAddress, tokenName, tokenSymbol, tokenBalance} = this.props
 
         // TODO: Calculate real gas costs
-        const gasCosts = this.props.web3.toBigNumber('0.0022')
+        const gasCosts = this.props.web3.toBN('0.0022')
         // TODO: Get real balance
-        const etherBalance = this.props.web3.toBigNumber('12.3456')
+        const etherBalance = this.props.web3.toBN('12.3456')
 
         return <TransferForm onValidSubmit={this.onValidSubmit}
                              onClose={this.props.closeModal}

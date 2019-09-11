@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import Balance from './Balance'
 
 const TokenBalanceItem = (props) => {
-    const {expanded, tokenName, tokenSymbol, tokenBalances, total, reloadBalance, loading, tokenEventsLinkOptions, toggleCollapse} = props
+    const {expanded, tokenName, tokenSymbol, tokenBalances, total, tokenDecimals, reloadBalance, loading, tokenEventsLinkOptions, toggleCollapse} = props
     let eventLink = <Link to={tokenEventsLinkOptions}>{tokenName} ({tokenSymbol})</Link>
 
     const icon = expanded ? 'chevron up' : 'chevron down'
@@ -24,7 +24,7 @@ const TokenBalanceItem = (props) => {
                 <Table.HeaderCell width={8}>{eventLink}</Table.HeaderCell>
                 <Table.HeaderCell width={5}>
                     <Statistic size='mini'>
-                        <Statistic.Value><Balance balance={total}/></Statistic.Value>
+                        <Statistic.Value><Balance amount={total} numDecimals={tokenDecimals}/></Statistic.Value>
                     </Statistic>
                 </Table.HeaderCell>
                 <Table.HeaderCell width={2}>
@@ -60,6 +60,7 @@ TokenBalanceItem.propTypes = {
     tokenName: PropTypes.string.isRequired,
     tokenSymbol: PropTypes.string.isRequired,
     tokenBalances: PropTypes.array.isRequired,
+    tokenDecimals: PropTypes.object.isRequired,
     total: PropTypes.object.isRequired,
     reloadBalance: PropTypes.func.isRequired,
     toggleCollapse: PropTypes.func.isRequired,
