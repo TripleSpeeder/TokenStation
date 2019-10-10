@@ -45,7 +45,8 @@
     "human-standard-token-abi": "^1.0.2",
     "prop-types": "^15.7",
     "react-test-renderer": "^16.10.2",
-    "storybook-react-router": "^1.0.8"
+    "storybook-react-router": "^1.0.8",
+    "redux-devtools-extension": "^2.13.8"
   },
   "browserslist": [
     ">0.2%",

@@ -7,6 +7,7 @@ import {balance} from './modules/balance/reducer/balanceReducer'
 import {createLogger} from 'redux-logger'
 import {events} from './modules/event/reducers/eventReducer'
 import {modal} from './modules/modal/modalReducer'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 
 const reducer = combineReducers({
@@ -26,12 +27,17 @@ const logger = createLogger({
 });
 
 // REDUX Dev Tools don't play well at all with web3 from Metamask extension...
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = composeWithDevTools({
+    // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+    maxAge: 25,
+    actionsBlacklist: ['SET_CURRENT_BLOCK', 'ADD_TOKEN'],
+    persist: false, // dont persist states on page reloading
+});
 
 export default () => {
     let store = createStore(
         reducer,
-        compose(
+        composeEnhancers(
             applyMiddleware(
                 thunk,
                 logger,
