@@ -2,7 +2,7 @@ import {CHANGE_SELECTOR_TOKENID} from '../tokenActions'
 import {SET_NETWORK} from '../../web3/web3Actions'
 
 const SELECTOR_INITIAL = {
-    selctedTokenId: undefined
+    selectedTokenId: undefined
 }
 
 function changeSelectorTokenId(state, action) {
