@@ -111,6 +111,32 @@ export function initialize() {
 
         dispatch(setWeb3Instance(web3))
 
+        // start watching for network change events
+        if (window.ethereum) {
+            // disable page reload on network change
+            window.ethereum.autoRefreshOnNetworkChange = false;
+            // register callback to handle network change
+            window.ethereum.on('networkChanged', (networkID) => {
+                networkID = parseInt(networkID)
+                console.log("Network changed to " + networkID)
+                const network = getNetworkName(networkID)
+                const oldNetworkId = getState().web3Instance.id
+                dispatch(setNetwork(networkID, network, oldNetworkId))
+                dispatch(clearTokenList())
+            } )
+        } else {
+            // legacy browser
+            setInterval(async function () {
+                const networkID = await web3.eth.net.getId()
+                const oldNetworkId = getState().web3Instance.id
+                if (oldNetworkId !== networkID) {
+                    const network = getNetworkName(networkID)
+                    dispatch(setNetwork(networkID, network, oldNetworkId))
+                    dispatch(clearTokenList())
+                }
+            }, 1000)
+        }
+
         // set node info
         const nodeVersion = await web3.eth.getNodeInfo()
         dispatch(setNodeVersion(nodeVersion))
@@ -134,16 +160,6 @@ export function initialize() {
         })
         dispatch(setBlockFilter(filter))
 
-        // start watching for network change events
-        setInterval(async function () {
-            const networkID = await web3.eth.net.getId()
-            const oldNetworkId = getState().web3Instance.id
-            if (oldNetworkId !== networkID) {
-                const network = getNetworkName(networkID)
-                dispatch(setNetwork(networkID, network, oldNetworkId))
-                dispatch(clearTokenList())
-            }
-        }, 1000)
     }
 }
 
