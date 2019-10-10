@@ -7,21 +7,27 @@ import {addAddress, ADDRESS_TYPE_EXTERNAL} from "../modules/address/addressActio
 class LocalStorageGate extends Component {
 
     componentDidMount() {
+        const {knownTokens} = this.props
         // Get tracked tokens from localstorage
-        const trackedTokens = getLocalData(TRACKED_TOKEN_KEYS, []);
+        const storedTrackedTokens = getLocalData(TRACKED_TOKEN_KEYS, []);
+        // remove tokenIDs that are not known
+        const trackedTokens = storedTrackedTokens.filter(token => (knownTokens.indexOf(token) >= 0))
         trackedTokens.forEach((tokenId) => {
             this.props.changeTokenTracking(tokenId)
         })
+
         // get selected token from localstorage
         const selectedTokendId = getLocalData(SELECTED_TOKEN_KEY, null)
-        if (selectedTokendId) {
+        if ((selectedTokendId) && (knownTokens.indexOf(selectedTokendId)>=0)) {
             this.props.changeSelectorTokenId(selectedTokendId)
         }
-        // Get addresses from localstorage
+
+        // Get watched addresses from localstorage
         const watchedAddresses = getLocalData(WATCHED_ADDRESSES, [])
         watchedAddresses.forEach((addressEntry) => {
             this.props.addAddress(addressEntry.address, addressEntry.ensName)
             // load balance for all tracked tokens
+            // TODO: This is the totally wrong place to trigger balance reloading!
             this.props.loadMultiTokenBalances(trackedTokens, addressEntry.address)
         })
     }
@@ -33,6 +39,7 @@ class LocalStorageGate extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    knownTokens: state.tokens.allIds
 })
 
 const mapDispatchToProps = dispatch => ({
