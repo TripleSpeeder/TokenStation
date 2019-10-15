@@ -1,5 +1,6 @@
 import contract from '@truffle/contract'
 import erc20ABI from 'human-standard-token-abi'
+import EventFetcher from '@triplespeeder/web3-eventfetcher'
 import BN from 'bn.js'
 import {
     BALANCE_STATES,
@@ -406,84 +407,91 @@ export function loadTokenTransferEvents(tokenID, fromBlock, toBlock, addresses) 
             return
         }
 
-        const chunkSize = 100
-        const maxChunks = 100
-        const maxEvents = 50
-
-        let currentChunk = 1
-        let numEvents = 0
+        const outgoingEventsFetcher = new EventFetcher()
+        const incomingEventsFetcher = new EventFetcher()
 
         // if no from/toblock are provided, use default values
         if (fromBlock === 0)
-            fromBlock = getState().web3Instance.block.number - (chunkSize * maxChunks)
+            fromBlock = getState().web3Instance.block.number - (2400) // 2400 is ~10 hours
         if (toBlock === 0)
             toBlock = getState().web3Instance.block.number
 
         dispatch(aceEntriesLoadingChangeWrapper(addresses, tokenID, true, fromBlock, toBlock, fromBlock))
+
         await verifyContractInstance(tokenID, dispatch, getState)
         const contractInstance = getState().tokens.volatileById[tokenID].contractInstance
 
-        while ((currentChunk <= maxChunks) && (numEvents <= maxEvents)) {
-            // calculate fromBlock for current chunk
-            let currentFromBlock = fromBlock + ((currentChunk-1) * chunkSize)
-            // calculate toBlock for current chunk
-            let currentToBlock = currentFromBlock + chunkSize
+        let numEvents = 0
+        const maxEvents = 50
 
-            // update progress info
+        const progressCallback = function (progressInfo) {
+            const { stepsComplete, totalSteps, stepResults,
+                stepFromBlock, stepToBlock} = progressInfo
+            numEvents += stepResults.length
             dispatch(changeEventScanProps({
                 tokenID,
                 addresses,
                 numEvents,
-                currentChunk,
+                currentChunk: stepsComplete,
                 maxEvents,
-                maxChunks,
-                fromBlock,
-                toBlock,
+                maxChunks: totalSteps,
+                stepFromBlock,
+                stepToBlock,
                 state: 'scanning'
             }))
-
-            // obtain events for this chunk
-            // console.log("Calling 'Transfer' from " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
-            const transferEventsFrom = await contractInstance.getPastEvents(
-                // event name
-                "Transfer",
-                {
-                    filter: {
-                        // Event field "_from" is defined in ERC20
-                        _from: addresses,    // addresses sending token
-                    },
-                    // block range to get events from
-                    fromBlock: currentFromBlock,
-                    toBlock: currentToBlock,
-                }
-            )
-            //console.log("Calling 'Transfer' to " + addresses + ", blockrange: " + currentFromBlock + " - " + currentToBlock)
-            const transferEventsTo = await contractInstance.getPastEvents(
-                // event name
-                "Transfer",
-                {
-                    filter: {
-                        // Event field "_to" is defined in ERC20
-                        _to: addresses, // addresses receiving token
-                    },
-                    // block range to get events from
-                    fromBlock: currentFromBlock,
-                    toBlock: currentToBlock,
-                }
-            )
-
-            if (transferEventsFrom.length) {
-                dispatch(addEventsThunk(transferEventsFrom, tokenID))
+            if (stepResults.length) {
+                dispatch(addEventsThunk(stepResults, tokenID))
             }
-            if (transferEventsTo.length) {
-                dispatch(addEventsThunk(transferEventsTo, tokenID))
-            }
-            const foundEvents = transferEventsFrom.length + transferEventsTo.length
-            dispatch(aceEntriesBlockRangeChange(addresses, tokenID, currentFromBlock, currentToBlock))
-
-            currentChunk++
-            numEvents += foundEvents
+            dispatch(aceEntriesBlockRangeChange(addresses, tokenID, stepFromBlock, stepToBlock))
         }
+
+        /* Note: It is not possible to "OR" two filter properties together, so need to fetch based on _from and _to
+        separately. If I set both _to and _from in one filter no events will be found.
+         */
+        let incomingFetchOptions = {
+            contract: contractInstance,
+            eventName: 'Transfer',
+            fromBlock: fromBlock,
+            toBlock: toBlock,
+            filter: {
+                // Event field "_from" is defined in ERC20
+                _from: addresses,    // addresses sending token
+            },
+            progressCallback: progressCallback
+        }
+        let outgoingFetchOptions = {
+            contract: contractInstance,
+            eventName: 'Transfer',
+            fromBlock: fromBlock,
+            toBlock: toBlock,
+            filter: {
+                // Event field "_from" is defined in ERC20
+                _to: addresses,    // addresses sending token
+            },
+            progressCallback: progressCallback
+        }
+        // set initial progress info
+        dispatch(changeEventScanProps({
+            tokenID,
+            addresses,
+            numEvents: 0,
+            currentChunk: 0,
+            maxEvents,
+            maxChunks: 0,
+            fromBlock,
+            toBlock,
+            state: 'scanning'
+        }))
+
+        // ignore return value, as events are already added in the progress callback
+        //await incomingEventsFetcher.fetch(incomingFetchOptions)
+        //await outgoingEventsFetcher.fetch(outgoingFetchOptions)
+        // FIXME: Fetching events in parallel is faster than above "await" solution, but messes up the
+        // progress info
+        let fetcherPromises = []
+        fetcherPromises.push(incomingEventsFetcher.fetch(incomingFetchOptions))
+        fetcherPromises.push(outgoingEventsFetcher.fetch(outgoingFetchOptions))
+        await Promise.all(fetcherPromises)
 
         dispatch(aceEntriesLoadingChange(addresses, tokenID, false, 0, 0, 0))
     }

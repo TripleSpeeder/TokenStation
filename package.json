@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@triplespeeder/web3-eventfetcher": "^2.0.0",
     "@truffle/contract": "^4.0.32",
     "bn.js": "^5.0.0",
     "formsy-react": "^1.1.5",
