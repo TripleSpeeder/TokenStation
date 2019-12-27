@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@triplespeeder/bn2string": "^1.0.0",
     "@triplespeeder/web3-eventfetcher": "^2.0.0",
     "@truffle/contract": "^4.0.36",
     "bn.js": "^5.0.0",
