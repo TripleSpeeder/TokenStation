@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Provider} from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import configureStore from './store'
 import {Container} from 'semantic-ui-react'
 import ModalRoot from './modules/modal/ModalRoot'
@@ -18,12 +18,12 @@ class App extends Component {
                 <Web3GateContainer>
                     <TokenLoaderGate>
                         <LocalStorageGate>
-                            <BrowserRouter>
+                            <HashRouter>
                                 <Container>
                                     <ModalRoot/>
                                     <LayoutContainer/>
                                 </Container>
-                            </BrowserRouter>
+                            </HashRouter>
                         </LocalStorageGate>
                     </TokenLoaderGate>
                 </Web3GateContainer>
