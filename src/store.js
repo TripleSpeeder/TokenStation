@@ -26,12 +26,14 @@ const logger = createLogger({
     diff: false
 });
 
-// REDUX Dev Tools don't play well at all with web3 from Metamask extension...
+// Enable redux dev tools
 const composeEnhancers = composeWithDevTools({
     // Specify name here, actionsBlacklist, actionsCreators and other options if needed
-    maxAge: 25,
-    actionsBlacklist: ['SET_CURRENT_BLOCK', 'ADD_TOKEN'],
-    persist: false, // dont persist states on page reloading
+    maxAge: 50,
+    // Ignore:
+    // - "ADD_TOKEN" as the number of events emitted during page load kill redux dev tools performance
+    actionsBlacklist: ['ADD_TOKEN'],
+    trace: false
 });
 
 export default () => {
